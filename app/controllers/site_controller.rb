@@ -5,6 +5,6 @@ class SiteController < ApplicationController
 
   def set_locale
     cookies[:locale] = params[:locale] if params[:locale]
-    render :nothing => true
+    redirect_to request.referer
   end
 end
