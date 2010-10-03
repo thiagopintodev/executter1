@@ -1,0 +1,24 @@
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+
+  #before_filter :my_locale_from_accept_language_header
+  helper_method :all_users
+
+  protected
+  
+  def my_locale_from_accept_language_header
+    return if cookies[:locale]
+    cookies[:locale] = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+  end 
+
+  def all_users
+    User.order(:id)
+  end
+  def my_must_be_logged
+    redirect_to root_path, :notice=>"ONLY LOGGED IN" unless current_user
+  end
+  def my_admin_area
+    #redirect_to(root_path, :notice=>"aaaaa") unless false
+  end
+  
+end

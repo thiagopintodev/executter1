@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* CSS Document */
+
+div#login {
+	width:760px;
+	float:left;
+	background-color:#FFF;
+	padding:20px;
+}
+div#login h1 {
+	width:400px;
+	float:left;
+	font-size:28px;
+}
+div#login .singup {
+	width:360px;
+	float:left;
+	text-align:right;
+	padding:10px 0 0 0;
+}
+div#login form {
+	width:760px;
+	float:left;
+	border-top:7px solid #dbdbdb;
+	margin:10px 0 0 0;
+	padding:40px 0 0 0;
+}
+div#login form .campos {
+	width:400px;
+	float:left;
+}
+div#login form #publicidade {
+	width:320px;
+	float:left;
+	border-left:4px solid #dbdbdb;
+	padding:15px 0 15px 20px;
+}
+div#login form .campos label {
+	width:170px;
+	float:left;
+	text-align:right;
+	padding:10px 10px 10px 0;
+}
+div#login form .campos input {
+	width:180px;
+	float:left;
+	padding:10px;
+	margin:0 0 10px 0;
+	border:1px solid #dbdbdb;
+	font-size:14px;
+	font-weight:bold;
+}
+div#login form .campos .remember {
+	width:190px;
+	float:left;
+	padding:0 0 0 176px;
+	color:#666;
+	font-size:13px;
+	border:none;
+}
+div#login form .campos .remember .check {
+	width:20px;
+	border:none;
+	padding:0;
+	float:left;
+	margin:2px 0 0 0;
+}
+div#login form .campos .remember span {
+	width:100px;
+	float:left;
+	padding:1px 0 0 5px;
+	*padding:4px 0 0 5px;
+}
+div#login form .campos .bt {
+	width:123px;
+	height:43px;
+	background:url(/images/layout/bg_singin.jpg) no-repeat;
+	border:none;
+	color:#FFF;
+	font-size:16px;
+	margin:10px 0 10px 178px;
+	display:inline;
+}
+div#login form .campos a {
+	width:190px;
+	float:left;
+	padding:0 0 5px 180px;
+	font-size:12px;
+}
+
+div.erro {
+	width:366px;
+	float:left;
+	background-color:#ffc1c1;
+	color:#6e0000;
+	font-size:12px;
+	text-align:center;
+	padding:8px;
+	margin:0 0 10px 0;
+	display:inline;
+}
+div#login form .campos .bt-sign-in {
+	width:120px;
+	height:34px;
+	float:left;
+	margin:10px 0 15px 180px;
+	display:inline;
+}
+div#login form .campos .bt-sign-in a {
+	width:120px;
+	display:block;
+	height:34px;
+	background:url(/images/layout/bt_login.jpg) repeat-x;
+	padding:8px 0 0 0;
+	text-align:center;
+	font-size:20px;
+	font-weight:bold;
+	color:#FFF;
+	border-bottom:1px solid #046fb6;
+	border-right:1px solid #046fb6;
+}
+div#login form .campos .bt-sign-in a:hover {
+	background:url(/images/layout/bt_login2.jpg) repeat-x;
+	text-decoration:none;
+}
+	

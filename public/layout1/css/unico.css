@@ -1,0 +1,303 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	margin:0;
+	padding:0;
+	border:none;
+	behavior: url(/javascripts/iepngfix.htc);
+}
+div#all {
+	width:800px;
+	height:100%;
+	margin:0 auto 20px auto;
+}
+div#content {
+	width:800px;
+	float:left;
+	background-color:#FFF;
+	margin:20px 0 0 0;
+	position:relative;
+	padding:0 0 20px 0;
+}
+div#container {
+	width:519px;
+	height:100%;
+	float:left;
+	padding:0 0 20px 0;
+}
+div#container .p-botao {
+	width:499px;
+	height:26px;
+	float:left;
+	margin:20px 0 0 0;
+	display:inline;
+}
+div#container .p-botao a {
+	display:block;
+	height:26px;
+	background:url(/images/layout/bg_botao.jpg) repeat-x;
+	padding:8px 0 0 0;
+	text-align:center;
+	font-size:15px;
+	font-weight:bold;
+	border-bottom:1px solid #e2e2e2;
+	border-right:1px solid #e2e2e2;
+}
+div#container .p-botao a:hover {
+	background:url(/images/layout/bg_botao2.jpg) repeat-x;
+	text-decoration:none;
+}
+div#container h1 {
+	width:499px;
+	float:left;
+	padding:15px 0 0 0;
+	font-size:18px;
+}
+ul.lista-execute {
+	width:499px;
+	float:left;
+	list-style:none;
+	border-top:1px dashed #e2e2e2;
+	padding:10px 0 10px 0;
+}
+ul.lista-execute:hover {
+	background-color:#f5f5f5;
+}
+ul.lista-execute li {
+	float:left;
+	font-size:15px;
+}
+ul.lista-execute li a {
+	font-weight:bold;
+}
+ul.lista-execute li.execute {
+	width:382px;
+	padding:0 10px 0 0;
+}
+ul.lista-execute li.havatar {
+	width:60px;
+	float:left;
+}
+ul.lista-execute li.foto {
+	width:442px;
+	padding:10px 10px 0 0;
+}
+ul.lista-execute li.foto img {
+	border:1px solid #e2e2e2;
+	background-color:#FFF;
+	padding:5px;
+	margin:0 10px 0 0;
+	display:inline;
+	float:left;
+}
+ul.lista-execute li.foto span {
+	color:#999;
+	font-size:12px;
+}
+ul.lista-execute li.hora {
+	width:280px;
+	padding:10px 10px 0 0;
+	color:#999;
+	font-size:12px;
+}
+ul.lista-execute li.links {
+	width:150px;
+	float:left;
+	padding:10px 0 0 0;
+	font-size:12px;
+}
+ul.lista-execute li.links a {
+	margin:0 15px 0 0;
+}
+ul.lista-execute li.hora img {
+	float:left;
+	margin:0 5px 0 0;
+}
+ul.lista-execute li.hora a {text-decoration:none; color:#999; font-weight:normal;}
+ul.lista-execute li.hora a:hover {text-decoration:underline; color:#999; font-weight:normal;}
+
+ul.lista-execute li.icons {
+	width:45px;
+	float:left;
+}
+ul.lista-execute li.icons img {
+	margin:2px;
+	display:inline;
+	opacity:0.4;
+	*filter:alpha(opacity=40);
+}
+ul.lista-execute li.icons img:hover {
+	opacity:1;
+	*filter:alpha(opacity=100);
+}
+
+/*
+
+
+ul#menu-abas {
+	width:519px;
+	float:right;
+	list-style:none;
+	background-color:#f4f1e6;
+	padding:15px 0 0 20px;
+	margin:0 0 20px 0;
+}
+ul#menu-abas li {
+	float:left;
+	background:url(/images/layout/bg_aba.jpg) repeat-x bottom;
+	background-color:#fff;
+	margin:0 4px 0 0;
+	font-size:13px;
+}
+ul#menu-abas li.atual {
+	background-color:#FFF;
+	background-image:none;
+	padding:5px;
+}
+ul#menu-abas li img {
+	float:left;
+	margin:0 3px 0 0;
+}
+ul#menu-abas li a {
+	float:left;
+	text-decoration:none;
+	display:block;
+	padding:5px;
+}
+ul#menu-abas li a:hover {
+	display:block;
+	background-color:#d1cdbe;
+	color:#FFF;
+}
+
+*/
+
+
+
+ul.alert {
+	width:499px;
+	float:left;
+	list-style:none;
+	border-top:1px dashed #ff9901;
+	border-bottom:1px dashed #ff9901;
+	background-color:#fff1bf;
+	padding:3px 0 3px 0;
+	margin:20px 0 0 0;
+	display:inline;
+}
+ul.alert li {
+	width:480px;
+	float:left;
+	font-size:12px;
+	padding:3px 0 3px 10px;
+	color:#333333;
+}
+ul.alert li img {
+	float:left;
+	margin:0 5px 0 0;
+}
+
+ul#menu-estilos {
+	width:176px;
+	height:159px;
+	position:absolute;	
+	background:url(/images/layout/sombra_menu.png) no-repeat bottom right;
+	z-index:1;
+	padding:0;
+	border-top:1px solid #e2e2e2;
+	border-left:1px solid #e2e2e2;
+
+	list-style:none;
+	top:57px;
+	left:597px;
+}
+ul#menu-estilos li {
+	width:170px;
+	float:left;
+	font-size:12px;
+	color:#333;
+	border-bottom:1px solid #e2e2e2;
+	background-color:#FFF;
+}
+ul#menu-estilos li a {
+	display:block;
+	color:#333;
+	text-decoration:none;
+	padding:3px;
+}
+
+ul#menu-estilos li img {
+	margin:0 5px 0 0;
+	border:none;
+}
+div#user-following div.chama-menu {
+	float:left;
+	border:1px solid #ccc;
+	color:#666;
+	margin:10px 0 10px 0;
+	font-weight:bold;
+	padding:3px;
+}
+div#user-following div.chama-menu img {
+	border:none;
+}
+div#user-following div.chama-menu img {
+	opacity:0.4;
+	*filter:alpha(opacity=40);
+}
+div#user-following div.chama-menu a img:hover {
+	opacity:1;
+	*filter:alpha(opacity=100);
+}
+
+form.executa {
+	width:499px;
+	float:left;
+}
+form.executa .bt-execute {
+	width:104px;
+	height:26px;
+	float:left;
+}
+form.executa .bt-execute a {
+	display:block;
+	height:26px;
+	background:url(/images/layout/bg_botao.jpg) repeat-x;
+	padding:8px 0 0 0;
+	text-align:center;
+	font-size:15px;
+	font-weight:bold;
+	border-bottom:1px solid #e2e2e2;
+	border-right:1px solid #e2e2e2;
+	color:#999;
+}
+form.executa .bt-execute a:hover {
+	background:url(/images/layout/bg_botao2.jpg) repeat-x;
+	text-decoration:none;
+	color:#666;
+}
+form.executa textarea {
+	width:487px;
+	float:left;
+	border:1px solid #ccc;
+	color:#333;
+	font-family:15px Arial, Helvetica, sans-serif;
+	overflow:hidden;
+	margin:0 0 10px 0;
+	padding:5px;
+}
+form.executa .caracteres {
+	width:60px;
+	float:left;
+	font-size:25px;
+	font-weight:bold;
+	color:#999;
+}
+form.executa .latest {
+	width:325px;
+	float:left;
+	color:#999;
+	font-size:12px;
+	padding:0 10px 0 0;
+}

@@ -1,0 +1,152 @@
+div#content { min-height:300px; }
+
+.pg-home-index div#content,
+.pg-users-show div#content { min-height:1000px; }
+
+.view-in { background:white }
+.ajax-content-white { background-image: none !important; }
+
+
+
+
+#viewstack, .ajax-content {
+  clear:both;
+	background:#FFF url(/images/layout1/ajax_loader_squares.gif) no-repeat center top;
+	min-height:100px;
+}
+
+.lista-execute, .lista-perguntas, .lista-executs { background:#fff; }
+
+.ul.lista-execute li.hora { width:100% !important ; }
+
+form.executa {}
+form.executa textarea {margin-top:5px;font:Arial 15px;color:#333;}
+form.executa h3{ color:#333;float:left;display:inline-block; }
+form.executa .caracteres{color:#999;float:right;display:inline-block;font-size:20px}
+
+
+form.executa .anexos { color:#ccc;float:left;display:inline-block; }
+form.executa .bt-execute {float:right;display:inline-block;}
+form.executa .anexos strong { float:left;padding-top:10px; }
+form.executa .anexos a { float:left;margin-left:5px; padding:10px; border:#fff solid 1px;}
+form.executa .anexos a:hover { border:#999 solid 1px; background:#efefef; }
+form.executa .tipos-anexos {clear:both}
+
+
+
+/* of7 at R3 till this point  */
+
+
+
+
+
+
+
+
+.chama-menu { cursor:pointer; }
+
+.arrow-right { background: url(/images/layout/arrow_icon_right.png) no-repeat 20px 3px !important; }
+
+ul.menu-add li.mais a { padding: 5px; }
+
+
+
+
+div#img-user {
+	width:200px;
+	min-height:200px;
+	float:left;
+	margin:20px 0 20px 20px;
+	display:inline;
+}
+div#img-user * {
+  position:absolute;
+}
+
+div#img-user a{
+	background: url(/images/layout/busca_photo.png); width:100px; height:100px; display: block;margin-left:100px;
+}
+div#img-user a:hover {
+	background:url(/images/layout/busca_photo_over.png) no-repeat;
+}
+
+div#user-following {
+  min-height: 132px;
+}
+div#user-following.loading {
+	background:#F2F3F7 url(/images/layout1/ajax_loader_squares.gif) no-repeat center center;
+}
+
+
+
+
+
+
+
+
+ul#of7-tabs {
+	width:519px;
+	float:right;
+	list-style:none;
+	background-color:#f4f1e6;
+	padding:15px 0 0 20px;
+	margin:0 0 20px 0;
+}
+ul#of7-tabs li {
+	float:left;
+	background:#fff url(/images/layout/bg_aba.jpg) repeat-x bottom;
+	margin:0 4px 0 0;
+	font-size:13px;
+	padding:5px;
+}
+ul#of7-tabs li.current {
+	background-image: none;
+}
+
+ul#of7-tabs li a {
+	background:url(/images/layout/havatar16x16.jpg) no-repeat left center;
+	float:left;
+	text-decoration:none;
+	display:block;
+	padding-left:20px;
+}
+
+
+
+
+.ui-tabs-hide{ display:none; }
+#tabs1 {
+  clear:both;
+}
+#tabs1 ul.t {
+	width:519px;
+	float:right;
+	list-style:none;
+	background-color:#f4f1e6;
+	padding:15px 0 0 20px;
+	margin:0 0 20px 0;
+}
+#tabs1 ul.t li {
+	float:left;
+	background:#fff url(/images/layout/bg_aba.jpg) repeat-x bottom;
+	margin:0 4px 0 0;
+	font-size:13px;
+	padding:5px;
+}
+#tabs1 ul.t li.ui-tabs-selected {
+	background-image: none;
+}
+
+#tabs1 ul.t li a {
+	background:url(/images/layout/havatar16x16.jpg) no-repeat left center;
+	float:left;
+	text-decoration:none;
+	display:block;
+	padding-left:20px;
+}
+
+
+
+
+
+

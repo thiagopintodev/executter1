@@ -1,0 +1,412 @@
+@charset "utf-8";
+/* CSS Document */
+
+ul#abas-settings {
+	width:780px;
+	float:right;
+	list-style:none;
+	background-color:#f4f1e6;
+	padding:15px 0 0 20px;
+	margin:0 0 20px 0;
+}
+ul#abas-settings li {
+	float:left;
+	background:url(/images/layout/bg_aba.jpg) repeat-x bottom;
+	background-color:#fff;
+	margin:0 4px 0 0;
+	font-size:13px;
+}
+ul#abas-settings li.atual {
+	background-color:#FFF;
+	background-image:none;
+	padding:5px;
+}
+ul#abas-settings li a {
+	float:left;
+	text-decoration:none;
+	display:block;
+	padding:5px;
+}
+ul#abas-settings li a:hover {
+	display:block;
+	background-color:#d1cdbe;
+	color:#FFF;
+}
+
+form.campos-settings {
+	width:535px;
+	float:left;
+	padding:0 0 0 20px;
+}
+form.campos-settings #campos {
+	width:535px;
+	float:left;
+	font-size:12px;
+}
+#campos .normal {
+	width:535px;
+	float:left;
+	padding:0 0 10px 0;
+}
+#campos .desativar {
+	width:535px;
+	float:left;
+	padding:30px 0 10px 0;
+}
+form.campos-settings input {
+	width:187px;
+	border:1px solid #ccc;
+	padding:5px;
+	float:left;
+	font-size:12px;
+	color:#666;
+}
+form.campos-settings select {
+	border:1px solid #ccc;
+	padding:5px;
+	float:left;
+	font-size:12px;
+	color:#666;
+	margin:0 10px 0 0;
+}
+#campos .normal label {
+	width:128px;
+	float:left;
+	text-align:right;
+	padding:7px 10px 0 0;
+}
+#campos .recuo {
+	width:397px;
+	float:left;
+	padding:0 0 10px 138px;
+}
+#campos input.check {
+	width:15px;
+	border:none;
+	float:left;
+	font-size:12px;
+	color:#666;
+	padding:0;
+}
+#campos span.check-texto {
+	width:150px;
+	float:left;
+	padding:0 0 0 4px;
+	*margin:4px 0 0 4px;
+}
+#campos span.grande {
+	width:397px;
+	float:left;
+	font-size:11px;
+	color:#999;
+	padding:3px 0 0 0;
+}
+#campos span.recuado {
+	width:397px;
+	float:left;
+	font-size:11px;
+	color:#999;
+	padding:3px 0 0 138px;
+}
+#campos span.recuado span {
+	color:#06af05;
+	float:none;
+}
+	
+#campos span {
+	float:left;
+	font-size:11px;
+	color:#999;
+	padding:3px 0 0 0;
+}
+#campos span.checando {
+	padding:8px 0 0 5px;
+	color:#ff9900;
+}
+#campos span.simples {
+	float:left;
+	font-size:11px;
+	color:#999;
+	padding:7px 0 0 0;
+}
+#campos #box-senha {
+	width:375px;
+	float:left;
+	margin:0 0 10px 138px;
+	display:inline;
+	border:1px solid #ccc;
+	background-color:#f1f1f1;
+	padding:10px;
+	color:#666;
+}
+#campos #box-senha div {
+	padding:0 0 10px 0;
+}
+#campos #box-senha a {
+	width:295px;
+	float:left;
+	display:block;
+	font-size:11px;
+	padding:5px 0 0 62px;
+}
+#campos #box-senha label {
+	float:left;
+	font-weight:bold;
+	padding:7px 5px 0 0;
+}
+
+ul#box-infos {
+	width:180px;
+	float:left;
+	border:1px solid #e2e2e2;
+	background-color:#f5f7fa;
+	margin:0 0 0 23px;
+	list-style:none;
+	display:inline;
+	padding:10px;
+}
+ul#box-infos li {
+	width:180px;
+	float:left;
+	color:#666;
+	padding:0 0 15px 0;
+	font-size:12px;
+}
+ul#box-infos li span {
+	color:#ff9900;
+	font-size:14px;
+}
+ul#box-infos li.titulo {
+	font-size:16px;
+	font-weight:bold;
+	border-bottom:1px solid #e2e2e2;
+	padding:0 0 5px 0;
+	margin:0 0 10px 0;
+}
+
+ul.alert-settings {
+	width:535px;
+	float:left;
+	list-style:none;
+	border-top:1px dashed #ff9901;
+	border-bottom:1px dashed #ff9901;
+	background-color:#fff1bf;
+	padding:3px 0 3px 0;
+	display:inline;
+	margin:0 0 20px 0;
+}
+ul.alert-settings li {
+	width:515px;
+	float:left;
+	font-size:12px;
+	padding:3px 0 3px 10px;
+	color:#333333;
+}
+ul.alert-settings li img {
+	float:left;
+	margin:0 5px 0 0;
+}
+form.campos-settings .bt {
+	width:80px;
+	height:33px;
+	padding:0;
+	background:url(/images/layout/bg_botao.jpg) repeat-x;
+	font-size:15px;
+	font-weight:bold;
+}
+form.campos-settings .bt:hover {
+	background:url(/images/layout/bg_botao2.jpg) repeat-x;
+	text-decoration:none;
+	cursor:pointer;
+}
+#campos img.havatar {
+	float:left;
+}
+#campos #file {
+	width:315px;
+	float:left;
+	padding:0 0 0 15px;
+}
+#campos #file div {
+	width:315px;
+	float:left;
+	padding:30px 0 10px 0;
+}
+#campos #file span {
+	width:315px;
+	float:left;
+	padding:10px 0 10px 0;
+}
+#campos #file input {
+	float:left;
+}
+
+#campos .titulo {
+	width:535px;
+	float:left;
+	padding:0 0 15px 0;
+	font-size:14px;
+	font-weight:bold;
+}
+#campos #sabor-lista {
+	width:350px;
+	float:left;
+	list-style:none;
+	display:inline;
+	margin:0 43px 0 0;
+}
+#campos #sabor-lista li {
+	width:330px;
+	float:left;
+	padding:10px;
+}
+#campos #sabor-lista li.atual {
+	background-color:#f5f5f5;
+}
+#campos #sabor-lista li:hover{
+	background-color:#f5f5f5;
+}
+#campos #sabor-lista li input {
+	width:15px;
+	float:left;
+	border:none;
+}
+#campos #sabor-lista li img {
+	float:left;
+	margin:0 0 0 5px;
+}
+#campos #sabor-lista li span {
+	float:left;
+	font-size:16px;
+	font-weight:bold;
+	padding:17px 0 0 5px;
+}
+#campos #sabor-lista li span.laranja {
+	color:#ff9900;
+}
+#campos #sabor-lista li span.maca {
+	color:#50a929;
+}
+#campos #sabor-lista li span.chiclete {
+	color:#fe006b;
+}
+#campos #sabor-lista li span.banana {
+	color:#e1b500;
+}
+#campos #sabor-lista li span.morango {
+	color:#ed1b24;
+}
+#campos #sabor-lista li span.chocolate {
+	color:#5f321b;
+}
+#campos #sabor-lista li span.cafe {
+	color:#000;
+}
+
+div#box-cor {
+	width:122px;
+	float:left;
+	background-color:#f1f1f1;
+	padding:10px;
+	color:#666;
+}
+div#box-cor div {
+	width:120px;
+	float:left;
+	color:18px;
+	font-weight:bold;
+	padding:0 0 10px 0;
+	color:#000;
+}
+div#box-cor label {
+	width:120px;
+	float:left;
+}
+div#box-cor input {
+	width:100px;
+	float:left;
+	margin:0 0 5px 0;
+}
+
+div#box-fundo {
+	width:493px;
+	float:left;
+	padding:0 0 0 42px;
+}
+div#box-fundo div {
+	width:493px;
+	float:left;
+	font-size:16px;
+	padding:15px 0 15px 0;
+	color:#666;
+}
+div#box-fundo input {
+	width:350px;
+	float:left;
+	padding:0 0 5px 0;
+}
+div#box-fundo span {
+	width:493px;
+	float:left;
+	font-size:11px;
+}
+div#opcoes-bg {
+	width:493px;
+	float:left;
+	padding:20px 0 0 42px;
+}
+div#opcoes-bg img {
+	float:left;
+	margin:0 15px 10px 0;
+	border:7px solid #e9eaef;
+}
+div#opcoes-bg img.yes {
+	border:7px solid #ffe5bf;
+}
+div#opcoes-bg label {
+	width:493px;
+	float:left;
+}
+div#opcoes-bg label input {
+	width:15px;
+	float:left;
+	border:none;
+	padding:0;
+	margin:3px 0 0 0;
+}
+div#opcoes-bg label span {
+	float:left;
+	padding:2px 0 0 5px;
+}
+div.botoes {
+	width:493px;
+	float:left;
+	padding:20px 0 0 42px;
+}
+div.botoes input {
+	margin:0 15px 0 0;
+}
+div#opcoes-email {
+	width:493px;
+	float:left;
+	padding:10px 0 0 42px;
+}
+div#opcoes-email label {
+	width:493px;
+	float:left;
+	padding:0 0 10px 0;
+}
+div#opcoes-email input {
+	width:15px;
+	float:left;
+	border:none;
+	padding:0;
+}
+div#opcoes-email span {
+	float:left;
+	padding:0 0 0 7px;
+	font-size:13px;
+}
+
+
+	

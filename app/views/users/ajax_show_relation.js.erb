@@ -1,0 +1,53 @@
+<% content_for :output do %>
+<% if @r %>
+
+<ul class="menu-add">
+
+  <li class="user"><%= @user.username %></li>
+
+  <li class="mais">
+    <%= link_to @button[:text], "#", :class=>"clickable", "data-k"=>@button["data-k"], "data-v"=>@button["data-v"] if @button %>
+  </li>
+  
+  <% if @r[:r2].is_block %>
+    <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> U B-in Block'd</li>
+  <% else %>
+  
+    <% if @r[:r1].is_follow %>
+      <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Following</li>
+    <% end %>
+    
+    <% if @r[:r1].is_friend %>
+      <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Friend</li>
+    <% elsif @r[:r2].is_follow %>
+      <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Followed</li>
+    <% end %>
+    
+  <% end %>
+  
+</ul>
+
+
+<div class="chama-menu">
+	<img src="/images/layout/Menu.gif" width="16" height="16" />
+	<a href="#">
+		<img src="/images/layout/arrow_icon.png" width="16" height="16" />
+  </a>
+</div>
+
+  <!--
+<ul id="menu-estilos">
+	<li><a href="#"><img src="/images/layout/0_metion.gif" width="16" height="16" /> Mention MariaMia</a></li>
+  <li><a href="#"><img src="/images/layout/0_Follow.gif" width="16" height="16" /> Follow MariaMia</a></li>
+  <li><a href="#"><img src="/images/layout/0_AddFriend.gif" width="16" height="16" /> Add as Friend MariaMia</a></li>
+  <li><a href="#"><img src="/images/layout/0_Unfollow.gif" width="16" height="16" /> Unfollow MariaMia</a></li>
+  <li><a href="#"><img src="/images/layout/0_Block.gif" width="16" height="16" /> Block MariaMia</a></li>
+  <li><a href="#"><img src="/images/layout/0_Unblock.gif" width="16" height="16" /> Unblock MariaMia</a></li>
+  <li><a href="#"><img src="/images/layout/0_Spam.gif" width="16" height="16" /> Report for Spam</a></li>
+</ul>
+  -->
+<% end %>
+<% end %>
+
+<% r = raw escape_javascript(yield :output) %>
+$("#user-following").removeClass("loading").html("<%= r %>");

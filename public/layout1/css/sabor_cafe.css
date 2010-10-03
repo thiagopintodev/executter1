@@ -1,0 +1,152 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+/* COR DO TEXTO */
+body, td, th {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666666;
+}
+div#sidebar ul#estatistics li a span {
+	text-decoration:none;
+	color:#666666;
+}
+div#sidebar div.menu a.labels {
+	color:#666666;
+}
+div#sidebar div.menu .atual {
+	color:#666666;
+}
+/* FIM */
+
+
+
+
+
+/* COR E IMAGEM DO BACKGROUND */
+html, body {
+	margin: 0px;
+	background: url(/images/layout/7_B_Coffee.jpg) no-repeat top left;
+	background-color:#000;
+	height: 100%;
+}
+/* FIM */
+
+
+
+
+
+/* COR DO LINK */
+a {
+	text-decoration:none;
+	color:#ca0000;
+}
+a:hover {
+	text-decoration:underline;
+	color:#ca0000;
+}
+div#sidebar ul#estatistics li a .label {
+	text-decoration:none;
+	color:#ca0000;
+}
+div#sidebar ul#estatistics li a:hover span {
+	text-decoration:none;
+	color:#ca0000;
+}
+/* FIM */
+
+
+
+
+
+/* COR DA LOGOMARCA */
+a.logo {
+	width:200px;
+	height:47px;
+	float:left;
+	background: url(/images/layout/7_E_Coffee.png) no-repeat;
+	cursor:pointer;
+	margin:20px 0 0 0;
+}
+/* FIM */
+
+
+
+
+
+/* COR DO FUNDO DO MENU - TOPO */
+div#menu {
+	width:600px;
+	float:right;
+	margin:38px 0 0 0;
+	text-align:right;
+}
+div#menu span {
+	background-color:#000;
+}
+div#menu a {
+	background-color:#000;
+	float:right;
+	color:#FFF;
+	font-size:15px;
+	padding:5px 9px 5px 9px;
+	text-decoration:none;
+	display:block;
+}
+div#menu a:hover {
+	text-decoration:underline;
+	color:#FFF;
+}
+/* FIM */
+
+
+
+
+
+
+
+
+/* COR HOVER MENU ESTILOS */
+ul#menu-estilos li a:hover {
+	display:block;
+	background-color:#ca0000;
+	color:#FFF;
+}
+/* FIM */
+
+
+
+
+
+
+
+
+
+/* COR DO BACKGROUND DO SIDEBAR */
+div#sidebar {
+	width:260px;
+	height:100%;
+	min-height:100%;
+	position:absolute;
+	float:left;
+	background-color:#000;
+	border-right:1px solid #9a673a;
+}
+/* FIM */
+
+
+
+
+
+/* COR DO BACKGROUND DO RODAPÉ */
+div#footer {
+	width:786px;
+	float:left;
+	background-color:#000;
+	padding:7px;
+	margin:20px 0 0 0;
+	font-size:12px;
+	color:#FFF;
+} 
+/* FIM */

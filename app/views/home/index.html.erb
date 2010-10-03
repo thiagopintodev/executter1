@@ -1,0 +1,84 @@
+<% my_title "Home" %>
+<% my_css_files "base", "header", "home","sidebar","footer" %>
+
+<div id="sidebar">
+
+  <div id="username">
+      <img src="/images/layout/havatar25x25.jpg" width="25" height="25" alt="<%= @user.username %>" border="0" />
+      <%= link_to @user.username, @user %>
+  </div>
+
+
+  
+  <ul id="estatistics">
+     <li><a href="#" class="nao-clique"><span><%= @my_followers.size %></span><span class="label">Followers</span></a></li>
+     <li><a href="#" class="nao-clique"><span><%= @my_followings.size %>/196</span><span class="label">Following</span></a></li>
+     <li><a href="#" class="nao-clique"><span><%= @my_friends.size %>/108</span><span class="label">Friends</span></a></li>
+  </ul>
+<br/><br/><br/><br/>
+
+            <h3><a href="#">USUARIOS</a></h3>	
+          <div class="menu">
+	          <!--
+            <a href="#"><span class="desc">Friends</span><span>5</span></a>
+            <a href="#"><span class="desc">Mention</span><span>2</span></a>
+            -->
+            <% all_users.each do |u| %>
+              <a href="<%= user_path u %>"><span class="desc"><%= u.email %></span><span>:)</span></a>
+            <% end %>
+          </div>
+
+
+  <form>
+	  <input name="" type="button" class="bt" />
+    <input name="input" type="text" value="Search" />
+  </form>	
+
+
+  
+  <div class="menu">
+  <a href="#" class="labels">Labels</a>
+      <a href="#"><span class="desc"><img src="/images/layout/havatar16x16.jpg" width="16" height="16" alt="Name" border="0" /> Friends</span><span>5</span></a>
+      <a href="#"><span class="desc"><img src="/images/layout/havatar16x16.jpg" width="16" height="16" alt="Name" border="0" /> Friends</span><span>5</span></a>
+      <a href="#"><span class="desc"><img src="/images/layout/havatar16x16.jpg" width="16" height="16" alt="Name" border="0" /> Friends</span><span>5</span></a>
+  </div>
+  <div class="menu">
+	  <a href="#" class="labels">Labels</a>
+      <a href="#"><span class="desc"> Friends</span><span>5</span></a>
+      <a href="#"><span class="desc"> Friends</span><span>5</span></a>
+      <a href="#"><span class="desc"> Friends</span><span>5</span></a>
+  </div>
+  <div class="menu">
+	  <a href="#" class="labels">Labels</a>
+      <a href="#"><span class="desc"> Crie sua campanha</span></a>
+      <a href="#"><span class="desc"> Lorem ipsum</span></a>
+  </div>
+  <div class="banner">
+      <a href="#">Faça sua doação ao Projeto Executter</a>
+      <a href="#"><img src="/images/layout/paypal.jpg" width="101" height="86" /></a>
+      <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+  </div>
+
+
+</div>
+
+
+  
+<div id="container">
+
+
+
+
+
+<div id="viewstack" data-selected="#view1">
+  <div id="view1" class="view" data-url="<%= ajax_home_index_tab1_path %>">
+  </div>
+  <div id="view2" class="view" data-url="<%= ajax_home_index_tab2_path %>">
+  </div>
+</div>
+  
+
+
+
+
+</div>

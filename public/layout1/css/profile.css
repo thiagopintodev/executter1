@@ -1,0 +1,309 @@
+@charset "utf-8";
+/* CSS Document */
+/*
+div#img-user {
+	width:200px;
+	height:200px;
+	float:left;
+	background:url(/images/layout/Havatar200x200.jpg) no-repeat;
+	margin:20px 0 20px 20px;
+	display:inline;
+}
+div#img-user img {
+	float:right;
+}
+div#img-user img:hover {
+	background:url(/images/layout/busca_photo_over.png) no-repeat;
+}
+*/
+h1 {
+	width:499px;
+	float:left;
+}
+div#user-following {
+	width:285px;
+	float:left;
+	list-style:none;
+	background-color:#f2f3f7;
+	border:1px solid #e2e2e2;
+	margin:20px 0 0 12px;
+	display:inline;
+}
+div#user-following img {
+	float:left;
+	border-left:1px solid #e2e2e2;
+	border-bottom:1px solid #e2e2e2;
+}
+
+div#user-following ul.menu-add {
+	width:223px;
+	float:left;
+	list-style:none;
+	padding:10px 0 10px 10px;
+}
+ul.menu-add li {
+	float:left;
+}
+ul.menu-add li.mais {
+	border:1px solid #ccc;
+	margin:0 0 10px 0;
+	font-weight:bold;
+	font-size:15px;
+}
+ul.menu-add li.mais a {
+	display:block;
+	text-decoration:none;
+	color:#666;
+	padding:3px;
+}
+ul.menu-add li.mais a:hover {
+	display:block;
+	background-color:#fff;
+
+}
+ul.menu-add li.user {
+	width:200px;
+	padding:0 0 10px 0;
+	font-weight:bold;
+}
+ul.menu-add li.topico {
+	width:200px;
+	font-size:13px;
+	margin:0 0 5px 0;
+}
+ul.menu-add li.topico img {
+	margin:0 5px 0 0;
+}
+ul.lista-executs {
+	width:499px;
+	float:left;
+	list-style:none;
+	border-top:1px dashed #e2e2e2;
+	padding:10px 0 10px 0;
+	margin:0 0 0 20px;
+	display:inline;
+}
+ul.lista-executs:hover {
+	background-color:#f5f5f5;
+}
+ul.lista-executs li {
+	float:left;
+	font-size:15px;
+}
+ul.lista-executs li a {
+	font-weight:bold;
+}
+ul.lista-executs li.execute {
+	width:432px;
+	padding:0 15px 0 0;
+}
+ul.lista-executs li.execute-g {
+	width:432px;
+	padding:0 15px 0 0;
+	font-size:18px;
+}
+ul.lista-executs li.foto {
+	width:442px;
+	padding:10px 10px 0 0;
+}
+ul.lista-executs li.foto img {
+	border:1px solid #e2e2e2;
+	background-color:#FFF;
+	padding:5px;
+	margin:0 10px 0 0;
+	display:inline;
+	float:left;
+}
+ul.lista-executs li.foto span {
+	color:#999;
+	font-size:12px;
+}
+ul.lista-executs li.hora {
+	width:435px;
+	padding:10px 15px 0 0;
+	color:#999;
+	font-size:12px;
+}
+ul.lista-executs li.hora img {
+	float:left;
+	margin:0 5px 0 0;
+}
+ul.lista-executs li.hora a {text-decoration:none; color:#999; font-weight:normal;}
+ul.lista-executs li.hora a:hover {text-decoration:underline; color:#999; font-weight:normal;}
+
+ul.lista-executs li.icons {
+	width:45px;
+	float:left;
+}
+ul.lista-executs li.icons img {
+	margin:2px;
+	display:inline;
+}
+ul.lista-executs li.icons img {
+	margin:2px;
+	display:inline;
+	opacity:0.4;
+	*filter:alpha(opacity=40);
+}
+ul.lista-executs li.icons img:hover {
+	opacity:1;
+	*filter:alpha(opacity=100);
+}
+
+.ativos {
+	width:285px;
+	float:left;
+	margin:10px 0 11px 12px;
+	display:inline;
+	color:#999;
+	font-size:12px;
+}
+
+ul#lista-diretorios {
+	width:285px;
+	float:left;
+	list-style:none;
+	margin:0 0 20px 12px;
+	display:inline;
+}
+ul#lista-diretorios li {
+	width:285px;
+	float:left;
+	font-size:12px;
+	padding:3px 0 1px 0;
+	background-color:#f1f1f1;
+	margin:0 0 1px 0;
+}
+ul#lista-diretorios li span img {
+	float:left;
+	margin:0 3px 0 0;
+}
+ul#lista-diretorios li a {
+	float:left;
+	margin:0 5px 0 0;
+}
+ul#lista-diretorios li span {
+	width:225px;
+	float:left;
+	padding:0 5px 0 5px;
+}
+ul#lista-diretorios li a img {
+	opacity:0.4;
+	*filter:alpha(opacity=40);
+}
+
+ul#lista-diretorios li a img:hover {
+	opacity:1;
+	*filter:alpha(opacity=100);
+}
+
+ul.profile-perguntas {
+	width:499px;
+	float:left;
+	list-style:none;
+	border-top:1px dashed #e2e2e2;
+	padding:10px 0 10px 0;
+	margin:0 0 0 20px;
+	display:inline;
+}
+ul.profile-perguntas:hover {
+	background-color:#f5f5f5;
+}
+ul.profile-perguntas li {
+	width:499px;
+	float:left;
+	font-size:15px;
+}
+ul.profile-perguntas li.resposta {
+	padding:0 15px 0 0;
+}
+ul.profile-perguntas li.pergunta {
+	padding:0 15px 0 0;
+	font-size:18px;
+}
+ul.profile-perguntas li.hora {
+	padding:10px 15px 0 0;
+	color:#999;
+	font-size:12px;
+}
+ul.profile-perguntas li.hora a {text-decoration:none; color:#999; font-weight:normal;}
+ul.profile-perguntas li.hora a:hover {text-decoration:underline; color:#999; font-weight:normal;}
+
+div#img-profile {
+	width:200px;
+	float:left;
+	text-align:center;
+	padding:25px 0 0 0;
+}
+div#img-profile a {
+	width:200px;
+	float:left;
+	padding:0 0 10px 0;
+}
+
+form.escrever-pergunta {
+	width:320px;
+	float:left;
+	padding:25px 0 20px 0;
+}
+form.escrever-pergunta h2 {
+	width:320px;
+	float:left;
+	font-size:18px;
+	padding:0 0 10px 0;
+}
+form.escrever-pergunta textarea {
+	width:307px;
+	float:left;
+	border:1px solid #ccc;
+	color:#333;
+	font-family:15px Arial, Helvetica, sans-serif;
+	overflow:hidden;
+	padding:5px;
+	margin:0 0 10px 0;
+}
+form.escrever-pergunta label {
+	float:left;
+	font-size:12px;
+	color:#999;
+	padding:0 15px 0 0;
+}
+form.escrever-pergunta label span {
+	float:left;
+	padding:0 0 0 5px;
+}
+form.escrever-pergunta label input {
+	float:left;
+	margin:2px 0 0 0;
+}
+form.escrever-pergunta .caracteres {
+	width:215px;
+	float:left;
+	font-size:25px;
+	font-weight:bold;
+	color:#999;
+	margin:10px 0 0 0;
+}
+form.escrever-pergunta .bt-execute {
+	width:104px;
+	height:26px;
+	float:left;
+	margin:10px 0 0 0;
+}
+form.escrever-pergunta .bt-execute a {
+	display:block;
+	height:26px;
+	background:url(/images/layout/bg_botao.jpg) repeat-x;
+	padding:8px 0 0 0;
+	text-align:center;
+	font-size:15px;
+	font-weight:bold;
+	border-bottom:1px solid #e2e2e2;
+	border-right:1px solid #e2e2e2;
+	color:#999;
+}
+form.escrever-pergunta .bt-execute a:hover {
+	background:url(/images/layout/bg_botao2.jpg) repeat-x;
+	text-decoration:none;
+	color:#666;
+}

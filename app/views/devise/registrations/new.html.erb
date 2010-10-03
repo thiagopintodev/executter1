@@ -1,0 +1,65 @@
+<% my_title ":D" %>
+<% my_css_files("base", "header","cadastro","sabor","sidebar","footer") %>
+
+<div id="cadastro">
+
+	<h1><span>Sign Up</span>It's  free and anyone can join</h1>
+	
+  <div class="singup">
+    Already on Executter? <%= link_to "Sign In", new_user_registration_path %>
+  </div>
+
+
+
+  
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%#= devise_error_messages! %>
+    <div class="campo">
+    	<label>Full name</label>
+      <%= f.text_field :full_name %>
+      <div class="alert">Enter your fist and last name</div>
+    </div>
+    <div class="campo">
+    	<label>Username</label>
+      <%= f.text_field :username %>
+      <div class="alert">MENSAGEM DE ERRO</div>
+      <div class="legenda">Your URL: http://executter.com/username</div>
+    </div>
+    <div class="campo">
+    	<label>E-mail</label>
+      <%= f.text_field :email %>
+      <div class="alert">Mensagem Indicativa Ao Focar</div>
+    </div>
+    <div class="campo">
+   	  <%= f.label :password %>
+      <%= f.password_field :password %>
+      <div class="alert">Mensagem Indicativa Ao Focar</div>
+    </div> 
+    <div class="campo">
+   	  <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+      <div class="alert">Mensagem Indicativa Ao Focar</div>
+      <div class="legenda">Clicking on Create my account above, you confirm that you accept the <a href="#">Terms of Service</a>.</div>
+    </div> 
+
+
+      
+    <% unless Rails.env.development? %>
+      <div class="campo">
+   	    <label class="label-words">Type the words above</label>
+        <p><%= raw recaptcha_tags %></p>
+      </div>
+    <% end %>
+
+
+    
+    <div class="bt-sign-in">
+      <%= f.submit "Create my account" %>
+    </div>
+
+    
+  <% end %>
+
+
+  
+</div>

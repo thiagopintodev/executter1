@@ -1,0 +1,15 @@
+<p>
+  <b>User:</b>
+  <%= link_to @post.user.username, profile_path(@post.user.username) %>
+</p>
+<p>
+  <b>deletado?</b>
+  <%= @post.is_deleted ? "DELETADO, o que fazer quando ele já tiver sido deletado?" : "NÃO" %>
+</p>
+<p>
+  <b>Body:</b>
+  <%= @post.body %>
+</p>
+
+<%= link_to "<< post ##{@post.id-1}", post_path(@post.id-1) %> |
+<%= link_to "post ##{@post.id+1} >>", post_path(@post.id+1) %>

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <%= csrf_meta_tag %>
+  <% my_css_files "base", "header","cadastro","sabor","sidebar","footer" %>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title><%= yield(:title) || "Executter" %></title>
+  <link rel="shortcut icon" href="/images/layout/favicon.ico" />
+  
+  <%= javascript_include_tag :defaults %>
+  
+  <%= yield(:css_files) %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= my_flavour_stylesheet %>
+  <!--[if IE 6]>
+  <script src="/layout1/DD_belatedPNG_0.0.8a-min.js"></script>
+  <script>  DD_belatedPNG.fix('.png_bg, img, h3, input, .labels, .desenho, #menu-estilos, .logo '); </script>
+  <style type="text/css">body { behavior:url(/layout1/csshover.htc); }</style>
+  <![endif]-->
+
+</head>
+<body <%= "class='pg-#{controller_name}-#{action_name}'"%>>
+	<div id="all">
+    	<div id="header">
+   	    <a href="/" title="Executter" class="logo"></a>
+			  <div id="menu">
+			
+<% if current_user %>
+  <%= link_to t("all.header.sign_out"), destroy_user_session_path %>
+  <%= link_to t("all.header.orientation"), "#" %>
+  <%= link_to t("all.header.settings"), home_settings_1profile_path %>
+  <%= link_to t("all.header.find_people"), "#" %>
+  <%= link_to t("all.header.profile"), "/#{current_user.username}" %>
+  <%= link_to t("all.header.home"), "/" %>
+<% else %>
+  <%= link_to "Sign Up", new_user_registration_path %>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %>
+
+        </div>
+      </div>
+      <div id="content">
+
+
+        
+<%= my_flash_keys %>
+<%= yield %>
+
+
+
+
+      </div>
+      <div id="footer" class="push">
+      	<span>Executter Beta &copy; 2010</span>
+      	  <p class="locale_setters">
+          <%= link_to "English", locale_path("en"), :remote => true %>
+          <%= link_to "Português", locale_path("pt-BR"), :remote => true %>
+          </p>
+          <ul id="menu-footer">
+          	<li><%= link_to t("all.footer.about_us"), "#about_us.html" %></li>
+          	<li><%= link_to "Blog", "#about_us.html" %></li>
+          	<li><%= link_to t("all.footer.terms"), "#about_us.html" %></li>
+          </ul>
+      </div>
+        
+        
+<% if Rails.env.production? %>
+<script type="text/javascript" src="http://ja.revolvermaps.com/p.js"></script><script type="text/javascript">rm2d_ki101('3','512','256','02qutebmlqz','ff8a00',0);</script>
+<% end %>
+
+
+    </div>
+
+</body>
+</html>

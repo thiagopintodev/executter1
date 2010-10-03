@@ -1,0 +1,33 @@
+<h1>Listing banners</h1>
+
+<table cellpadding="10">
+  <tr>
+    <th>habil?</th>
+    <th> </th>
+
+    <th>Name</th>
+    <th>Link</th>
+    
+    <th>Criado/Editado</th>
+    
+    <th></th>
+  </tr>
+
+<% @banners.each do |banner| %>
+  <tr>
+    <td><%= banner.displaying ? "SIM" : "NAO" %></td>
+    <td><%= image_tag(banner.img.url) %></td>
+
+    <td><%= banner.name %></td>
+    <td><%= banner.link %></td>
+
+    <td><%= banner.created_at %><br/><%= banner.updated_at %></td>
+    
+    <td><%= link_to 'Edit', edit_banner_path(banner) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Banner', new_banner_path %>

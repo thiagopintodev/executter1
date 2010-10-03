@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user1_id: 1
+  user2_id: 1
+  is_block: false
+  is_follow: false
+  is_friend: false
+
+two:
+  user1_id: 1
+  user2_id: 1
+  is_block: false
+  is_follow: false
+  is_friend: false

@@ -1,0 +1,230 @@
+@charset "utf-8";
+/* CSS Document */
+
+div#sidebar #username {
+	width:220px;
+	float:left;
+	padding:20px 0 0 20px;
+}
+div#sidebar #username img {
+	float:left;
+}
+div#sidebar #username a {
+	float:left;
+	padding:3px 0 0 7px;
+	font-size:18px;
+	font-weight:bold;
+}
+div#sidebar ul#estatistics {
+	width:260px;
+	float:left;
+	padding:20px 0 20px 0;
+	list-style:none;
+}
+div#sidebar ul#estatistics li {
+	width:65px;
+	float:left;
+	padding:0 0 0 20px;
+}
+div#sidebar ul#estatistics li span {
+	font-size:13px;
+	color:#333;
+	display:block;
+	font-weight:bold;
+}
+div#sidebar ul#estatistics li span.label {
+	font-size:11px;
+	font-weight:normal;
+}
+div#sidebar ul#estatistics li a:hover .label {
+	text-decoration:underline; 
+}
+div#sidebar div.menu {
+	width:260px;
+	float:left;
+	padding:0 0 10px 0;
+	list-style:none;
+}
+div#sidebar .banner {
+	width:190px;
+	float:left;
+	background-color:#FFF;
+	margin:15px 0 15px 20px;
+	display:inline;
+	padding:10px;
+}
+div#sidebar .banner img {
+	float:left;
+	margin:10px 0 0 0;
+}
+div#sidebar .banner a {
+	width:180px;
+	float:left;
+}
+div#sidebar .banner span {
+	width:180px;
+	float:left;
+	font-size:12px;
+	margin:10px 0 0 0;
+}
+
+div#sidebar div.menu a {
+	width:240px;
+	float:left;
+	display:block;
+	padding:5px 0 5px 20px;
+	margin:0 0 1px 0;
+	font-size:15px;
+}
+div#sidebar div.menu a.labels {
+	width:220px;
+	background: url(/images/layout/arrow_icon.png) no-repeat 20px 3px;
+	float:left;
+	padding:3px 0 3px 40px;
+	display:inline;
+	font-size:15px;
+	font-weight:bold;
+}
+div#sidebar div.menu a img {
+	float:left;
+	margin:0 5px 0 0;
+}
+div#sidebar div.menu .atual {
+	background-color:#FFF;
+	font-weight:bold;
+}
+div#sidebar div.menu span.desc {
+	width:160px;
+	text-align:left;
+}
+div#sidebar div.menu span {
+	width:50px;
+	float:left;
+	text-align:right;
+}
+div#sidebar div.menu a:hover {
+	display:block;
+	background-color:#FFF;
+	text-decoration:none;
+	cursor:pointer;
+}
+
+div#sidebar form {
+	width:220px;
+	float:left;
+	margin:0 0 0 20px;
+	display:inline;
+	padding:0 0 15px 0;
+}
+div#sidebar form input {
+	width:185px;
+	float:left;
+	height:16px;
+	background-color:#FFF;
+	border-top:1px solid #CCC;
+	border-bottom:1px solid #CCC;
+	border-right:1px solid #CCC;
+	padding:6px 4px 4px 6px;
+	color:#999;
+	font-size:11px;
+}
+div#sidebar form input.bt {
+	width:23px;
+	height:28px;
+	padding:0;
+	border:1px solid #ccc;
+	background:url(/images/layout/bg_busca.jpg) no-repeat bottom;
+	background-color:#FFF;
+
+}
+
+div#sidebar ul.lista-menu {
+	width:220px;
+	float:left;
+	margin:0 0 5px 20px;
+	list-style:none;
+}
+div#sidebar ul.lista-menu li {
+	width:220px;
+	padding:0 0 8px 0;
+	font-size:15px;
+	float:left;
+}
+div#sidebar ul.lista-menu li img {
+	margin:0 7px 0 0;
+	display:inline;
+	float:left;
+}
+div#sidebar ul.lista-menu li a {
+	float:left;
+}
+
+div#sidebar #user-perfil {
+	width:220px;
+	float:left;
+	padding:20px 0 0 20px;
+	font-size:12px;
+}
+div#sidebar #user-perfil div.verified {
+	width:220px;
+	float:left;
+	padding:0 0 10px 0;
+}
+div#sidebar #user-perfil div.verified img {
+	float:left;
+}
+div#sidebar #user-perfil p {
+	padding:0 0 5px 0;
+}
+div#labels-thumbs {
+	width:230px;
+	float:left;
+	padding:10px 0 0 20px;
+	list-style:none;
+	display:inline;
+}
+div#labels-thumbs img {
+	margin:0 3px 3px 0;
+}
+div#sidebar h3 {
+	width:220px;
+	background: url(/images/layout/arrow_icon.png) no-repeat 20px 3px;
+	float:left;
+	padding:3px 0 3px 40px;
+	display:inline;
+	color:#000;
+	font-size:15px;
+	font-weight:bold;
+}
+div#sidebar h3 a {
+	color:#000;
+	text-decoration:none;
+}
+div#sidebar h3:hover {
+	background-color:#FFF;
+	display:block;
+	text-decoration:none;
+	cursor:pointer;
+}
+div#sidebar div.more {
+	width:215px;
+	float:left;
+	margin:0 0 0 20px;
+	text-align:right;
+	font-size:12px;
+	border-bottom:1px solid #FFF;
+	display:inline;
+	padding:0 0 10px 0;
+}
+div#sidebar div.rss {
+	width:215px;
+	float:left;
+	margin:10px 0 20px 20px;
+	font-size:12px;
+	display:inline;
+}
+div#sidebar div.rss img {
+	float:left;
+	margin:0 5px 0 0;
+}
+

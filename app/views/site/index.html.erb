@@ -1,0 +1,30 @@
+<h2>this is index page if you're not logged in</h2>
+
+<h3>current time:</h3>
+<%= Time.now %>
+
+<h3>current language:</h3>
+<p><%= time_ago_in_words(3.minutes.from_now) %></p>
+<p><%= time_ago_in_words(Time.now - 15.hours) %></p>
+<p><%= time_ago_in_words(Time.now) %></p>
+
+
+
+
+
+
+<% if false %>
+
+<% content_for :sidebar do %>
+this is a sidebar
+<% end %>
+
+
+<h1>Site#index</h1>
+<p><%= link_to "banners", banners_path %></p>
+<p><%= link_to "sabores", flavours_path %></p>
+<p><%= request.env['HTTP_USER_AGENT'] %></p>
+<p><%=  %></p>
+<p><%=  %></p>
+
+<% end %>

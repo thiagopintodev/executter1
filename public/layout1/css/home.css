@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+
+form.executa {
+	width:499px;
+	float:left;
+	padding:0 0 0 20px;
+	margin:20px 0 20px 0;
+}
+form.executa .bt-execute {
+	width:104px;
+	height:26px;
+	float:left;
+}
+form.executa .bt-execute a {
+	display:block;
+	height:26px;
+	background:url(/images/layout/bg_botao.jpg) repeat-x;
+	padding:8px 0 0 0;
+	text-align:center;
+	font-size:15px;
+	font-weight:bold;
+	border-bottom:1px solid #e2e2e2;
+	border-right:1px solid #e2e2e2;
+	color:#999;
+}
+form.executa .bt-execute a:hover {
+	background:url(/images/layout/bg_botao2.jpg) repeat-x;
+	text-decoration:none;
+	color:#666;
+}
+form.executa textarea {
+	width:487px;
+	float:left;
+	border:1px solid #ccc;
+	color:#333;
+	font-family:15px Arial, Helvetica, sans-serif;
+	overflow:hidden;
+	margin:0 0 10px 0;
+	padding:5px;
+}
+form.executa .caracteres {
+	width:60px;
+	float:left;
+	font-size:25px;
+	font-weight:bold;
+	color:#999;
+}
+form.executa .latest {
+	width:325px;
+	float:left;
+	color:#999;
+	font-size:12px;
+	padding:0 10px 0 0;
+}

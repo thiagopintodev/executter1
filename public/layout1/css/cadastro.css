@@ -1,0 +1,144 @@
+@charset "utf-8";
+/* CSS Document */
+
+div#cadastro {
+	width:760px;
+	float:left;
+	background-color:#FFF;
+	padding:20px;
+}
+div#cadastro h1 {
+	width:400px;
+	float:left;
+	font-size:17px;
+	font-weight:normal;
+}
+div#cadastro h1 span {
+	font-size:28px;
+	padding:0 10px 0 0;
+	font-weight:bold;
+}
+div#cadastro .singup {
+	width:360px;
+	float:left;
+	text-align:right;
+	padding:10px 0 0 0;
+}
+div#cadastro form {
+	width:760px;
+	float:left;
+	border-top:7px solid #dbdbdb;
+	margin:10px 0 0 0;
+	padding:40px 0 0 0;
+}
+div#cadastro form div.campo {
+	width:760px;
+	float:left;
+}
+div#cadastro form div.campo div.alert {
+	width:200px;
+	float:left;
+	border:1px solid #e2e2e2;
+	color:#333;
+	background-color:#f1f1f1;
+	font-size:11px;
+	padding:11px;
+}
+div#cadastro form div.campo div.legenda {
+	width:580px;
+	float:left;
+	font-size:11px;
+	color:#CCC;
+	padding:0 0 10px 180px;
+}
+div#cadastro form div.campo label {
+	width:170px;
+	float:left;
+	text-align:right;
+	padding:10px 10px 10px 0;
+}
+div#cadastro form div.campo input {
+	width:180px;
+	float:left;
+	padding:10px;
+	margin:0 10px 10px 0;
+	border:1px solid #dbdbdb;
+	font-size:14px;
+	font-weight:bold;
+	display:inline;
+}
+div.erro {
+	width:366px;
+	float:left;
+	background-color:#ffc1c1;
+	color:#6e0000;
+	font-size:12px;
+	text-align:center;
+	padding:8px;
+	margin:0 0 10px 0;
+	display:inline;
+}
+div#cadastro form .bt-sign-in {
+	width:230px;
+	height:34px;
+	float:left;
+	margin:10px 0 15px 180px;
+	display:inline;
+}
+div#cadastro form .bt-sign-in a {
+	width:230px;
+	display:block;
+	height:34px;
+	background:url(/images/layout/bt_login.jpg) repeat-x;
+	padding:8px 0 0 0;
+	text-align:center;
+	font-size:20px;
+	font-weight:bold;
+	color:#FFF;
+	border-bottom:1px solid #046fb6;
+	border-right:1px solid #046fb6;
+}
+div#cadastro form .bt-sign-in a:hover {
+	background:url(/images/layout/bt_login2.jpg) repeat-x;
+	text-decoration:none;
+}
+div#cadastro form div.campo div.words {
+	width:322px;
+	height:100px;
+	border:1px solid #dbdbdb;
+	float:left;
+}
+div#cadastro form div.campo div.words input {
+	width:302px;
+	border-top:1px solid #dbdbdb;
+	border-bottom:none;
+	border-left:none;
+	border-right:none;
+	margin:0;
+}
+div#cadastro form div.campo ul.recursos {
+	width:150px;
+	height:90px;
+	border-top:1px solid #dbdbdb;
+	border-right:1px solid #dbdbdb;
+	border-bottom:1px solid #dbdbdb;
+	background-color:#f1f1f1;
+	float:left;
+	list-style:none;
+	padding:5px;
+}
+div#cadastro form div.campo ul.recursos li {
+	width:140px;
+	float:left;
+	font-size:11px;
+	padding:0 0 3px 0;
+}
+div#cadastro form div.campo ul.recursos li img {
+	float:left;
+	margin:0 5px 0 0;
+}
+div#cadastro form div.campo .label-words {
+	padding:70px 10px 10px 0;
+}
+	
+	

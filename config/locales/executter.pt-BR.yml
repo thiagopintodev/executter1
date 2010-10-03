@@ -1,0 +1,15 @@
+# %{username}
+pt-BR:
+  all:
+    header:
+      home: "Inicio"
+      profile: "Perfil"
+      find_people: "Encontre Pessoas"
+      settings: "Configurações"
+      orientation: "Orientação"
+      sign_out: "Sair"
+      sign_up: "Cadastrar"
+      sign_in: "Já tenho cadastro"
+    footer:
+      about_us: "Sobre"
+      terms: "Contrato"

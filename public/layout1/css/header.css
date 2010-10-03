@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+div#header {
+	width:800px;
+	float:left;
+}
+div#topo-cadastro {
+	width:800px;
+	float:left;
+	margin:10px 0 0 0;
+}
+div#topo-cadastro .desenho {
+	width:800px;
+	height:110px;
+	background:url(/images/layout/nuvem_profile.png) no-repeat;
+	float:left;
+}
+div#topo-cadastro #box-chamada {
+	width:800px;
+	float:left;
+	background-color:#FFF;
+}
+div#topo-cadastro #box-chamada .p-botao {
+	width:189px;
+	height:41px;
+	float:left;
+	margin:15px 0 0 5px;
+	display:inline;
+}
+div#topo-cadastro #box-chamada .p-botao a {
+	display:block;
+	height:41px;
+	background:url(/images/layout/bt_execute.jpg) repeat-x;
+	padding:8px 0 0 0;
+	text-align:center;
+	color:#FFF;
+	font-size:25px;
+	font-weight:bold;
+	border-bottom:1px solid #3e8d02;
+	border-right:1px solid #3e8d02;
+}
+div#topo-cadastro #box-chamada .p-botao a:hover {
+	background:url(/images/layout/bt_execute2.jpg) repeat-x;
+	text-decoration:none;
+}
+
+div#topo-cadastro h1 {
+	width:760px;
+	float:left;
+	padding:0 0 0 20px;
+	font-size:22px;
+}
+div#topo-cadastro h1 span {
+	color:#ff9900;
+}
+div#topo-cadastro .texto {
+	width:540px;
+	padding:10px 20px 20px 20px;
+	float:left;
+	font-size:15px;
+	line-height:20px;
+}

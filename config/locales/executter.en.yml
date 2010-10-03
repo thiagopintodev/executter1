@@ -1,0 +1,15 @@
+# %{username}
+en:
+  all:
+    header:
+      home: "Home"
+      profile: "Profile"
+      find_people: "Find People"
+      settings: "Settings"
+      orientation: "Orientation"
+      sign_out: "Sign Out"
+      sign_up: "Sign Up"
+      sign_in: "Sign In"
+    footer:
+      about_us: "About us"
+      terms: "Terms"

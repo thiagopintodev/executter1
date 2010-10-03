@@ -1,0 +1,174 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+/* COR DO TEXTO */
+body, td, th {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#b1014d;
+}
+div#sidebar ul#estatistics li a span {
+	text-decoration:none;
+	color:#b1014d;
+}
+div#sidebar div.menu a.labels {
+	color:#b1014d;
+}
+div#sidebar div.menu .atual {
+	color:#b1014d;
+}
+/* FIM */
+
+
+
+
+
+
+
+/* COR DO LINK CONTA VERIFICADA */
+div#sidebar #user-perfil div.verified span {
+	float:left;
+	font-size:18px;
+	font-weight:bold;
+	padding:3px 0 0 10px;
+}
+div#sidebar #user-perfil div.verified span a {
+	text-decoration:none;
+	color:#b1014d;
+}
+div#sidebar #user-perfil div.verified span a:hover {
+	color:#3c7bff;
+	text-decoration:none;
+}
+/* FIM */
+
+
+
+
+
+
+
+/* COR E IMAGEM DO BACKGROUND */
+html, body {
+	margin: 0px;
+	background: url(/images/layout/3_B_BubbleGum.jpg) no-repeat top left;
+	background-color:#fe78b1;
+	height: 100%;
+}
+/* FIM */
+
+
+
+
+
+/* COR DO LINK */
+a {
+	text-decoration:none;
+	color:#3c7bff;
+}
+a:hover {
+	text-decoration:underline;
+	color:#3c7bff;
+}
+div#sidebar ul#estatistics li a .label {
+	text-decoration:none;
+	color:#3c7bff;
+}
+div#sidebar ul#estatistics li a:hover span {
+	text-decoration:none;
+	color:#3c7bff;
+}
+/* FIM */
+
+
+
+
+
+/* COR DA LOGOMARCA */
+a.logo {
+	width:200px;
+	height:47px;
+	float:left;
+	background:url(/images/layout/3_E_BubbleGum.png) no-repeat;
+	cursor:pointer;
+	margin:20px 0 0 0;
+}
+/* FIM */
+
+
+
+
+
+/* COR DO FUNDO DO MENU - TOPO */
+div#menu {
+	width:600px;
+	float:right;
+	margin:38px 0 0 0;
+	text-align:right;
+}
+div#menu span {
+	background-color:#fe1f7d;
+}
+div#menu a {
+	background-color:#fe1f7d;
+	float:right;
+	color:#FFF;
+	font-size:15px;
+	padding:5px 9px 5px 9px;
+	text-decoration:none;
+	display:block;
+}
+div#menu a:hover {
+	text-decoration:underline;
+	color:#FFF;
+}
+/* FIM */
+
+
+
+
+
+
+
+/* COR HOVER MENU ESTILOS */
+ul#menu-estilos li a:hover {
+	display:block;
+	background-color:#3c7bff;
+	color:#FFF;
+}
+/* FIM */
+
+
+
+
+
+
+
+/* COR DO BACKGROUND DO SIDEBAR */
+div#sidebar {
+	width:260px;
+	height:100%;
+	min-height:100%;
+	position:absolute;
+	float:left;
+	background-color:#eeeeee;
+	border-right:1px solid #e7d7ff;
+}
+/* FIM */
+
+
+
+
+
+/* COR DO BACKGROUND DO RODAPÉ */
+div#footer {
+	width:786px;
+	float:left;
+	background-color:#fe1f7d;
+	padding:7px;
+	margin:20px 0 0 0;
+	font-size:12px;
+	color:#FFF;
+} 
+/* FIM */
