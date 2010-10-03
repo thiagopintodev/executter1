@@ -26,15 +26,15 @@
 			  <div id="menu">
 			
 <% if current_user %>
-  <%= link_to t("all.header.sign_out"), destroy_user_session_path %>
-  <%= link_to t("all.header.orientation"), "#" %>
-  <%= link_to t("all.header.settings"), home_settings_1profile_path %>
-  <%= link_to t("all.header.find_people"), "#" %>
-  <%= link_to t("all.header.profile"), "/#{current_user.username}" %>
-  <%= link_to t("all.header.home"), "/" %>
+  <%= link_to t("application.header.sign_out"), destroy_user_session_path %>
+  <%= link_to t("application.header.orientation"), "#" %>
+  <%= link_to t("application.header.settings"), home_settings_1profile_path %>
+  <%= link_to t("application.header.find_people"), "#" %>
+  <%= link_to t("application.header.profile"), "/#{current_user.username}" %>
+  <%= link_to t("application.header.home"), "/" %>
 <% else %>
-  <%= link_to t("all.header.sign_up"), new_user_registration_path %>
-  <%= link_to t("all.header.sign_in"), new_user_session_path %>
+  <%= link_to t("application.header.sign_up"), new_user_registration_path %>
+  <%= link_to t("application.header.sign_in"), new_user_session_path %>
 <% end %>
 
         </div>
@@ -53,19 +53,22 @@
       <div id="footer" class="push">
       	<span>Executter Beta &copy; 2010</span>
       	  <p class="locale_setters">
-          <%= link_to "English", locale_path("en"), :remote => false %>
-          <%= link_to "Português", locale_path("pt-BR"), :remote => false %>
+          <%= link_to "English", locale_path("en") %>
+          <%= link_to "Português", locale_path("pt-BR") %>
+          <%= link_to "Goianês", locale_path("goianes") %>
           </p>
           <ul id="menu-footer">
-          	<li><%= link_to t("all.footer.about_us"), "#about_us.html" %></li>
+          	<li><%= link_to t("application.footer.about_us"), "#about_us.html" %></li>
           	<li><%= link_to "Blog", "#about_us.html" %></li>
-          	<li><%= link_to t("all.footer.terms"), "#about_us.html" %></li>
+          	<li><%= link_to t("application.footer.terms"), "#about_us.html" %></li>
           </ul>
       </div>
         
         
 <% if Rails.env.production? %>
+<div>
 <script type="text/javascript" src="http://ja.revolvermaps.com/p.js"></script><script type="text/javascript">rm2d_ki101('3','512','256','02qutebmlqz','ff8a00',0);</script>
+</div>
 <% end %>
 
 

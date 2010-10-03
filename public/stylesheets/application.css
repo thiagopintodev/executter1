@@ -6,7 +6,7 @@ div#content { min-height:300px; }
 .view-in { background:white }
 .ajax-content-white { background-image: none !important; }
 
-
+div#footer ul#menu-footer {padding-left: 300px !important}
 
 
 #viewstack, .ajax-content {

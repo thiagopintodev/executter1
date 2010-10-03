@@ -1,6 +1,6 @@
 # %{username}
 en:
-  all:
+  application:
     header:
       home: "Home"
       profile: "Profile"

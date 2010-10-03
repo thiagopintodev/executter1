@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
          
-  attr_accessible :full_name, :gender_policy, :birth, :birth_policy, :time_zone
-  
+  attr_accessible :full_name, :gender, :gender_policy, :birth, :birth_policy,
+    :time_zone, :background_policy, :flavour, :description,
+    :website, :locale, :local
+
 =begin      
   def self.find_for_database_authentication(conditions)
     value = conditions[authentication_keys.first]
@@ -73,7 +75,7 @@ class User < ActiveRecord::Base
   validates_presence_of :full_name, :username
   validates_uniqueness_of :username
   
-  has_one :user_profile
+  has_many :photos
   has_many :posts
   has_many :i_relate_to_them, :class_name => "Relationship", :foreign_key => :user1_id
   has_many :they_relate_to_me, :class_name => "Relationship", :foreign_key => :user2_id

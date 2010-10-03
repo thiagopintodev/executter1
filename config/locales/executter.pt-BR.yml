@@ -1,6 +1,6 @@
 # %{username}
 pt-BR:
-  all:
+  application:
     header:
       home: "Inicio"
       profile: "Perfil"

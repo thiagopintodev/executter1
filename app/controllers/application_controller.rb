@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   protected
   
   def my_locale
-    cookies[:locale] = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first unless cookies[:locale]
+    #cookies[:locale] = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first unless cookies[:locale]
     I18n.locale = cookies[:locale]
-  end 
+  end
 
   def all_users
     User.order(:id)

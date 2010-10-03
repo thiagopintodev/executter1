@@ -12,8 +12,11 @@ gem 'jquery-rails'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'aws-s3', :require => 'aws/s3'
 
+#gem 'scrooge'
+
 group :development, :test do
   gem 'nifty-generators'
+  #gem 'bullet', :git => 'http://github.com/flyerhzm/bullet.git'
 end
 
 group :production do
