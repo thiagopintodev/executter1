@@ -9,7 +9,7 @@ $(function() {
 
   $(".locale_setters a").live("click", function(e) {
     $("body *").hide();
-    setTimeout(function() { location.reload() }, 200);
+    setTimeout(function() { location.reload() }, 500);
   });
 
   //isso é genérico, vou precisar fazer validações no caso de criar post
