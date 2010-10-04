@@ -70,13 +70,13 @@ ActiveRecord::Schema.define(:version => 20101004162157) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                  :default => "",           :null => false
-    t.string   "encrypted_password",      :limit => 128, :default => "",           :null => false
-    t.string   "password_salt",                          :default => "",           :null => false
+    t.string   "email",                                   :default => "",           :null => false
+    t.string   "encrypted_password",       :limit => 128, :default => "",           :null => false
+    t.string   "password_salt",                           :default => "",           :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                          :default => 0
+    t.integer  "sign_in_count",                           :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -84,27 +84,28 @@ ActiveRecord::Schema.define(:version => 20101004162157) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                        :default => 0
+    t.integer  "failed_attempts",                         :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",                                  :default => false
+    t.integer  "background_policy",                       :default => 0
+    t.boolean  "admin",                                   :default => false
     t.string   "username"
     t.string   "full_name"
-    t.integer  "gender",                                 :default => 0
-    t.integer  "gender_policy",                          :default => 0
-    t.date     "birth",                                  :default => '2010-10-03'
-    t.integer  "birth_policy",                           :default => 0
-    t.string   "local",                                  :default => "Brasilia"
-    t.string   "locale",                                 :default => "pt-BR"
-    t.string   "time_zone",                              :default => "Brasilia"
+    t.integer  "gender",                                  :default => 0
+    t.integer  "gender_policy",                           :default => 0
+    t.date     "birth",                                   :default => '2010-10-04'
+    t.integer  "birth_policy",                            :default => 0
+    t.string   "local",                                   :default => "Brasilia"
+    t.string   "locale",                                  :default => "pt-BR"
+    t.string   "time_zone",                               :default => "Brasilia"
     t.string   "website"
     t.text     "description"
     t.integer  "photo_id"
-    t.string   "flavour",                                :default => "laranja"
-    t.integer  "background_policy",                      :default => 0
+    t.string   "flavour",                                 :default => "laranja"
+    t.integer  "background_repeat_policy",                :default => 0
     t.string   "background_file_name"
     t.string   "background_content_type"
     t.integer  "background_file_size"

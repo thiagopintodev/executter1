@@ -40,15 +40,15 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(conditions)
     self.where(:username => conditions[:email]).first || self.where(:email => conditions[:email]).first
   end  
-=end
-
-
   def background_repeat_policy
     self.background_policy
   end
   def background_repeat_policy=v
     self.background_policy=v
   end
+=end
+
+
 
   #NOW CUSTOM CODE
 

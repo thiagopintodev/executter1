@@ -8,7 +8,8 @@ module ApplicationHelper
   end
   def my_flavour_stylesheet(user)
     #s = cookies[:flavour] ||= "orange"
-    stylesheet_link_tag "/layout1/css/sabor_#{user.flavour}.css"
+    s = (user && user.flavour) || "orange"
+    stylesheet_link_tag "/layout1/css/sabor_#{s}.css"
   end
   
   def my_flash_keys
