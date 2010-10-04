@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates_length_of :username, :in => 6..20
 
   has_attached_file :background, MyConfig.paperclip_options
-	validates_attachment_content_type :background, :content_type => ['image/jpeg', 'image/gif', 'image/png']
+	#validates_attachment_content_type :background, :content_type => ['image/jpeg', 'image/gif', 'image/png']
 
 
   def to_t
