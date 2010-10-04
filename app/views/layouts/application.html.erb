@@ -17,7 +17,14 @@
   <script>  DD_belatedPNG.fix('.png_bg, img, h3, input, .labels, .desenho, #menu-estilos, .logo '); </script>
   <style type="text/css">body { behavior:url(/layout1/csshover.htc); }</style>
   <![endif]-->
-
+  <% if @user %>
+  <style type="text/css">
+    body {
+      background-image:url("<%= @user.background.url %>");
+      background-repeat:<%= User::BACKGROUND_POLICIES[@user.background_policy] %>;
+      }
+  </style>
+  <% end %>
 </head>
 <body <%= "class='pg-#{controller_name}-#{action_name}'"%>>
 	<div id="all">

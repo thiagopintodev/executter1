@@ -5,7 +5,7 @@
 <%= my_settings_tabs(2) %>
 
 
-      <%= form_for(current_user, :html=>{:class=>"campos-settings"}) do |f| %>
+      <%= form_for(current_user, :html=>{:multipart=>true,:class=>"campos-settings"}) do |f| %>
                 
                 <div id="campos">
    				        <div class="titulo">Escolha um sabor </div>
@@ -62,7 +62,6 @@
                	    	<img src="/images/layout/img_bg.jpg" width="100" height="100" class="yes" />
                     	<img src="/images/layout/bg_not.jpg" width="100" height="100" />
                         <label>
-                          <input name="" type="checkbox" value="" />
                           <%= f.check_box :background_policy %>
                           <span>Repetir plano de fundo</span>
                         </label>

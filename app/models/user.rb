@@ -7,8 +7,13 @@ class User < ActiveRecord::Base
          :lockable
          
   attr_accessible :full_name, :gender, :gender_policy, :birth, :birth_policy,
-    :time_zone, :background_policy, :flavour, :description,
+    :time_zone, :background, :background_policy, :flavour, :description,
     :website, :locale, :local
+
+
+  has_attached_file :background, MyConfig.paperclip_options
+	validates_attachment_content_type :background, :content_type => ['image/jpeg', 'image/gif', 'image/png']
+
 
   def to_t
     self.attributes.each { |k,v| puts "#{k.ljust(30,'.')} #{v || 'nil'}" if v }
@@ -39,13 +44,13 @@ class User < ActiveRecord::Base
 
   #NOW CUSTOM CODE
 
-  LOCALES = I18n.available_locales.collect(&:to_s)
+  LOCALES = ["en","pt-BR"] #I18n.available_locales.collect(&:to_s)
   
   GENDERS = {'Female'=>'F','Male'=>'M'}
+  BACKGROUND_POLICIES = {0=>'no-repeat',1=>'repeat'}#repeat-X, repeat-Y
   BIRTH_POLICIES = {'Mostrar apenas dia e mês em meu perfil'=>0}
   #GENDER_POLICIES = {} #using checkbox
   
-         
 =begin
   def full_name=(s)
     name1, name2 = s.split(" ")
@@ -77,9 +82,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :i_relate_to_them, :class_name => "Relationship", :foreign_key => :user1_id
   has_many :they_relate_to_me, :class_name => "Relationship", :foreign_key => :user2_id
-
   
-
   
   #has_many :executts_i_wrote, :class_name => "Msg",  :conditions => 'created_at > #{10.hours.ago.to_s(:db).inspect}'
 
