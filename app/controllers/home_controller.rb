@@ -50,6 +50,13 @@ class HomeController < ApplicationController
   def ajax_index_tab2
     render :layout=> false
   end
+
+  def ajax_username_available
+    #return render :nothing => true unless params[:username] == "js"
+    u = params[:username].downcase
+    is_available = (u.length > 4 && !User.exists?(:username=>u)) || current_user.username==u
+    render :inline=>is_available.to_s
+  end
   
 =begin
 

@@ -1,12 +1,12 @@
-Ex1::Application.routes.draw do  resources :executs
-
+Ex1::Application.routes.draw do
+  
   resources :banners, :path => "admin/banners" #except => :show
-  resources :flavours, :path => "admin/flavours"
+  #resources :flavours, :path => "admin/flavours"
   
   #resources :user_profiles
   #resources :posts
-
-  devise_for :users,  :path_names => { :sign_up => "/new", :sign_in => "/in", :sign_out => "/out" }
+  
+  devise_for :users #,  :path_names => { :sign_up => "/new", :sign_in => "/in", :sign_out => "/out" }
 
   get "l/:locale" => "site#set_locale", :as => :locale
   
@@ -17,9 +17,8 @@ Ex1::Application.routes.draw do  resources :executs
 
   resources :users, :only =>[:show, :index, :update]
   resources :posts, :only =>[:index, :show, :create, :destroy]
-
   
-  match ":id" => "users#show", :as => "profile"
+  match ":id" => "users#show", :as => "profile", :constraints => { :id => /\w{5,}/ }
   match "profile" => "users#show", :as => "my_profile"
 
   match ":id/ajax_tab1(/:last_post_id)" => "users#ajax_show_tab1", :as => :ajax_user_show_tab1
@@ -28,14 +27,22 @@ Ex1::Application.routes.draw do  resources :executs
   
   match ":id/ajax_relation(/:property/:value)" => "users#ajax_show_relation", :as => :ajax_user_show_relation
   
+  devise_scope :user do
+    get "/out" => "devise/sessions#destroy",  :as => :out
+    get "/new" => "devise/registrations#new", :as => :new
+    get "/in"  => "devise/sessions#new",      :as => :in
+    get "/conf/2" => "devise/registrations#edit"
+  end
   
-  get "home/settings_1profile"
-  get "home/settings_2account"
-  get "home/settings_3password"
+  get "conf/ajax_username_available/:username" => "home#ajax_username_available"
+  
+  get "conf/1" => "home#settings_1profile"
+  #get "conf/2" => "home#settings_2account"
   get "home/settings_4picture"
   get "home/settings_5design"
   get "home/settings_6notices"
 
+  #root :to => "devise/passwords#edit"
 
   get "site/index"
   root :to => "site#index"

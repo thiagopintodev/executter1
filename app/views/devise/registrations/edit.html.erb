@@ -1,25 +1,70 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% my_title "Settings" %>
+<% my_css_files "settings" %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+<%= my_settings_tabs(1) %>
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class=>"campos-settings"}) do |f| %>
 
-  <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password %></p>
+<%= my_orange_errors(resource) %>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
 
-  <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></p>
+   	  		<div id="campos">
 
-  <p><%= f.submit "Update" %></p>
+
+				      <div class="normal">
+    					  <%= f.label :username %>
+                <%= f.text_field :username, :class=>"username-available" %>
+                <span id="username_resultado" class="checando"></span>
+                <span class="recuado">http://www.executter.com/<span id="username_preview"><%= current_user.username %></span></span>
+              </div>
+              
+     	    		<div class="normal">
+    					  <%= f.label :email %>
+                <%= f.text_field :email %>
+              </div>
+                
+     	    		<div class="normal">
+					      <%= f.label :password %>
+                <%= f.password_field :password %>
+                <i>(leave blank if you don't want to change it)</i><br />
+              </div>
+        		  <div class="normal">
+					      <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation %>
+              </div>
+              
+              <div id="box-senha">
+              	<div>You must re-enter your password to change your username or email address.</div>
+    					  <%= f.label :current_password %>
+                <%= f.password_field :current_password %>
+              </div>
+              
+              <div class="recuo">
+					        <input type="submit" class="bt" value="Save" />
+        		  </div>
+        		  
+              <div class="desativar">
+                <a href="#">» Desativar minha conta</a>
+              </div>
+              
+            </div>
+            
 <% end %>
+          
+          <ul id="box-infos">
+          	<li class="titulo">Dicas</li>
+            <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+            <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+
+            <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+            <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+            <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+          </ul>
+
+
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+<p>Unhappy? <%#= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
 <%= link_to "Back", :back %>

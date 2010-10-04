@@ -17,7 +17,8 @@ div#footer ul#menu-footer {padding-left: 300px !important}
 
 .lista-execute, .lista-perguntas, .lista-executs { background:#fff; }
 
-.ul.lista-execute li.hora { width:100% !important ; }
+
+ul.lista-execute li.hora { width:100% !important ; }
 
 form.executa {}
 form.executa textarea {margin-top:5px;font:Arial 15px;color:#333;}

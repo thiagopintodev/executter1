@@ -24,17 +24,17 @@
     	<div id="header">
    	    <a href="/" title="Executter" class="logo"></a>
 			  <div id="menu">
-			
+
 <% if current_user %>
-  <%= link_to t("application.header.sign_out"), destroy_user_session_path %>
+  <%= link_to t("application.header.sign_out"), out_path %>
   <%= link_to t("application.header.orientation"), "#" %>
-  <%= link_to t("application.header.settings"), home_settings_1profile_path %>
+  <%= link_to t("application.header.settings"), "/conf/1" %>
   <%= link_to t("application.header.find_people"), "#" %>
   <%= link_to t("application.header.profile"), "/#{current_user.username}" %>
   <%= link_to t("application.header.home"), "/" %>
 <% else %>
-  <%= link_to t("application.header.sign_up"), new_user_registration_path %>
-  <%= link_to t("application.header.sign_in"), new_user_session_path %>
+  <%= link_to t("application.header.sign_up"), new_path %>
+  <%= link_to t("application.header.sign_in"), in_path %>
 <% end %>
 
         </div>

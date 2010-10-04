@@ -17,7 +17,17 @@ $(function() {
     $(this).closest("form").submit();
     return false;
   });
-  
+
+  $(".username-available").live("blur", function(e) {
+    v = $(this).val();
+    url = "/conf/ajax_username_available/:u".replace(":u", v);
+    
+    $("#username_preview").html(v);
+    $("#username_resultado").html("verificando disponibilidade...");
+    $.getScript(url, function(data){
+      $("#username_resultado").html( (data=="true") ? "disponível" : "indisponível" )
+    });
+  });
 
   if ($("body.pg-users-show").size())
   {
@@ -38,7 +48,7 @@ $(function() {
         $("#user-following").addClass("loading").html("");
         k = $(this).attr("data-k");
         v = $(this).attr("data-v");
-        url = "/:id/ajax_relation/:k/:v".replace(":id", user_id).replace(":k", k).replace(":v", v)
+        url = "/:id/ajax_relation/:k/:v".replace(":id", user_id).replace(":k", k).replace(":v", v);
         $.getScript(url);
         return false;
       });
