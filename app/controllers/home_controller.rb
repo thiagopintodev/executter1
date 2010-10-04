@@ -58,13 +58,4 @@ class HomeController < ApplicationController
     render :inline=>is_available.to_s
   end
   
-=begin
-
-  get "home/settings_profile"
-  get "home/settings_account"
-  get "home/settings_password"
-  get "home/settings_picture"
-  get "home/settings_design"
-  get "home/settings_notice"
-=end
 end

@@ -1,3 +1,94 @@
 <% my_title "Settings" %>
 <% my_css_files "settings" %>
 
+
+<%= my_settings_tabs(2) %>
+
+
+      <%= form_for(current_user, :html=>{:class=>"campos-settings"}) do |f| %>
+                
+                <div id="campos">
+   				        <div class="titulo">Escolha um sabor </div>
+                    <ul id="sabor-lista">
+                    	<li <%= "class='atual'" if current_user.flavour=="orange" %>>
+                        	<%= radio_button("user", "flavour", "orange", :checked=>(current_user.flavour=="orange")) %>
+                        	<img src="/images/layout/1_Orange.png" width="100" height="50" />
+                            <span class="laranja">Laranja (Padrão)</span>
+
+                        </li>
+                    	<li <%= "class='atual'" if current_user.flavour=="apple" %>>
+                        <%= radio_button("user", "flavour", "apple", :checked=>(current_user.flavour=="apple")) %>
+                       	<img src="/images/layout/2_GreenApple.png" width="100" height="50" />
+                        <span class="maca">Maçã verde</span>
+                      </li>
+                    	<li <%= "class='atual'" if current_user.flavour=="gum" %>>
+                          <%= radio_button("user", "flavour", "gum", :checked=>(current_user.flavour=="gum")) %>
+                       	<img src="/images/layout/3_BubbleGun.png" width="100" height="50" />
+                        <span class="chiclete">Chiclete</span>
+                      </li>
+                    	<li <%= "class='atual'" if current_user.flavour=="banana" %>>
+                    <%= radio_button("user", "flavour", "banana", :checked=>(current_user.flavour=="banana")) %>
+                       	<img src="/images/layout/4_Banana.png" width="100" height="50" />
+                        <span class="banana">Banana</span>
+                      </li>
+
+                    	<li <%= "class='atual'" if current_user.flavour=="strawberry" %>>
+                    <%= radio_button("user", "flavour", "strawberry", :checked=>(current_user.flavour=="strawberry")) %>
+                       	<img src="/images/layout/5_Strawbarry.png" width="100" height="50" />
+                        <span class="morango">Morango</span>
+                      </li>
+                    	<li <%= "class='atual'" if current_user.flavour=="chocolate" %>>
+                    <%= radio_button("user", "flavour", "chocolate", :checked=>(current_user.flavour=="chocolate")) %>
+                       	<img src="/images/layout/6_Chocolate.png" width="100" height="50" />
+
+                        <span class="chocolate">Chocolate</span>
+                      </li>
+                    	<li <%= "class='atual'" if current_user.flavour=="coffe" %>>
+                    <%= radio_button("user", "flavour", "coffe", :checked=>(current_user.flavour=="coffe")) %>
+                       	<img src="/images/layout/7_ Coffee.png" width="100" height="50" />
+                        <span class="cafe">Café</span>
+                      </li>
+                    </ul>
+
+                    
+                  <div id="box-fundo">
+                   	<div>Mudar plano de fundo</div>
+                      <input type="file" style="" name="user[background]" id="user_background" />
+                      <%#= f.file_field :background %>
+                      <span>Escolha uma imagem em até 1MB nos formatos GIF, JPG ou PNG</span>
+                    </div>
+                    
+                    <div id="opcoes-bg">
+               	    	<img src="/images/layout/img_bg.jpg" width="100" height="100" class="yes" />
+                    	<img src="/images/layout/bg_not.jpg" width="100" height="100" />
+                        <label>
+                          <input name="" type="checkbox" value="" />
+                          <%= f.check_box :background_policy %>
+                          <span>Repetir plano de fundo</span>
+                        </label>
+                    </div>
+                    
+                    <div class="botoes">
+                        <input type="button" class="bt" value="Cancelar" onclick="javascript: window.location='/'" />
+                        <input type="submit" class="bt" value="Salvar" />
+                    </div>
+                    
+            </div>
+
+            
+<% end %>
+
+
+
+
+          
+          <ul id="box-infos">
+          	<li class="titulo">Dicas</li>
+                        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+                        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+
+                        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+                        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+                        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+                      </ul>
+

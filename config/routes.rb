@@ -38,9 +38,9 @@ Ex1::Application.routes.draw do
   
   get "conf/1" => "home#settings_1profile"
   #get "conf/2" => "home#settings_2account"
-  get "home/settings_4picture"
-  get "home/settings_5design"
-  get "home/settings_6notices"
+  get "conf/3" => "home#settings_design"
+  get "conf/4" => "home#settings_picture"
+  get "conf/5" => "home#settings_picture"
 
   #root :to => "devise/passwords#edit"
 

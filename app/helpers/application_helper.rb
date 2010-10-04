@@ -6,9 +6,9 @@ module ApplicationHelper
     s = values.collect { |v| stylesheet_link_tag("/layout1/css/#{v}") }
     content_for(:css_files) { s.join }
   end
-  def my_flavour_stylesheet
-    s = cookies[:flavour] ||= "laranja"
-    stylesheet_link_tag "/layout1/css/sabor_#{s}.css"
+  def my_flavour_stylesheet(user)
+    #s = cookies[:flavour] ||= "orange"
+    stylesheet_link_tag "/layout1/css/sabor_#{user.flavour}.css"
   end
   
   def my_flash_keys

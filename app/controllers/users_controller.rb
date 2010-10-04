@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     
     @user.update_attributes!(params[:user]) #if current_user.id.to_s == params[:id]
-    redirect_to "/home/settings_1profile"
+    redirect_to request.referer
   end
   
   def show

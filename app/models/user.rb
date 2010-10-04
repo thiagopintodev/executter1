@@ -10,16 +10,14 @@ class User < ActiveRecord::Base
     :time_zone, :background_policy, :flavour, :description,
     :website, :locale, :local
 
-=begin      
-  def self.find_for_database_authentication(conditions)
-    value = conditions[authentication_keys.first]
-    where(["username = :value OR email = :value", { :value => value }]).first
+  def to_t
+    self.attributes.each { |k,v| puts "#{k.ljust(30,'.')} #{v || 'nil'}" if v }
+    "LAST UPDATE AT: #{updated_at}"
   end
-=end
-  before_create :create_login
+  
+  #before_save :my_before_save
 
-  def create_login    
-    self.username = self.username.downcase
+  def my_before_save
     #logger.info " -----------> #{self.username} has been downcased :)"
 =begin      
     email = self.email.split(/@/)

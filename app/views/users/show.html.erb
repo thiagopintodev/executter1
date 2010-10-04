@@ -27,7 +27,7 @@
             <a href="#"><span class="desc">Mention</span><span>2</span></a>
             -->
             <% all_users.each do |u| %>
-              <a href="<%= user_path u %>"><span class="desc"><%= u.email %></span><span>:)</span></a>
+              <a href="<%= profile_path u.username %>"><span class="desc"><%= u.email %></span><span>:)</span></a>
             <% end %>
           </div>
           

@@ -41,7 +41,8 @@ if verify_recaptcha(:model => @user, :message => 'Erro no reCAPTCHA! tudo que pr
   def update
     if resource.update_with_password(params[resource_name])
       set_flash_message :notice, :updated
-      redirect_to after_update_path_for(resource)
+      cookies[:flavour] = resource.flavour
+      redirect_to request.referer #after_update_path_for(resource)
     else
       clean_up_passwords(resource)
       render_with_scope :edit
