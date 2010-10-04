@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     :time_zone, :background, :background_policy, :flavour, :description,
     :website, :locale, :local
 
+  validates_length_of :username, :in => 6..20
 
   has_attached_file :background, MyConfig.paperclip_options
 	validates_attachment_content_type :background, :content_type => ['image/jpeg', 'image/gif', 'image/png']

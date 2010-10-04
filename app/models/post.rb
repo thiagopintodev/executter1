@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
 
   scope :scope_photos, where("img_file_name IS NOT NULL")
 
+  validates_length_of :body, :maximum => 196
   #alias :ip_address, :remote_ip#old new
 
   MY_LIMIT = 3
