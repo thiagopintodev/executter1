@@ -33,13 +33,14 @@ $(function() {
   {
     user_id = $("#container").attr("data-user-id");
     is_me = $("#container").attr("data-user-is-me")=="true";
+    logged_in = $("#container").attr("data-logged-in")=="true";
     //$("#user-following").load("")
     //alert(user_id);
 
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab);
     
-    if (!is_me)
+    if (logged_in && !is_me)
     {
       $("#user-following").addClass("loading");
       $.getScript("/:id/ajax_relation".replace(":id", user_id));
