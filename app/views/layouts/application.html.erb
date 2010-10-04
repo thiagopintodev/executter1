@@ -21,7 +21,7 @@
   <style type="text/css">
     body {
       background-image:url("<%= @user.background.url %>");
-      background-repeat:<%= User::BACKGROUND_POLICIES[@user.background_policy] %>;
+      background-repeat:<%= User::BACKGROUND_REPEAT_POLICIES[@user.background_repeat_policy] %>;
       background-attachment: scroll;
       }
   </style>

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       @user = current_user
     end
     return redirect_to root_path unless @user
-    @isme = @user.id == current_user.id
+    @isme = current_user && @user.id == current_user.id
 
     #quantidades
     @my_followers   = @user.they_relate_to_me.scope_follow

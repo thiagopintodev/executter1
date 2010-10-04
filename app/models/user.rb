@@ -43,12 +43,19 @@ class User < ActiveRecord::Base
 =end
 
 
+  def background_repeat_policy
+    self.background_policy
+  end
+  def background_repeat_policy=v
+    self.background_policy=v
+  end
+
   #NOW CUSTOM CODE
 
   LOCALES = ["en","pt-BR"] #I18n.available_locales.collect(&:to_s)
   
   GENDERS = {'Female'=>'F','Male'=>'M'}
-  BACKGROUND_POLICIES = {0=>'no-repeat',1=>'repeat'}#repeat-X, repeat-Y
+  BACKGROUND_REPEAT_POLICIES = {0=>'no-repeat',1=>'repeat'}#repeat-X, repeat-Y
   BIRTH_POLICIES = {'Mostrar apenas dia e mês em meu perfil'=>0}
   #GENDER_POLICIES = {} #using checkbox
   

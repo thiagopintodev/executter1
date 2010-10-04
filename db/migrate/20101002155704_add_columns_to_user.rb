@@ -14,13 +14,13 @@ class AddColumnsToUser < ActiveRecord::Migration
     add_column :users, :description, :text
     add_column :users, :photo_id, :integer
     add_column :users, :flavour, :string, :default => "laranja"
-    add_column :users, :background_policy, :integer, :default => 0
+    add_column :users, :background_repeat_policy, :integer, :default => 0
     
     add_index :users, :username,             :unique => true
   end
 
   def self.down
-    remove_column :users, :background_policy
+    remove_column :users, :background_repeat_policy
     remove_column :users, :flavour
     remove_column :users, :photo_id
     remove_column :users, :description
