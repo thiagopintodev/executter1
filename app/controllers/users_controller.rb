@@ -15,9 +15,8 @@ class UsersController < ApplicationController
       @user = User.my_find(params[:id])
     elsif current_user
       @user = current_user
-    else
-      return redirect_to root_path
     end
+    return redirect_to root_path unless @user
     @isme = @user.id == current_user.id
 
     #quantidades
