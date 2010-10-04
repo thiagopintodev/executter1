@@ -13,7 +13,7 @@ class AddColumnsToUser < ActiveRecord::Migration
     add_column :users, :website, :string
     add_column :users, :description, :text
     add_column :users, :photo_id, :integer
-    add_column :users, :flavour, :string, :default => "laranja"
+    add_column :users, :flavour, :string, :default => "orange"
     add_column :users, :background_repeat_policy, :integer, :default => 0
     
     add_index :users, :username,             :unique => true

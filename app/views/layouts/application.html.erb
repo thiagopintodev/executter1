@@ -17,7 +17,7 @@
   <script>  DD_belatedPNG.fix('.png_bg, img, h3, input, .labels, .desenho, #menu-estilos, .logo '); </script>
   <style type="text/css">body { behavior:url(/layout1/csshover.htc); }</style>
   <![endif]-->
-  <% if @user %>
+  <% if @user && @user.background? %>
   <style type="text/css">
     body {
       background-image:url("<%= @user.background.url %>");
