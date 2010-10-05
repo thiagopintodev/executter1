@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :lockable
          
   attr_accessible :full_name, :gender, :gender_policy, :birth, :birth_policy,
-    :time_zone, :background, :background_policy, :flavour, :description,
+    :time_zone, :background, :background_repeat_policy, :flavour, :description,
     :website, :locale, :local
 
   validates_length_of :username, :in => 6..20
