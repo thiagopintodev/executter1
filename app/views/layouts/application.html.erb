@@ -19,7 +19,7 @@
   <![endif]-->
   <% if @user && @user.background? %>
   <style type="text/css">
-    body {
+    html, body {
       background-image:url("<%= @user.background.url %>");
       background-repeat:<%= User::BACKGROUND_REPEAT_POLICIES[@user.background_repeat_policy] %>;
       background-attachment: scroll;
@@ -71,7 +71,12 @@
           	<li><%= link_to t("application.footer.terms"), "#about_us.html" %></li>
           </ul>
       </div>
-        
+        <% if Rails.env.development? %>
+        <h3>session</h3>
+        <%= debug session %>
+        <h3>params</h3>
+        <%= debug params %>
+        <% end %>
         
 <% if Rails.env.production? %>
 <div>
