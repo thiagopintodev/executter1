@@ -61,7 +61,11 @@ $(function() {
   if ($("body.pg-home-index").size())
   {
     selected_tab = $("#viewstack").attr("data-selected");
-    functions.tabs.load_tab(selected_tab);
+    functions.tabs.load_tab(selected_tab, false, function() {
+      mention = $(selected_tab).attr("data-mention");
+      if (mention)
+        $("#post_body").val("@"+mention+" ").focus();
+    });
 
     //$("form.executa .anexos a").live("click", function(e) {
     //  //
@@ -100,7 +104,7 @@ functions = {
   tabs : {
 
   
-    load_tab: function(tab, force_posts) {
+    load_tab: function(tab, force_posts, fn_callback) {
       //
       $("#viewstack .view").hide();
       tab_url = $(selected_tab).show().attr("data-url")+".html";
@@ -110,6 +114,8 @@ functions = {
         
       if (!$my_flagged_tabs[selected_tab])
         $(selected_tab).load(tab_url, function() {
+          if (fn_callback)
+            fn_callback();
           $my_flagged_tabs[selected_tab] = true;
           $(selected_tab).contents().find("a.btn-script-invoker").click();
         });

@@ -20,6 +20,8 @@ Ex1::Application.routes.draw do
   
   match ":id" => "users#show", :as => "profile", :constraints => { :id => /\w{5,}/ }
   match "profile" => "users#show", :as => "my_profile"
+  
+  match ":mention_username/mention" => "home#index", :as => "mention"
 
   match ":id/ajax_tab1(/:last_post_id)" => "users#ajax_show_tab1", :as => :ajax_user_show_tab1
   match ":id/ajax_tab2(/:last_post_id)" => "users#ajax_show_tab2", :as => :ajax_user_show_tab2

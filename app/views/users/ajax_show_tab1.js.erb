@@ -5,23 +5,19 @@
 <ul class="lista-executs post" data-id="<%= post.id %>">
   <li class="execute"><%= my_post_links post.body %> </li>
 
-<li class="icons">
-  <a href="#" class="nao-clique"><img src="/images/layout/execut_icon.png" width="16" height="16" alt="Name" border="0" /></a>
-  <a href="#" class="nao-clique"><img src="/images/layout/write_icon.png" width="16" height="16" alt="Name" border="0" /></a>
-  <a href="#" class="nao-clique"><img src="/images/layout/list_icon.png" width="16" height="16" alt="Name" border="0" /></a>
-  <a href="#" class="delete-post"><img src="/images/layout/trash_icon.png" width="16" height="16" alt="Name" border="0" /></a>
-</li>
+<%= my_post_actions post %>
 
-
-
-      <% if post.img? %>
-      <li class="foto">
-        <%= image_tag post.img.url(:me) %>
-      </li>
-      <% end %>
-      
-      <li class="hora" style="clear:both"><a href="<%= post_path post %>"><img src="/images/layout/havatar16x16.jpg" width="16" height="16" /> <%= time_ago_in_words post.created_at %></a> - From <%= post.remote_ip %>@Executter</li>
-      </ul>
+  <% if post.img? %>
+  <li class="foto">
+    <%= image_tag post.img.url(:me) %>
+  </li>
+  <% end %>
+  
+  <li class="hora" style="clear:both">
+    <a href="<%= post_path post %>">
+      <img src="/images/layout/havatar16x16.jpg" width="16" height="16" /> <%= time_ago_in_words post.created_at %>
+      </a> - From <%= post.remote_ip %>@Executter
+  </li>
 
 </ul>
 </div>

@@ -15,16 +15,7 @@
       <%= my_post_links post.body %>
     </li>
       
-<li class="icons">
-  <a href="#" class="nao-clique"><img src="/images/layout/execut_icon.png" width="16" height="16" alt="Name" border="0" /></a>
-  <a href="#" class="nao-clique"><img src="/images/layout/write_icon.png" width="16" height="16" alt="Name" border="0" /></a>
-  <a href="#" class="nao-clique"><img src="/images/layout/list_icon.png" width="16" height="16" alt="Name" border="0" /></a>
-  <%= link_to raw("<img src='/images/layout/trash_icon.png' border='0' />"), post, :method => :delete, :remote=>true %>
-  <!--
-  <%= link_to raw("<img src='/images/layout/trash_icon.png' border='0' />"), post, :confirm => 'Are you sure?', :method => :delete, :remote=>true %>
-  <a href="#" class="delete-post"><img src="/images/layout/trash_icon.png" width="16" height="16" alt="Name" border="0" /></a>
-  -->
-</li>
+<%= my_post_actions post %>
 
 
       <% if post.img? %>

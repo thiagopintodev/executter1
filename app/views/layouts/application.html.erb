@@ -35,9 +35,9 @@
 
 <% if current_user %>
   <%= link_to t("application.header.sign_out"), out_path %>
-  <%= link_to t("application.header.orientation"), "#" %>
+  <%#= link_to t("application.header.orientation"), "#" %>
   <%= link_to t("application.header.settings"), "/conf/1" %>
-  <%= link_to t("application.header.find_people"), "#" %>
+  <%#= link_to t("application.header.find_people"), "#" %>
   <%= link_to t("application.header.profile"), "/#{current_user.username}" %>
   <%= link_to t("application.header.home"), "/" %>
 <% else %>
