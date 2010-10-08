@@ -1,18 +1,28 @@
 class Post < ActiveRecord::Base
-  attr_accessible :type, :user_id, :parent_post_id, :body, :ip_address, :is_public, :is_deleted, :img
+  attr_accessible :type, :user_id, :parent_post_id, :body, :ip_address, :is_public, :is_deleted,
+    :post_attachments, :post_attachments_attributes
   belongs_to :user
+  #has_one :post_attachment
+  has_many :post_attachments
+  
+  accepts_nested_attributes_for :post_attachments, :allow_destroy => true, :reject_if => :all_blank
+
+  def read_first_post_attachments
+    post_attachments.first || post_attachments.build
+  end
 
   default_scope where(:is_deleted => false)
 
-  scope :scope_photos, where("img_file_name IS NOT NULL")
+  #scope :scope_photos, where("img_file_name IS NOT NULL")
+  scope :scope_photos, where("img_file_content_type LIKE 'image%'")
 
   validates_length_of :body, :maximum => 196
   #alias :ip_address, :remote_ip#old new
 
   MY_LIMIT = 3
   
-  has_attached_file :img,
-    MyConfig.paperclip_options({ :sm=>"50x50#", :me=>"100x100#" , :bi=>"200x200#" })
+  #has_attached_file :img,
+  #  MyConfig.paperclip_options({ :sm=>"50x50#", :me=>"100x100#" , :bi=>"200x200#" })
 
   def self.my_log_follow(u1, u2, options={})
     r = Relationship.my_find(u1, u2)

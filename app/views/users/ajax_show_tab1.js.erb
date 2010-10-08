@@ -7,16 +7,27 @@
 
 <%= my_post_actions post %>
 
+
+  <li class="" style="clear:both">
+    <% at = post.read_first_post_attachments %>
+    <% if at.file? %>
+      <%= link_to "d(o.o)b weird song - #{at.file_file_name}", at.file.url, :target=>"_blank" if at.file_music? %>
+      <% if at.file_image? %>
+        <%= image_tag at.file.url(:sm) %>
+        <%= link_to "download the original image", at.file.url, :target=>"_blank" %>
+      <% end %>
+    <% end %>
+  </li>
+
+  <% if false %>
   <% if post.img? %>
   <li class="foto">
-    <%= image_tag post.img.url(:me) %>
+    <%= link_to image_tag(post.img.url(:me)), profile_path(post.username) %>
   </li>
   <% end %>
   
   <li class="hora" style="clear:both">
-    <a href="<%= post_path post %>">
-      <img src="/images/layout/havatar16x16.jpg" width="16" height="16" /> <%= time_ago_in_words post.created_at %>
-      </a> - From <%= post.remote_ip %>@Executter
+    <%= link_to time_ago_in_words(post.created_at), post %>
   </li>
 
 </ul>

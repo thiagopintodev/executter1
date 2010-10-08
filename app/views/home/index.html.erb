@@ -66,8 +66,23 @@
   
 <div id="container">
 
-
-
+  <%= form_for @post, :html=>{:class=>"executa", :multipart=>true} do |f| %>
+    <h3>O que acontece agora?</h3>
+    <div class="caracteres">196</div>
+    <%= f.text_area :body, :rows=>3 %>
+    
+    <div style="float:left">
+    <input type="file" name="post[post_attachments_attributes][0][file]" id="post_post_attachments_attributes_0_file">
+      <% if false %>
+      <%#= f.fields_for :post_attachments do |f2| %>
+        Anexo: <%= f2.file_field :file %>
+      <% end %>
+    </div>
+    
+    <div class="bt-execute">
+        <a href="#" class="form-submit">EXECUTE</a>
+    </div>
+  <% end %>
 
 
 <div id="viewstack" data-selected="#view1">

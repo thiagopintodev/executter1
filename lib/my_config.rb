@@ -15,21 +15,32 @@ class MyConfig
   def self.app_name
     ENV['APP_NAME'] || 'cavalinho'
   end
-  
+
+  def self.image?(at)
+    ['image/jpeg', 'image/gif', 'image/png'].include? at.content_type
+  end
+  def self.music?(at)
+    ['application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3'].include? at.content_type
+  end
   
   def self.paperclip_options(styles={})
     r = {}
     r[:default_url] = "/images/application/default/:class/:attachment/:style.png"
     r[:styles] = styles
+    path = "/#{app_name}/:class/:attachment/:id_partition/:id_:style_:basename.:extension"
+    #path_not_image = "/#{app_name}/:class/:attachment/:id_partition/:id.:basename.:extension"
     
     if s3_credentials
       r[:storage] = :s3
       r[:s3_credentials] = s3_credentials
       r[:bucket] = "of7_#{bucket_name}"
-      r[:path] = "/#{app_name}/:class/:attachment/:id_partition/:style.:extension"
+      r[:path] = path
+      #r[:path] = lambda { |a| MyConfig::image?(a) ? path : path_not_image }
     else
-		  r[:path] = ":rails_root/public/assets/#{app_name}/:class/:attachment/:id_partition/:style.:extension"
-		  r[:url] = "/assets/#{app_name}/:class/:attachment/:id_partition/:style.:extension"
+		  r[:path] = ":rails_root/public/assets#{path}"
+		  r[:url] = "/assets#{path}"
+		  #r[:path] = lambda { |a| MyConfig::image?(a) ? ":rails_root/public/assets#{path}" : ":rails_root/public/assets#{path_not_image}" }
+		  #r[:url] = lambda { |a| MyConfig::image?(a) ? ":rails_root/public/assets#{path}" : "/assets#{path_not_image}" }
     end
     r
   end

@@ -6,8 +6,7 @@
   <ul class="lista-execute post" data-id="<%= post.id %>">
 	  <li class="havatar">
 	    <a href="#">
-	      <img src="<%= user.my_last_photo.img.url(:sm) %>" width="50" height="50" alt="Name" border="0" />
-	      
+	      <img src="<%= user.my_last_photo.file.url(:sm) %>" width="50" height="50" alt="Name" border="0" />
 	    </a>
 	  </li>
     <li class="execute">
@@ -17,22 +16,29 @@
       
 <%= my_post_actions post %>
 
+    <li class="" style="clear:both">
+      <% at = post.read_first_post_attachments %>
+      <% if at.file? %>
+        <%= link_to "d(o.o)b weird song - #{at.file_file_name}", at.file.url, :target=>"_blank" if at.file_music? %>
+        <% if at.file_image? %>
+          <%= image_tag at.file.url(:sm) %>
+          <%= link_to "download the original image", at.file.url, :target=>"_blank" %>
+        <% end %>
+      <% end %>
+    </li>
 
-      <% if post.img? %>
+<%#&& post.img?  %>
+      <% if false %>
       <li class="foto">
-        <%= image_tag post.img.url(:me) %>
+        <%#= image_tag post.img.url(:me) %>
       </li>
       <% end %>
-
-
       
-      <li class="hora" style="clear:both">
-        <a href="<%= post_path post %>"><img src="/images/layout/havatar16x16.jpg" width="16" height="16" />
-          <%= time_ago_in_words post.created_at %>
-        </a> - From <%= post.remote_ip %>@Executter</li>
-        <!--
-      <li class="links"><a href="#" class="nao-clique">Link 1</a><a href="#" class="nao-clique">Link 2</a></li>
-      -->
+    <li class="hora" style="clear:both">
+      <%= link_to time_ago_in_words(post.created_at), post %>
+    </li>
+
+    
   </ul>
 </div>
 <% end %>

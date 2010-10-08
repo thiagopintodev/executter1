@@ -3,6 +3,8 @@ class HomeController < ApplicationController
 
   def index
     @user = current_user
+    @post = Post.new
+    #@post.post_attachments.build #replaced for pure html for performance 
     #quantidades
     @my_followers   = @user.they_relate_to_me.scope_follow
     @my_followings  = @user.i_relate_to_them.scope_follow

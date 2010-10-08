@@ -1,4 +1,4 @@
-<% if false %>
+<% if true %>
           <ul id="menu-abas">
             <li class="atual"><img src="/images/layout/havatar16x16.jpg" width="16" height="16" />Status</li>
             <li><a href="#" class="tab-switcher" data-tab="#view2"><img src="/images/layout/havatar16x16.jpg" width="16" height="16" />Perguntas (7)</a></li>
@@ -8,43 +8,6 @@
 
 <div style="background:white">
 
-
-
-          <%= form_for Post.new, :html=>{:class=>"executa", :multipart=>true} do |f| %>
-            <h3>O que acontece agora?</h3>
-            <div class="caracteres">196</div>
-            <%= f.text_area :body, :rows=>3 %>
-            <div class="anexos">
-              <strong>Anexar: </strong>
-              <a href="#" title="Photo" class="photo">
-                <img src="/images/layout/havatar16x16.jpg" width="16" height="16" />
-              </a>
-              <a href="#" title="You Tube" class="youtube">
-                <img src="/images/layout/havatar16x16.jpg" width="16" height="16" />
-              </a>
-              <a href="#" title="aaaaaaaa" class="aaaaa">
-                <img src="/images/layout/havatar16x16.jpg" width="16" height="16" />
-              </a>
-              <a href="#" title="aaaaaaaaa" class="aaaaaaa">
-                <img src="/images/layout/havatar16x16.jpg" width="16" height="16" />
-              </a>
-            </div>
-            <div class="bt-execute">
-                <a href="#" class="form-submit">EXECUTE</a>
-            </div>
-            <div class="tipos-anexos">
-              foto: <%= f.file_field :img %>
-            </div>
-            <div class="tipos-anexos">
-              youtube: <input style="border: gray solid 1px" />
-              <%#= f.text_field :ip_address, :style=>"border: gray solid 1px" %>
-            </div>
-          <% end %>
-
-
-
-
-
 <% if false %>
           <ul class="alert">
               <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" />Lorem Ipsum is simply dummy text of the printing <a href="">Nascetur</a></li>
@@ -52,10 +15,6 @@
               <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" />Lorem Ipsum is simply dummy text of the printing <a href="">Nascetur</a></li>
           </ul>
 <% end %>
-
-
-
-
 
           <h1>Home</h1>
 

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :background, MyConfig.paperclip_options
 	#validates_attachment_content_type :background, :content_type => ['image/jpeg', 'image/gif', 'image/png']
+  validates_attachment_size :background, :less_than => 1.megabytes
 
 
   def to_t
@@ -38,7 +39,7 @@ class User < ActiveRecord::Base
   
   def self.find_for_database_authentication(conditions)
     key = conditions[:email].rindex("@") ? :email : :username
-    self.where(key => conditions[:email].downcase).first
+    where(key => conditions[:email].downcase).first
   end
 
 
@@ -67,7 +68,8 @@ class User < ActiveRecord::Base
     r.first
   end
   def my_last_photo
-    posts.scope_photos.last || posts.build
+    #posts.scope_photos.last || posts.build
+    PostAttachment.new
   end
 
   #def name1
