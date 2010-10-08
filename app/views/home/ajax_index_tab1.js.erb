@@ -19,10 +19,13 @@
     <li class="" style="clear:both">
       <% at = post.read_first_post_attachments %>
       <% if at.file? %>
-        <%= link_to "d(o.o)b weird song - #{at.file_file_name}", at.file.url, :target=>"_blank" if at.file_music? %>
-        <% if at.file_image? %>
+        <% if at.file_music? %>
+          <%= link_to "d(o.o)b weird song - #{at.file_file_name}", at.file.url, :target=>"_blank" %>
+        <% elsif at.file_image? %>
           <%= image_tag at.file.url(:sm) %>
           <%= link_to "download the original image", at.file.url, :target=>"_blank" %>
+        <% else %>
+          <%= link_to "download this unknown file", at.file.url, :target=>"_blank" %>
         <% end %>
       <% end %>
     </li>
