@@ -1,5 +1,7 @@
 class Banner < ActiveRecord::Base
 
+  scope :all_displaying, where(displaying: true)
+
   has_attached_file :img,
     MyConfig.paperclip_options({  })
   

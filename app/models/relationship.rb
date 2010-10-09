@@ -10,7 +10,7 @@ class Relationship < ActiveRecord::Base
   scope :scope_block,  where(:is_block=>true)
   #@user.they_relate_to_me.scope_follow.includes(:user1,:user2)
 
-
+  
 
 
   # user1_id:integer user2_id:integer is_follow:boolean is_friend:boolean is_block:boolean
