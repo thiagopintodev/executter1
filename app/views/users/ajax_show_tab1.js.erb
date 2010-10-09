@@ -3,28 +3,30 @@
 
 <div class="pack" style="display:none">
 <ul class="lista-executs post" data-id="<%= post.id %>">
-  <li class="execute"><%= my_post_links post.body %> </li>
+  <li class="execute">
+    <div>
+        
+      <p><%= my_post_links post.body %></p>
+      <% at = post.read_first_post_attachments %>
+      <% if at.file? %>
+        <% if at.file_image? %>
+          <p style="margin-top:10px"><%= link_to image_tag(at.file.url(:me)), at.file.url, :target=>"_blank" %></p>
+          <p>Format: <%= at.file_content_type %></p>
+          <p>Size: <%= number_to_human_size at.file_file_size %></p>
+          <p></p>
+        <% else %>
+          <p style="margin-top:10px">
+            <img border="0" width="16" height="16" alt="Name" src="/images/layout/havatar16x16.jpg">
+            <%= link_to at.file_file_name, at.file.url, :target=>"_blank" %>
+          </p>
+        <% end %>
+      <% end %>
+      
+    </div>
+
+  </li>
 
 <%= my_post_actions post %>
-
-
-  <li class="" style="clear:both">
-    <% at = post.read_first_post_attachments %>
-    <% if at.file? %>
-      <%= link_to "d(o.o)b weird song - #{at.file_file_name}", at.file.url, :target=>"_blank" if at.file_music? %>
-      <% if at.file_image? %>
-        <%= image_tag at.file.url(:sm) %>
-        <%= link_to "download the original image", at.file.url, :target=>"_blank" %>
-      <% end %>
-    <% end %>
-  </li>
-
-  <% if false %>
-  <% if post.img? %>
-  <li class="foto">
-    <%= link_to image_tag(post.img.url(:me)), profile_path(post.username) %>
-  </li>
-  <% end %>
   
   <li class="hora" style="clear:both">
     <%= link_to time_ago_in_words(post.created_at), post %>

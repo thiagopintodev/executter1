@@ -60,11 +60,13 @@
 <div id="container" data-user-id="<%= @user.id %>" data-user-is-me="<%= !!@isme %>" data-logged-in="<%= !!current_user %>">
   
 
-
-          <div id="img-user" style="background:url(<%= @user.my_last_photo.img.url(:bi) %>) no-repeat"> 
+<%if false%>
+ style="background:url(<%#= @user.my_last_photo.img.url(:bi) %>) no-repeat"
             <% if @isme && !@user.my_last_photo.img? %>
           	<a href="/"><img src="/images/layout/busca_photo.png" width="100" height="100" alt="Buscar foto" border="0" /></a>
           	<% end %>
+<%end%>
+          <div id="img-user"> 
           </div>
 
 

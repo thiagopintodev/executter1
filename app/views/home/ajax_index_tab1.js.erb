@@ -5,20 +5,31 @@
 <div class="pack" style="display:none">
   <ul class="lista-execute post" data-id="<%= post.id %>">
 	  <li class="havatar">
-	    <a href="#">
+	    <a href="/<%=user.username%>">
 	      <img src="<%= user.my_last_photo.file.url(:sm) %>" width="50" height="50" alt="Name" border="0" />
 	    </a>
 	  </li>
     <li class="execute">
       <%= link_to user.username, profile_path(user.username) %>
-      <%= my_post_links post.body %>
-    </li>
-      
-<%= my_post_actions post %>
+      <div>
+        
+        <p><%= my_post_links post.body %></p>
+        <% at = post.read_first_post_attachments %>
+        <% if at.file? %>
+          <% if at.file_image? %>
+            <p style="margin-top:10px"><%= link_to image_tag(at.file.url(:me)), at.file.url, :target=>"_blank" %></p>
+            <p>Format: <%= at.file_content_type %></p>
+            <p>Size: <%= number_to_human_size at.file_file_size %></p>
+            <p></p>
+          <% else %>
+            <p style="margin-top:10px">
+              <img border="0" width="16" height="16" alt="Name" src="/images/layout/havatar16x16.jpg">
+              <%= link_to at.file_file_name, at.file.url, :target=>"_blank" %>
+            </p>
+          <% end %>
+        <% end %>
 
-    <li class="" style="clear:both">
-      <% at = post.read_first_post_attachments %>
-      <% if at.file? %>
+      <% if false && at.file? %>
         <% if at.file_music? %>
           <%= link_to "d(o.o)b weird song - #{at.file_file_name}", at.file.url, :target=>"_blank" %>
         <% elsif at.file_image? %>
@@ -28,19 +39,15 @@
           <%= link_to "download this unknown file", at.file.url, :target=>"_blank" %>
         <% end %>
       <% end %>
+        
+      </div>
     </li>
-
-<%#&& post.img?  %>
-      <% if false %>
-      <li class="foto">
-        <%#= image_tag post.img.url(:me) %>
-      </li>
-      <% end %>
       
-    <li class="hora" style="clear:both">
-      <%= link_to time_ago_in_words(post.created_at), post %>
-    </li>
+<%= my_post_actions post %>
 
+    <li class="hora" style="clear:both">
+      <%= link_to "#{l post.created_at, :format => :short} - #{time_ago_in_words(post.created_at)}", post %>
+    </li>
     
   </ul>
 </div>
