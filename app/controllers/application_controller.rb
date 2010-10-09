@@ -17,8 +17,9 @@ class ApplicationController < ActionController::Base
   def my_must_be_logged
     redirect_to root_path, :notice=>"ONLY LOGGED IN" unless current_user
   end
-  def my_admin_area
-    #redirect_to(root_path, :notice=>"aaaaa") unless false
+  def my_admin_only
+  #, :notice=>"ONLY ADMIN IN"
+    redirect_to(root_path) unless current_user.admin?
   end
   
 end

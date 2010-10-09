@@ -31,7 +31,8 @@
 
          
          <div id="publicidade">
-          <%= image_tag my_banner.img.url %>
+          <%= image_tag my_banner.img.url if my_banner.link.blank? %>
+          <%= link_to image_tag(my_banner.img.url), my_banner.link unless my_banner.link.blank? %>
          </div>
 
          

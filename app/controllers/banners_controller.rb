@@ -1,6 +1,6 @@
 class BannersController < ApplicationController
 
-  before_filter :my_admin_area, :except=>:index
+  before_filter :my_admin_only
   layout "admin"
 
   # GET /banners
