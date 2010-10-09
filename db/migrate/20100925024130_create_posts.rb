@@ -3,10 +3,8 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :type
       t.integer :user_id
-      t.integer :parent_post_id
       t.string :body
       t.string :remote_ip
-      t.string :tags
       t.boolean :is_public,   :default=>false
       t.boolean :is_deleted,  :default=>true
       t.timestamps
@@ -17,3 +15,6 @@ class CreatePosts < ActiveRecord::Migration
     drop_table :posts
   end
 end
+#t.integer :parent_post_id
+#t.string :tags
+#add these in a later migration

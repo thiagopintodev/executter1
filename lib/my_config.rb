@@ -28,19 +28,15 @@ class MyConfig
     r[:default_url] = "/images/application/default/:class/:attachment/:style.png"
     r[:styles] = styles
     path = "/#{app_name}/:class/:attachment/:id_partition/:id_:style_:basename.:extension"
-    #path_not_image = "/#{app_name}/:class/:attachment/:id_partition/:id.:basename.:extension"
     
     if s3_credentials
       r[:storage] = :s3
       r[:s3_credentials] = s3_credentials
       r[:bucket] = "of7_#{bucket_name}"
       r[:path] = path
-      #r[:path] = lambda { |a| MyConfig::image?(a) ? path : path_not_image }
     else
 		  r[:path] = ":rails_root/public/assets#{path}"
 		  r[:url] = "/assets#{path}"
-		  #r[:path] = lambda { |a| MyConfig::image?(a) ? ":rails_root/public/assets#{path}" : ":rails_root/public/assets#{path_not_image}" }
-		  #r[:url] = lambda { |a| MyConfig::image?(a) ? ":rails_root/public/assets#{path}" : "/assets#{path_not_image}" }
     end
     r
   end
