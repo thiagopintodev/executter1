@@ -7,6 +7,14 @@ $(function() {
     return false;
   });
 
+  $(".post").live("mouseover", function(){
+    $(this).contents().find("li.icons").toggle();
+  });
+  $(".post").live("mouseout", function(){
+    $(this).contents().find("li.icons").toggle();
+  });
+
+
   //$(".locale_setters a").live("click", function(e) {
   //  $("body *").hide();
   //  setTimeout(function() { location.reload() }, 500);
@@ -60,6 +68,14 @@ $(function() {
 
   if ($("body.pg-home-index").size())
   {
+    $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
+      $("#anexoLink, #anexoBox").slideToggle("fast");
+      $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
+    });
+  
+//$("#viewstack").css("background-image","none");
+//return false;
+
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab, false, function() {
       mention = $(selected_tab).attr("data-mention");

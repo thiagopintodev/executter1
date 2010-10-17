@@ -53,6 +53,29 @@ class HomeController < ApplicationController
     render :layout=> false
   end
 
+  def settings_remove_bg
+    @user = settings_design
+    @user.background = nil
+    @user.save
+    render :settings_design
+  end
+
+  def settings_design
+    @user = current_user
+  end
+  def settings_notice
+    @user = current_user
+  end
+  def settings_profile
+    @user = current_user
+  end
+  def settings_design
+    @user = current_user
+  end
+  def settings_picture
+    @user = current_user
+  end
+
   def ajax_username_available
     #return render :nothing => true unless params[:username] == "js"
     u = params[:username].downcase

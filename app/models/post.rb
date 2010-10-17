@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   validates_length_of :body, :maximum => 196
   #alias :ip_address, :remote_ip#old new
 
-  MY_LIMIT = 3
+  MY_LIMIT = 10
   
   #has_attached_file :img,
   #  MyConfig.paperclip_options({ :sm=>"50x50#", :me=>"100x100#" , :bi=>"200x200#" })

@@ -16,4 +16,10 @@ class PostAttachment < ActiveRecord::Base
   end
   # :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] }
 
+  before_save :my_before_save
+  
+  def my_before_save
+    self.file_width = 100
+    self.file_height = 300
+  end
 end

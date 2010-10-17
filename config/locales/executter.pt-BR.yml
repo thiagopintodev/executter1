@@ -13,3 +13,28 @@ pt-BR:
     footer:
       about_us: "Sobre"
       terms: "Contrato"
+  home:
+    title: "O que acontece agora?"
+    attach_link: "Anexar um arquivo"
+    attach_text: "Anexar"
+    body: "Selecione no seu computador um arquivo de até <strong>1,96MB</strong>"
+  settings:
+    remove_background: "Remover Plano de Fundo"
+    flavours:
+      orange: "Laranja (Original)"
+      apple: "Maça Verde"
+      gum: "Chiclete"
+      banana: "Banana"
+      strawberry: "Morango"
+      chocolate: "Chocolate"
+      coffe: "Café"
+  user:
+    gender:
+      male: "Masculino"
+      female: "Feminino"
+    gender_policy:
+      checkbox: "Exibir gênero no meu perfil"
+    birth_policy:
+      dm: "Day and Month"
+      dmy: "Day, Month, Year"
+      nothing: "Não Mostrar"

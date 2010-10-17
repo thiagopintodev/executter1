@@ -8,8 +8,8 @@ module PostsHelper
 
   def my_post_actions(post)
     html = "<li class='icons'>"
-    html += link_to image_tag("/images/layout/write_icon.png"), "#", :"data-mention"=>post.user.username
     html += link_to image_tag("/images/layout/trash_icon.png"), post, :method => :delete, :remote=>true if post.user_id == current_user.id
+    html += link_to image_tag("/images/layout/write_icon.png"), "#", :"data-mention"=>post.user.username
     #html = 
     raw "#{html}</li>"
   end

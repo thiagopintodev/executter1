@@ -5,9 +5,9 @@ class UserObserver < ActiveRecord::Observer
   end
 =end
   def before_save(user)
-    #User.logger.info('observer before create :))))))))))))))')
-    #puts 'observer before save <-------------'
+    User.logger.info('observer before save :))))))))))))))')
+    puts 'observer before save <-------------'
     user.email = user.email.downcase
-    user.username = user.username.downcase
+    #user.username = user.username.downcase
   end
 end

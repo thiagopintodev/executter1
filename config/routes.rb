@@ -38,16 +38,20 @@ Ex1::Application.routes.draw do
   
   get "conf/ajax_username_available/:username" => "home#ajax_username_available"
   
-  get "conf/1" => "home#settings_1profile"
+  get "conf/1" => "home#settings_profile"
   #get "conf/2" => "home#settings_2account"
   get "conf/3" => "home#settings_design"
   get "conf/4" => "home#settings_picture"
-  get "conf/5" => "home#settings_picture"
+  get "conf/5" => "home#settings_notice"
+  get "conf/remove_bg" => "home#settings_remove_bg"
 
   #root :to => "devise/passwords#edit"
 
+  get "s/:text" => "site#search", :as => :search
+  
+  get "site/search"
   get "site/index"
-  root :to => "site#index"
+  root :to => "home#index"
 
 
   # The priority is based upon order of creation:

@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.remote_ip = request.remote_ip
     @post.save
-    redirect_to home_index_path
+    redirect_to root_path
   end
 
   # PUT /posts/1

@@ -2,6 +2,10 @@ class Relationship < ActiveRecord::Base
   belongs_to :user1, :class_name => "User", :foreign_key => "user1_id"
   belongs_to :user2, :class_name => "User", :foreign_key => "user2_id"
 
+  #belongs_to :followers, :counter_cache => true,  :conditions => :is_follow=>true
+  #belongs_to :customer, :counter_cache => true,  :conditions => "active = 1"
+
+
   #default_scope where(:is_deleted => false)
 
   #scope :scope_photos, where("img_file_name IS NOT NULL")

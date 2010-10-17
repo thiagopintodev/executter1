@@ -62,11 +62,14 @@
 
 <%if false%>
  style="background:url(<%#= @user.my_last_photo.img.url(:bi) %>) no-repeat"
-            <% if @isme && !@user.my_last_photo.img? %>
-          	<a href="/"><img src="/images/layout/busca_photo.png" width="100" height="100" alt="Buscar foto" border="0" /></a>
-          	<% end %>
+            <%# if @isme && !@user.my_last_photo.img? %>
 <%end%>
-          <div id="img-user"> 
+
+
+          <div id="img-user" style="background:gray">
+            <% if @isme %>
+          	<a href="/conf/4"><img src="/images/layout/busca_photo.png" width="100" height="100" alt="Buscar foto" border="0" /></a>
+          	<% end %>
           </div>
 
 

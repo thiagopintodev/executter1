@@ -13,40 +13,40 @@
                     	<li <%= "class='atual'" if current_user.flavour=="orange" %>>
                         	<%= radio_button("user", "flavour", "orange", :checked=>(current_user.flavour=="orange")) %>
                         	<img src="/images/layout/1_Orange.png" width="100" height="50" />
-                            <span class="laranja">Laranja (Padrão)</span>
+                            <span class="laranja"><%= t "settings.flavours.orange" %></span>
 
                         </li>
                     	<li <%= "class='atual'" if current_user.flavour=="apple" %>>
                         <%= radio_button("user", "flavour", "apple", :checked=>(current_user.flavour=="apple")) %>
                        	<img src="/images/layout/2_GreenApple.png" width="100" height="50" />
-                        <span class="maca">Maçã verde</span>
+                        <span class="maca"><%= t "settings.flavours.apple" %></span>
                       </li>
                     	<li <%= "class='atual'" if current_user.flavour=="gum" %>>
                           <%= radio_button("user", "flavour", "gum", :checked=>(current_user.flavour=="gum")) %>
                        	<img src="/images/layout/3_BubbleGun.png" width="100" height="50" />
-                        <span class="chiclete">Chiclete</span>
+                        <span class="chiclete"><%= t "settings.flavours.gum" %></span>
                       </li>
                     	<li <%= "class='atual'" if current_user.flavour=="banana" %>>
                     <%= radio_button("user", "flavour", "banana", :checked=>(current_user.flavour=="banana")) %>
                        	<img src="/images/layout/4_Banana.png" width="100" height="50" />
-                        <span class="banana">Banana</span>
+                        <span class="banana"><%= t "settings.flavours.banana" %></span>
                       </li>
 
                     	<li <%= "class='atual'" if current_user.flavour=="strawberry" %>>
                     <%= radio_button("user", "flavour", "strawberry", :checked=>(current_user.flavour=="strawberry")) %>
                        	<img src="/images/layout/5_Strawbarry.png" width="100" height="50" />
-                        <span class="morango">Morango</span>
+                        <span class="morango"><%= t "settings.flavours.strawberry" %></span>
                       </li>
                     	<li <%= "class='atual'" if current_user.flavour=="chocolate" %>>
                     <%= radio_button("user", "flavour", "chocolate", :checked=>(current_user.flavour=="chocolate")) %>
                        	<img src="/images/layout/6_Chocolate.png" width="100" height="50" />
 
-                        <span class="chocolate">Chocolate</span>
+                        <span class="chocolate"><%= t "settings.flavours.chocolate" %></span>
                       </li>
                     	<li <%= "class='atual'" if current_user.flavour=="coffe" %>>
                     <%= radio_button("user", "flavour", "coffe", :checked=>(current_user.flavour=="coffe")) %>
                        	<img src="/images/layout/7_ Coffee.png" width="100" height="50" />
-                        <span class="cafe">Café</span>
+                        <span class="cafe"><%= t "settings.flavours.coffe" %></span>
                       </li>
                     </ul>
 
@@ -59,12 +59,21 @@
                     </div>
                     
                     <div id="opcoes-bg">
+                      <!--
                	    	<img src="/images/layout/img_bg.jpg" width="100" height="100" class="yes" />
                     	<img src="/images/layout/bg_not.jpg" width="100" height="100" />
+                    	-->
                         <label>
                           <%= f.check_box :background_repeat_policy %>
                           <span>Repetir plano de fundo</span>
                         </label>
+                    </div>
+                    <div id="opcoes-bg">
+                        <%= f.label :background_color %>
+                        <%= f.text_field :background_color %>
+                    </div>
+                    <div id="opcoes-bg">
+                        <%= link_to t("settings.remove_background"), "/conf/remove_bg" %>
                     </div>
                     
                     <div class="botoes">

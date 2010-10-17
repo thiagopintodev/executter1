@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
     User.order(:id)
   end
   def my_must_be_logged
-    redirect_to root_path, :notice=>"ONLY LOGGED IN" unless current_user
+  #, :notice=>"ONLY LOGGED IN"
+    redirect_to in_path unless current_user
   end
   def my_admin_only
   #, :notice=>"ONLY ADMIN IN"

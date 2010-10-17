@@ -5,12 +5,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
-         
+
   attr_accessible :full_name, :gender, :gender_policy, :birth, :birth_policy,
     :time_zone, :background, :background_repeat_policy, :flavour, :description,
     :website, :locale, :local
+    
+  attr_accessor :background_color
 
-  validates_length_of :username, :in => 6..20
+  validates_length_of :username, :in => 2..16
 
   has_attached_file :background, MyConfig.paperclip_options
 	validates_attachment_content_type :background, :content_type => ['image/jpeg', 'image/gif', 'image/png'] unless :background
@@ -22,24 +24,17 @@ class User < ActiveRecord::Base
     "LAST UPDATE AT: #{updated_at}"
   end
   
-  #before_save :my_before_save
+  before_save :my_before_save
 
   def my_before_save
-    #logger.info " -----------> #{self.username} has been downcased :)"
-=begin      
-    email = self.email.split(/@/)
-    login_taken = User.where( :username => email[0]).first
-    unless login_taken
-      self.login = email[0]
-    else	
-      self.login = self.email
-    end	       
-=end
+    #User.logger.info('observer before save :))))))))))))))')
+    #puts 'observer before save <-------------'
+    self.email = self.email.downcase
   end
   
   def self.find_for_database_authentication(conditions)
-    key = conditions[:email].rindex("@") ? :email : :username
-    where(key => conditions[:email].downcase).first
+    key = conditions[:email].rindex("@") ? 'email' : 'username'
+    where("lower(#{key})=?", conditions[:email].downcase).first
   end
 
 
@@ -47,9 +42,9 @@ class User < ActiveRecord::Base
 
   LOCALES = ["en","pt-BR"] #I18n.available_locales.collect(&:to_s)
   
-  GENDERS = {'Female'=>'F','Male'=>'M'}
+  GENDERS = {'-'=>'0','user.gender.female'=>'1','user.gender.male'=>'2'}
   BACKGROUND_REPEAT_POLICIES = {0=>'no-repeat',1=>'repeat'}#repeat-X, repeat-Y
-  BIRTH_POLICIES = {'Mostrar apenas dia e mês em meu perfil'=>0}
+  BIRTH_POLICIES = {'user.birth_policy.dm'=>0,'user.birth_policy.dmy'=>1,'user.birth_policy.nothing'=>2}
   #GENDER_POLICIES = {} #using checkbox
   
 =begin
@@ -64,7 +59,7 @@ class User < ActiveRecord::Base
   def self.my_find(param)
     #return where(:id=>param).first if MyFunctions.number? param
     #where(:username=>param.downcase.delete("@")).first
-    r = (param.to_i > 0) ? where(:id=>param) : where(:username=>param.downcase.delete("@"))
+    r = (param.to_i > 0) ? where(:id=>param) : where("lower(username)=?", param.downcase.delete("@"))
     r.first
   end
   def my_last_photo
