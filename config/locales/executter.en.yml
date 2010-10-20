@@ -19,6 +19,9 @@ en:
     attach_text: "Attach"
     body: "You know what to do, untill <strong>1,96MB</strong> :p"
   settings:
+    agree_file:
+      title: "By uploading a file you certify that you have the right to distribute this picture and that it does not violate the <a href='/z/terms'>Terms of Service</a>"
+      content: "Select an image file on your computer (%{size} max)"
     remove_background: "Remove Background Image"
     flavours:
       orange: "Orange (Original)"

@@ -4,7 +4,7 @@
 <div id="sidebar">
 
   <div id="username">
-      <img src="/images/layout/havatar25x25.jpg" width="25" height="25" alt="<%= @user.username %>" border="0" />
+      <%= image_tag current_user.read_photo.img.url(:mi) %>
       <%= link_to @user.username, profile_path(@user.username) %>
   </div>
 

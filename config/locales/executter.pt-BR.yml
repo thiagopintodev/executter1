@@ -19,6 +19,9 @@ pt-BR:
     attach_text: "Anexar"
     body: "Selecione no seu computador um arquivo de até <strong>1,96MB</strong>"
   settings:
+    agree_file:
+      title: "Essa imagem não viola o <a href='/z/terms'>Termo de Serviço</a>"
+      content: "Selecione uma imagem de até (%{size} max)"
     remove_background: "Remover Plano de Fundo"
     flavours:
       orange: "Laranja (Original)"

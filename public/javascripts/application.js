@@ -41,9 +41,21 @@ $(function() {
   {
     user_id = $("#container").attr("data-user-id");
     is_me = $("#container").attr("data-user-is-me")=="true";
-    logged_in = $("#container").attr("data-logged-in")=="true";
-    //$("#user-following").load("")
-    //alert(user_id);
+    logged_in = $("#container").attr("data-visitor-logged-in")=="true";
+    user_has_picture = $("#container").attr("data-user-has-photo")=="true";
+
+    if (is_me)
+      if (!user_has_picture)
+        $("#container #img-user a").show();
+      else {
+      
+        $("#container #img-user").live("mouseout", function() {
+          $("#container #img-user a").hide();
+        });
+        $("#container #img-user, #container #img-user *").live("mouseover", function() {
+          $("#container #img-user a").show();
+        });
+    }
 
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab);
@@ -71,6 +83,10 @@ $(function() {
     $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
       $("#anexoLink, #anexoBox").slideToggle("fast");
       $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
+    });
+    $("form").live("submit", function() {
+      $("form #post_submit").hide();
+//      #setTimeout(function() { $("form #post_submit").show() }, 5000);
     });
   
 //$("#viewstack").css("background-image","none");

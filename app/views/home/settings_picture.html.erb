@@ -4,4 +4,38 @@
 <%= my_settings_tabs(3) %>
 
 
-<input type="file"/>
+<%= form_for(current_user, :url=> "/conf/new_photo", :html=>{:multipart=>true, :class=>"campos-settings"}) do |f| %>
+
+  <% if @errors %>
+  <ul class="alert-settings">
+    <% @errors.each do |error| %>
+    <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" /><%= error %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  
+  <div id="campos">
+    <%= image_tag @user.read_photo.img.url(:bi), class: "havatar" %>
+    <div id="file">
+      <div><%= raw t('settings.agree_file.title') %></div>
+      <%= file_field_tag :photo %>
+      <span><%= t 'settings.agree_file.content', :size => "1MB" %></span>
+
+      <input type="submit" class="bt" value="Salvar" />
+      
+    </div>
+  </div>
+  
+<% end %>
+
+
+
+      <ul id="box-infos">
+      	<li class="titulo">Dicas</li>
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+      </ul>

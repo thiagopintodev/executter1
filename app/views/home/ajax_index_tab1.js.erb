@@ -5,8 +5,8 @@
 <div class="pack" style="display:none">
   <ul class="lista-execute post" data-id="<%= post.id %>">
 	  <li class="havatar">
-	    <a href="/<%=user.username%>">
-	      <img src="<%= user.my_last_photo.file.url(:sm) %>" width="50" height="50" alt="Name" border="0" />
+	    <a href="/<%= user.username %>">
+	      <img src="<%= user.read_photo.img.url(:sm) %>" alt="<%= user.username %>" border="0" />
 	    </a>
 	  </li>
     <li class="execute">

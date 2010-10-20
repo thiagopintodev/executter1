@@ -76,6 +76,18 @@ class HomeController < ApplicationController
     @user = current_user
   end
 
+  def new_photo
+    p = current_user.photos.build
+    p.img = params[:photo]
+    if p.save
+      current_user.update_attribute :photo_id, p.id
+    else
+      @errors = p.errors
+    end
+    settings_picture
+    render :settings_picture
+  end
+
   def ajax_username_available
     #return render :nothing => true unless params[:username] == "js"
     u = params[:username].downcase

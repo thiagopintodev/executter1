@@ -1,5 +1,7 @@
 Ex1::Application.routes.draw do
   
+  #resource :photo, :only => [:create]
+
   resources :banners, :path => "admin/banners" #except => :show
   #resources :flavours, :path => "admin/flavours"
   
@@ -44,6 +46,8 @@ Ex1::Application.routes.draw do
   get "conf/4" => "home#settings_picture"
   get "conf/5" => "home#settings_notice"
   get "conf/remove_bg" => "home#settings_remove_bg"
+  match "conf/new_photo" => "home#new_photo", :method => :post
+  match "conf/new_photo" => "home#settings_picture", :method => :get
 
   #root :to => "devise/passwords#edit"
 

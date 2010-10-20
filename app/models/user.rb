@@ -62,11 +62,11 @@ class User < ActiveRecord::Base
     r = (param.to_i > 0) ? where(:id=>param) : where("lower(username)=?", param.downcase.delete("@"))
     r.first
   end
-  def my_last_photo
+  def read_photo
     #posts.scope_photos.last || posts.build
-    PostAttachment.new
+    self.photo || Photo.new
   end
-
+  
   #def name1
   #  full_name.split(" ").first
   #end
@@ -75,6 +75,7 @@ class User < ActiveRecord::Base
   validates_presence_of :full_name, :username
   validates_uniqueness_of :username
   
+  belongs_to :photo
   has_many :photos
   has_many :posts
   has_many :i_relate_to_them, :class_name => "Relationship", :foreign_key => :user1_id
