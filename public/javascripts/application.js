@@ -78,7 +78,7 @@ $(function() {
     
   }
 
-  if ($("body.pg-home-index").size())
+  if (functions.page.isHome())
   {
     $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
       $("#anexoLink, #anexoBox").slideToggle("fast");
@@ -95,8 +95,7 @@ $(function() {
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab, false, function() {
       mention = $(selected_tab).attr("data-mention");
-      if (mention)
-        $("#post_body").val("@"+mention+" ").focus();
+      functions.mention.write(mention);
     });
 
     //$("form.executa .anexos a").live("click", function(e) {
@@ -112,6 +111,19 @@ $(function() {
     //post_id = p.attr("data-id");
     //$.getScript("/home/post_delete/:id".replace(":id", post_id));
     //return false;
+  });
+  $(".post a[data-mention]").live("click", function(e) {
+    mention = $(this).attr("data-mention");
+    if (functions.page.isHome())
+    {
+      functions.mention.write(mention);
+      return false;
+    }
+    else
+    {
+      url = ":u/mention".replace(":u", mention);
+      window.location = url;
+    }
   });
 
   $(".tab-switcher").live("click", function(e) {
@@ -133,9 +145,21 @@ $(function() {
 });
 
 functions = {
+  page : {
+    isHome: function() {
+      return $("body.pg-home-index").size();
+    }
+  },
+  mention : {
+    write: function(username) {
+      if (username)
+      {
+        v = "@:u ".replace(":u", username)
+        $("#post_body").val(v).focus();
+      }
+    }
+  },
   tabs : {
-
-  
     load_tab: function(tab, force_posts, fn_callback) {
       //
       $("#viewstack .view").hide();
