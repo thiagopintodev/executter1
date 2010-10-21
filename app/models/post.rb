@@ -16,8 +16,7 @@ class Post < ActiveRecord::Base
   #scope :scope_photos, where("img_file_name IS NOT NULL")
   scope :scope_photos, where("img_file_content_type LIKE 'image%'")
 
-  validates_length_of :body, :maximum => 196
-  #alias :ip_address, :remote_ip#old new
+  #validates_length_of :body, :maximum => 196
 
   MY_LIMIT = 10
   

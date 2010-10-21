@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
+    @post.post_attachments.each { |pa| pa.user_id = current_user.id }
     @post.remote_ip = request.remote_ip
     @post.save
     redirect_to root_path
