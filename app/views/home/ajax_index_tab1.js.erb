@@ -50,6 +50,7 @@
 <% end %>
 <% end %>
 
+
 ajax_content = $("#view1 .ajax-content").addClass("ajax-content-white");
 
 <% if @posts.size > 0 %>
@@ -61,5 +62,7 @@ ajax_content = $("#view1 .ajax-content").addClass("ajax-content-white");
   //alert("acabou!");
 <% end %>
 
-
+setTimeout(function() {
+  $("#btn-more").fadeIn();
+}, 1000);
 

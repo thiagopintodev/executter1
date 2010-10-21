@@ -22,7 +22,10 @@
             <a href="#"><span class="desc">Mention</span><span>2</span></a>
             -->
             <% all_users.each do |u| %>
-              <a href="<%= profile_path u.username %>"><span class="desc"><%= u.email %></span><span>:)</span></a>
+              <a href="<%= profile_path u.username %>">
+              <%= u.updated_at.strftime("%b%d %H:%M:%S")  %>  
+                <span class="desc">@<%= u.username %></span>
+              </a>
             <% end %>
           </div>
 

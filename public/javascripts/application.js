@@ -7,14 +7,6 @@ $(function() {
     return false;
   });
 
-  $(".post").live("mouseover", function(){
-    $(this).contents().find("li.icons").toggle();
-  });
-  $(".post").live("mouseout", function(){
-    $(this).contents().find("li.icons").toggle();
-  });
-
-
   //$(".locale_setters a").live("click", function(e) {
   //  $("body *").hide();
   //  setTimeout(function() { location.reload() }, 500);
@@ -26,6 +18,12 @@ $(function() {
     return false;
   });
 
+
+
+  
+  ///
+  /// isso não será mais estático
+  ///
   $(".username-available").live("blur", function(e) {
     v = $(this).val();
     url = "/conf/ajax_username_available/:u".replace(":u", v);
@@ -37,7 +35,18 @@ $(function() {
     });
   });
 
-  if ($("body.pg-users-show").size())
+  ///
+  /// EVENTS FOR ALL PAGES, ONLY ACTUALLY BEING USED
+  ///
+  if (true)
+  {
+    
+  }
+
+  ///
+  /// PROFILE PAGE
+  ///
+  if (functions.page.isProfile())
   {
     user_id = $("#container").attr("data-user-id");
     is_me = $("#container").attr("data-user-is-me")=="true";
@@ -74,12 +83,16 @@ $(function() {
         return false;
       });
     }
-
     
   }
 
+  ///
+  /// HOME PAGE
+  ///
   if (functions.page.isHome())
   {
+    events.post.toggle_buttons();
+  
     $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
       $("#anexoLink, #anexoBox").slideToggle("fast");
       $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
@@ -105,13 +118,10 @@ $(function() {
     
   }
   
-        //csrf_param = $('meta[name=csrf-param]').attr('content');
   $(".post a[data-method=delete]").live("click", function(e) {
     p = $(this).closest(".post").slideToggle("slow");
-    //post_id = p.attr("data-id");
-    //$.getScript("/home/post_delete/:id".replace(":id", post_id));
-    //return false;
   });
+  
   $(".post a[data-mention]").live("click", function(e) {
     mention = $(this).attr("data-mention");
     if (functions.page.isHome())
@@ -139,49 +149,59 @@ $(function() {
       script_url += "/"+$(".post:last").attr("data-id");
     
     $.getScript(script_url);
+    $("#btn-more").fadeOut();
     return false;
   });
   
 });
 
-functions = {
-  page : {
-    isHome: function() {
-      return $("body.pg-home-index").size();
-    }
-  },
-  mention : {
-    write: function(username) {
-      if (username)
-      {
-        v = "@:u ".replace(":u", username)
-        $("#post_body").val(v).focus();
+
+  ///
+  /// HELPERS FOR ALL PAGES, ONLY ACTUALLY BEING USED
+  ///
+  events = {
+    post : {
+      toggle_buttons: function() {
+        $(".post").live("mouseover mouseout", function(){
+          $(this).contents("li.icons").toggle();
+        });
       }
     }
-  },
-  tabs : {
-    load_tab: function(tab, force_posts, fn_callback) {
-      //
-      $("#viewstack .view").hide();
-      tab_url = $(selected_tab).show().attr("data-url")+".html";
-
-      if (force_posts)
-        $my_flagged_tabs[selected_tab] = false;
-        
-      if (!$my_flagged_tabs[selected_tab])
-        $(selected_tab).load(tab_url, function() {
-          if (fn_callback)
-            fn_callback();
-          $my_flagged_tabs[selected_tab] = true;
-          $(selected_tab).contents().find("a.btn-script-invoker").click();
-        });
-      //
-    }
-
-
-    
   }
-}
+  
+  functions = {
+    page : {
+      isHome: function() { return $("body.pg-home-index").size(); },
+      isProfile: function() { return $("body.pg-users-show").size(); }
+    },
+    mention : {
+      write: function(username) {
+        if (username) $("#post_body").val( "@:u ".replace(":u", username) ).focus();
+      }
+    },
+    tabs : {
+      load_tab: function(tab, force_posts, fn_callback) {
+        //
+        $("#viewstack .view").hide();
+        tab_url = $(selected_tab).show().attr("data-url")+".html";
+
+        if (force_posts)
+          $my_flagged_tabs[selected_tab] = false;
+          
+        if (!$my_flagged_tabs[selected_tab])
+          $(selected_tab).load(tab_url, function() {
+            if (fn_callback)
+              fn_callback();
+            $my_flagged_tabs[selected_tab] = true;
+            $(selected_tab).contents().find("a.btn-script-invoker").click();
+          });
+        //
+      }
+
+
+      
+    }
+  }
 
 
 
