@@ -1,3 +1,10 @@
+String.prototype.endsWith = function(pattern) {
+    var d = this.length - pattern.length;
+    return d >= 0 && this.lastIndexOf(pattern) === d;
+};
+
+
+
 $my_flagged_tabs = []
 
 $(function() {
@@ -105,11 +112,11 @@ $(function() {
 //$("#viewstack").css("background-image","none");
 //return false;
 
+
     selected_tab = $("#viewstack").attr("data-selected");
-    functions.tabs.load_tab(selected_tab, false, function() {
-      mention = $(selected_tab).attr("data-mention");
-      functions.mention.write(mention);
-    });
+    functions.tabs.load_tab(selected_tab, false);
+    
+    functions.mention.write( $(selected_tab).attr("data-mention") );
 
     //$("form.executa .anexos a").live("click", function(e) {
     //  //
@@ -176,7 +183,13 @@ $(function() {
     },
     mention : {
       write: function(username) {
-        if (username) $("#post_body").val( "@:u ".replace(":u", username) ).focus();
+        a = $("#post_body");
+        if (username) {
+          u = "@:u ".replace(":u", username);
+          if (!a.val().endsWith(' '))
+            a.append(' ');
+          a.append(u).focus();
+        }
       }
     },
     tabs : {

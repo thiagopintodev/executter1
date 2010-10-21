@@ -16,6 +16,10 @@ class Post < ActiveRecord::Base
   #scope :scope_photos, where("img_file_name IS NOT NULL")
   scope :scope_photos, where("img_file_content_type LIKE 'image%'")
 
+
+#validates :title, :presence => true, :uniqueness => true, :length => { :maximum => 100 }
+#validates :budget, :presence => true, :length => { :within => 1..10000000 }
+  validates :body, :presence => true, :length => { :within => 7..500 }
   #validates_length_of :body, :maximum => 196
 
   MY_LIMIT = 10

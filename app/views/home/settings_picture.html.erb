@@ -8,8 +8,8 @@
 
   <% if @errors %>
   <ul class="alert-settings">
-    <% @errors.each do |error| %>
-    <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" /><%= error %></li>
+    <% @errors.full_messages.each do |msg| %>
+      <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" /><%= msg %></li>
     <% end %>
   </ul>
   <% end %>
