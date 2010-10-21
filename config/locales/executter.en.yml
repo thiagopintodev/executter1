@@ -13,6 +13,10 @@ en:
     footer:
       about_us: "About us"
       terms: "Terms"
+    words:
+      followings: "Followings"
+      followers: "Followings"
+      friends: "Friends"
   home:
     title: "What now?"
     attach_link: "Attach a file"

@@ -31,23 +31,31 @@
             <% end %>
           </div>
           
-          <% unless @isme %>
+          <%# unless @isme %>
           <ul id="estatistics">
-             <li><a href="#" class="nao-clique"><span><%= @my_followers.size %></span><span class="label">Followers</span></a></li>
-             <li><a href="#" class="nao-clique"><span><%= @my_followings.size %>/196</span><span class="label">Following</span></a></li>
-             <li><a href="#" class="nao-clique"><span><%= @my_friends.size %>/108</span><span class="label">Friends</span></a></li>
+            <li><a href="#" class="nao-clique">
+              <span><%= @my_followers.size %></span>
+              <span class="label"><%= t "application.words.followers" %></span>
+            </a></li>
+            <li><a href="#" class="nao-clique">
+              <span><%= @my_followings.size %></span>
+              <span class="label"><%= t "application.words.followings" %></span>
+            </a></li>
+            <li><a href="#" class="nao-clique">
+              <span><%= @my_friends.size %></span>
+              <span class="label"><%= t "application.words.friends" %></span>
+            </a></li>
           </ul>
     	
-          <h3><a href="#">Followers !!!!</a></h3>	
+          <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
           <div id="labels-thumbs">
-         	  <% @my_followers_hash.each do |user_id, user| %>
-         	    
-            <a href="/<%= user.username %>"><img src="/images/layout/havatar25x25.jpg" width="25" height="25" alt="Username" border="0" /></a>
+         	  <% @my_followings_hash.each do |user_id, user| %>
+         	    <%= link_to image_tag(user.read_photo.img.url(:mi)), profile_path(user.username), :title=>user.full_name %>
             <% end %>
           </div>
           <div class="more"><a href="#" class="nao-clique">View all</a></div>
           
-          <% end %>
+          <%# end %>
           <div class="rss"><a href="#" class="nao-clique"><img src="/images/layout/RSS16.png" width="16" height="16" />RSS feed de <%= @user.username %></a></div>
 
 
@@ -64,7 +72,7 @@
   data-visitor-logged-in="<%= !!current_user %>">
 
   <div id="img-user"
-    style="background:url(<%= @user.read_photo.img.url(:bi) %>) no-repeat">
+    style="background:url('<%= @user.read_photo.img.url(:bi) %>') no-repeat">
     <% if @isme %>
   	<a href="/conf/4" style="display:none"><img src="/images/layout/busca_photo.png" width="100" height="100" alt="Buscar foto" border="0" /></a>
   	<% end %>

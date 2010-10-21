@@ -23,7 +23,18 @@ class UsersController < ApplicationController
     @my_followers   = @user.they_relate_to_me.scope_follow
     @my_followings  = @user.i_relate_to_them.scope_follow
     @my_friends     = @user.they_relate_to_me.scope_friend
+
+    #os relacionamentos
+    @my_followings_hash = {}
+    @my_followings.each { |f| @my_followings_hash[f.user2_id] = nil }
     
+    #os usuarios deles
+    users = User.find(@my_followings_hash.keys)
+    
+    #preenchidos
+    users.each { |u| @my_followings_hash[u.id] = u }
+    
+=begin
     #os relacionamentos
     @my_followers_hash = {}
     @my_followers.each { |f| @my_followers_hash[f.user1_id] = nil }
@@ -33,6 +44,7 @@ class UsersController < ApplicationController
     
     #preenchidos
     users.each { |u| @my_followers_hash[u.id] = u }
+=end
   end
 
   def ajax_show_relation

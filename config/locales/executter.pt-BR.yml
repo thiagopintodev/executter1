@@ -13,6 +13,10 @@ pt-BR:
     footer:
       about_us: "Sobre"
       terms: "Contrato"
+    words:
+      followings: "Seguindo"
+      followers: "Seguidores"
+      friends: "Amigos"
   home:
     title: "O que acontece agora?"
     attach_link: "Anexar um arquivo"
