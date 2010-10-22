@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
 
 #validates :title, :presence => true, :uniqueness => true, :length => { :maximum => 100 }
 #validates :budget, :presence => true, :length => { :within => 1..10000000 }
-  validates :body, :presence => true, :length => { :within => 7..500 }
+  validates :body, :presence => true, :length => { :within => 3..500 }
   #validates_length_of :body, :maximum => 196
 
   MY_LIMIT = 10

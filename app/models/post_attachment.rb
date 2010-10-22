@@ -2,7 +2,7 @@ class PostAttachment < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
 
-  IMAGE_STYLES = { :sm=>"50x50#", :me=>"100x100#" , :bi=>"200x200#" }
+  IMAGE_STYLES = { :sm=>["50x50#", :jpg], :me=>["100x100#", :jpg] , :bi=>["200x200#", :jpg] }
   
   has_attached_file :file,
     MyConfig.paperclip_options(
