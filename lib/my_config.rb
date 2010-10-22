@@ -6,6 +6,9 @@ class MyConfig
   def self.env
     ENV.each { |k,v| puts "#{k}: #{v}" }
   end
+  def self.mime
+    puts PostAttachment.select(:file_content_type).all.collect(&:file_content_type).uniq
+  end
   
   def self.bucket_name
     #heroku config:add BUCKET_NAME=staging --app 
@@ -17,10 +20,14 @@ class MyConfig
   end
 
   def self.image?(at)
-    ['image/jpeg', 'image/gif', 'image/png'].include? at.content_type
+    #['image/jpeg', 'image/gif', 'image/png'].include? at.content_type
+    at.content_type.rindex 'image' #may return nil, witch means false :)
   end
   def self.music?(at)
     ['application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3'].include? at.content_type
+  end
+  def self.pdf?(at)
+    at.content_type=='application/pdf'
   end
   
   def self.paperclip_options(styles={})
