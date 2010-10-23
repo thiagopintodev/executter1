@@ -11,16 +11,16 @@
   
   <%= yield(:css_files) %>
   <%= stylesheet_link_tag 'application' %>
-  <%= my_flavour_stylesheet(@user || current_user) %>
+  <%= my_flavour_stylesheet %>
   <!--[if IE 6]>
   <script src="/layout1/DD_belatedPNG_0.0.8a-min.js"></script>
   <script>  DD_belatedPNG.fix('.png_bg, img, h3, input, .labels, .desenho, #menu-estilos, .logo '); </script>
   <style type="text/css">body { behavior:url(/layout1/csshover.htc); }</style>
   <![endif]-->
-  <% if @user && @user.background? %>
+  <% if @user && @user.background_image? %>
   <style type="text/css">
     html, body {
-      background-image:url("<%= @user.background.url %>");
+      background-image:url("<%= @user.background_image.url %>");
       background-repeat:<%= User::BACKGROUND_REPEAT_POLICIES[@user.background_repeat_policy] %>;
       background-attachment: scroll;
       }
@@ -70,18 +70,29 @@
           	<li><%= link_to t("application.footer.terms"), "#about_us.html" %></li>
           </ul>
       </div>
-        <% if Rails.env.development? %>
-        <h3>session</h3>
-        <%= debug session %>
-        <h3>params</h3>
-        <%= debug params %>
-        <% end %>
-        
+
+
+
+<% if Rails.env.development? %>
+<h3>test</h3>
+<%= request.path_info %>
+<h3>session</h3>
+<%= debug session %>
+<h3>request</h3>
+<%= debug request %>
+<h3>params</h3>
+<%= debug params %>
+<% end %>
+
+
+
 <% if Rails.env.production? %>
 <div>
 <script type="text/javascript" src="http://ja.revolvermaps.com/p.js"></script><script type="text/javascript">rm2d_ki101('3','512','256','02qutebmlqz','ff8a00',0);</script>
 </div>
 <% end %>
+
+
 
 
     </div>

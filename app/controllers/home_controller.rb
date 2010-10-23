@@ -6,9 +6,9 @@ class HomeController < ApplicationController
     @post = Post.new
     #@post.post_attachments.build #replaced for pure html for performance 
     #quantidades
-    @my_followers   = @user.they_relate_to_me.scope_follow
-    @my_followings  = @user.i_relate_to_them.scope_follow
-    @my_friends     = @user.they_relate_to_me.scope_friend
+    #@my_followers   = @user.they_relate_to_me.scope_follow
+    #@my_followings  = @user.i_relate_to_them.scope_follow
+    #@my_friends     = @user.they_relate_to_me.scope_friend
   end
 
   def ajax_index_tab1
@@ -16,27 +16,11 @@ class HomeController < ApplicationController
       format.html { render :layout=> false }
       format.js  {
         #quem eu sigo
-        my_followings  = current_user.i_relate_to_them.scope_follow
-
-        #os relacionamentos
-        @my_followings_hash = {}
-        my_followings.each { |f| @my_followings_hash[f.user2_id] = nil }
-        
-        #os usuarios deles
-        users = User.find(@my_followings_hash.keys)
-
-        #preenchidos
-        users.each { |u| @my_followings_hash[u.id] = u }
-        
-        #eu tbm me ouço...
-        @my_followings_hash[current_user.id] = current_user
-
-        #agora eu que já sei quem são as pessoas
-        #agora vamos aos posts delas
-        @posts = Post.where("user_id IN (?)", @my_followings_hash.keys)
-        @posts = @posts.where("id < ?", params[:last_post_id]) if params[:last_post_id]
-        @posts = @posts.order("id DESC").limit(Post::MY_LIMIT)
-        #@posts = @posts.includes(:user)
+        #@my_followings_as_hash = current_user.my_followings_as_hash
+        #@posts = Post.my_followings(current_user.id, last_post_id: params[:last_post_id], limit: params[:limit])
+        #o que quem eu sigo diz
+        @followings_as_hash_and_me = current_user.followings_as_hash(:and_me=>true)
+        @posts = current_user.followings_posts(:last_post_id => params[:last_post_id], :limit => params[:limit])
 
 =begin
   melhor forma:
@@ -55,12 +39,12 @@ class HomeController < ApplicationController
 
   def settings_remove_bg
     @user = settings_design
-    @user.background = nil
+    @user.background_image = nil
     @user.save
     render :settings_design
   end
 
-  def settings_design
+  def settings_login
     @user = current_user
   end
   def settings_notice
@@ -74,6 +58,17 @@ class HomeController < ApplicationController
   end
   def settings_picture
     @user = current_user
+  end
+
+  #weird having 2 update methods, weireder having devise's default user update method =/
+  def update
+  #user.update_with_password
+    unless current_user.update_attributes params[:user]
+    #unless current_user.update_with_password params[:user]
+      @errors = current_user.errors
+      cookies[:flavour] = current_user.flavour
+    end
+    render params[:return_action]
   end
 
   def new_photo

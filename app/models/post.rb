@@ -1,9 +1,10 @@
 class Post < ActiveRecord::Base
+
+  belongs_to :user
+  has_many :post_attachments
+  
   attr_accessible :type, :user_id, :parent_post_id, :body, :ip_address, :is_public, :is_deleted,
     :post_attachments, :post_attachments_attributes
-  belongs_to :user
-  #has_one :post_attachment
-  has_many :post_attachments
   
   accepts_nested_attributes_for :post_attachments, :allow_destroy => true, :reject_if => :all_blank
 
@@ -12,21 +13,27 @@ class Post < ActiveRecord::Base
   end
 
   default_scope where(:is_deleted => false)
-
-  #scope :scope_photos, where("img_file_name IS NOT NULL")
-  scope :scope_photos, where("img_file_content_type LIKE 'image%'")
-
-
-#validates :title, :presence => true, :uniqueness => true, :length => { :maximum => 100 }
-#validates :budget, :presence => true, :length => { :within => 1..10000000 }
   validates :body, :presence => true, :length => { :within => 3..500 }
-  #validates_length_of :body, :maximum => 196
 
   MY_LIMIT = 10
-  
-  #has_attached_file :img,
-  #  MyConfig.paperclip_options({ :sm=>"50x50#", :me=>"100x100#" , :bi=>"200x200#" })
 
+  def self.my_followings(user, options={})
+    user = User.find(user) unless user.is_a? User
+    @my_followings = where("user_id IN (?)", user.followings_as_hash(:and_me=>true).keys)
+    @my_followings = @my_followings.where("id < ?", options[:last_post_id]) if options[:last_post_id]
+    @my_followings = @my_followings.order("id DESC").limit(options[:limit] || Post::MY_LIMIT)
+    @my_followings = @my_followings.includes(:post_attachments)
+  end
+  
+  def self.recent_by_user(user_id, last_post_id)
+    r = where(:user_id=>user_id)
+    r = r.where("id < ?", last_post_id) if last_post_id
+    r.order("id DESC").limit(MY_LIMIT).includes(:user, :post_attachments)
+  end
+
+
+=begin
+  
   def self.my_log_follow(u1, u2, options={})
     r = Relationship.my_find(u1, u2)
     r1 = r[:r1]
@@ -47,10 +54,6 @@ class Post < ActiveRecord::Base
     p.save unless options[:no_log]
     true
   end
-    
-  def self.my_list_by_user(user_id, last_post_id)
-    r = where(:user_id=>user_id)
-    r = r.where("id < ?", last_post_id) if last_post_id
-    r.order("id DESC").limit(MY_LIMIT).includes(:user)
-  end
+=end
+  
 end

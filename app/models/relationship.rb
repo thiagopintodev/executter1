@@ -1,100 +1,102 @@
 class Relationship < ActiveRecord::Base
   belongs_to :user1, :class_name => "User", :foreign_key => "user1_id"
   belongs_to :user2, :class_name => "User", :foreign_key => "user2_id"
+  validates :user1_id, :presence => true
+  validates :user2_id, :presence => true
 
+  validate :cant_relate_to_self
+
+  def cant_relate_to_self
+    errors.add(:user1_id, "one can't make a relationship with themselves") if user1_id == user2_id
+  end
+
+  def self.my_find(u1,u2)
+    #u1, u2 = users_id(u1, u2)
+    find_by_user1_id_and_user2_id(u1, u2) || new(:user1_id => u1, :user1_id => u1)
+  end
+
+  def self.change(property, u1, u2, value, options={})
+    u1, u2 = users_ids(u1, u2)
+    r = self.change_block u1, u2, value, options if property == 'block'
+    r = self.change_follow u1, u2, value, options if property == 'follow'
+    update_user_counters(u1, u2) if r
+    r || nil
+  end
+  
+  #has_many :i_relate_to_them, :class_name => "Relationship", :foreign_key => :user1_id
   #belongs_to :followers, :counter_cache => true,  :conditions => :is_follow=>true
   #belongs_to :customer, :counter_cache => true,  :conditions => "active = 1"
-
-
-  #default_scope where(:is_deleted => false)
-
-  #scope :scope_photos, where("img_file_name IS NOT NULL")
+  #belongs_to :following, :class_name => "User", :foreign_key => :user1_id, :counter_cache => :count_of_followings
+  #belongs_to :friend, :class_name => "User", :foreign_key => :user1_id,
+  #  :counter_cache => :count_of_friends, :conditions => [".is_friend=true"]
+=begin 
   scope :scope_follow, where(:is_follow=>true)
   scope :scope_friend, where(:is_friend=>true)
   scope :scope_block,  where(:is_block=>true)
+  scope :scope_followed, where(:is_followed=>true)
+  scope :scope_blocked,  where(:is_blocked=>true)
   #@user.they_relate_to_me.scope_follow.includes(:user1,:user2)
+=end
 
+  protected
   
-
-
-  # user1_id:integer user2_id:integer is_follow:boolean is_friend:boolean is_block:boolean
-  def self.my_find_or_create(user1_id, user2_id)
-    find_or_create_by_user1_id_and_user2_id(user1_id, user2_id)
-  end
-
-
-
-
-
-
-  
-  def self.my_find(user1_id, user2_id)
-    #ar = where("(user1_id=:user1 AND user2_id=:user2) OR (user1_id=:user2 AND user2_id=:user1)", :user1=>user1_id, :user2=>user2_id)
-    ar = where("user1_id IN (:a) AND user2_id IN (:a)", :a=>[user1_id, user2_id])
-
-    #gotta check witch is faster
-    
-    r = {}
-    ar.each do |a|
-      k = (a.user1_id == user1_id) ? :r1 : :r2
-      r[k] = a
-    end
-    r[:r1] = Relationship.new(:user1_id=>user1_id, :user2_id=>user2_id) unless r[:r1]
-    r[:r2] = Relationship.new(:user1_id=>user2_id, :user2_id=>user1_id) unless r[:r2]
-    r
-  end
-
-
- 
-  def self.set_block(relations, is_block)
-    #r = my_find(user1_id, user2_id)
-    r1, r2 = relations[:r1], relations[:r2]
-    
-    r1.is_block = is_block
-    r1.is_follow = false
-    r1.is_friend = false
-    r1.save
-    
-    if is_block
-      Relationship.logger.info("User##{r1.user1_id} is now blocking User##{r1.user2_id}")
-      r2.is_block = false
-      r2.is_follow = false
-      r2.is_friend = false
-      r2.save
-    else
-      Relationship.logger.info("User##{r1.user1_id} isn't blocking User##{r1.user2_id} anymore")
-    end
-  end
-  
-  def self.set_follow(u1, u2, is_follow, options={})
-    r = Relationship.my_find(u1, u2)
-    r1, r2 = r[:r1], r[:r2]
-    return if r2.is_block
+  def self.change_block(u1, u2, value, options={})
+    rr = Relationship.my_find_both(u1, u2)
+    r1, r2 = rr[:r1], rr[:r2]
+    #return if r1.is_blocked
     #transaction-begin
-    #Relationship.logger.info(r1.attributes)
-    #Relationship.logger.info(r2.attributes)
-    
-    r1.is_follow = is_follow
-    r1.is_friend = false && r2.is_friend = false
-    r1.is_friend = true  && r2.is_friend = true  if r1.is_follow && r2.is_follow
-    r1.save && r2.save
-
-    Post.my_log_follow(u1, u2, options)
-    r
-    #Relationship.logger.info(r1.attributes)
-    #Relationship.logger.info(r2.attributes)
+    r1.is_blocker = r2.is_blocked = value
+    r1.is_friend = r2.is_friend = false
+    r1.is_follower = r2.is_follower = false
+    r1.is_followed = r2.is_followed = false
+    r1 if r1.save && r2.save
+    #transaction-end
+  end
+  
+  def self.change_follow(u1, u2, value, options={})
+    rr = Relationship.my_find_both(u1, u2)
+    r1, r2 = rr[:r1], rr[:r2]
+    return if r1.is_blocked
+    #transaction-begin
+    r1.is_follower = r2.is_followed = value
+    r1.is_friend = r2.is_friend = false
+    r1.is_friend = r2.is_friend = true  if r1.is_follower && r1.is_followed
+    r1 if r1.save && r2.save
     #transaction-end
   end
 
-
-
-  
-  
-  def self.friend?(r1,r2)
-    r1.is_follow and r2.is_follow
+  def self.update_user_counters(*user_ids)
+    #I'm perfectly aware of how counter cache columns work in rails :)
+    #are integers
+    #users = User.find(user_ids)
+    user_ids.each do |user_id|
+      a = {:validate => false}
+      a[:count_of_blockers]   = where(:user1_id=>user_id, :is_blocked=>true).length
+      a[:count_of_blockings]  = where(:user1_id=>user_id, :is_blocker=>true).length
+      a[:count_of_followers]  = where(:user1_id=>user_id, :is_followed=>true).length
+      a[:count_of_followings] = where(:user1_id=>user_id, :is_follower=>true).length
+      a[:count_of_friends]    = where(:user1_id=>user_id, :is_friend=>true).length
+      User.update(user_id, a)
+    end
   end
   
-  def self.my_find_old(user1_id, user2_id)
-    find_by_user1_id_and_user2_id(user1_id, user2_id)
+  def self.users_ids(u1, u2)
+    u1 = (u1.is_a? User) ? u1.id : u1
+    u2 = (u2.is_a? User) ? u2.id : u2
+    [u1, u2]
   end
+  
+  def self.my_find_both(u1, u2)
+    #gotta check witch line below is faster
+    #ar = where("(user1_id=:user1 AND user2_id=:user2) OR (user1_id=:user2 AND user2_id=:user1)", :user1=>user1_id, :user2=>user2_id)
+    ar = where("user1_id IN (:a) AND user2_id IN (:a)", :a=>[u1, u2]).limit(2)
+    
+    r = {}
+    ar.each { |a| r[ (a.user1_id == u1) ? :r1 : :r2 ] = a }
+    r[:r1] = Relationship.new(:user1_id=>u1, :user2_id=>u2) unless r[:r1]
+    r[:r2] = Relationship.new(:user1_id=>u2, :user2_id=>u1) unless r[:r2]
+    r
+    #returns objects not saved to the database if the relationship does not exist
+  end
+
 end

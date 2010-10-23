@@ -1,4 +1,4 @@
-<% content_for :output do %>
+<% content_for :output_panel do %>
 <% if @r %>
 
 <ul class="menu-add">
@@ -9,17 +9,17 @@
     <%= link_to @button[:text], "#", :class=>"clickable", "data-k"=>@button["data-k"], "data-v"=>@button["data-v"] if @button %>
   </li>
   
-  <% if @r[:r2].is_block %>
+  <% if @r.is_blocked %>
     <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> U B-in Block'd</li>
   <% else %>
   
-    <% if @r[:r1].is_follow %>
+    <% if @r.is_follower %>
       <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Following</li>
     <% end %>
     
-    <% if @r[:r1].is_friend %>
+    <% if @r.is_friend %>
       <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Friend</li>
-    <% elsif @r[:r2].is_follow %>
+    <% elsif @r.is_followed %>
       <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Followed</li>
     <% end %>
     
@@ -48,6 +48,34 @@
   -->
 <% end %>
 <% end %>
+<% content_for :output_sidebar do %>
+  <li><a href="#" class="nao-clique">
+    <span><%= @user.count_of_followers %></span>
+    <span class="label"><%= t "application.words.followers" %></span>
+  </a></li>
+  <li><a href="#" class="nao-clique">
+    <span><%= @user.count_of_followings %></span>
+    <span class="label"><%= t "application.words.followings" %></span>
+  </a></li>
+  <li><a href="#" class="nao-clique">
+    <span><%= @user.count_of_friends %></span>
+    <span class="label"><%= t "application.words.friends" %></span>
+  </a></li>
+  <li><a href="#" class="nao-clique">
+    <span><%= @user.count_of_blockings %></span>
+    <span class="label">bloqueando</span>
+  </a></li>
+  <li><a href="#" class="nao-clique">
+    <span><%= @user.count_of_blockers %></span>
+    <span class="label">bloqueados</span>
+  </a></li>
+<% end %>
 
-<% r = raw escape_javascript(yield :output) %>
-$("#user-following").removeClass("loading").html("<%= r %>");
+
+<% r = raw escape_javascript(yield :output_panel) %>
+$("#user-following .in").hide().removeClass("loading").html("<%= r %>").fadeIn();
+
+<% r = raw escape_javascript(yield :output_sidebar) %>
+$("#sidebar .user_counters").removeClass("loading").html("<%= r %>");
+
+

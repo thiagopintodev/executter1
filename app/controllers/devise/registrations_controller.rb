@@ -24,7 +24,7 @@ if verify_recaptcha(:model => @user, :message => 'Erro no reCAPTCHA! tudo que pr
     did = Rails.env.development? || verify_recaptcha(:model => resource, :message => 'Error at reCAPTCHA!')
     
     if did && resource.save
-      set_flash_message :notice, :signed_up
+      #set_flash_message :notice, :signed_up
       sign_in_and_redirect(resource_name, resource)
     else
       clean_up_passwords(resource)
@@ -40,8 +40,7 @@ if verify_recaptcha(:model => @user, :message => 'Erro no reCAPTCHA! tudo que pr
   # PUT /resource
   def update
     if resource.update_with_password(params[resource_name])
-      set_flash_message :notice, :updated
-      cookies[:flavour] = resource.flavour
+      #set_flash_message :notice, :updated
       redirect_to request.referer #after_update_path_for(resource)
     else
       clean_up_passwords(resource)
@@ -52,7 +51,7 @@ if verify_recaptcha(:model => @user, :message => 'Erro no reCAPTCHA! tudo que pr
   # DELETE /resource
   def destroy
     resource.destroy
-    set_flash_message :notice, :destroyed
+    #set_flash_message :notice, :destroyed
     sign_out_and_redirect(self.resource)
   end
 

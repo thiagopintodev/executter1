@@ -6,7 +6,8 @@ class Photo < ActiveRecord::Base
       mi: ["25x25#", :jpg],
       sm: ["50x50#", :jpg],
       me: ["100x100#", :jpg],
-      bi: ["200x200#", :jpg]
+      bi: ["200x200#", :jpg],
+      original: ["500x500>", :jpg]
       })
   
 	validates_attachment_content_type :img, :content_type => ['image/jpeg', 'image/gif', 'image/png', 'image/pjpeg', 'image/bmp']

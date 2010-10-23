@@ -13,6 +13,14 @@ Ex1::Application.routes.draw do
   get "l/:locale" => "site#set_locale", :as => :locale
   
   get "home/index"
+
+
+  devise_scope :user do
+    get "/out" => "devise/sessions#destroy",  :as => :out
+    get "/new" => "devise/registrations#new", :as => :new
+    get "/in"  => "devise/sessions#new",      :as => :in
+    #get "/conf/2" => "devise/registrations#edit"
+  end
   
   match "home/ajax_tab1(/:last_post_id)" => "home#ajax_index_tab1", :as => :ajax_home_index_tab1
   match "home/ajax_tab2(/:last_post_id)" => "home#ajax_index_tab2", :as => :ajax_home_index_tab2
@@ -20,7 +28,29 @@ Ex1::Application.routes.draw do
   resources :users, :only =>[:show, :index, :update]
   resources :posts, :only =>[:index, :show, :create, :destroy]
   
-  match ":id" => "users#show", :as => "profile", :constraints => { :id => /\w{5,}/ }
+  
+  get "conf/ajax_username_available/:username" => "home#ajax_username_available"
+  
+  get "conf/1" => "home#settings_profile"
+  get "conf/2" => "home#settings_account"
+  get "conf/3" => "home#settings_design"
+  get "conf/4" => "home#settings_picture"
+  get "conf/5" => "home#settings_notice"
+  get "conf/remove_bg" => "home#settings_remove_bg"
+  match "conf/new_photo" => "home#new_photo", :method => :post
+  match "conf/new_photo" => "home#settings_picture", :method => :get
+  match "conf/update" => "home#update", :method => :post, :as => :home_update
+
+  #root :to => "devise/passwords#edit"
+
+  get "s/:text" => "site#search", :as => :search
+  
+  get "site/search"
+  get "site/index"
+  root :to => "home#index"
+
+
+  match ":id" => "users#show", :as => "profile", :constraints => { :id => /\w{2,}/ }
   match "profile" => "users#show", :as => "my_profile"
   
   match ":mention_username/mention" => "home#index", :as => "mention"
@@ -31,31 +61,6 @@ Ex1::Application.routes.draw do
   
   match ":id/ajax_relation(/:property/:value)" => "users#ajax_show_relation", :as => :ajax_user_show_relation
   
-  devise_scope :user do
-    get "/out" => "devise/sessions#destroy",  :as => :out
-    get "/new" => "devise/registrations#new", :as => :new
-    get "/in"  => "devise/sessions#new",      :as => :in
-    get "/conf/2" => "devise/registrations#edit"
-  end
-  
-  get "conf/ajax_username_available/:username" => "home#ajax_username_available"
-  
-  get "conf/1" => "home#settings_profile"
-  #get "conf/2" => "home#settings_2account"
-  get "conf/3" => "home#settings_design"
-  get "conf/4" => "home#settings_picture"
-  get "conf/5" => "home#settings_notice"
-  get "conf/remove_bg" => "home#settings_remove_bg"
-  match "conf/new_photo" => "home#new_photo", :method => :post
-  match "conf/new_photo" => "home#settings_picture", :method => :get
-
-  #root :to => "devise/passwords#edit"
-
-  get "s/:text" => "site#search", :as => :search
-  
-  get "site/search"
-  get "site/index"
-  root :to => "home#index"
 
 
   # The priority is based upon order of creation:

@@ -1,6 +1,6 @@
 <% content_for :output do %>
 <% @posts.each do |post| %>
-  <% user = @my_followings_hash[post.user_id] %>
+  <% user = @followings_as_hash_and_me[post.user_id] %>
 
 <div class="pack" style="display:none">
   <ul class="lista-execute post" data-id="<%= post.id %>">

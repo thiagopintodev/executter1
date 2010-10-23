@@ -1,26 +1,58 @@
 <% my_title @user.username %>
 <% my_css_files "profile" %>
 
-
-
+<%= hidden_field_tag :main_data, false,
+  :"data-user-id" => @user.id,
+  :"data-user-is-me" => !!@isme,
+  :"data-user-has-photo" => !@user.read_photo.new_record?,
+  :"data-visitor-logged-in" => !!current_user
+  %>
 
 <div id="sidebar">
 
 
 
-      <div id="user-perfil">
-        <p><strong>Name</strong> <%= @user.full_name %></p>
-        <p><strong>Location </strong> <%= @user.local %></p>
-        <p><strong>Language </strong> <%= @user.locale %></p>
-        <p><strong>Time Zone </strong> <%= @user.time_zone %></p>
-        <p><strong>Birthday </strong><%= l @user.birth %></p>
-        <p><strong>Web  </strong> <%= link_to @user.website, @user.website if @user.website %></p>
-        <p><strong>Bio  </strong> <%= @user.description %></p>
-      </div>
+  <div id="user-perfil">
+    <p><strong>Name</strong> <%= @user.full_name %></p>
+    <p><strong>Location </strong> <%= @user.local %></p>
+    <p><strong>Language </strong> <%= @user.locale %></p>
+    <p><strong>Time Zone </strong> <%= @user.time_zone %></p>
+    <p><strong>Birthday </strong><%= l @user.birth %></p>
+    <p><strong>Web  </strong> <%= link_to @user.website, @user.website if @user.website %></p>
+    <p><strong>Bio  </strong> <%= @user.description %></p>
+  </div>
+
+
+  <div class="ajax_data">
+  </div>
+  
+  <ul id="estatistics" class="user_counters">
+  </ul>
+  
+  <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
+  <div id="labels-thumbs">
+ 	  <% @user.followings_as_hash.each do |user_id, user| %>
+ 	    <%= link_to image_tag(user.read_photo.img.url(:mi), width: 25, height: 25), profile_path(user.username), :title=>user.full_name %>
+    <% end %>
+  </div>
+  <div class="more"><a href="#" class="nao-clique">View all</a></div>
+
+
+
+
+
+    
+    <div class="rss"><a href="#" class="nao-clique"><img src="/images/layout/RSS16.png" width="16" height="16" />RSS feed de <%= @user.username %></a></div>
+
+
+
+
+
+<%if false%>
 
 <br/><br/><br/><br/>
 
-            <h3><a href="#">USUARIOS</a></h3>
+          <h3><a href="#">USUARIOS</a></h3>
           <div class="menu">
 	          <!--
             <a href="#"><span class="desc">Friends</span><span>5</span></a>
@@ -30,33 +62,10 @@
               <a href="<%= profile_path u.username %>"><span class="desc"><%= u.email %></span><span>:)</span></a>
             <% end %>
           </div>
-          
-          <%# unless @isme %>
-          <ul id="estatistics">
-            <li><a href="#" class="nao-clique">
-              <span><%= @my_followers.size %></span>
-              <span class="label"><%= t "application.words.followers" %></span>
-            </a></li>
-            <li><a href="#" class="nao-clique">
-              <span><%= @my_followings.size %></span>
-              <span class="label"><%= t "application.words.followings" %></span>
-            </a></li>
-            <li><a href="#" class="nao-clique">
-              <span><%= @my_friends.size %></span>
-              <span class="label"><%= t "application.words.friends" %></span>
-            </a></li>
-          </ul>
-    	
-          <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
-          <div id="labels-thumbs">
-         	  <% @my_followings_hash.each do |user_id, user| %>
-         	    <%= link_to image_tag(user.read_photo.img.url(:mi)), profile_path(user.username), :title=>user.full_name %>
-            <% end %>
-          </div>
-          <div class="more"><a href="#" class="nao-clique">View all</a></div>
-          
-          <%# end %>
-          <div class="rss"><a href="#" class="nao-clique"><img src="/images/layout/RSS16.png" width="16" height="16" />RSS feed de <%= @user.username %></a></div>
+<% end %>
+
+
+
 
 
 </div>
@@ -65,11 +74,7 @@
 
 
 
-<div id="container"
-  data-user-id="<%= @user.id %>"
-  data-user-is-me="<%= !!@isme %>"
-  data-user-has-photo="<%= !@user.read_photo.new_record? %>"
-  data-visitor-logged-in="<%= !!current_user %>">
+<div id="container">
 
   <div id="img-user"
     style="background:url('<%= @user.read_photo.img.url(:bi) %>') no-repeat">
@@ -85,6 +90,8 @@
 
     
           <div id="user-following">
+            <div class="in">
+            </div>
           </div>
 
 

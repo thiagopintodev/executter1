@@ -3,17 +3,13 @@ div#content { min-height:300px; }
 .pg-home-index div#content,
 .pg-users-show div#content { min-height:1000px; }
 
+.view {  min-height:100px; }
 .view-in { background:white }
 .ajax-content-white { background-image: none !important; }
 
 div#footer ul#menu-footer {padding-left: 300px !important}
 
 
-#viewstack, .ajax-content {
-  clear:both;
-	background:#FFF url(/images/layout1/ajax_loader_squares.gif) no-repeat center top;
-	min-height:100px;
-}
 
 .lista-execute, .lista-perguntas, .lista-executs { background:#fff; }
 
@@ -87,10 +83,12 @@ div#img-user a:hover {
 div#user-following {
   min-height: 132px;
 }
-div#user-following.loading {
-	background:#F2F3F7 url(/images/layout1/ajax_loader_squares.gif) no-repeat center center;
-}
 
+.loading {
+  clear:both;
+	background:url(/images/layout1/ajax_loader_squares.gif) no-repeat center center;
+	min-height:100px;
+}
 
 
 

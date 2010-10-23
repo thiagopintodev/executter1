@@ -5,8 +5,22 @@
 <%= my_settings_tabs(2) %>
 
 
-      <%= form_for(current_user, :html=>{:multipart=>true,:class=>"campos-settings"}) do |f| %>
-                
+  <%= form_for(current_user, :url=>home_update_path, :html=>{:multipart=>true,:class=>"campos-settings"}) do |f| %>
+
+
+<%= hidden_field_tag(:return_action, params[:return_action] || controller.action_name) %>
+<%= my_orange_errors(@errors) %>
+
+
+<% if false  %>
+<ul class="alert-settings">
+  <% @errors.full_messages.each do |msg| %>
+    <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" /><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+
                 <div id="campos">
    				        <div class="titulo">Escolha um sabor </div>
                     <ul id="sabor-lista">
@@ -53,8 +67,8 @@
                     
                   <div id="box-fundo">
                    	<div>Mudar plano de fundo</div>
-                      <input type="file" style="" name="user[background]" id="user_background" />
-                      <%#= f.file_field :background %>
+                      <input type="file" style="" name="user[background_image]" id="user_background" />
+                      <%#= f.file_field :background_image %>
                       <span>Escolha uma imagem em até 1MB nos formatos GIF, JPG ou PNG</span>
                     </div>
                     

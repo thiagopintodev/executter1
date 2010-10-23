@@ -2,7 +2,7 @@ class PostAttachment < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
 
-  IMAGE_STYLES = { :sm=>["50x50#", :jpg], :me=>["100x100#", :jpg] , :bi=>["200x200#", :jpg] }
+  IMAGE_STYLES = { :sm=>["50x50#", :jpg], :me=>["100x100#", :jpg] , :bi=>["200x200#", :jpg], :original=>["500x500>", :jpg] }
   
   has_attached_file :file,
     MyConfig.paperclip_options(
@@ -19,7 +19,9 @@ class PostAttachment < ActiveRecord::Base
   before_save :my_before_save
   
   def my_before_save
-    self.file_width = 100
-    self.file_height = 300
+    return if self.file_image? && !self.file_width
+    geo = Paperclip::Geometry.from_file(file.to_file(:original))
+    self.file_width = geo.width
+    self.file_height = geo.height  
   end
 end

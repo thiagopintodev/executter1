@@ -5,14 +5,17 @@
 
 
 <%= form_for(current_user, :url=> "/conf/new_photo", :html=>{:multipart=>true, :class=>"campos-settings"}) do |f| %>
+<%= my_orange_errors(@errors) %>
 
-  <% if @errors %>
-  <ul class="alert-settings">
-    <% @errors.full_messages.each do |msg| %>
-      <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" /><%= msg %></li>
-    <% end %>
-  </ul>
+
+<% if false  %>
+<ul class="alert-settings">
+  <% @errors.full_messages.each do |msg| %>
+    <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" /><%= msg %></li>
   <% end %>
+</ul>
+<% end %>
+
   
   <div id="campos">
     <%= image_tag @user.read_photo.img.url(:bi), class: "havatar" %>

@@ -47,7 +47,11 @@ $(function() {
   ///
   if (true)
   {
-    
+    data = $("#main_data");
+    data.user_id           = data.attr("data-user-id");
+    data.is_me             = data.attr("data-user-is-me")=="true";
+    data.logged_in         = data.attr("data-visitor-logged-in")=="true";
+    data.user_has_picture  = data.attr("data-user-has-photo")=="true";
   }
 
   ///
@@ -55,13 +59,11 @@ $(function() {
   ///
   if (functions.page.isProfile())
   {
-    user_id = $("#container").attr("data-user-id");
-    is_me = $("#container").attr("data-user-is-me")=="true";
-    logged_in = $("#container").attr("data-visitor-logged-in")=="true";
-    user_has_picture = $("#container").attr("data-user-has-photo")=="true";
 
-    if (is_me)
-      if (!user_has_picture)
+    events.post.toggle_buttons();
+
+    if (data.is_me)
+      if (!data.user_has_picture)
         $("#container #img-user a").show();
       else {
       
@@ -76,16 +78,17 @@ $(function() {
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab);
     
-    if (logged_in && !is_me)
+    if (data.logged_in && !data.is_me)
     {
-      $("#user-following").addClass("loading");
-      $.getScript("/:id/ajax_relation".replace(":id", user_id));
+      $("#user-following .in").addClass(".loading");
+      $("#sidebar .user_counters").addClass(".loading");
+      $.getScript("/:id/ajax_relation".replace(":id", data.user_id));
       
       $("#user-following a.clickable").live("click", function(e) {
-        $("#user-following").addClass("loading").html("");
+        $("#user-following .in").addClass("loading").html("");
         k = $(this).attr("data-k");
         v = $(this).attr("data-v");
-        url = "/:id/ajax_relation/:k/:v".replace(":id", user_id).replace(":k", k).replace(":v", v);
+        url = "/:id/ajax_relation/:k/:v".replace(":id", data.user_id).replace(":k", k).replace(":v", v);
         $.getScript(url);
         return false;
       });
@@ -202,12 +205,16 @@ $(function() {
           $my_flagged_tabs[selected_tab] = false;
           
         if (!$my_flagged_tabs[selected_tab])
+        {
+          $("#viewstack").addClass("loading");
           $(selected_tab).load(tab_url, function() {
             if (fn_callback)
               fn_callback();
             $my_flagged_tabs[selected_tab] = true;
-            $(selected_tab).contents().find("a.btn-script-invoker").click();
+            $(selected_tab).contents("a.btn-script-invoker").click();
+            $("#viewstack").removeClass("loading");
           });
+        }
         //
       }
 

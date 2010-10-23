@@ -8,20 +8,17 @@
       <%= link_to @user.username, profile_path(@user.username) %>
   </div>
 
-  <ul id="estatistics">
-     <li><a href="#" class="nao-clique"><span><%= @my_followers.size %></span><span class="label">Followers</span></a></li>
-     <li><a href="#" class="nao-clique"><span><%= @my_followings.size %>/196</span><span class="label">Following</span></a></li>
-     <li><a href="#" class="nao-clique"><span><%= @my_friends.size %>/196</span><span class="label">Friends</span></a></li>
+  <ul id="estatistics" class="user_counters">
   </ul>
 
   <form action="/site/search">
-	  <input name="" type="submit" class="bt" />
+	  <input name="" type="submit" class="bt" value=" " />
     <input name="text" type="text" value="Search" />
   </form>
   
 <br/><br/><br/><br/>
 
-            <h3><a href="#">USUARIOS</a></h3>	
+          <h3><a href="#">USUARIOS</a></h3>	
           <div class="menu">
 	          <!--
             <a href="#"><span class="desc">Friends</span><span>5</span></a>

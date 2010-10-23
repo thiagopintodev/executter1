@@ -4,8 +4,11 @@ module HomeHelper
     options = {"Profile"=>"/conf/1",
       "email, username & password"=>"/conf/2",
       "Design"=>"/conf/3",
-      "Picture"=>"/conf/4",
-      "Notices"=>"/conf/5"}
+      "Picture"=>"/conf/4"
+      #,
+      #"Notices"=>"/conf/5"
+      }
+      
       
       i=0
       html = ""
@@ -16,11 +19,11 @@ module HomeHelper
       raw "<ul id='abas-settings'>#{html}</ul>"
   end
   
-  def my_orange_errors(model)
-    return if resource.errors.size == 0
+  def my_orange_errors(errors)
+    return if !errors || errors.size == 0
     
     html = "<ul class='alert-settings'>"
-    resource.errors.each do |k,v|
+    errors.each do |k,v|
       html += "<li><img src='/images/layout1/havatar16x16.jpg' /><a href='#user_#{k}'>#{k}</a>: #{v}</li>"
     end
     

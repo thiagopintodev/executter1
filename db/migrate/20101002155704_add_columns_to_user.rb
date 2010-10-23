@@ -7,7 +7,7 @@ class AddColumnsToUser < ActiveRecord::Migration
     add_column :users, :gender_policy, :integer, :default => 0
     add_column :users, :birth, :date, :default => Date.today
     add_column :users, :birth_policy, :integer, :default => 0
-    add_column :users, :local, :string, :default => "Brasilia"
+    add_column :users, :local, :string, :default => ""
     add_column :users, :locale, :string, :default => "pt-BR"
     add_column :users, :time_zone, :string, :default => "Brasilia"
     add_column :users, :website, :string
@@ -15,12 +15,18 @@ class AddColumnsToUser < ActiveRecord::Migration
     add_column :users, :photo_id, :integer
     add_column :users, :flavour, :string, :default => "orange"
     add_column :users, :background_repeat_policy, :integer, :default => 0
+    add_column :users, :background_attachment_policy, :integer, :default => 0
+    add_column :users, :background_color , :string
+    add_column :users, :background_position , :string
     
     add_index :users, :username,             :unique => true
   end
 
   def self.down
     remove_column :users, :background_repeat_policy
+    remove_column :users, :background_attachment_policy
+    remove_column :users, :background_color
+    remove_column :users, :background_position
     remove_column :users, :flavour
     remove_column :users, :photo_id
     remove_column :users, :description
