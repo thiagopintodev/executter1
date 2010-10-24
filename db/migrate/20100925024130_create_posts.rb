@@ -1,8 +1,8 @@
 class CreatePosts < ActiveRecord::Migration
   def self.up
     create_table :posts do |t|
-      t.string :type
       t.integer :user_id
+      t.integer :subject_id
       t.string :body
       t.string :remote_ip
       t.boolean :is_public,   :default=>false

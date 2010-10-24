@@ -3,7 +3,7 @@
 
 <ul class="menu-add">
 
-  <li class="user"><%= @user.username %></li>
+  <li class="user"><%= @user.username %> ignorando: <%= @r.subjects_ignored %></li>
 
   <li class="mais">
     <%= link_to @button[:text], "#", :class=>"clickable", "data-k"=>@button["data-k"], "data-v"=>@button["data-v"] if @button %>

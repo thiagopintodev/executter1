@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101023094811) do
+ActiveRecord::Schema.define(:version => 20101024034339) do
 
   create_table "banners", :force => true do |t|
     t.string   "name"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(:version => 20101023094811) do
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "type"
     t.integer  "user_id"
+    t.integer  "subject_id"
     t.string   "body"
     t.string   "remote_ip"
     t.boolean  "is_public",  :default => false
@@ -61,11 +61,12 @@ ActiveRecord::Schema.define(:version => 20101023094811) do
   create_table "relationships", :force => true do |t|
     t.integer  "user1_id"
     t.integer  "user2_id"
-    t.boolean  "is_followed", :default => false
-    t.boolean  "is_follower", :default => false
-    t.boolean  "is_friend",   :default => false
-    t.boolean  "is_blocked",  :default => false
-    t.boolean  "is_blocker",  :default => false
+    t.boolean  "is_followed",            :default => false
+    t.boolean  "is_follower",            :default => false
+    t.boolean  "is_friend",              :default => false
+    t.boolean  "is_blocked",             :default => false
+    t.boolean  "is_blocker",             :default => false
+    t.string   "subjects_ignored_field", :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,6 +80,13 @@ ActiveRecord::Schema.define(:version => 20101023094811) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "subjects", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                        :default => "",           :null => false
@@ -106,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20101023094811) do
     t.string   "full_name"
     t.integer  "gender",                                       :default => 0
     t.integer  "gender_policy",                                :default => 0
-    t.date     "birth",                                        :default => '2010-10-23'
+    t.date     "birth",                                        :default => '2010-10-24'
     t.integer  "birth_policy",                                 :default => 0
     t.string   "local",                                        :default => ""
     t.string   "locale",                                       :default => "pt-BR"

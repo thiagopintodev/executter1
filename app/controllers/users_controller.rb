@@ -69,7 +69,16 @@ class UsersController < ApplicationController
   def ajax_show_tab1
     respond_to do |format|
       format.html { render :layout=> false }
-      format.js  { @posts = Post.recent_by_user(params[:id], params[:last_post_id]) }
+      #format.js  { @posts = Post.recent_by_user(params[:id], params[:last_post_id]) }
+      format.js {
+        #@posts = Post.recent_by_user(params[:id], params[:last_post_id])
+        @user = User.find(params[:id])
+        options = {}
+        options[:limit] = params[:limit]
+        options[:after] = params[:after]
+        options[:before] = params[:before]
+        @posts = @user.my_posts(options)
+      }
     end
   end
   def ajax_show_tab2

@@ -98,6 +98,7 @@ class User < ActiveRecord::Base
   belongs_to :photo
   has_many :photos
   has_many :posts
+  has_many :subjects
   
   #relationships
   #follower:   I'm followed by them     One's a follower for me   So I read them
@@ -158,14 +159,18 @@ class User < ActiveRecord::Base
     return @followers_as_hash
   end
 
-
   def my_create_post(post_attributes, remote_ip="undefined")
     p = self.posts.build(post_attributes)
     p.post_attachments.each { |pa| pa.user_id = self.id }
     p.remote_ip = remote_ip
     p.save ? p : nil
   end
-  
+  def my_posts(options={})
+    Post.get self, false, options
+  end
+  def my_followings_posts(options={})
+    Post.get self, true, options
+  end
   
   #has_many :executts_i_wrote, :class_name => "Msg",  :conditions => 'created_at > #{10.hours.ago.to_s(:db).inspect}'
 

@@ -10,13 +10,23 @@ class Relationship < ActiveRecord::Base
     errors.add(:user1_id, "one can't make a relationship with themselves") if user1_id == user2_id
   end
 
+  def subjects_ignored=(value)
+    self.subjects_ignored_field = value.join(',')
+  end
+  def subjects_ignored
+    self.subjects_ignored_field.split(',')
+  end
+  #def subjects_ignored?
+  #  !self.subjects_ignored_field.blank?
+  #end
+
   def self.my_find(u1,u2)
     #u1, u2 = users_id(u1, u2)
     find_by_user1_id_and_user2_id(u1, u2) || new(:user1_id => u1, :user1_id => u1)
   end
 
   def self.change(property, u1, u2, value, options={})
-    u1, u2 = users_ids(u1, u2)
+    u1, u2 = MyFunctions.users_ids([u1, u2])
     r = self.change_block u1, u2, value, options if property == 'block'
     r = self.change_follow u1, u2, value, options if property == 'follow'
     update_user_counters(u1, u2) if r
@@ -80,11 +90,6 @@ class Relationship < ActiveRecord::Base
     end
   end
   
-  def self.users_ids(u1, u2)
-    u1 = (u1.is_a? User) ? u1.id : u1
-    u2 = (u2.is_a? User) ? u2.id : u2
-    [u1, u2]
-  end
   
   def self.my_find_both(u1, u2)
     #gotta check witch line below is faster

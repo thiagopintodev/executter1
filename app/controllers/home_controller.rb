@@ -19,8 +19,13 @@ class HomeController < ApplicationController
         #@my_followings_as_hash = current_user.my_followings_as_hash
         #@posts = Post.my_followings(current_user.id, last_post_id: params[:last_post_id], limit: params[:limit])
         #o que quem eu sigo diz
-        @followings_as_hash_and_me = current_user.followings_as_hash(:and_me=>true)
-        @posts = current_user.followings_posts(:last_post_id => params[:last_post_id], :limit => params[:limit])
+        #@followings_as_hash_and_me = current_user.followings_as_hash(:and_me=>true)
+        #@posts = current_user.followings_posts(:last_post_id => params[:last_post_id], :limit => params[:limit])
+        options = {}
+        options[:limit] = params[:limit]
+        options[:after] = params[:after]
+        options[:before] = params[:before]
+        @posts = current_user.my_followings_posts(options)
 
 =begin
   melhor forma:

@@ -10,8 +10,7 @@ div#content { min-height:300px; }
 div#footer ul#menu-footer {padding-left: 300px !important}
 
 
-
-.lista-execute, .lista-perguntas, .lista-executs { background:#fff; }
+.lista-execute, .lista-perguntas, .lista-executs { background:#fff; min-height:50px; }
 
 
 ul.lista-execute li.hora { width:100% !important ; }

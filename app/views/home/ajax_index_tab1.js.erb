@@ -1,16 +1,16 @@
 <% content_for :output do %>
 <% @posts.each do |post| %>
-  <% user = @followings_as_hash_and_me[post.user_id] %>
 
 <div class="pack" style="display:none">
   <ul class="lista-execute post" data-id="<%= post.id %>">
 	  <li class="havatar">
-	    <a href="/<%= user.username %>">
-	      <img src="<%= user.read_photo.img.url(:sm) %>" alt="<%= user.username %>" border="0" />
+	    <a href="/<%= post.user.username %>">
+	      <img src="<%= post.user.read_photo.img.url(:sm) %>" alt="<%= post.user.username %>" border="0" />
 	    </a>
 	  </li>
     <li class="execute">
-      <%= link_to user.username, profile_path(user.username) %>
+      <%= link_to post.user.username, profile_path(post.user.username) %>
+	    <%= "speaks about *#{post.subject.name}*" if post.subject %>
       <p><%= my_post_links post.body %></p>
     </li>
       

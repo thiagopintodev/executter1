@@ -5,18 +5,23 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-=begin
-if Flavour.count == 0
-  Flavour.create!(:displaying => true, :name => "Orange",
-  :colorBack => "#326496",
-  :colorText => "#999999",
-  :colorLink1 => "#f90",
-  :colorLink2 => "#f60",
-  :colorSideBar => "#ff6600",
-  :colorSideBarBorder => "#fc0",
-  :logo => File.open("db/seed/flavour-orange-logo.png", "r"),
-  :background => File.open("db/seed/flavour-orange-bg.jpg", "r"
-  )
-)
-end
-=end
+
+a = User.new
+a.full_name=a.username=a.password='thiago'
+a.email='thiago@oficina7.com'
+a.save
+
+b = User.new
+b.full_name=b.username=b.password='flavio'
+b.email='flavio@oficina7.com'
+b.save
+
+c = User.new
+c.full_name=c.username=c.password='tatiane'
+c.email='tatiane@oficina7.com'
+c.save
+
+a.my_create_post :body=>'thiago escreveu isso xD'
+b.my_create_post :body=>'flavio escreveu isso lol'
+c.my_create_post :body=>'tatiane escreveu isso :)'
+
