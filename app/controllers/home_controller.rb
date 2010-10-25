@@ -54,7 +54,8 @@ class HomeController < ApplicationController
   end
   def settings_subjects
     @user = current_user
-    10.times { @user.subjects.build }
+    remaining = 12 - @user.subjects.size
+    remaining.times { @user.subjects.build }
   end
   def settings_profile
     @user = current_user
@@ -74,6 +75,7 @@ class HomeController < ApplicationController
       @errors = current_user.errors
       cookies[:flavour] = current_user.flavour
     end
+    settings_subjects
     render params[:return_action]
   end
 
