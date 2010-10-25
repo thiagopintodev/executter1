@@ -35,7 +35,7 @@ Ex1::Application.routes.draw do
   get "conf/2" => "home#settings_account"
   get "conf/3" => "home#settings_design"
   get "conf/4" => "home#settings_picture"
-  get "conf/5" => "home#settings_notice"
+  get "conf/5" => "home#settings_subjects"
   get "conf/remove_bg" => "home#settings_remove_bg"
   match "conf/new_photo" => "home#new_photo", :method => :post
   match "conf/new_photo" => "home#settings_picture", :method => :get

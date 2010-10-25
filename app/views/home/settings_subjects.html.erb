@@ -1,0 +1,37 @@
+<% my_title "Settings" %>
+<% my_css_files "settings" %>
+
+<%= my_settings_tabs(4) %>
+
+  <%= form_for(current_user, :url=>home_update_path, :html=>{:multipart=>true,:class=>"campos-settings"}) do |f| %>
+
+<%= hidden_field_tag(:return_action, params[:return_action] || controller.action_name) %>
+
+
+<div id="campos">
+
+<% i = 0 %>
+<% f.fields_for :subjects do |f2| %>
+<% i += 1 %>
+  	<div class="normal">
+      <%= f2.label "Subject ##{i}" %>
+      <%= f2.text_field :name %>
+    </div>
+  <% end %>
+
+  <input type="submit" class="bt" value="Salvar" />
+  
+</div>
+<% end %>
+
+
+
+      <ul id="box-infos">
+      	<li class="titulo">Dicas</li>
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
+      </ul>

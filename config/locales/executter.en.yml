@@ -22,6 +22,11 @@ en:
     attach_link: "Attach a file"
     attach_text: "Attach"
     body: "You know what to do, untill <strong>1,96MB</strong> :p"
+  profile:
+    button_block1: "block %{username}"
+    button_block2: "unblock %{username}"
+    button_watch1: "watch %{subject}"
+    button_watch2: "ignore %{subject}"
   settings:
     agree_file:
       title: "By uploading a file you certify that you have the right to distribute this picture and that it does not violate the <a href='/z/terms'>Terms of Service</a>"
@@ -35,13 +40,14 @@ en:
       strawberry: "Strawberry"
       chocolate: "Chocolate"
       coffe: "Coffe"
-  user:
-    gender:
-      male: "Male"
-      female: "Female"
-    gender_policy:
-      checkbox: "Show my gender on profile page"
-    birth_policy:
-      dm: "Day and Month"
-      dmy: "Day, Month, Year"
-      nothing: "Don't show it"
+  model:
+    user:
+      gender:
+        male: "Male"
+        female: "Female"
+      gender_policy:
+        checkbox: "Show my gender on profile page"
+      birth_policy:
+        dm: "Day and Month"
+        dmy: "Day, Month, Year"
+        nothing: "Don't show it"

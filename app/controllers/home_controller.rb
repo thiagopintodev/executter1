@@ -52,8 +52,9 @@ class HomeController < ApplicationController
   def settings_login
     @user = current_user
   end
-  def settings_notice
+  def settings_subjects
     @user = current_user
+    10.times { @user.subjects.build }
   end
   def settings_profile
     @user = current_user

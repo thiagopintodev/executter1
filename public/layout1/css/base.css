@@ -6,7 +6,7 @@
 	margin:0;
 	padding:0;
 	border:none;
-	behavior: url(/javascripts/iepngfix.htc);
+	behavior: url(/javascripts/iepngfix/iepngfix.htc);
 }
 div#all {
 	width:800px;

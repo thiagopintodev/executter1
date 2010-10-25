@@ -22,6 +22,11 @@ pt-BR:
     attach_link: "Anexar um arquivo"
     attach_text: "Anexar"
     body: "Selecione no seu computador um arquivo de até <strong>1,96MB</strong>"
+  profile:
+    button_block1: "block %{username}"
+    button_block2: "unblock %{username}"
+    button_watch1: "watch %{subject}"
+    button_watch2: "ignore %{subject}"
   settings:
     agree_file:
       title: "Essa imagem não viola o <a href='/z/terms'>Termo de Serviço</a>"
@@ -35,13 +40,14 @@ pt-BR:
       strawberry: "Morango"
       chocolate: "Chocolate"
       coffe: "Café"
-  user:
-    gender:
-      male: "Masculino"
-      female: "Feminino"
-    gender_policy:
-      checkbox: "Exibir gênero no meu perfil"
-    birth_policy:
-      dm: "Day and Month"
-      dmy: "Day, Month, Year"
-      nothing: "Não Mostrar"
+  model:
+    user:
+      gender:
+        male: "Masculino"
+        female: "Feminino"
+      gender_policy:
+        checkbox: "Exibir gênero no meu perfil"
+      birth_policy:
+        dm: "Day and Month"
+        dmy: "Day, Month, Year"
+        nothing: "Não Mostrar"

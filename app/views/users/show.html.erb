@@ -31,7 +31,8 @@
   
   <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
   <div id="labels-thumbs">
- 	  <% @user.followings_as_hash.each do |user_id, user| %>
+  
+ 	  <% @user.followings_users.each do |user| %>
  	    <%= link_to image_tag(user.read_photo.img.url(:mi), width: 25, height: 25), profile_path(user.username), :title=>user.full_name %>
     <% end %>
   </div>

@@ -25,9 +25,13 @@ class Relationship < ActiveRecord::Base
     u1, u2 = MyFunctions.users_ids([u1, u2])
     r = self.change_block u1, u2, value, options if property == 'block'
     r = self.change_follow u1, u2, value, options if property == 'follow'
-    r = self.change_subject u1, u2, value, options #if property == 'subject'
+    r = self.change_subject u1, u2, value, options if property == 'subject'
     update_user_counters(u1, u2) if r
     r || property
+  end
+
+  def ignoring?(subject_id)
+    ignored_subjects.include?(subject_id.to_s)
   end
 
   protected
@@ -61,8 +65,7 @@ class Relationship < ActiveRecord::Base
     r1 = Relationship.my_find(u1, u2)
     return if r1.is_blocked || !r1.is_follower
     #transaction-begin
-    value = value.to_s
-    if r1.ignored_subjects.include? value
+    if r1.ignoring? value
       r1.ignored_subjects.delete value
     else
       r1.ignored_subjects << value

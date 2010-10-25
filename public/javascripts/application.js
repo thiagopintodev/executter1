@@ -210,7 +210,7 @@ $(function() {
             if (fn_callback)
               fn_callback();
             $my_flagged_tabs[selected_tab] = true;
-            $(selected_tab).contents("a.btn-script-invoker").click();
+            $(selected_tab).contents().find("a.btn-script-invoker").click();
             $("#viewstack").removeClass("loading");
           });
         }

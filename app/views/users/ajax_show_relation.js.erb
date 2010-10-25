@@ -3,7 +3,7 @@
 
 <ul class="menu-add">
 
-  <li class="user"><%= @user.username %> ignorando: <%= @r.ignored_subjects %></li>
+  <li class="user"><%= @user.username %></li>
 
   <li class="mais">
     <%= link_to @main_button[:text], "#", :class=>"clickable", 'data-url'=>ajax_user_show_relation_path(@main_button[:params]) if @main_button %>
@@ -35,7 +35,56 @@
   </a>
 </div>
 
+<ul id="menu-estilos">
+  <% if @r.is_blocker %>
+    <li><a href="#">
+      <img src="/images/layout/0_Unblock.gif" width="16" height="16" />
+      <%= t "profile.button_block2", :username=> @user.username %>
+    </a></li>
+  <% else %>
+    <li><a href="#">
+      <img src="/images/layout/0_Block.gif" width="16" height="16" />
+      <%= t "profile.button_block1", :username=> @user.username %>
+    </a></li>
+  <% end %>
+  <% if @r.is_follower %>
+
+  
+    <% @user.subjects.each do |subject| %>
+      <% if @r.ignoring? subject.id %>
+
+
+<%= content_tag :li,
+  link_to(raw("<img src='/images/layout/0_Follow.gif' /> watch #{subject.name}"), "#", :class=>"clickable",
+    'data-url'=>ajax_user_show_relation_path({:p1=>'subject', :p2=>subject.id})) %>
+
+      <% else %>
+
+<%= content_tag :li,
+  link_to(raw("<img src='/images/layout/0_Block.gif' /> ignore #{subject.name}"), "#", :class=>"clickable",
+    'data-url'=>ajax_user_show_relation_path({:p1=>'subject', :p2=>subject.id})) %>
+
+      <% end %>
+    <% end %>
+
+    
+  <% end %>
+</ul>
+
   <!--
+
+  <li><a href="#">
+    <img src='/images/layout/0_Follow.gif' />
+      <%#= t "profile.button_watch1", :subject=> subject.name %>
+  </a></li>
+
+  <li><a href="#">
+    <img src="/images/layout/0_Block.gif" width="16" height="16" />
+      <%#= t "profile.button_watch2", :subject=> subject.name %>
+  </a></li>
+
+
+  
 <ul id="menu-estilos">
 	<li><a href="#"><img src="/images/layout/0_metion.gif" width="16" height="16" /> Mention MariaMia</a></li>
   <li><a href="#"><img src="/images/layout/0_Follow.gif" width="16" height="16" /> Follow MariaMia</a></li>

@@ -6,14 +6,38 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
 
-  attr_accessible :full_name, :time_zone,
-    :gender, :gender_policy, :birth, :birth_policy,
-    :background_image, :background_color, :background_position,
-    :background_repeat_policy, :background_attachment_policy,
-    :flavour, :description,
-    :website, :locale, :local,
-    :count_of_blockers, :count_of_blockings, :count_of_friends, :count_of_followers, :count_of_followings
 
+  
+  belongs_to :photo
+  has_many :photos
+  has_many :posts
+  has_many :subjects
+
+
+
+  
+  #relationships
+  #follower:   I'm followed by them     One's a follower for me   So I read them
+  #following:  I'm a follower for them  One's followed me         So they reads me
+  #blocker:    I'm blocked by them      One's a blocker for me    So I can't follow them
+  #blocking:   I'm a blocker for them   One's blocked me          So they can't follow me
+  has_many :followers,  :conditions => {:is_followed=>true},  :class_name => "Relationship", :foreign_key => :user1_id
+  has_many :followings, :conditions => {:is_follower=>true},  :class_name => "Relationship", :foreign_key => :user1_id
+  has_many :friends,    :conditions => {:is_friend=>true},    :class_name => "Relationship", :foreign_key => :user1_id
+  has_many :blockers,   :conditions => {:is_blocked=>true},   :class_name => "Relationship", :foreign_key => :user1_id
+  has_many :blockings,  :conditions => {:is_blocked=>true},   :class_name => "Relationship", :foreign_key => :user1_id
+  #not used
+  has_many :relationships, :class_name => "Relationship", :foreign_key => :user1_id
+  #HM :dependent => :destroy
+  has_many :followers_users,  :through => :followers, :source => :user2
+  has_many :followings_users, :through => :followings, :source => :user2
+  has_many :blockers_users,   :through => :blockers, :source => :user2
+  has_many :blockings_users,  :through => :blockings, :source => :user2
+  has_many :friends_users,    :through => :friends, :source => :user2
+
+
+
+  
 #learn css background
 #http://maujor.com/tutorial/backtut.php
 
@@ -31,11 +55,33 @@ class User < ActiveRecord::Base
 
 
 
+  
+
+
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :full_name, :time_zone,
+    :email, :password, :password_confirmation, :remember_me, :full_name, :username,
+    :gender, :gender_policy, :birth, :birth_policy,
+    :background_image, :background_color, :background_position,
+    :background_repeat_policy, :background_attachment_policy,
+    :flavour, :description,
+    :website, :locale, :local,
+    :count_of_blockers, :count_of_blockings, :count_of_friends, :count_of_followers, :count_of_followings,
+    :subjects_attributes
+
+
+  accepts_nested_attributes_for :subjects, :allow_destroy => true, :reject_if => :all_blank
+
+  
+
 
 
   has_attached_file :background_image, MyConfig.paperclip_options
 	validates_attachment_content_type :background_image, :content_type => ['image/jpeg', 'image/gif', 'image/png'] unless :background
   validates_attachment_size :background_image, :less_than => 1.megabytes unless :background
+
+
   
   before_save :my_before_save
 
@@ -48,19 +94,23 @@ class User < ActiveRecord::Base
     where("lower(#{key})=?", conditions[:email].downcase).first
   end
 
+
+
+
+
   def self.GENDERS
     {
       '-'=>'0',
-      I18n.t('user.gender.female')=>'1',
-      I18n.t('user.gender.male')=>'2'
+      I18n.t('model.user.gender.female')=>'1',
+      I18n.t('model.user.gender.male')=>'2'
     }
   end
 
   def self.BIRTH_POLICIES
     {
-      I18n.t('user.birth_policy.dm')=>0,
-      I18n.t('user.birth_policy.dmy')=>1,
-      I18n.t('user.birth_policy.nothing')=>2
+      I18n.t('model.user.birth_policy.dm')=>0,
+      I18n.t('model.user.birth_policy.dmy')=>1,
+      I18n.t('model.user.birth_policy.nothing')=>2
     }
   end
 
@@ -89,30 +139,7 @@ class User < ActiveRecord::Base
     #posts.scope_photos.last || posts.build
     self.photo || Photo.new
   end
-  
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username
-  validates_presence_of :full_name, :username
-  validates_uniqueness_of :username
-  
-  belongs_to :photo
-  has_many :photos
-  has_many :posts
-  has_many :subjects
-  
-  #relationships
-  #follower:   I'm followed by them     One's a follower for me   So I read them
-  #following:  I'm a follower for them  One's followed me         So they reads me
-  #blocker:    I'm blocked by them      One's a blocker for me    So I can't follow them
-  #blocking:   I'm a blocker for them   One's blocked me          So they can't follow me
-  has_many :followers,  :conditions => {:is_followed=>true},  :class_name => "Relationship", :foreign_key => :user1_id
-  has_many :followings, :conditions => {:is_follower=>true},  :class_name => "Relationship", :foreign_key => :user1_id
-  has_many :friends,    :conditions => {:is_friend=>true},    :class_name => "Relationship", :foreign_key => :user1_id
-  has_many :blockers,   :conditions => {:is_blocked=>true},   :class_name => "Relationship", :foreign_key => :user1_id
-  has_many :blockings,  :conditions => {:is_blocked=>true},   :class_name => "Relationship", :foreign_key => :user1_id
-  #not used
-  has_many :relationships, :class_name => "Relationship", :foreign_key => :user1_id
-  #HM :dependent => :destroy
+
 
 
 
@@ -125,14 +152,29 @@ class User < ActiveRecord::Base
   def toggle_subject(u2, value)
     Relationship.change('subject', self.id, u2, value)
   end
+
+
+
+
+  def my_create_post(post_attributes, remote_ip="undefined")
+    p = self.posts.build(post_attributes)
+    p.post_attachments.each { |pa| pa.user_id = self.id }
+    p.remote_ip = remote_ip
+    p.save ? p : nil
+  end
+  def my_posts(options={})
+    Post.get self, false, options
+  end
+  def my_followings_posts(options={})
+    Post.get self, true, options
+  end
+
   
+=begin
   def hash_relations(relation, options={})
     #suggestion: make a very generic method using send('followings')
   end
 
-  def followings_posts(options={})
-    Post.my_followings(self.id, options)
-  end
 
   def followings_as_hash(options={})
     return @followings_as_hash if @followings_as_hash
@@ -161,25 +203,11 @@ class User < ActiveRecord::Base
     @followers_as_hash[self.id] = self if options[:and_me]
     return @followers_as_hash
   end
-
-  def my_create_post(post_attributes, remote_ip="undefined")
-    p = self.posts.build(post_attributes)
-    p.post_attachments.each { |pa| pa.user_id = self.id }
-    p.remote_ip = remote_ip
-    p.save ? p : nil
+  def followings_posts(options={})
+    Post.my_followings(self.id, options)
   end
-  def my_posts(options={})
-    Post.get self, false, options
-  end
-  def my_followings_posts(options={})
-    Post.get self, true, options
-  end
+=end
   
-  #has_many :executts_i_wrote, :class_name => "Msg",  :conditions => 'created_at > #{10.hours.ago.to_s(:db).inspect}'
-
-  #has_many :subordinates, :class_name => "Employee", :foreign_key => "manager_id"
-  #belongs_to :manager, :class_name => "Employee"
-  #has_one :account, :include => :representative 
 
 =begin
 4.3.1 Methods Added by has_many
