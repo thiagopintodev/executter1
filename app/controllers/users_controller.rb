@@ -20,11 +20,6 @@ class UsersController < ApplicationController
     @isme = current_user && @user.id == current_user.id
   end
 
-  def ajax_show_relation_side
-    #js get only
-    @user = User.find(params[:id])
-    render :layout => false
-  end
   
   def ajax_show_relation
     #js only
@@ -33,22 +28,23 @@ class UsersController < ApplicationController
     @r = Relationship.my_find(current_user, @user)
 
     #if this request has params, it means we're changing the values of the relationships
-    property, value = params[:property], params[:value]=="1"
-    if property
-      @r = Relationship.change(property, current_user, @user, value)
+    p1, p2 = params[:p1], params[:p2]
+    if p1
+      @r = Relationship.change(p1, current_user, @user, p2)
       @user = User.find(params[:id])
     end
 
-
-
+    #options = {:p1=>'follow', :p2=>true}
+    #ajax_user_show_relation_path(options)
+    
     #this is to help compose the view and it's only temporary code
-    button_unfollow = {:text=>"- Follow", "data-k"=>"follow", "data-v"=>"0"}
-    button_friends = {:text=>"+ Friend", "data-k"=>"follow", "data-v"=>"1"}
-    button_follow = {:text=>"+ Follow", "data-k"=>"follow", "data-v"=>"1"}
+    button_unfollow = {:text=>"- Follow", :params=>{:p1=>'follow', :p2=>false}}
+    button_friends = {:text=>"+ Friend",  :params=>{:p1=>'follow', :p2=>true}}
+    button_follow = {:text=>"+ Follow",   :params=>{:p1=>'follow', :p2=>true}}
     
     unless @r.is_blocked
       
-      @button = unless @r.is_follower
+      @main_button = unless @r.is_follower
         @r.is_followed ? button_friends : button_follow
       else
         button_unfollow

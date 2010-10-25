@@ -3,22 +3,18 @@ class Relationship < ActiveRecord::Base
   belongs_to :user2, :class_name => "User", :foreign_key => "user2_id"
   validates :user1_id, :presence => true
   validates :user2_id, :presence => true
-
   validate :cant_relate_to_self
 
+  serialize :ignored_subjects
+  before_create :my_before_create
+  
+  def my_before_create
+    self.ignored_subjects = [] if self.ignored_subjects == nil
+  end
+  
   def cant_relate_to_self
     errors.add(:user1_id, "one can't make a relationship with themselves") if user1_id == user2_id
   end
-
-  def subjects_ignored=(value)
-    self.subjects_ignored_field = value.join(',')
-  end
-  def subjects_ignored
-    self.subjects_ignored_field.split(',')
-  end
-  #def subjects_ignored?
-  #  !self.subjects_ignored_field.blank?
-  #end
 
   def self.my_find(u1,u2)
     #u1, u2 = users_id(u1, u2)
@@ -29,24 +25,10 @@ class Relationship < ActiveRecord::Base
     u1, u2 = MyFunctions.users_ids([u1, u2])
     r = self.change_block u1, u2, value, options if property == 'block'
     r = self.change_follow u1, u2, value, options if property == 'follow'
+    r = self.change_subject u1, u2, value, options #if property == 'subject'
     update_user_counters(u1, u2) if r
-    r || nil
+    r || property
   end
-  
-  #has_many :i_relate_to_them, :class_name => "Relationship", :foreign_key => :user1_id
-  #belongs_to :followers, :counter_cache => true,  :conditions => :is_follow=>true
-  #belongs_to :customer, :counter_cache => true,  :conditions => "active = 1"
-  #belongs_to :following, :class_name => "User", :foreign_key => :user1_id, :counter_cache => :count_of_followings
-  #belongs_to :friend, :class_name => "User", :foreign_key => :user1_id,
-  #  :counter_cache => :count_of_friends, :conditions => [".is_friend=true"]
-=begin 
-  scope :scope_follow, where(:is_follow=>true)
-  scope :scope_friend, where(:is_friend=>true)
-  scope :scope_block,  where(:is_block=>true)
-  scope :scope_followed, where(:is_followed=>true)
-  scope :scope_blocked,  where(:is_blocked=>true)
-  #@user.they_relate_to_me.scope_follow.includes(:user1,:user2)
-=end
 
   protected
   
@@ -74,18 +56,32 @@ class Relationship < ActiveRecord::Base
     r1 if r1.save && r2.save
     #transaction-end
   end
+  
+  def self.change_subject(u1, u2, value, options={})
+    r1 = Relationship.my_find(u1, u2)
+    return if r1.is_blocked || !r1.is_follower
+    #transaction-begin
+    value = value.to_s
+    if r1.ignored_subjects.include? value
+      r1.ignored_subjects.delete value
+    else
+      r1.ignored_subjects << value
+    end
+    r1 if r1.save
+    #transaction-end
+  end
 
   def self.update_user_counters(*user_ids)
     #I'm perfectly aware of how counter cache columns work in rails :)
     #are integers
     #users = User.find(user_ids)
     user_ids.each do |user_id|
-      a = {:validate => false}
-      a[:count_of_blockers]   = where(:user1_id=>user_id, :is_blocked=>true).length
-      a[:count_of_blockings]  = where(:user1_id=>user_id, :is_blocker=>true).length
-      a[:count_of_followers]  = where(:user1_id=>user_id, :is_followed=>true).length
-      a[:count_of_followings] = where(:user1_id=>user_id, :is_follower=>true).length
-      a[:count_of_friends]    = where(:user1_id=>user_id, :is_friend=>true).length
+      a = {} #:validate => false
+      a[:count_of_blockers]   = where(:user1_id=>user_id, :is_blocked=>true).size
+      a[:count_of_blockings]  = where(:user1_id=>user_id, :is_blocker=>true).size
+      a[:count_of_followers]  = where(:user1_id=>user_id, :is_followed=>true).size
+      a[:count_of_followings] = where(:user1_id=>user_id, :is_follower=>true).size
+      a[:count_of_friends]    = where(:user1_id=>user_id, :is_friend=>true).size
       User.update(user_id, a)
     end
   end

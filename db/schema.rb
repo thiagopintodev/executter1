@@ -61,12 +61,12 @@ ActiveRecord::Schema.define(:version => 20101024034339) do
   create_table "relationships", :force => true do |t|
     t.integer  "user1_id"
     t.integer  "user2_id"
-    t.boolean  "is_followed",            :default => false
-    t.boolean  "is_follower",            :default => false
-    t.boolean  "is_friend",              :default => false
-    t.boolean  "is_blocked",             :default => false
-    t.boolean  "is_blocker",             :default => false
-    t.string   "subjects_ignored_field", :default => ""
+    t.boolean  "is_followed",      :default => false
+    t.boolean  "is_follower",      :default => false
+    t.boolean  "is_friend",        :default => false
+    t.boolean  "is_blocked",       :default => false
+    t.boolean  "is_blocker",       :default => false
+    t.string   "ignored_subjects",                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20101024034339) do
     t.string   "full_name"
     t.integer  "gender",                                       :default => 0
     t.integer  "gender_policy",                                :default => 0
-    t.date     "birth",                                        :default => '2010-10-24'
+    t.date     "birth",                                        :default => '2010-10-25'
     t.integer  "birth_policy",                                 :default => 0
     t.string   "local",                                        :default => ""
     t.string   "locale",                                       :default => "pt-BR"

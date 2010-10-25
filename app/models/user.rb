@@ -122,6 +122,9 @@ class User < ActiveRecord::Base
   def block(u2, value=true)
     Relationship.change('block', self.id, u2, value)
   end
+  def toggle_subject(u2, value)
+    Relationship.change('subject', self.id, u2, value)
+  end
   
   def hash_relations(relation, options={})
     #suggestion: make a very generic method using send('followings')

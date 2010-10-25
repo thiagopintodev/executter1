@@ -3,10 +3,10 @@
 
 <ul class="menu-add">
 
-  <li class="user"><%= @user.username %> ignorando: <%= @r.subjects_ignored %></li>
+  <li class="user"><%= @user.username %> ignorando: <%= @r.ignored_subjects %></li>
 
   <li class="mais">
-    <%= link_to @button[:text], "#", :class=>"clickable", "data-k"=>@button["data-k"], "data-v"=>@button["data-v"] if @button %>
+    <%= link_to @main_button[:text], "#", :class=>"clickable", 'data-url'=>ajax_user_show_relation_path(@main_button[:params]) if @main_button %>
   </li>
   
   <% if @r.is_blocked %>

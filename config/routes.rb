@@ -59,7 +59,7 @@ Ex1::Application.routes.draw do
   match ":id/ajax_tab2(/:last_post_id)" => "users#ajax_show_tab2", :as => :ajax_user_show_tab2
   match ":id/ajax_tab3(/:last_post_id)" => "users#ajax_show_tab3", :as => :ajax_user_show_tab3
   
-  match ":id/ajax_relation(/:property/:value)" => "users#ajax_show_relation", :as => :ajax_user_show_relation
+  match ":id/ajax_relation" => "users#ajax_show_relation", :as => :ajax_user_show_relation
   
 
 

@@ -8,7 +8,7 @@ class CreateRelationships < ActiveRecord::Migration
       t.boolean :is_friend, :default=> false
       t.boolean :is_blocked,  :default=> false
       t.boolean :is_blocker,  :default=> false
-      t.string :subjects_ignored_field, :default=>''
+      t.string :ignored_subjects, :null => false
 
       t.timestamps
     end

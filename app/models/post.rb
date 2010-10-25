@@ -31,14 +31,14 @@ class Post < ActiveRecord::Base
     unless search_followings#5 queries
       posts = posts.where(:user_id=>user.id)
     else#7 queries
-      subjects_ignored_ids, users_ids = [], [user.id]
+      ignored_subjects_ids, users_ids = [], [user.id]
       user.followings.each do |relation|
-        subjects_ignored_ids |= relation.subjects_ignored
+        ignored_subjects_ids |= relation.ignored_subjects
         users_ids << relation.user2_id
       end
       
       posts = posts.where("user_id IN (?)", users_ids)
-      posts = posts.where("subject_id IS NULL OR subject_id NOT IN (?)", subjects_ignored_ids) if subjects_ignored_ids.length > 0
+      posts = posts.where("subject_id IS NULL OR subject_id NOT IN (?)", ignored_subjects_ids) if ignored_subjects_ids.length > 0
     end
     posts
   end

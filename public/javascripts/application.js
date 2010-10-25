@@ -82,13 +82,12 @@ $(function() {
     {
       $("#user-following .in").addClass(".loading");
       $("#sidebar .user_counters").addClass(".loading");
-      $.getScript("/:id/ajax_relation".replace(":id", data.user_id));
+      url = "/:id/ajax_relation".replace(":id", data.user_id);
+      $.getScript(url);
       
       $("#user-following a.clickable").live("click", function(e) {
         $("#user-following .in").addClass("loading").html("");
-        k = $(this).attr("data-k");
-        v = $(this).attr("data-v");
-        url = "/:id/ajax_relation/:k/:v".replace(":id", data.user_id).replace(":k", k).replace(":v", v);
+        url = $(this).attr('data-url');
         $.getScript(url);
         return false;
       });
