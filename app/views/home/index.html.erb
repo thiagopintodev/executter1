@@ -72,7 +72,7 @@
     <h3><%= t "home.title" %></h3>
     <div class="caracteres">196</div>
     <%= f.text_area :body, :rows=>3 %>
-    <% if current_user.subjects.size == 0 %>
+    <% if current_user.subjects.size > 0 %>
       <%= f.select :subject_id, current_user.subjects.collect { |s| [s.name, s.id] }, :include_blank=>"-" %>
     <% else %>
       <%#= f.hidden_field :subject_id, :value => 0 %>
