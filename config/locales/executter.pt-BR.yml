@@ -21,7 +21,7 @@ pt-BR:
     title: "O que acontece agora?"
     attach_link: "Anexar um arquivo"
     attach_text: "Anexar"
-    body: "Selecione no seu computador um arquivo de até <strong>1,96MB</strong>"
+    body: "Selecione no seu computador um arquivo de até <strong>10,96MB</strong>"
   profile:
     button_block1: "block %{username}"
     button_block2: "unblock %{username}"

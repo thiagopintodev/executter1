@@ -18,10 +18,10 @@ en:
       followers: "Followings"
       friends: "Friends"
   home:
-    title: "What about now? (funk soul brother)"
+    title: "What happens now?"
     attach_link: "Attach a file"
     attach_text: "Attach"
-    body: "You know what to do, untill <strong>1,96MB</strong> :p"
+    body: "Pick a file from your computer, not larger than <strong>10,96MB</strong>"
   profile:
     button_block1: "block %{username}"
     button_block2: "unblock %{username}"

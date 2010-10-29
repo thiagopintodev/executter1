@@ -60,7 +60,8 @@ $(function() {
   if (functions.page.isProfile())
   {
 
-    events.post.toggle_buttons();
+    events.posts.register.toggle_buttons();
+    events.posts.register.before_button();
 
     if (data.is_me)
       if (!data.user_has_picture)
@@ -100,7 +101,8 @@ $(function() {
   ///
   if (functions.page.isHome())
   {
-    events.post.toggle_buttons();
+    events.posts.register.toggle_buttons();
+    events.posts.register.before_button();
   
     $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
       $("#anexoLink, #anexoBox").slideToggle("fast");
@@ -150,17 +152,6 @@ $(function() {
     functions.tabs.load_tab(selected_tab);
     return false;
   });
-
-  $(".btn-script-invoker").live("click", function(e) {
-    script_url = $(this).attr("data-script-url");
-    
-    if ($(".post").size() > 0)
-      script_url += "/"+$(".post:last").attr("data-id");
-    
-    $.getScript(script_url);
-    $("#btn-more").fadeOut();
-    return false;
-  });
   
 });
 
@@ -169,11 +160,29 @@ $(function() {
   /// HELPERS FOR ALL PAGES, ONLY ACTUALLY BEING USED
   ///
   events = {
-    post : {
-      toggle_buttons: function() {
-        $(".post").live("mouseover mouseout", function(){
-          $(this).contents("li.icons").toggle();
-        });
+    posts : {
+      register : {
+        before_button: function() {
+
+$(".btn-script-invoker").live("click", function(e) {
+  script_url = $(this).attr("data-script-url");
+  
+  if ($(".post").size() > 0)
+    script_url += "?before=:before".replace(":before", $(".post:last").attr("data-id"));
+  
+  $.getScript(script_url);
+  $("#btn-more").fadeOut();
+  return false;
+});
+
+        },
+        toggle_buttons: function() {
+        
+$(".post").live("mouseover mouseout", function(){
+  $(this).contents("li.icons").toggle();
+});
+
+        }
       }
     }
   }
@@ -192,6 +201,14 @@ $(function() {
             a.append(' ');
           a.append(u).focus();
         }
+      }
+    },
+    posts: {
+      before: function() {
+        
+      },
+      after: function() {
+        
       }
     },
     tabs : {

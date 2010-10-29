@@ -72,7 +72,11 @@
     <h3><%= t "home.title" %></h3>
     <div class="caracteres">196</div>
     <%= f.text_area :body, :rows=>3 %>
-    <%= f.select :subject_id, current_user.subjects.collect { |s| [s.name, s.id] }, :include_blank=>"-" %>
+    <% if current_user.subjects.size == 0 %>
+      <%= f.select :subject_id, current_user.subjects.collect { |s| [s.name, s.id] }, :include_blank=>"-" %>
+    <% else %>
+      <%#= f.hidden_field :subject_id, :value => 0 %>
+    <% end %>
 
     <div id="anexoLink" class="anexo">
       <img src="/images/layout1/anexo/_attach.gif" width="16" height="16" alt="" border="0" />

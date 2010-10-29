@@ -11,7 +11,7 @@
     <li class="execute">
       <%= link_to post.user.username, profile_path(post.user.username) %>
 	    <%= "speaks about *#{post.subject.name}*" if post.subject %>
-      <p><%= my_post_links post.body %></p>
+      <p><%= my_post_links h(post.body) %></p>
     </li>
       
 <%= my_post_actions post %>
@@ -54,15 +54,17 @@
 ajax_content = $("#view1 .ajax-content").addClass("ajax-content-white");
 
 <% if @posts.size > 0 %>
-  <% r = raw escape_javascript(yield :output) %>
-  ajax_content.append("<%= r %>");
-  $(".ajax-content .pack:hidden").slideToggle("slow");
+  <% r = escape_javascript(yield :output) %>
+  <%# r = yield :output %>
+  s = "<%= r %>";
+  ajax_content.append(s);
+  $(".ajax-content .pack:hidden").slideToggle(600);
 <% else %>
   //$("#view1 .p-botao").hide();
   //alert("acabou!");
 <% end %>
 
+  $("#btn-more").fadeIn(1800);
 setTimeout(function() {
-  $("#btn-more").fadeIn();
 }, 300);
 
