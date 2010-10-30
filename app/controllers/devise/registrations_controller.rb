@@ -5,6 +5,7 @@ class Devise::RegistrationsController < ApplicationController
 
   # GET /resource/sign_up
   def new
+    return redirect_to profile_path("executter") unless params[:forno]
     build_resource({})
     render_with_scope :new
   end
