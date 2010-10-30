@@ -15,6 +15,10 @@ class MyConfig
     ENV['BUCKET_NAME'] || 'development'
   end
   
+  def self.production?
+    ENV['BUCKET_NAME'] == 'production'
+  end
+  
   def self.app_name
     ENV['APP_NAME'] || 'cavalinho'
   end
