@@ -54,10 +54,8 @@
 
 
         
-<%= my_flash_keys %>
+<%#= my_flash_keys %>
 <%= yield %>
-
-
 
 
       </div>
@@ -98,6 +96,13 @@
 
 
 
+<% if false && flash.keys.size > 0 %>
+<script type="text/javascript">
+  <% flash.keys.collect do |k| %>
+    alert("<%= flash[k] %>");
+  <% end %>
+</script>
+<% end %>
 
     </div>
 

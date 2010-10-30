@@ -28,7 +28,10 @@
   
   <ul id="estatistics" class="user_counters">
   </ul>
+
+
   
+  <!--
   <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
   <div id="labels-thumbs">
   
@@ -37,7 +40,7 @@
     <% end %>
   </div>
   <div class="more"><a href="#" class="nao-clique">View all</a></div>
-
+-->
 
 
 
@@ -45,25 +48,6 @@
     
     <div class="rss"><a href="#" class="nao-clique"><img src="/images/layout/RSS16.png" width="16" height="16" />RSS feed de <%= @user.username %></a></div>
 
-
-
-
-
-<%if false%>
-
-<br/><br/><br/><br/>
-
-          <h3><a href="#">USUARIOS</a></h3>
-          <div class="menu">
-	          <!--
-            <a href="#"><span class="desc">Friends</span><span>5</span></a>
-            <a href="#"><span class="desc">Mention</span><span>2</span></a>
-            -->
-            <% all_users.each do |u| %>
-              <a href="<%= profile_path u.username %>"><span class="desc"><%= u.email %></span><span>:)</span></a>
-            <% end %>
-          </div>
-<% end %>
 
 
 

@@ -16,11 +16,11 @@ class ApplicationController < ActionController::Base
   end
   def my_must_be_logged
   #, :notice=>"ONLY LOGGED IN"
-    redirect_to in_path unless current_user
+    redirect_to in_path and return false unless current_user
   end
   def my_admin_only
   #, :notice=>"ONLY ADMIN IN"
-    redirect_to(root_path) unless current_user.admin?
+    redirect_to root_path and return false unless current_user.admin?
   end
   
 end
