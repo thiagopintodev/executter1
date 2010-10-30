@@ -88,6 +88,13 @@ class User < ActiveRecord::Base
     self.email = self.email.downcase
   end
   
+  after_create :my_after_create
+
+  def my_after_create
+    u = User.find_by_username('executter')
+    self.follow u if u
+  end
+  
   def self.find_for_database_authentication(conditions)
     key = conditions[:email].rindex("@") ? 'email' : 'username'
     where("lower(#{key})=?", conditions[:email].downcase).first
