@@ -27,6 +27,8 @@ class Post < ActiveRecord::Base
     #
     posts = posts.where("id > ?", options[:after]) if options[:after]
     posts = posts.where("id < ?", options[:before]) if options[:before]
+    #posts = posts.where(:post_attachments) if options[:with_image]
+    #posts = posts.where("id < ?", options[:before]) if options[:with_file]
     #
     unless search_followings#5 queries
       posts = posts.where(:user_id=>user.id)

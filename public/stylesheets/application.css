@@ -10,10 +10,16 @@ div#content { min-height:300px; }
 div#footer ul#menu-footer {padding-left: 300px !important}
 
 
-.lista-execute, .lista-perguntas, .lista-executs { background:#fff; min-height:50px; }
+.post { background:#fff; min-height:50px; }
+
+.post span.full_name { color:#999999;font-size:12px; }
+.post span.subject {  }
 
 
-ul.lista-execute li.hora { width:100% !important ; }
+.post .execute { min-height:25px; }
+.post li.hora { width:100% !important ; }
+
+.post li.icons { text-align:right; }
 
 
 form.executa {}

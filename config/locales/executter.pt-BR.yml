@@ -41,6 +41,8 @@ pt-BR:
       chocolate: "Chocolate"
       coffe: "Café"
   model:
+    subject:
+      model_name: "Assunto"
     user:
       gender:
         male: "Masculino"

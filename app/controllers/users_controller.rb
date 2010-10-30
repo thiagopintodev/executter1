@@ -23,8 +23,11 @@ class UsersController < ApplicationController
   
   def ajax_show_relation
     #js only
-    return if current_user.id.to_s == params[:id].to_s
     @user = User.find(params[:id])
+    return unless current_user
+    return if current_user.id.to_s == params[:id].to_s
+
+    
     @r = Relationship.my_find(current_user, @user)
 
     #if this request has params, it means we're changing the values of the relationships
@@ -63,24 +66,30 @@ class UsersController < ApplicationController
 
   
   def ajax_show_tab1
+    ajax_show_tab_handler()
+  end
+  def ajax_show_tab2
+    ajax_show_tab_handler(:with_image=>true)
+  end
+  def ajax_show_tab3
+    ajax_show_tab_handler(:with_file=>true)
+  end
+
+  protected
+  
+  def ajax_show_tab_handler(options = {})
     respond_to do |format|
       format.html { render :layout=> false }
       #format.js  { @posts = Post.recent_by_user(params[:id], params[:last_post_id]) }
       format.js {
         #@posts = Post.recent_by_user(params[:id], params[:last_post_id])
         @user = User.find(params[:id])
-        options = {}
         options[:limit] = params[:limit]
         options[:after] = params[:after]
         options[:before] = params[:before]
         @posts = @user.my_posts(options)
+        render :ajax_show_tab
       }
     end
-  end
-  def ajax_show_tab2
-    render :layout=> false
-  end
-  def ajax_show_tab3
-    render :layout=> false
   end
 end

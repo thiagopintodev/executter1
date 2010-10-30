@@ -15,11 +15,13 @@
 	  <input name="" type="submit" class="bt" value=" " />
     <input name="text" type="text" value="Search" />
   </form>
-  
-            <% if params[:all_users] %>
-<br/><br/><br/><br/>
 
-          <h3><a href="#">USUARIOS</a></h3>	
+
+
+  
+
+<br/><br/><br/><br/>
+          <h3><a href="#">Últimos Cadastros</a></h3>	
           <div class="menu">
 	          <!--
             <a href="#"><span class="desc">Friends</span><span>5</span></a>
@@ -27,15 +29,28 @@
             -->
             <% all_users.each do |u| %>
               <a href="<%= profile_path u.username %>">
-              <%= u.updated_at.strftime("%b%d %H:%M:%S")  %>  
+              <%#= u.updated_at.strftime("%b%d %H:%M:%S")  %>  
                 <span class="desc">@<%= u.username %></span>
               </a>
             <% end %>
           </div>
 
-            <% end %>
 
 
+
+
+  
+  <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
+  <div id="labels-thumbs">
+  
+ 	  <% @user.followings_users.each do |user| %>
+ 	    <%= link_to image_tag(user.read_photo.img.url(:mi), width: 25, height: 25), profile_path(user.username), :title=>user.full_name %>
+    <% end %>
+  </div>
+  <!--
+  <div class="more"><a href="#" class="nao-clique">View all</a></div>
+    <div class="rss"><a href="#" class="nao-clique"><img src="/images/layout/RSS16.png" width="16" height="16" />RSS feed de <%= @user.username %></a></div>
+  -->
 
   
   <!--

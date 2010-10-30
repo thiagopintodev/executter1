@@ -1,33 +1,36 @@
 <% content_for :output_panel do %>
-<% if @r %>
 
 <ul class="menu-add">
 
   <li class="user"><%= @user.username %></li>
-
-  <li class="mais">
-    <%= link_to @main_button[:text], "#", :class=>"clickable", 'data-url'=>ajax_user_show_relation_path(@main_button[:params]) if @main_button %>
-  </li>
-  
-  <% if @r.is_blocked %>
-    <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> U B-in Block'd</li>
-  <% else %>
-  
-    <% if @r.is_follower %>
-      <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Following</li>
-    <% end %>
+  <% if @r %>
+    <li class="mais">
+      <%= link_to @main_button[:text], "#", :class=>"clickable", 'data-url'=>ajax_user_show_relation_path(@main_button[:params]) if @main_button %>
+    </li>
     
-    <% if @r.is_friend %>
-      <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Friend</li>
-    <% elsif @r.is_followed %>
-      <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Followed</li>
-    <% end %>
+    <% if @r.is_blocked %>
+      <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> U B-in Block'd</li>
+    <% else %>
     
+      <% if @r.is_follower %>
+        <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Following</li>
+      <% end %>
+      
+      <% if @r.is_friend %>
+        <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Friend</li>
+      <% elsif @r.is_followed %>
+        <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Followed</li>
+      <% end %>
+      
+    <% end %>
   <% end %>
   
 </ul>
 
 
+  <% if @r %>
+
+  
 <div class="chama-menu">
 	<img src="/images/layout/Menu.gif" width="16" height="16" />
 	<a href="#">
@@ -37,12 +40,16 @@
 
 <ul id="menu-estilos">
   <% if @r.is_blocker %>
-    <li><a href="#">
+
+  
+    <li><a href="#" class="clickable"
+      data-url="<%= ajax_user_show_relation_path({:p1=>'block', :p2=>0}) %>">
       <img src="/images/layout/0_Unblock.gif" width="16" height="16" />
       <%= t "profile.button_block2", :username=> @user.username %>
     </a></li>
   <% else %>
-    <li><a href="#">
+    <li><a href="#" class="clickable"
+      data-url="<%= ajax_user_show_relation_path({:p1=>'block', :p2=>1}) %>">
       <img src="/images/layout/0_Block.gif" width="16" height="16" />
       <%= t "profile.button_block1", :username=> @user.username %>
     </a></li>
@@ -95,7 +102,8 @@
   <li><a href="#"><img src="/images/layout/0_Spam.gif" width="16" height="16" /> Report for Spam</a></li>
 </ul>
   -->
-<% end %>
+  
+  <% end %>
 <% end %>
 <% content_for :output_sidebar do %>
   <li><a href="#" class="nao-clique">
@@ -110,6 +118,7 @@
     <span><%= @user.count_of_friends %></span>
     <span class="label"><%= t "application.words.friends" %></span>
   </a></li>
+  <%if false%>
   <li><a href="#" class="nao-clique">
     <span><%= @user.count_of_blockings %></span>
     <span class="label">bloqueando</span>
@@ -118,6 +127,7 @@
     <span><%= @user.count_of_blockers %></span>
     <span class="label">bloqueados</span>
   </a></li>
+  <% end %>
 <% end %>
 
 

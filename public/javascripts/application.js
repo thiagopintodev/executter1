@@ -79,8 +79,8 @@ $(function() {
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab);
     
-    if (data.logged_in && !data.is_me)
-    {
+    //if (data.logged_in && !data.is_me)
+    //{
       $("#user-following .in").addClass(".loading");
       $("#sidebar .user_counters").addClass(".loading");
       url = "/:id/ajax_relation".replace(":id", data.user_id);
@@ -92,7 +92,7 @@ $(function() {
         $.getScript(url);
         return false;
       });
-    }
+    //}
     
   }
 

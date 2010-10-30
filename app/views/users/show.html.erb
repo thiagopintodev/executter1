@@ -10,28 +10,20 @@
 
 <div id="sidebar">
 
-
-
   <div id="user-perfil">
-    <p><strong>Name</strong> <%= @user.full_name %></p>
-    <p><strong>Location </strong> <%= @user.local %></p>
-    <p><strong>Language </strong> <%= @user.locale %></p>
-    <p><strong>Time Zone </strong> <%= @user.time_zone %></p>
-    <p><strong>Birthday </strong><%= l @user.birth %></p>
-    <p><strong>Web  </strong> <%= link_to @user.website, @user.website if @user.website %></p>
-    <p><strong>Bio  </strong> <%= @user.description %></p>
+    <%= profile_field(@user, "Name", 'full_name') %>
+    <%= profile_field(@user, "Location", 'local') %>
+    <%= profile_field(@user, "Language", 'lacale') %>
+    <%= profile_field(@user, "Time Zone", 'time_zone') %>
+    <%= profile_field(@user, "Birthday", 'birth') %>
+    <%= profile_field(@user, "Web", 'website',link_to(@user.website, @user.website)) if @user.website %>
+    <%= profile_field(@user, "Bio", 'description') %>
   </div>
 
-
-  <div class="ajax_data">
-  </div>
-  
   <ul id="estatistics" class="user_counters">
   </ul>
 
 
-  
-  <!--
   <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
   <div id="labels-thumbs">
   
@@ -39,19 +31,6 @@
  	    <%= link_to image_tag(user.read_photo.img.url(:mi), width: 25, height: 25), profile_path(user.username), :title=>user.full_name %>
     <% end %>
   </div>
-  <div class="more"><a href="#" class="nao-clique">View all</a></div>
--->
-
-
-
-
-    
-    <div class="rss"><a href="#" class="nao-clique"><img src="/images/layout/RSS16.png" width="16" height="16" />RSS feed de <%= @user.username %></a></div>
-
-
-
-
-
 
 </div>
 

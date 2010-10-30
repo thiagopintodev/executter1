@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def all_users
-    User.order(:updated_at) #:id
+    User.order(:created_at) #:id
   end
   def my_must_be_logged
   #, :notice=>"ONLY LOGGED IN"

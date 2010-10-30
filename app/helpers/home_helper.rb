@@ -4,8 +4,8 @@ module HomeHelper
     options = {"Profile"=>"/conf/1",
       "Account"=>"/conf/2",
       "Design"=>"/conf/3",
-      "Picture"=>"/conf/4",
-      "Subjects"=>"/conf/5"
+      "Picture"=>"/conf/4"#,
+      #"Subjects"=>"/conf/5"
       }
       
       
