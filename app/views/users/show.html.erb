@@ -24,6 +24,24 @@
   </ul>
 
 
+
+  
+
+<br/><br/><br/><br/>
+          <h3><a href="#">Últimos Cadastros</a></h3>	
+          <div class="menu">
+	          <!--
+            <a href="#"><span class="desc">Friends</span><span>5</span></a>
+            <a href="#"><span class="desc">Mention</span><span>2</span></a>
+            -->
+            <% all_users.each do |u| %>
+              <a href="<%= profile_path u.username %>">
+              <%#= u.updated_at.strftime("%b%d %H:%M:%S")  %>  
+                <span class="desc">@<%= u.username %></span>
+              </a>
+            <% end %>
+          </div>
+
   <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
   <div id="labels-thumbs">
   
