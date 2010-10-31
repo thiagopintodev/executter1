@@ -203,7 +203,7 @@ $(".post").live("mouseover mouseout", function(){
   
   functions = {
     page : {
-      isHome: function() { return $("body.pg-home-index").size(); },
+      isHome: function() { return $("body.pg-home-index, body.pg-home-create_post").size(); },
       isProfile: function() { return $("body.pg-users-show").size(); }
     },
     mention : {

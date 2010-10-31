@@ -27,8 +27,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    #@post = 
-    current_user.my_create_post(params[:post], request.remote_ip)
     redirect_to root_path
   end
 

@@ -27,7 +27,7 @@
       
 <li class="hora" style="clear:both">
   <span>
-    <img border="0" width="16" height="16" alt="Name" src="/images/layout/havatar16x16.jpg">
+    <img border="0" width="16" height="16" alt="Name" src="/images/layout1/anexo/_attach.gif">
     <%= link_to at.file_file_name, at.file.url, :target=>"_blank" %>
   </span>
 </li>
@@ -39,7 +39,7 @@
 
   
   <li class="hora" style="clear:both">
-    <%= link_to time_ago_in_words(post.created_at), post %>
+      <%= link_to "#{time_ago_in_words post.created_at} - #{l post.created_at, :format => :short}", post %>
   </li>
 
 </ul>
@@ -57,6 +57,4 @@ ajax_content = $(".view:visible .ajax-content").addClass("ajax-content-white");
   //alert("acabou!");
 <% end %>
 
-setTimeout(function() {
-  $("#btn-more").fadeIn();
-}, 300);
+  $("#btn-more").fadeIn(1800);

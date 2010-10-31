@@ -176,7 +176,10 @@ class User < ActiveRecord::Base
     Post.get self, false, options
   end
   def my_followings_posts(options={})
-    Post.get self, true, options
+    Post.get self, self.followings, options
+  end
+  def my_friends_posts(options={})
+    Post.get self, self.friends, options
   end
 
   

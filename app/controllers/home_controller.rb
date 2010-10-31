@@ -11,35 +11,69 @@ class HomeController < ApplicationController
     #@my_friends     = @user.they_relate_to_me.scope_friend
   end
 
+  def create_post
+    if not_many_posts
+      current_user.my_create_post(params[:post], request.remote_ip)
+      @post = Post.new
+    else
+      @post = Post.new(params[:post])
+      flash[:notice] = "you can't post that quickly"
+      @post.body = "you can't post that quickly"
+    end
+    @user = current_user
+    render :index
+  end
+
+  def not_many_posts
+    #return false if Post.count_latest_by_user(current_user.id, 30.seconds) > 2
+    return false if Post.count_latest_by_user(current_user.id, 3.minutes) > 6
+    return false if Post.count_latest_by_remote_ip(request.remote_ip, 5.minutes) > 60
+    return false if Post.count_latest_by_user(current_user.id, 1.hour) > 60
+    true
+  end
+  
+  
   def ajax_index_tab1
     respond_to do |format|
       format.html { render :layout=> false }
       format.js  {
-        #quem eu sigo
-        #@my_followings_as_hash = current_user.my_followings_as_hash
-        #@posts = Post.my_followings(current_user.id, last_post_id: params[:last_post_id], limit: params[:limit])
-        #o que quem eu sigo diz
-        #@followings_as_hash_and_me = current_user.followings_as_hash(:and_me=>true)
-        #@posts = current_user.followings_posts(:last_post_id => params[:last_post_id], :limit => params[:limit])
         options = {}
         options[:limit] = params[:limit]
         options[:after] = params[:after]
         options[:before] = params[:before]
         @posts = current_user.my_followings_posts(options)
-
-=begin
-  melhor forma:
-  trazer meus amigos,
-  trazer posts dos meus amigos(via id)
-  e colocar os nomes/fotos deles num @hash
-  assinalar qual foto usar em qual post via iterações de código (são apenas 10 lol)
-=end
+        render :ajax_index_tab
       }
     end
   end
-
+  
   def ajax_index_tab2
-    render :layout=> false
+    respond_to do |format|
+      format.html { render :layout=> false }
+      format.js  {
+        options = {}
+        options[:limit] = params[:limit]
+        options[:after] = params[:after]
+        options[:before] = params[:before]
+        @posts = current_user.my_friends_posts(options)
+        render :ajax_index_tab
+      }
+    end
+  end
+  
+  def ajax_index_tab3
+    respond_to do |format|
+      format.html { render :layout=> false }
+      format.js  {
+        options = {}
+        options[:limit] = params[:limit]
+        options[:after] = params[:after]
+        options[:before] = params[:before]
+        options[:mentioned] = true
+        @posts = current_user.my_followings_posts(options)
+        render :ajax_index_tab
+      }
+    end
   end
 
   def settings_remove_bg

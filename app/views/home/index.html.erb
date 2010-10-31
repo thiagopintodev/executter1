@@ -85,7 +85,7 @@
   
 <div id="container">
 
-  <%= form_for @post, :html=>{:class=>"executa", :multipart=>true} do |f| %>
+  <%= form_for @post, :url=>root_path, :html=>{:class=>"executa", :multipart=>true} do |f| %>
     <h3><%= t "home.title" %></h3>
     <div class="caracteres">196</div>
     <%= f.text_area :body, :rows=>3, :maxlength=>196 %>
@@ -151,6 +151,8 @@
   <div id="view1" class="view" data-url="<%= ajax_home_index_tab1_path %>" data-mention="<%= params[:mention_username] %>">
   </div>
   <div id="view2" class="view" data-url="<%= ajax_home_index_tab2_path %>">
+  </div>
+  <div id="view3" class="view" data-url="<%= ajax_home_index_tab3_path %>">
   </div>
 </div>
   

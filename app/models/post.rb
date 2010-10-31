@@ -21,8 +21,17 @@ class Post < ActiveRecord::Base
   validates :body, :presence => true, :length => { :within => 3..500 }
 
   MY_LIMIT = 10
+
+  def self.count_latest_by_user(user_id, time)
+    where(:user_id=>user_id).where("created_at > ?", Time.now - time).count
+  end
+  def self.count_latest_by_remote_ip(remote_ip, time)
+    where(:remote_ip=>remote_ip).where("created_at > ?", Time.now - time).count
+  end
+
+
   
-  def self.get(u, search_followings, options)
+  def self.get(u, source, options)
     user = MyFunctions.users([u]).first
     #must-have filters
     posts = Post.order("id DESC")
@@ -33,12 +42,13 @@ class Post < ActiveRecord::Base
     posts = posts.where("id < ?", options[:before]) if options[:before]
     posts = posts.with_image if options[:with_image]
     posts = posts.with_file if options[:with_file]
+    posts = posts.where("body LIKE ?", "%@#{user.username}%") if options[:mentioned]
     #
-    unless search_followings#5 queries
+    unless source#5 queries
       posts = posts.where(:user_id=>user.id)
     else#7 queries
       ignored_subjects_ids, users_ids = [], [user.id]
-      user.followings.each do |relation|
+      source.each do |relation|
         ignored_subjects_ids |= relation.ignored_subjects
         users_ids << relation.user2_id
       end

@@ -22,11 +22,12 @@ Ex1::Application.routes.draw do
     #get "/conf/2" => "devise/registrations#edit"
   end
   
-  match "home/ajax_tab1(/:last_post_id)" => "home#ajax_index_tab1", :as => :ajax_home_index_tab1
-  match "home/ajax_tab2(/:last_post_id)" => "home#ajax_index_tab2", :as => :ajax_home_index_tab2
+  match "home/ajax_tab1" => "home#ajax_index_tab1", :as => :ajax_home_index_tab1
+  match "home/ajax_tab2" => "home#ajax_index_tab2", :as => :ajax_home_index_tab2
+  match "home/ajax_tab3" => "home#ajax_index_tab3", :as => :ajax_home_index_tab3
 
   resources :users, :only =>[:show, :index, :update]
-  resources :posts, :only =>[:index, :show, :create, :destroy]
+  resources :posts, :only =>[:index, :show, :destroy] #:create, 
   
   
   get "conf/ajax_username_available/:username" => "home#ajax_username_available"
@@ -47,6 +48,7 @@ Ex1::Application.routes.draw do
   
   get "site/search"
   get "site/index"
+  post "/", :controller => :home, :action => :create_post, :as => :my_create_post
   root :to => "home#index"
 
 
