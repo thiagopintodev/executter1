@@ -9,8 +9,8 @@ class PostAttachment < ActiveRecord::Base
   
   has_attached_file :file,
     MyConfig.paperclip_options(
-      #lambda { |a| MyConfig::image?(a) ? PostAttachment::IMAGE_STYLES : {} }
-      {}
+      lambda { |a| MyConfig::image?(a) ? PostAttachment::IMAGE_STYLES : {} }
+      #{}
     )
   def file_image?
     MyConfig::image?(file)

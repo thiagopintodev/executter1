@@ -36,7 +36,7 @@ class MyConfig
   
   def self.paperclip_options(styles={})
     r = {}
-    r[:default_url] = "/images/application/default/:class/:attachment/:style.:extension"
+    r[:default_url] = "/images/application/default/:class/:attachment/:style.png"
     r[:styles] = styles
     path = "/#{app_name}/:class/:attachment/:id_partition/:id_:style_:basename.:extension"
     
