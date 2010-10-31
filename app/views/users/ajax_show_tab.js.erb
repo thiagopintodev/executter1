@@ -48,7 +48,7 @@
 <% end %>
 <% end %>
 
-ajax_content = $("#view1 .ajax-content").addClass("ajax-content-white");
+ajax_content = $(".view:visible .ajax-content").addClass("ajax-content-white");
 <% if @posts.size > 0 %>
   <% r = raw escape_javascript(yield :output) %>
   ajax_content.append("<%= r %>");

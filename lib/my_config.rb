@@ -25,7 +25,7 @@ class MyConfig
 
   def self.image?(at)
     #['image/jpeg', 'image/gif', 'image/png'].include? at.content_type
-    at.content_type.rindex 'image' #may return nil, witch means false :)
+    !!at.content_type.rindex('image') #may return nil, witch means false :)
   end
   def self.music?(at)
     ['application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3'].include? at.content_type
@@ -36,7 +36,7 @@ class MyConfig
   
   def self.paperclip_options(styles={})
     r = {}
-    r[:default_url] = "/images/application/default/:class/:attachment/:style.png"
+    r[:default_url] = "/images/application/default/:class/:attachment/:style.:extension"
     r[:styles] = styles
     path = "/#{app_name}/:class/:attachment/:id_partition/:id_:style_:basename.:extension"
     

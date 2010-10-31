@@ -66,9 +66,9 @@
           <%= link_to "Português", locale_path("pt-BR") %>
           </p>
           <ul id="menu-footer">
-          	<li><%= link_to t("application.footer.about_us"), "#about_us.html" %></li>
-          	<li><%= link_to "Blog", "#about_us.html" %></li>
-          	<li><%= link_to t("application.footer.terms"), "#about_us.html" %></li>
+          	<li><%= link_to t("application.footer.about_us"), "http://executter-pt.blogspot.com/", :target=>"_blank" %></li>
+          	<li><%= link_to "Blog", "http://executter-pt.blogspot.com/", :target=>"_blank" %></li>
+          	<li><%= link_to t("application.footer.terms"), "http://executter-pt.blogspot.com/", :target=>"_blank" %></li>
           </ul>
       </div>
 
@@ -89,7 +89,7 @@
 
 
 <% if Rails.env.production? %>
-<div>
+<div style="margin: 10px 0">
 <script type="text/javascript" src="http://ja.revolvermaps.com/p.js"></script><script type="text/javascript">rm2d_ki101('3','800','400','02qutebmlqz','ff8a00',0);</script>
 </div>
 <% end %>

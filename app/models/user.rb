@@ -164,7 +164,11 @@ class User < ActiveRecord::Base
 
   def my_create_post(post_attributes, remote_ip="undefined")
     p = self.posts.build(post_attributes)
-    p.post_attachments.each { |pa| pa.user_id = self.id }
+    p.post_attachments.each do |pa|
+      pa.user_id = self.id
+      p.has_image = pa.file? && pa.file_image?
+      p.has_file = pa.file? && !pa.file_image?
+    end
     p.remote_ip = remote_ip
     p.save ? p : nil
   end

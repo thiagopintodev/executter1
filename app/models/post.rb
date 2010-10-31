@@ -14,6 +14,10 @@ class Post < ActiveRecord::Base
   end
 
   default_scope where(:is_deleted => false)
+
+  scope :with_image, where(:has_image => true)
+  scope :with_file, where(:has_file => true)
+
   validates :body, :presence => true, :length => { :within => 3..500 }
 
   MY_LIMIT = 10
@@ -27,8 +31,8 @@ class Post < ActiveRecord::Base
     #
     posts = posts.where("id > ?", options[:after]) if options[:after]
     posts = posts.where("id < ?", options[:before]) if options[:before]
-    #posts = posts.where(:post_attachments) if options[:with_image]
-    #posts = posts.where("id < ?", options[:before]) if options[:with_file]
+    posts = posts.with_image if options[:with_image]
+    posts = posts.with_file if options[:with_file]
     #
     unless search_followings#5 queries
       posts = posts.where(:user_id=>user.id)

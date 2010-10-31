@@ -103,7 +103,19 @@ $(function() {
   {
     events.posts.register.toggle_buttons();
     events.posts.register.before_button();
-  
+
+    $("textarea#post_body").live("keyup", function(e) {
+      //
+      t = $(this);
+      m = t.attr("maxlength");
+      n = m - t.val().length;
+      //
+      if (n < 0)
+        t.val(t.val().substring(0,m));
+      else
+        t.closest('form').children(".caracteres").html(n);
+    });
+    
     $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
       $("#anexoLink, #anexoBox").slideToggle("fast");
       $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
@@ -166,9 +178,11 @@ $(function() {
 
 $(".btn-script-invoker").live("click", function(e) {
   script_url = $(this).attr("data-script-url");
+
+  post_last = $(this).parents(".view").contents().find(".post:last");
   
-  if ($(".post").size() > 0)
-    script_url += "?before=:before".replace(":before", $(".post:last").attr("data-id"));
+  if (post_last.size())
+    script_url += "?before=:before".replace(":before", post_last.attr("data-id"));
   
   $.getScript(script_url);
   $("#btn-more").fadeOut();
