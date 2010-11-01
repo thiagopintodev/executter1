@@ -39,6 +39,15 @@
 </div>
 
 <ul id="menu-estilos">
+      
+  <% if @r.is_follower %>
+  
+  <%= content_tag :li,
+    link_to(raw("<img src='/images/layout/0_Unfollow.gif' /> Unfollow"), "#", :class=>"clickable",
+      'data-url'=>ajax_user_show_relation_path({:p1=>'follow', :p2=>false})) %>
+      
+  <% end %>
+  
   <% if @r.is_blocker %>
 
   
@@ -55,7 +64,6 @@
     </a></li>
   <% end %>
   <% if @r.is_follower %>
-
   
     <% @user.subjects.each do |subject| %>
       <% if @r.ignoring? subject.id %>
@@ -70,6 +78,9 @@
 <%= content_tag :li,
   link_to(raw("<img src='/images/layout/0_Block.gif' /> ignore #{subject.name}"), "#", :class=>"clickable",
     'data-url'=>ajax_user_show_relation_path({:p1=>'subject', :p2=>subject.id})) %>
+
+
+
 
       <% end %>
     <% end %>

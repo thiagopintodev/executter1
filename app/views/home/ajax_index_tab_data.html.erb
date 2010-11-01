@@ -1,7 +1,7 @@
-<% content_for :output do %>
+<% if @posts.length > 0 %>
+<div class="pack show-more-button" style="display:none">
 <% @posts.each do |post| %>
 
-<div class="pack" style="display:none">
   <ul class="lista-execute post" data-id="<%= post.id %>">
 	  <li class="havatar">
 	    <a href="/<%= post.user.username %>">
@@ -47,23 +47,11 @@
     </li>
     
   </ul>
+<% end %>
 </div>
 <% end %>
+<% if !params[:after] && @posts.length == Post::MY_LIMIT %>
+  <div class="p-botao">
+    <a id="btn-more" href="#" class="viewstack-ajax-trigger" style="display:none">More</a>
+  </div>
 <% end %>
-
-
-ajax_content = $(".view:visible .ajax-content").addClass("ajax-content-white");
-
-<% if @posts.size > 0 %>
-  <% r = escape_javascript(yield :output) %>
-  <%# r = yield :output %>
-  s = "<%= r %>";
-  ajax_content.append(s);
-  $(".ajax-content .pack:hidden").fadeIn("fast");
-<% else %>
-  //$("#view1 .p-botao").hide();
-  //alert("acabou!");
-<% end %>
-
-  $("#btn-more").fadeIn(1800);
-

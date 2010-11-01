@@ -2,7 +2,7 @@
 <% my_css_files "settings" %>
 
 
-<%= my_settings_tabs(2) %>
+<%= my_settings_tabs(3) %>
 
 
   <%= form_for(current_user, :url=>home_update_path, :html=>{:multipart=>true,:class=>"campos-settings"}) do |f| %>
@@ -87,7 +87,7 @@
                         <%= f.text_field :background_color %>
                     </div>
                     <div id="opcoes-bg">
-                        <%= link_to t("settings.remove_background"), "/conf/remove_bg" %>
+                        <%= link_to t("settings.remove_background"), home_remove_bg_path %>
                     </div>
                     
                     <div class="botoes">

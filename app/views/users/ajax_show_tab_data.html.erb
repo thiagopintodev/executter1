@@ -1,6 +1,6 @@
-<%= content_for :output do %>
+<% if @posts.length > 0 %>
+<div class="pack show-more-button" style="display:none">
 <% @posts.each do |post| %>
-
 <div class="pack" style="display:none">
 <ul class="lista-executs post" data-id="<%= post.id %>">
   <li class="execute">
@@ -44,17 +44,12 @@
 
 </ul>
 </div>
-
 <% end %>
+</div>
 <% end %>
-
-ajax_content = $(".view:visible .ajax-content").addClass("ajax-content-white");
-<% if @posts.size > 0 %>
-  <% r = raw escape_javascript(yield :output) %>
-  ajax_content.append("<%= r %>");
-  $(".ajax-content .pack:hidden").fadeIn("fast");
-<% else %>
-  //alert("acabou!");
+<% if !params[:after] && @posts.length == Post::MY_LIMIT %>
+  <div class="p-botao">
+    <a id="btn-more" href="#" class="viewstack-ajax-trigger" style="display:none">More</a>
+  </div>
 <% end %>
 
-  $("#btn-more").fadeIn(1800);

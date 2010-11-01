@@ -12,7 +12,7 @@ Ex1::Application.routes.draw do
 
   get "l/:locale" => "site#set_locale", :as => :locale
   
-  get "home/index"
+  #get "home/index"
 
 
   devise_scope :user do
@@ -22,27 +22,28 @@ Ex1::Application.routes.draw do
     #get "/conf/2" => "devise/registrations#edit"
   end
   
-  match "home/ajax_tab1" => "home#ajax_index_tab1", :as => :ajax_home_index_tab1
-  match "home/ajax_tab2" => "home#ajax_index_tab2", :as => :ajax_home_index_tab2
-  match "home/ajax_tab3" => "home#ajax_index_tab3", :as => :ajax_home_index_tab3
-
   resources :users, :only =>[:show, :index, :update]
   resources :posts, :only =>[:index, :show, :destroy] #:create, 
-  
-  
-  get "conf/ajax_username_available/:username" => "home#ajax_username_available"
-  
-  get "conf/1" => "home#settings_profile"
-  get "conf/2" => "home#settings_account"
-  get "conf/3" => "home#settings_design"
-  get "conf/4" => "home#settings_picture"
-  get "conf/5" => "home#settings_subjects"
-  get "conf/remove_bg" => "home#settings_remove_bg"
-  match "conf/new_photo" => "home#new_photo", :method => :post
-  match "conf/new_photo" => "home#settings_picture", :method => :get
-  match "conf/update" => "home#update", :method => :post, :as => :home_update
 
-  #root :to => "devise/passwords#edit"
+  
+  #match "h/ajax_tab1" => "home#ajax_index_tab1", :as => :ajax_home_index_tab1
+  #match "h/ajax_tab2" => "home#ajax_index_tab2", :as => :ajax_home_index_tab2
+  #match "h/ajax_tab3" => "home#ajax_index_tab3", :as => :ajax_home_index_tab3
+  match "h/ajax_tab/:tab_id" => "home#ajax_index_tab", :as => :ajax_home_index_tab
+  match "h/ajax_tab_data/:tab_id" => "home#ajax_index_tab_data", :as => :ajax_home_index_tab_data
+  
+  get "h/ajax_username_available/:username" => "home#ajax_username_available"
+  
+  get "h/1" => "home#settings_profile"
+  get "h/2" => "home#settings_username"
+  get "h/3" => "home#settings_password"
+  get "h/4" => "home#settings_design"
+  get "h/5" => "home#settings_picture"
+  get "h/6" => "home#settings_subjects"
+  get "h/remove_bg" => "home#settings_remove_bg", :as => :home_remove_bg
+  match "h/new_photo" => "home#new_photo", :method => :post, :as => :home_new_photo
+  match "h/new_photo" => "home#settings_picture", :method => :get, :as => :home_new_photo
+  match "h/update" => "home#update", :method => :post, :as => :home_update
 
   get "s/:text" => "site#search", :as => :search
   
@@ -57,9 +58,13 @@ Ex1::Application.routes.draw do
   
   match ":mention_username/mention" => "home#index", :as => "mention"
 
-  match ":id/ajax_tab1(/:last_post_id)" => "users#ajax_show_tab1", :as => :ajax_user_show_tab1
-  match ":id/ajax_tab2(/:last_post_id)" => "users#ajax_show_tab2", :as => :ajax_user_show_tab2
-  match ":id/ajax_tab3(/:last_post_id)" => "users#ajax_show_tab3", :as => :ajax_user_show_tab3
+
+  match ":id/ajax_tab/:tab_id" => "users#ajax_show_tab", :as => :ajax_user_show_tab
+  match ":id/ajax_tab_data/:tab_id" => "users#ajax_show_tab_data", :as => :ajax_user_show_tab_data
+
+#  match ":id/ajax_tab1(/:last_post_id)" => "users#ajax_show_tab1", :as => :ajax_user_show_tab1
+#  match ":id/ajax_tab2(/:last_post_id)" => "users#ajax_show_tab2", :as => :ajax_user_show_tab2
+#  match ":id/ajax_tab3(/:last_post_id)" => "users#ajax_show_tab3", :as => :ajax_user_show_tab3
   
   match ":id/ajax_relation" => "users#ajax_show_relation", :as => :ajax_user_show_relation
   

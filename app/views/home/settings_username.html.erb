@@ -10,17 +10,7 @@
 <%= my_orange_errors(@errors) %>
 
 
-<% if false  %>
-<ul class="alert-settings">
-  <% @errors.full_messages.each do |msg| %>
-    <li><img src="/images/layout/havatar16x16.jpg" width="16" height="16" /><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
-
-
    	  		<div id="campos">
-
 
 				      <div class="normal">
     					  <%= f.label :username %>
@@ -32,16 +22,6 @@
      	    		<div class="normal">
     					  <%= f.label :email %>
                 <%= f.text_field :email %>
-              </div>
-                
-     	    		<div class="normal">
-					      <%= f.label :password %>
-                <%= f.password_field :password %>
-                <i>(leave blank if you don't want to change it)</i><br />
-              </div>
-        		  <div class="normal">
-					      <%= f.label :password_confirmation %>
-                <%= f.password_field :password_confirmation %>
               </div>
               
               <div id="box-senha">

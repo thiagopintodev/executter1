@@ -1,5 +1,9 @@
 # %{username}
 pt-BR:
+  '-': '-'
+  locales:
+    en: "Inglês"
+    pt-BR: "Português"
   application:
     header:
       home: "Inicio"
@@ -18,18 +22,27 @@ pt-BR:
       followers: "Seguidores"
       friends: "Amigos"
   home:
+    tabs:
+      1: 'A'
+      2: 'B'
+      3: 'C'
     title: "O que acontece agora?"
     attach_link: "Anexar um arquivo"
     attach_text: "Anexar"
     body: "Selecione no seu computador um arquivo de até <strong>10,96MB</strong>"
+    too_quick: "Você não pode postar tão rapido"
   profile:
+    tabs:
+      1: 'A'
+      2: 'B'
+      3: 'C'
     button_block1: "block %{username}"
     button_block2: "unblock %{username}"
     button_watch1: "watch %{subject}"
     button_watch2: "ignore %{subject}"
   settings:
     agree_file:
-      title: "Essa imagem não viola o <a href='/z/terms'>Termo de Serviço</a>"
+      title: "Essa imagem não viola o <a href='#z/terms'>Termo de Serviço</a>"
       content: "Selecione uma imagem de até (%{size} max)"
     remove_background: "Remover Plano de Fundo"
     flavours:

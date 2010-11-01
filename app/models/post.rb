@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :subject
-  has_many :post_attachments
+  has_many :post_attachments, :dependent => :destroy
   
   attr_accessible :type, :user_id, :subject_id, :body, :ip_address, :is_public, :is_deleted,
     :post_attachments, :post_attachments_attributes

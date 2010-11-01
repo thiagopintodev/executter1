@@ -49,8 +49,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy
+    #Post.delete_all(:user_id => current_user.id, :id=>params[:id])
     @post = Post.where(:user_id => current_user.id, :id=>params[:id]).first
-    @post.update_attribute(:is_deleted, true) if @post
+    @post.destroy if @post
+    #@post.update_attribute(:is_deleted, true) if @post
 
     respond_to do |format|
       format.html { redirect_to(posts_url) }

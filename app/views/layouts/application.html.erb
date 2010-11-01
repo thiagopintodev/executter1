@@ -39,7 +39,7 @@
 <% if current_user %>
   <%= link_to t("application.header.sign_out"), out_path %>
   <%#= link_to t("application.header.orientation"), "#" %>
-  <%= link_to t("application.header.settings"), "/conf/1" %>
+  <%= link_to t("application.header.settings"), "/h/1" %>
   <%#= link_to t("application.header.find_people"), "#" %>
   <%= link_to t("application.header.profile"), "/#{current_user.username}" %>
   <%= link_to t("application.header.home"), "/" %>
@@ -62,8 +62,9 @@
       <div id="footer" class="push">
       	<span>Executter Beta &copy; 2010</span>
       	  <p class="locale_setters">
-          <%= link_to "English", locale_path("en") %>
-          <%= link_to "Português", locale_path("pt-BR") %>
+      	  <% User.LOCALES.each do |k,v| %>
+            <%= link_to t(k), locale_path(v) %>
+      	  <% end %>
           </p>
           <ul id="menu-footer">
           	<li><%= link_to t("application.footer.about_us"), "http://executter-pt.blogspot.com/", :target=>"_blank" %></li>
@@ -73,6 +74,7 @@
       </div>
 
 
+<% if false %>
 
 <% if Rails.env.development? %>
 <h3>test</h3>
@@ -86,6 +88,7 @@
 <%= debug params %>
 <% end %>
 
+<% end %>
 
 
 <% if Rails.env.production? %>

@@ -41,10 +41,13 @@ class UsersController < ApplicationController
     #ajax_user_show_relation_path(options)
     
     #this is to help compose the view and it's only temporary code
-    button_unfollow = {:text=>"- Follow", :params=>{:p1=>'follow', :p2=>false}}
+    #button_unfollow = {:text=>"- Follow", :params=>{:p1=>'follow', :p2=>false}}
     button_friends = {:text=>"+ Friend",  :params=>{:p1=>'follow', :p2=>true}}
     button_follow = {:text=>"+ Follow",   :params=>{:p1=>'follow', :p2=>true}}
-    
+
+    @main_button = @r.is_followed ? button_friends : button_follow unless @r.is_follower || @r.is_blocked
+
+=begin
     unless @r.is_blocked
       
       @main_button = unless @r.is_follower
@@ -54,42 +57,29 @@ class UsersController < ApplicationController
       end
       
     end
-    
-  end
-=begin
-    #options = {:remote_ip=>request.remote_ip, :no_log=>true}
-    #Relationship.set_block(@r, p_v) if params[:property] == "block"
-    #@r = Relationship.change(current_user, @user, 'follow', p_v, options) if params[:property] == "follow"
-    
-    #r1, r2 = @r[:r1], @r[:r2]
 =end
-
+  end
   
-  def ajax_show_tab1
-    ajax_show_tab_handler()
+  def ajax_show_tab
+    render :layout=> false
   end
-  def ajax_show_tab2
-    ajax_show_tab_handler(:with_image=>true)
-  end
-  def ajax_show_tab3
-    ajax_show_tab_handler(:with_file=>true)
-  end
-
-  protected
   
-  def ajax_show_tab_handler(options = {})
-    respond_to do |format|
-      format.html { render :layout=> false }
-      #format.js  { @posts = Post.recent_by_user(params[:id], params[:last_post_id]) }
-      format.js {
-        #@posts = Post.recent_by_user(params[:id], params[:last_post_id])
-        @user = User.find(params[:id])
-        options[:limit] = params[:limit]
-        options[:after] = params[:after]
-        options[:before] = params[:before]
-        @posts = @user.my_posts(options)
-        render :ajax_show_tab
-      }
+  def ajax_show_tab_data
+    options = {}
+    options[:limit] = params[:limit]
+    options[:after] = params[:after]
+    options[:before] = params[:before]
+
+    if params[:tab_id] == '2'
+      options[:with_image] = true
+    elsif params[:tab_id] == '3'
+      options[:with_file] = true
     end
+    
+    @user = User.find(params[:id])
+    @posts = @user.my_posts(options)
+    
+    render :layout=> false
   end
+  
 end

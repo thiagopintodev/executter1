@@ -1,5 +1,9 @@
 # %{username}
 en:
+  '-': '-'
+  locales:
+    en: "English"
+    pt-BR: "Portuguese"
   application:
     header:
       home: "Home"
@@ -18,18 +22,27 @@ en:
       followers: "Followings"
       friends: "Friends"
   home:
+    tabs:
+      1: 'A'
+      2: 'B'
+      3: 'C'
     title: "What happens now?"
     attach_link: "Attach a file"
     attach_text: "Attach"
     body: "Pick a file from your computer, not larger than <strong>10,96MB</strong>"
+    too_quick: "You can't post that quickly"
   profile:
+    tabs:
+      1: 'A'
+      2: 'B'
+      3: 'C'
     button_block1: "block %{username}"
     button_block2: "unblock %{username}"
     button_watch1: "watch %{subject}"
     button_watch2: "ignore %{subject}"
   settings:
     agree_file:
-      title: "By uploading a file you certify that you have the right to distribute this picture and that it does not violate the <a href='/z/terms'>Terms of Service</a>"
+      title: "By uploading a file you certify that you have the right to distribute this picture and that it does not violate the <a href='#z/terms'>Terms of Service</a>"
       content: "Select an image file on your computer (%{size} max)"
     remove_background: "Remove Background Image"
     flavours:

@@ -1,6 +1,9 @@
 <% my_title "Home" %>
 <% my_css_files "home" %>
 
+
+<%= hidden_field_tag :mention, params[:mention_username] if params[:mention_username] %>
+
 <div id="sidebar">
 
   <div id="username">
@@ -71,12 +74,12 @@
       <a href="#"><span class="desc"> Crie sua campanha</span></a>
       <a href="#"><span class="desc"> Lorem ipsum</span></a>
   </div>
-  -->
   <div class="banner">
       <a href="#">Faça sua doação ao Projeto Executter</a>
       <a href="#"><img src="/images/layout/paypal.jpg" width="101" height="86" /></a>
       <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
   </div>
+  -->
 
 
 </div>
@@ -125,34 +128,25 @@
       </div>
     </div>
     <%= f.submit "Executte", :class=>"btn" %>
-
-
-
-<% if false %>
-    <div class="bt-execute">
-        <a href="#" class="form-submit">EXECUTE</a>
-        
-    </div>
-    <div style="float:left">
-    <input type="file" name="post[post_attachments_attributes][0][file]" id="post_post_attachments_attributes_0_file">
-      <% if false %>
-      <%#= f.fields_for :post_attachments do |f2| %>
-        Anexo: <%= f2.file_field :file %>
-      <% end %>
-    </div>
-<% end %>
-
-
-    
   <% end %>
 
-
+  <%= content_tag :div, flash[:too_soon], :class=>"posting-error" if flash[:too_soon] %>
+  
 <div id="viewstack" data-selected="#view1">
-  <div id="view1" class="view" data-url="<%= ajax_home_index_tab1_path %>" data-mention="<%= params[:mention_username] %>">
+  <div id="view1" class="view"
+    data-url="<%= ajax_home_index_tab_path(1, :format=>:html) %>"
+    data-url2="<%= ajax_home_index_tab_data_path(1, :format=>:html) %>"
+    >
   </div>
-  <div id="view2" class="view" data-url="<%= ajax_home_index_tab2_path %>">
+  <div id="view2" class="view"
+    data-url="<%= ajax_home_index_tab_path(2, :format=>:html) %>"
+    data-url2="<%= ajax_home_index_tab_data_path(2, :format=>:html) %>"
+    >
   </div>
-  <div id="view3" class="view" data-url="<%= ajax_home_index_tab3_path %>">
+  <div id="view3" class="view"
+    data-url="<%= ajax_home_index_tab_path(3, :format=>:html) %>"
+    data-url2="<%= ajax_home_index_tab_data_path(3, :format=>:html) %>"
+    >
   </div>
 </div>
   

@@ -4,12 +4,11 @@ class HomeController < ApplicationController
   def index
     @user = current_user
     @post = Post.new
-    #@post.post_attachments.build #replaced for pure html for performance 
-    #quantidades
-    #@my_followers   = @user.they_relate_to_me.scope_follow
-    #@my_followings  = @user.i_relate_to_them.scope_follow
-    #@my_friends     = @user.they_relate_to_me.scope_friend
   end
+
+
+
+
 
   def create_post
     if not_many_posts
@@ -17,22 +16,35 @@ class HomeController < ApplicationController
       @post = Post.new
     else
       @post = Post.new(params[:post])
-      flash[:notice] = "you can't post that quickly"
-      @post.body = "you can't post that quickly"
+      flash[:too_soon] = t "home.too_quick"
     end
     @user = current_user
     render :index
   end
 
-  def not_many_posts
-    #return false if Post.count_latest_by_user(current_user.id, 30.seconds) > 2
-    return false if Post.count_latest_by_user(current_user.id, 3.minutes) > 6
-    return false if Post.count_latest_by_remote_ip(request.remote_ip, 5.minutes) > 60
-    return false if Post.count_latest_by_user(current_user.id, 1.hour) > 60
-    true
+
+
+
+  def ajax_index_tab
+    render :layout=> false #view decides small changes because they don't depend on database
   end
   
-  
+  def ajax_index_tab_data
+    options = {}
+    options[:limit] = params[:limit]
+    options[:after] = params[:after]
+    options[:before] = params[:before]
+    if params[:tab_id] == '1'
+      @posts = current_user.my_followings_posts(options)
+    elsif params[:tab_id] == '2'
+      @posts = current_user.my_friends_posts(options)
+    elsif params[:tab_id] == '3'
+      options[:mentioned] = true
+      @posts = current_user.my_followings_posts(options)
+    end
+    render :layout=> false
+  end
+=begin
   def ajax_index_tab1
     respond_to do |format|
       format.html { render :layout=> false }
@@ -74,6 +86,17 @@ class HomeController < ApplicationController
         render :ajax_index_tab
       }
     end
+  end
+=end
+
+
+
+
+
+  def ajax_username_available
+    u = params[:username].downcase
+    is_available = (u.length > 4 && !User.exists?(:username=>u)) || current_user.username==u
+    render :inline=>is_available.to_s
   end
 
   def settings_remove_bg
@@ -125,11 +148,20 @@ class HomeController < ApplicationController
     render :settings_picture
   end
 
-  def ajax_username_available
-    #return render :nothing => true unless params[:username] == "js"
-    u = params[:username].downcase
-    is_available = (u.length > 4 && !User.exists?(:username=>u)) || current_user.username==u
-    render :inline=>is_available.to_s
-  end
+
+
+
+
   
+  
+  protected
+  
+  def not_many_posts
+    #return false
+    #return false if Post.count_latest_by_user(current_user.id, 30.seconds) > 2
+    return false if Post.count_latest_by_user(current_user.id, 3.minutes) > 6
+    return false if Post.count_latest_by_remote_ip(request.remote_ip, 5.minutes) > 60
+    return false if Post.count_latest_by_user(current_user.id, 1.hour) > 60
+    true
+  end
 end

@@ -1,10 +1,10 @@
 <% my_title "Settings" %>
 <% my_css_files "settings" %>
 
-<%= my_settings_tabs(3) %>
+<%= my_settings_tabs(4) %>
 
 
-<%= form_for(current_user, :url=> "/conf/new_photo", :html=>{:multipart=>true, :class=>"campos-settings"}) do |f| %>
+<%= form_for(current_user, :url=>home_new_photo_path, :html=>{:multipart=>true, :class=>"campos-settings"}) do |f| %>
 <%= my_orange_errors(@errors) %>
 
 

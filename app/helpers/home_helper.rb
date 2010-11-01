@@ -1,11 +1,12 @@
 module HomeHelper
 
   def my_settings_tabs(index)
-    options = {"Profile"=>"/conf/1",
-      "Account"=>"/conf/2",
-      "Design"=>"/conf/3",
-      "Picture"=>"/conf/4"#,
-      #"Subjects"=>"/conf/5"
+    options = {"Profile"=>"/h/1",
+      "Email & Username"=>"/h/2",
+      "Password"=>"/h/3",
+      "Design"=>"/h/4",
+      "Picture"=>"/h/5"#,
+      #"Subjects"=>"/h/6"
       }
       
       

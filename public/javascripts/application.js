@@ -4,8 +4,11 @@ String.prototype.endsWith = function(pattern) {
 };
 
 
+POSTS_TIMEOUT = 15000;
 
-$my_flagged_tabs = []
+$timeout_id = 0;
+
+$my_flagged_tabs = [];
 
 $(function() {
 
@@ -33,12 +36,12 @@ $(function() {
   ///
   $(".username-available").live("blur", function(e) {
     v = $(this).val();
-    url = "/conf/ajax_username_available/:u".replace(":u", v);
+    url = "/h/ajax_username_available/:u".replace(":u", v);
     
     $("#username_preview").html(v);
-    $("#username_resultado").html("verificando disponibilidade...");
+    $("#username_resultado").html("checking...");
     $.getScript(url, function(data){
-      $("#username_resultado").html( (data=="true") ? "disponível" : "indisponível" )
+      $("#username_resultado").html( (data=="true") ? "OK" : "NO" )
     });
   });
 
@@ -61,7 +64,7 @@ $(function() {
   {
 
     events.posts.register.toggle_buttons();
-    events.posts.register.before_button();
+    events.posts.register.sooner_and_later();
 
     if (data.is_me)
       if (!data.user_has_picture)
@@ -102,7 +105,7 @@ $(function() {
   if (functions.page.isHome())
   {
     events.posts.register.toggle_buttons();
-    events.posts.register.before_button();
+    events.posts.register.sooner_and_later();
 
     $("textarea#post_body").live("keyup", function(e) {
       //
@@ -132,7 +135,7 @@ $(function() {
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab, false);
     
-    functions.mention.write( $(selected_tab).attr("data-mention") );
+    functions.mention.write( $("#mention").val() );
 
     //$("form.executa .anexos a").live("click", function(e) {
     //  //
@@ -174,18 +177,14 @@ $(function() {
   events = {
     posts : {
       register : {
-        before_button: function() {
+        sooner_and_later: function() {
 
-$(".btn-script-invoker").live("click", function(e) {
-  script_url = $(this).attr("data-script-url");
-
-  post_last = $(this).parents(".view").contents().find(".post:last");
+functions.posts.after();
   
-  if (post_last.size())
-    script_url += "?before=:before".replace(":before", post_last.attr("data-id"));
-  
-  $.getScript(script_url);
-  $("#btn-more").fadeOut();
+$(".viewstack-ajax-trigger").live("click", function(e) {
+  view = $(this).parents(".view");
+  view.contents().find("div.p-botao").remove();
+  functions.posts.before(view);
   return false;
 });
 
@@ -218,10 +217,70 @@ $(".post").live("mouseover mouseout", function(){
       }
     },
     posts: {
-      before: function() {
+      before: function(view) {
+
+bottom_post = view.contents().find(".post:last");
+
+url = view.attr("data-url2");
+if (bottom_post.size())
+  url += "?before=:before".replace(":before", bottom_post.attr("data-id"));
+
+view.contents().find("#btn-more").hide();
+
+$.get(url, function(data) {
+  functions.posts.handle(data, view, 'before');
+});
         
       },
       after: function() {
+      
+clearTimeout($timeout_id);
+
+view = $("#viewstack .view:visible");
+top_post = view.contents().find(".post:first");
+
+url = view.attr("data-url2");
+if (top_post.size())
+  url += "?after=:after".replace(":after", top_post.attr("data-id"));
+
+$.get(url, function(data) {
+  functions.posts.handle(data, view, 'after');
+  $timeout_id = setTimeout(functions.posts.after, POSTS_TIMEOUT);
+});
+
+
+      },
+      handle: function(data, view, placement) {
+        //alert('data at dados');
+        dados = data;
+//not sure what it does
+ajax_content = view.contents().find(".ajax-content").addClass("ajax-content-white");
+
+//what to do in each case?
+if (placement=='after') {
+  ajax_content.prepend(data);
+    view.contents().find("#btn-more").fadeIn('slow');
+} else {
+  ajax_content.append(data);
+  
+  //if this content has posts
+  if (view.contents().find(".show-more-button").size())
+  {
+    view.contents().find(".show-more-button").removeClass("show-more-button");
+    view.contents().find("#btn-more").fadeIn('slow');
+  }
+  else
+  {
+    view.contents().find("#btn-more").hide;
+  }
+  
+}
+ajax_content = view.contents().find(".pack").fadeIn('fast');
+
+
+
+
+
         
       }
     },
@@ -229,22 +288,23 @@ $(".post").live("mouseover mouseout", function(){
       load_tab: function(tab, force_posts, fn_callback) {
         //
         $("#viewstack .view").hide();
-        tab_url = $(selected_tab).show().attr("data-url")+".html";
+        tab_url = $(selected_tab).show().attr("data-url");
 
-        if (force_posts)
-          $my_flagged_tabs[selected_tab] = false;
+        //if (force_posts)
+        //  $my_flagged_tabs[selected_tab] = false;
           
-        if (!$my_flagged_tabs[selected_tab])
-        {
+        //if (!$my_flagged_tabs[selected_tab])
+        //{
           $("#viewstack").addClass("loading");
           $(selected_tab).load(tab_url, function() {
             if (fn_callback)
               fn_callback();
-            $my_flagged_tabs[selected_tab] = true;
-            $(selected_tab).contents().find("a.btn-script-invoker").click();
+            //$my_flagged_tabs[selected_tab] = true;
+            functions.posts.after();
+            //$(selected_tab).contents().find("a.btn-script-invoker").click();
             $("#viewstack").removeClass("loading");
           });
-        }
+        //}
         //
       }
 

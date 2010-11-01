@@ -1,4 +1,4 @@
-div#content { min-height:300px; }
+div#content { min-height:500px; }
 
 .pg-home-index div#content,
 .pg-users-show div#content { min-height:1000px; }
@@ -15,6 +15,7 @@ div#footer ul#menu-footer {padding-left: 300px !important}
 .post span.full_name { color:#999999;font-size:12px; }
 .post span.subject {  }
 
+.posting-error { text-align: center; color: red; background: #ccc; padding: 10px; clear:both;font-size:18px; }
 
 .post .execute { min-height:25px; }
 .post li.hora { width:100% !important ; }
