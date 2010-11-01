@@ -124,7 +124,7 @@ class User < ActiveRecord::Base
 
   GENDERS = {'-'=>'0','model.user.gender.female'=>'1','model.user.gender.male'=>'2'}
   BIRTH_POLICIES = {'model.user.birth_policy.dm'=>0,'model.user.birth_policy.dmy'=>1,'model.user.birth_policy.nothing'=>2}
-  LOCALES = {'locales.en' => "en",'locales.pt-BR' => "pt-BR"}
+  LOCALES = {'languages.en' => "en",'languages.pt-BR' => "pt-BR"}
 
   def self.GENDERS
     MyFunctions.translate_hash_keys(User::GENDERS)

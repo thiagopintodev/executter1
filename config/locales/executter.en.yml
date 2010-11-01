@@ -1,7 +1,7 @@
 # %{username}
 en:
   '-': '-'
-  locales:
+  languages:
     en: "English"
     pt-BR: "Portuguese"
   application:
@@ -21,21 +21,26 @@ en:
       followings: "Followings"
       followers: "Followings"
       friends: "Friends"
+  view:
+    home:
+      index:
+        tabs:
+          0: 'Home'
+          1: 'Friends'
+          2: '@Mention'
+    user:
+      show:
+        tabs:
+          0: 'All'
+          1: 'Pictures'
+          2: 'Files'
   home:
-    tabs:
-      1: 'A'
-      2: 'B'
-      3: 'C'
     title: "What happens now?"
     attach_link: "Attach a file"
     attach_text: "Attach"
     body: "Pick a file from your computer, not larger than <strong>10,96MB</strong>"
     too_quick: "You can't post that quickly"
   profile:
-    tabs:
-      1: 'A'
-      2: 'B'
-      3: 'C'
     button_block1: "block %{username}"
     button_block2: "unblock %{username}"
     button_watch1: "watch %{subject}"

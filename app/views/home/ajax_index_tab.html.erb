@@ -1,22 +1,22 @@
 
-<% my_titles = [t('home.tabs.1'),t('home.tabs.2'),t('home.tabs.3')] %>
+<% tabs_titles = t 'view.home.index.tabs' %>
 
 <ul id="menu-abas">
 <% if params[:tab_id]== '1' %>
-  <% sub_header = my_titles[0] %>
-  <li class="atual"><%= my_titles[0] %></li>
-  <li><a href="#" class="tab-switcher" data-tab="#view2"><%= my_titles[1] %></a></li>
-  <li><a href="#" class="tab-switcher" data-tab="#view3"><%= my_titles[2] %></a></li>
+  <% sub_header = tabs_titles[0] %>
+  <li class="atual"><%= tabs_titles[0] %></li>
+  <li><a href="#" class="tab-switcher" data-tab="#view2"><%= tabs_titles[1] %></a></li>
+  <li><a href="#" class="tab-switcher" data-tab="#view3"><%= tabs_titles[2] %></a></li>
 <% elsif params[:tab_id]== '2' %>
-  <% sub_header = my_titles[1] %>
-  <li><a href="#" class="tab-switcher" data-tab="#view1"><%= my_titles[0] %></a></li>
-  <li class="atual"><%= my_titles[1] %></li>
-  <li><a href="#" class="tab-switcher" data-tab="#view3"><%= my_titles[2] %></a></li>
+  <% sub_header = tabs_titles[1] %>
+  <li><a href="#" class="tab-switcher" data-tab="#view1"><%= tabs_titles[0] %></a></li>
+  <li class="atual"><%= tabs_titles[1] %></li>
+  <li><a href="#" class="tab-switcher" data-tab="#view3"><%= tabs_titles[2] %></a></li>
 <% elsif params[:tab_id]== '3' %>
-  <% sub_header = my_titles[2] %>
-  <li><a href="#" class="tab-switcher" data-tab="#view1"><%= my_titles[0] %></a></li>
-  <li><a href="#" class="tab-switcher" data-tab="#view3"><%= my_titles[1] %></a></li>
-  <li class="atual"><%= my_titles[2] %></li>
+  <% sub_header = tabs_titles[2] %>
+  <li><a href="#" class="tab-switcher" data-tab="#view1"><%= tabs_titles[0] %></a></li>
+  <li><a href="#" class="tab-switcher" data-tab="#view3"><%= tabs_titles[1] %></a></li>
+  <li class="atual"><%= tabs_titles[2] %></li>
 <% end %>
 </ul>
 

@@ -1,7 +1,7 @@
 # %{username}
 pt-BR:
   '-': '-'
-  locales:
+  languages:
     en: "Inglês"
     pt-BR: "Português"
   application:
@@ -21,21 +21,26 @@ pt-BR:
       followings: "Seguindo"
       followers: "Seguidores"
       friends: "Amigos"
+  view:
+    home:
+      index:
+        tabs:
+          0: 'Home'
+          1: 'Amigos'
+          2: '@Mensão'
+    user:
+      show:
+        tabs:
+          0: 'Tudo'
+          1: 'Fotos'
+          2: 'Arquivos'
   home:
-    tabs:
-      1: 'A'
-      2: 'B'
-      3: 'C'
     title: "O que acontece agora?"
     attach_link: "Anexar um arquivo"
     attach_text: "Anexar"
     body: "Selecione no seu computador um arquivo de até <strong>10,96MB</strong>"
     too_quick: "Você não pode postar tão rapido"
   profile:
-    tabs:
-      1: 'A'
-      2: 'B'
-      3: 'C'
     button_block1: "block %{username}"
     button_block2: "unblock %{username}"
     button_watch1: "watch %{subject}"
