@@ -6,9 +6,9 @@ class Foo < ActionMailer::Base
   #
   #   en.foo.bar.subject
   #
-  def bar(to="to@example.org")
-    @greeting = "Hi"
-
+  def bar(to,a,b)
+    @a = a
+    @b = b
     mail :to => to
   end
 end
