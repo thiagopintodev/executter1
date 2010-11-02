@@ -7,6 +7,7 @@ String.prototype.endsWith = function(pattern) {
 POSTS_TIMEOUT = 15000;
 
 $timeout_id = 0;
+$main_data = {}
 
 $my_flagged_tabs = [];
 
@@ -50,13 +51,13 @@ $(function() {
   ///
   if (true)
   {
-    data = $("#main_data");
-    data.user_id           = data.attr("data-user-id");
-    data.is_me             = data.attr("data-user-is-me")=="true";
-    data.logged_in         = data.attr("data-visitor-logged-in")=="true";
-    data.user_has_picture  = data.attr("data-user-has-photo")=="true";
+    d = $("#main_data");
+    $main_data.user_id           = d.attr("data-user-id");
+    $main_data.is_me             = d.attr("data-user-is-me")=="true";
+    $main_data.logged_in         = d.attr("data-visitor-logged-in")=="true";
+    $main_data.user_has_picture  = d.attr("data-user-has-photo")=="true";
   }
-
+d
   ///
   /// PROFILE PAGE
   ///
@@ -66,8 +67,8 @@ $(function() {
     events.posts.register.toggle_buttons();
     events.posts.register.sooner_and_later();
 
-    if (data.is_me)
-      if (!data.user_has_picture)
+    if ($main_data.is_me)
+      if (!$main_data.user_has_picture)
         $("#container #img-user a").show();
       else {
       
@@ -82,11 +83,11 @@ $(function() {
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab);
     
-    //if (data.logged_in && !data.is_me)
+    //if ($main_data.logged_in && !$main_data.is_me)
     //{
       $("#user-following .in").addClass(".loading");
       $("#sidebar .user_counters").addClass(".loading");
-      url = "/:id/ajax_relation".replace(":id", data.user_id);
+      url = "/:id/ajax_relation".replace(":id", $main_data.user_id);
       $.getScript(url);
       
       $("#user-following a.clickable").live("click", function(e) {
@@ -106,18 +107,7 @@ $(function() {
   {
     events.posts.register.toggle_buttons();
     events.posts.register.sooner_and_later();
-
-    $("textarea#post_body").live("keyup", function(e) {
-      //
-      t = $(this);
-      m = t.attr("maxlength");
-      n = m - t.val().length;
-      //
-      if (n < 0)
-        t.val(t.val().substring(0,m));
-      else
-        t.closest('form').children(".caracteres").html(n);
-    });
+    events.home.register.chars_counter();
     
     $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
       $("#anexoLink, #anexoBox").slideToggle("fast");
@@ -125,7 +115,6 @@ $(function() {
     });
     $("form").live("submit", function() {
       $("form #post_submit").hide();
-//      #setTimeout(function() { $("form #post_submit").show() }, 5000);
     });
   
 //$("#viewstack").css("background-image","none");
@@ -143,6 +132,9 @@ $(function() {
     //});
     
   }
+
+
+
   
   $(".post a[data-method=delete]").live("click", function(e) {
     p = $(this).closest(".post").slideToggle("slow");
@@ -175,11 +167,29 @@ $(function() {
   /// HELPERS FOR ALL PAGES, ONLY ACTUALLY BEING USED
   ///
   events = {
+    home : {
+      register : {
+        
+        chars_counter: function() {
+//
+$("textarea#post_body").live("keyup", function(e) {
+  //
+  t = $(this);
+  m = t.attr("maxlength");
+  n = m - t.val().length;
+  //
+  if (n < 0)
+    t.val(t.val().substring(0,m));
+  else
+    t.closest('form').children(".caracteres").html(n);
+});
+//
+        }
+      }
+    },
     posts : {
       register : {
         sooner_and_later: function() {
-
-functions.posts.after();
   
 $(".viewstack-ajax-trigger").live("click", function(e) {
   view = $(this).parents(".view");
@@ -218,7 +228,7 @@ $(".post").live("mouseover mouseout", function(){
     },
     posts: {
       before: function(view) {
-
+      
 bottom_post = view.contents().find(".post:last");
 
 url = view.attr("data-url2");
@@ -245,10 +255,13 @@ if (top_post.size())
 
 $.get(url, function(data) {
   functions.posts.handle(data, view, 'after');
-  $timeout_id = setTimeout(functions.posts.after, POSTS_TIMEOUT);
+  functions.posts.setAfterTimeout();
 });
 
 
+      },
+      setAfterTimeout: function() {
+        $timeout_id = setTimeout(functions.posts.after, POSTS_TIMEOUT);
       },
       handle: function(data, view, placement) {
         //alert('data at dados');
