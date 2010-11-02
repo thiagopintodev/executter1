@@ -7,10 +7,12 @@ div#content { min-height:500px; }
 .view-in { background:white }
 .ajax-content-white { background-image: none !important; }
 
+div#footer {margin:20px 0; !important}
 div#footer ul#menu-footer {padding-left: 300px !important}
 
 
-.post { background:#fff; min-height:50px; }
+
+.post { background:#fff; min-height:50px; overflow:hidden; }
 
 .post span.full_name { color:#999999;font-size:12px; }
 .post span.subject {  }
