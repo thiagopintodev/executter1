@@ -63,7 +63,7 @@
       	<span>Executter Beta &copy; 2010</span>
       	  <p class="locale_setters">
       	  <% User.LOCALES.each do |k,v| %>
-            <%= link_to t(k), locale_path(v) %>
+            <%= link_to k, locale_path(v) %>
       	  <% end %>
           </p>
           <ul id="menu-footer">

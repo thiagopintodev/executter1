@@ -4,7 +4,7 @@ String.prototype.endsWith = function(pattern) {
 };
 
 
-POSTS_TIMEOUT = 15000;
+POSTS_TIMEOUT = 30000;
 
 $timeout_id = 0;
 $main_data = {}
