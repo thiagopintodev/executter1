@@ -44,12 +44,13 @@ Ex1::Application.routes.draw do
   match "h/new_photo" => "home#new_photo", :method => :post, :as => :home_new_photo
   match "h/new_photo" => "home#settings_picture", :method => :get, :as => :home_new_photo
   match "h/update" => "home#update", :method => :post, :as => :home_update
-
+  match "h/new_post" => "home#new_post"
+  
   get "s/:text" => "site#search", :as => :search
   
   get "site/search"
   get "site/index"
-  post "/", :controller => :home, :action => :create_post, :as => :my_create_post
+  #post "/", :controller => :home, :action => :create_post, :as => :my_create_post
   root :to => "home#index"
 
 

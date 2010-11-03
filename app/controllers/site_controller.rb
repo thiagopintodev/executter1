@@ -3,6 +3,10 @@ class SiteController < ApplicationController
     #return redirect_to home_index_path if current_user
   end
 
+  def cool
+    render :layout=>false
+  end
+
   def set_locale
     cookies[:locale] = params[:locale] if params[:locale]
     redirect_to request.referer

@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     :flavour, :description,
     :website, :locale, :local,
     :count_of_blockers, :count_of_blockings, :count_of_friends, :count_of_followers, :count_of_followings,
-    :subjects_attributes
+    :subjects_attributes, :posts_count, :subjects_count
   
 
 

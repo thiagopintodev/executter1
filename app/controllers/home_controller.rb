@@ -3,13 +3,25 @@ class HomeController < ApplicationController
 
   def index
     @user = current_user
-    @post = Post.new
+  end
+  def new_post
+    render :layout=>'iframe'
+    unless params[:post]
+      @post = Post.new
+    else
+      if not_many_posts
+        current_user.my_create_post(params[:post], request.remote_ip)
+        @post = Post.new
+      else
+        @post = Post.new(params[:post])
+        flash[:too_soon] = t "home.too_quick"
+      end
+    end
   end
 
 
 
-
-
+=begin
   def create_post
     if not_many_posts
       current_user.my_create_post(params[:post], request.remote_ip)
@@ -21,7 +33,7 @@ class HomeController < ApplicationController
     @user = current_user
     render :index
   end
-
+=end
 
 
 

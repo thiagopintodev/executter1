@@ -1,0 +1,55 @@
+<script type="text/javascript">
+$(function() {
+
+    $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
+        $("#anexoLink, #anexoBox").slideToggle("fast");
+        $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
+      });
+    $("form").live("submit", function() {
+      $("form #post_submit").hide();
+    });
+
+});
+</script>
+
+<%= form_for Post.new, :url=>h_new_post_path, :html=>{:class=>"executa", :multipart=>true} do |f| %>
+  <h3><%= t "home.title" %></h3>
+  <div class="caracteres">196</div>
+  <%= f.text_area :body, :rows=>3, :maxlength=>196 %>
+  <% if current_user.subjects.size > 0 %>
+    <%= f.select :subject_id, current_user.subjects.collect { |s| [s.name, s.id] }, :include_blank=>"-" %>
+  <% else %>
+    <%#= f.hidden_field :subject_id, :value => 0 %>
+  <% end %>
+
+  <div id="anexoLink" class="anexo">
+    <img src="/images/layout1/anexo/_attach.gif" width="16" height="16" alt="" border="0" />
+    <a class="open" href="#"><%= t "home.attach_link" %></a>
+  </div>
+  <div id="anexoBox" class="anexo" style="display:none">
+    <div class="in">
+      <span>
+        <img src="/images/layout1/anexo/_attach.gif" width="16" height="16" alt="" border="0" />
+        <%= t "home.attach_text" %>
+      </span>
+      <a class="close" href="#">
+        <img src="/images/layout1/anexo/_close1.gif" width="16" height="16" alt="" border="0" />
+      </a>
+      <hr />
+      <p><%= raw t("home.body") %></p>
+      <p>
+        <img src="/images/layout1/anexo/pdf.gif" width="16" height="16" alt="" border="0" />
+        <img src="/images/layout1/anexo/doc.gif" width="16" height="16" alt="" border="0" />
+        <img src="/images/layout1/anexo/ppt.gif" width="16" height="16" alt="" border="0" />
+        <img src="/images/layout1/anexo/pps.gif" width="16" height="16" alt="" border="0" />
+        <img src="/images/layout1/anexo/xls.gif" width="16" height="16" alt="" border="0" />
+        <img src="/images/layout1/anexo/video.gif" width="16" height="16" alt="" border="0" />
+        <img src="/images/layout1/anexo/image.gif" width="16" height="16" alt="" border="0" />
+        <img src="/images/layout1/anexo/audio.gif" width="16" height="16" alt="" border="0" />
+        <img src="/images/layout1/anexo/zip.gif" width="16" height="16" alt="" border="0" />
+      </p>
+      <p></p>
+    </div>
+  </div>
+  <%= f.submit "Executte", :class=>"btn" %>
+<% end %>

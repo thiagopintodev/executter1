@@ -108,15 +108,15 @@ d
     events.posts.register.toggle_buttons();
     events.posts.register.sooner_and_later();
     events.home.register.chars_counter();
-    
-    $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
-      $("#anexoLink, #anexoBox").slideToggle("fast");
-      $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
-    });
-    $("form").live("submit", function() {
+    /*
+    $("iframe").contents().find("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
+        $("#anexoLink, #anexoBox").slideToggle("fast");
+        $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
+      });
+    $("iframe").contents().find("form").live("submit", function() {
       $("form #post_submit").hide();
     });
-  
+  */
 //$("#viewstack").css("background-image","none");
 //return false;
 
