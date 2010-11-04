@@ -180,11 +180,7 @@ $("form.executa .anexo a.open, form.executa .anexo a.close",frame).live("click",
 $("form",frame).live("submit", function() {
   $("form #post_submit").hide();
 });
-//
-        },
-        chars_counter: function() {
-//
-$("textarea#post_body").live("keyup", function(e) {
+$("textarea#post_body",frame).live("keyup", function(e) {
   //
   t = $(this);
   m = t.attr("maxlength");
@@ -196,7 +192,7 @@ $("textarea#post_body").live("keyup", function(e) {
     t.closest('form').children(".caracteres").html(n);
 });
 //
-        }
+        },
       }
     },
     posts : {
