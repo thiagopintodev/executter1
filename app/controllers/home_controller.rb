@@ -46,6 +46,8 @@ class HomeController < ApplicationController
     options[:limit] = params[:limit]
     options[:after] = params[:after]
     options[:before] = params[:before]
+    options[:includes] = !params[:count]
+    
     if params[:tab_id] == '1'
       @posts = current_user.my_followings_posts(options)
     elsif params[:tab_id] == '2'
@@ -54,55 +56,12 @@ class HomeController < ApplicationController
       options[:mentioned] = true
       @posts = current_user.my_followings_posts(options)
     end
-    render :layout=> false
-  end
-=begin
-  def ajax_index_tab1
-    respond_to do |format|
-      format.html { render :layout=> false }
-      format.js  {
-        options = {}
-        options[:limit] = params[:limit]
-        options[:after] = params[:after]
-        options[:before] = params[:before]
-        @posts = current_user.my_followings_posts(options)
-        render :ajax_index_tab
-      }
+    if params[:count]
+      render :text=>@posts.count
+    else
+      render :layout=> false
     end
   end
-  
-  def ajax_index_tab2
-    respond_to do |format|
-      format.html { render :layout=> false }
-      format.js  {
-        options = {}
-        options[:limit] = params[:limit]
-        options[:after] = params[:after]
-        options[:before] = params[:before]
-        @posts = current_user.my_friends_posts(options)
-        render :ajax_index_tab
-      }
-    end
-  end
-  
-  def ajax_index_tab3
-    respond_to do |format|
-      format.html { render :layout=> false }
-      format.js  {
-        options = {}
-        options[:limit] = params[:limit]
-        options[:after] = params[:after]
-        options[:before] = params[:before]
-        options[:mentioned] = true
-        @posts = current_user.my_followings_posts(options)
-        render :ajax_index_tab
-      }
-    end
-  end
-=end
-
-
-
 
 
   def ajax_username_available

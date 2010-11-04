@@ -2,7 +2,7 @@
 <div class="pack show-more-button" style="display:none">
 <% @posts.each do |post| %>
 
-  <ul class="lista-execute post" data-id="<%= post.id %>">
+  <ul class="lista-execute post" data-id="<%= post.id %>" <%= "style='border-top:1px solid #E2E2E2'" if @posts.first==post%>>
 	  <li class="havatar">
 	    <a href="/<%= post.user.username %>">
 	      <img src="<%= post.user.read_photo.img.url(:sm) %>" alt="<%= post.user.username %>" border="0" />

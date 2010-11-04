@@ -69,6 +69,7 @@ class UsersController < ApplicationController
     options[:limit] = params[:limit]
     options[:after] = params[:after]
     options[:before] = params[:before]
+    options[:includes] = !params[:count]
 
     if params[:tab_id] == '2'
       options[:with_image] = true
@@ -79,7 +80,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.my_posts(options)
     
-    render :layout=> false
+    if params[:count]
+      render :text=>@posts.count
+    else
+      render :layout=> false
+    end
   end
   
 end

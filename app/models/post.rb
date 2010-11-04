@@ -34,10 +34,10 @@ class Post < ActiveRecord::Base
   def self.get(u, source, options)
     user = MyFunctions.users([u]).first
     #must-have filters
-    posts = Post.order("id DESC")
-      .limit(options[:limit] || Post::MY_LIMIT)
-      .includes([{:user => :photo}, :post_attachments, :subject])
+    posts = Post.order("id DESC").limit(options[:limit] || Post::MY_LIMIT)
     #
+    posts = posts.includes([{:user => :photo}, :post_attachments, :subject]) if options[:includes]
+    
     posts = posts.where("id > ?", options[:after]) if options[:after]
     posts = posts.where("id < ?", options[:before]) if options[:before]
     posts = posts.with_image if options[:with_image]
