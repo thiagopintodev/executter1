@@ -138,9 +138,12 @@ class HomeController < ApplicationController
 
   #weird having 2 update methods, weireder having devise's default user update method =/
   def update
-  #user.update_with_password
-    unless current_user.update_attributes params[:user]
-    #unless current_user.update_with_password params[:user]
+    condition = params[:user][:username] || params[:user][:email] || params[:user][:password]
+    
+    updated = current_user.update_attributes params[:user] if !condition
+    updated = current_user.update_with_password params[:user] if condition
+    
+    unless updated
       @errors = current_user.errors
       cookies[:flavour] = current_user.flavour
     end
