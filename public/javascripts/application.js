@@ -6,7 +6,7 @@ String.prototype.endsWith = function(pattern) {
 
 POSTS_TIMEOUT = 30000;
 
-$timeout_id = 0;
+$after_count_timeout_id = 0;
 $main_data = {}
 
 $my_flagged_tabs = [];
@@ -107,38 +107,8 @@ d
   {
     events.posts.register.toggle_buttons();
     events.posts.register.sooner_and_later();
-    events.home.register.chars_counter();
+    events.home.register.iframe();
 
-
-    //var frame = $('#myframe').get(0).contentDocument.body;
-    //$('h3', frame).css('background-color', 'red');
-/*
-$.frameReady( function() {
-  },
-  "myframe"
-);
-  */
-$($('#myframe').get(0).contentDocument).ready(function() {
-
-alert('frame ready');
-
-var frame = $('#myframe').get(0).contentDocument.body;
-
-$("form.executa .anexo a.open, form.executa .anexo a.close",frame).live("click", function() {
-    h = $('#myframe').css('height');
-    $('#myframe').css('height', (h=="200px") ? 350 : 200);
-    $("#anexoLink, #anexoBox",frame).slideToggle("fast");
-    $("#anexoBox p:last",frame).html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
-  });
-$("form",frame).live("submit", function() {
-  $("form #post_submit").hide();
-});
-
-
-});
-
-
-    
 //$("#viewstack").css("background-image","none");
 //return false;
 
@@ -191,7 +161,27 @@ $("form",frame).live("submit", function() {
   events = {
     home : {
       register : {
-        
+        iframe: function() {
+//
+if ($('#myframe').get(0).contentDocument.readyState!="complete")
+{
+  setTimeout(events.home.register.iframe, 1000);
+  return;
+}
+
+var frame = $('#myframe').get(0).contentDocument.body;
+
+$("form.executa .anexo a.open, form.executa .anexo a.close",frame).live("click", function() {
+    h = $('#myframe').css('height');
+    $('#myframe').css('height', (h=="200px") ? 350 : 200);
+    $("#anexoLink, #anexoBox",frame).slideToggle("fast");
+    $("#anexoBox p:last",frame).html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
+  });
+$("form",frame).live("submit", function() {
+  $("form #post_submit").hide();
+});
+//
+        },
         chars_counter: function() {
 //
 $("textarea#post_body").live("keyup", function(e) {
@@ -266,7 +256,7 @@ $.get(url, function(data) {
       },
       after: function() {
       
-clearTimeout($timeout_id);
+  functions.posts.clearAfterTimeout();
 
 view = $("#viewstack .view:visible");
 top_post = view.contents().find(".post:first");
@@ -283,7 +273,10 @@ $.get(url, function(data) {
 
       },
       setAfterTimeout: function() {
-        $timeout_id = setTimeout(functions.posts.after, POSTS_TIMEOUT);
+        $after_count_timeout_id = setTimeout(functions.posts.after, POSTS_TIMEOUT);
+      },
+      clearAfterTimeout: function() {
+        clearTimeout($after_count_timeout_id);
       },
       handle: function(data, view, placement) {
         //alert('data at dados');
