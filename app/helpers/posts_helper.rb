@@ -13,7 +13,7 @@ d: '@username'
     r = s.split(" ").collect do |w|
       if w[0,1]==at
         a = w[1..-1]
-        b = a.gsub(/[^a-zA-Z0-9_-]/,'')
+        b = a.gsub(User::USERNAME_REGEX,'')
         c = a.gsub(b,'')
         d = "@#{b}"
         "#{link_to(d, b)}#{c}"

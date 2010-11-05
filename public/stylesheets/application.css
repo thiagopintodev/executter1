@@ -10,7 +10,7 @@ div#content { min-height:500px; }
 div#footer {margin:20px 0; !important}
 div#footer ul#menu-footer {padding-left: 300px !important}
 
-
+ul#menu-estilos { background: #fff none;border:1px outset #E2E2E2;width:171px;height:auto; }
 
 .post { background:#fff; min-height:50px; overflow:hidden; }
 

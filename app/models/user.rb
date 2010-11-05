@@ -118,6 +118,8 @@ class User < ActiveRecord::Base
   
   
   #CONSTANTS
+
+  USERNAME_REGEX = /[^a-zA-Z0-9_-]/
   
   #GENDER_POLICIES = {} #using checkbox
   BACKGROUND_REPEAT_POLICIES = {0=>'no-repeat',1=>'repeat'}#repeat-X, repeat-Y

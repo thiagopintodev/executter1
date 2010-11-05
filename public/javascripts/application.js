@@ -67,6 +67,23 @@ $(function() {
     events.posts.register.toggle_buttons();
     events.posts.register.sooner_and_later();
 
+
+    $(".shifter").live("click", function(){
+      j_e_target = $(this);
+      data_target = j_e_target.attr("data-target");
+      $(data_target).slideToggle();
+      //
+      //return;
+      data_toggler = j_e_target.attr("data-toggler");
+      data_toggler_class = j_e_target.attr("data-toggler-class");
+      
+      if (data_toggler) {
+        //alert( data_toggler+" -> "+data_toggler_class );
+        $(data_toggler).toggleClass(data_toggler_class);
+      }
+      return false;
+    });
+    
     if ($main_data.is_me)
       if (!$main_data.user_has_picture)
         $("#container #img-user a").show();
