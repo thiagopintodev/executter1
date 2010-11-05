@@ -7,10 +7,10 @@ gem 'rails', '3.0.0'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'paperclip'
+gem 'aws-s3', :require => 'aws/s3'
 gem 'devise', '1.1.3'
 gem 'jquery-rails'
 gem 'recaptcha', :require => 'recaptcha/rails'
-gem 'aws-s3', :require => 'aws/s3'
 
 #gem 'scrooge'
 

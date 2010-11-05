@@ -1,8 +1,29 @@
 module PostsHelper
   
+=begin
+w.starts_with?('www')
+w: '@username...'
+a: 'username...'
+b: 'username'
+c: '...'
+d: '@username'
+=end
   def my_post_links(s)
     at = "@";
-    r = s.split(" ").collect { |w| w[0,1]==at ? link_to(w, "/#{w[1..-1]}") : w }
+    r = s.split(" ").collect do |w|
+      if w[0,1]==at
+        a = w[1..-1]
+        b = a.gsub(/[^a-zA-Z0-9_-]/,'')
+        c = a.gsub(b,'')
+        d = "@#{b}"
+        "#{link_to(d, b)}#{c}"
+      elsif w[0..2] == 'www' || w[0..6]=='http://' || w[0..5]=='ftp://' || w[0..7]=='https://'
+        w2 = "http://#{w}" if w[0..2] == 'www'
+        link_to w, w2||w, :target=>'_blank'
+      else
+        w
+      end
+    end
     raw r.join(" ");
   end
 
