@@ -3,6 +3,9 @@ div#content { min-height:500px; }
 .pg-home-index div#content,
 .pg-users-show div#content { min-height:1000px; }
 
+#viewstack{ clear:both }
+#viewstack ul{ float:left }
+
 .view {  min-height:100px; }
 .view-in { background:white }
 .ajax-content-white { background-image: none !important; }
