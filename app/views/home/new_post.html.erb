@@ -8,11 +8,11 @@
     <%#= f.hidden_field :subject_id, :value => 0 %>
   <% end %>
 
-  <div id="anexoLink" class="anexo">
+  <div id="anexoLink" class="anexo" style="display:none">
     <img src="/images/layout1/anexo/_attach.gif" width="16" height="16" alt="" border="0" />
     <a class="open" href="#"><%= t "home.attach_link" %></a>
   </div>
-  <div id="anexoBox" class="anexo" style="display:none">
+  <div id="anexoBox" class="anexo">
     <div class="in">
       <span>
         <img src="/images/layout1/anexo/_attach.gif" width="16" height="16" alt="" border="0" />
@@ -34,7 +34,7 @@
         <img src="/images/layout1/anexo/audio.gif" width="16" height="16" alt="" border="0" />
         <img src="/images/layout1/anexo/zip.gif" width="16" height="16" alt="" border="0" />
       </p>
-      <p></p>
+      <p><input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'></p>
     </div>
   </div>
   <%= f.submit "Executte", :class=>"btn" %>

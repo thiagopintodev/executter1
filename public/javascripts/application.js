@@ -4,7 +4,7 @@ String.prototype.endsWith = function(pattern) {
 };
 
 
-POSTS_TIMEOUT = 30000;
+POSTS_TIMEOUT = 10000;
 
 $after_count_timeout_id = 0;
 $main_data = {}
@@ -124,7 +124,7 @@ $(function() {
   {
     events.posts.register.toggle_buttons();
     events.posts.register.sooner_and_later();
-    events.home.register.iframe();
+    //events.home.register.iframe();
 
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab, false);
