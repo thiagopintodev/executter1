@@ -4,6 +4,9 @@ String.prototype.endsWith = function(pattern) {
 };
 
 
+
+
+
 POSTS_TIMEOUT = 10 * 1000;
 
 $after_count_timeout_id = 0;
@@ -12,6 +15,17 @@ $main_data = {}
 $my_flagged_tabs = [];
 
 $(function() {
+
+  $title1 = $("head title").html();
+  $title2 = $title1;
+  $title_at1 = true;
+  
+  setInterval(function() {
+    t = ($title_at1) ? $title1 : $title2;
+    $title_at1 = !$title_at1;
+    $("head title").html(t);
+  }, 1200);
+
 
   $(".nao-clique").live("click", function(e) {
     alert("NÃO TEM NADA NESSE LINK");
@@ -272,6 +286,7 @@ $.get(url, function(data) {
       after: function() {
 //
 functions.posts.clearAfterCountTimeout();
+$title2 = $title1;
 
 view = $("#viewstack .view:visible");
 top_post = view.contents().find(".post:first");
@@ -299,7 +314,10 @@ if (top_post.size())
 
 $.get(url, function(data) {
   if (data > 0)
+  {
+    $title2 = "NEW";
     $(".has-new-posts").fadeIn();
+  }
   else
     functions.posts.setAfterCountTimeout();
 });
