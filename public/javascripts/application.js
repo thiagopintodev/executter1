@@ -4,7 +4,7 @@ String.prototype.endsWith = function(pattern) {
 };
 
 
-POSTS_TIMEOUT = 10000;
+POSTS_TIMEOUT = 10 * 1000;
 
 $after_count_timeout_id = 0;
 $main_data = {}
@@ -244,7 +244,7 @@ $(".post").live("mouseover mouseout", function(){
     },
     mention : {
       write: function(username) {
-        a = $("#post_body");
+        a = $("#myframe").contents().find("form textarea#post_body");
         if (username) {
           u = "@:u ".replace(":u", username);
           if (!a.val().endsWith(' '))
