@@ -42,7 +42,7 @@ class Post < ActiveRecord::Base
     posts = posts.where("id < ?", options[:before]) if options[:before]
     posts = posts.with_image if options[:with_image]
     posts = posts.with_file if options[:with_file]
-    posts = posts.where("body LIKE ?", "%@#{user.username}%") if options[:mentioned]
+    posts = posts.where("lower(body) LIKE ?", "%@#{user.username.downcase}%") if options[:mentioned]
     #
     unless source#5 queries
       posts = posts.where(:user_id=>user.id)
