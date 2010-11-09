@@ -8,7 +8,8 @@ div#content { min-height:500px; }
 
 .view {  min-height:100px; }
 .view-in { background:white }
-.ajax-content-white { background-image: none !important; }
+.ajax-content-white { background-image: none !important;width:100%; }
+
 
 div#footer {margin:20px 0; !important}
 div#footer ul#menu-footer {padding-left: 300px !important}
