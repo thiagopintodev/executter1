@@ -185,6 +185,7 @@ $(function() {
       register : {
         iframe: function() {
 //this code doesn't work on iframe reloading =/
+/*
 if ($('#myframe').get(0).contentDocument.readyState!="complete")
 {
   setTimeout(events.home.register.iframe, 1000);
@@ -217,8 +218,9 @@ $("textarea#post_body",frame).live("keyup", function(e) {
   else
     t.closest('form').children(".caracteres").html(n);
 });
+*/
 //
-        },
+        }
       }
     },
     posts : {
