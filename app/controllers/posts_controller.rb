@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   def create
     redirect_to root_path
   end
-
+=begin
   # PUT /posts/1
   # PUT /posts/1.xml
   def update
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
       end
     end
   end
-
+=end
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy

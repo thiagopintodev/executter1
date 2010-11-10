@@ -5,7 +5,7 @@ String.prototype.endsWith = function(pattern) {
 
 
 
-
+ROUTE_USERNAME_AVAILABLE = "/s/ajax_username_available/:u"
 
 POSTS_TIMEOUT = 10 * 1000;
 
@@ -51,12 +51,17 @@ $(function() {
   ///
   $(".username-available").live("blur", function(e) {
     v = $(this).val();
-    url = "/h/ajax_username_available/:u".replace(":u", v);
+    url = ROUTE_USERNAME_AVAILABLE.replace(":u", v);
     
     $("#username_preview").html(v);
     $("#username_resultado").html("checking...");
     $.getScript(url, function(data){
-      $("#username_resultado").html( (data=="true") ? "OK" : "NO" )
+      if (data=="0")
+        $("#username_resultado").html("NO");
+      else {
+        $("#username_resultado").html("YES");
+        $("input#user_username").val(data);
+      }
     });
   });
 

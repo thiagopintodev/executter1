@@ -63,13 +63,6 @@ class HomeController < ApplicationController
     end
   end
 
-
-  def ajax_username_available
-    u = params[:username].downcase
-    is_available = (u.length > 4 && !User.exists?(:username=>u)) || current_user.username==u
-    render :inline=>is_available.to_s
-  end
-
   def settings_remove_bg
     @user = settings_design
     @user.background_image = nil
@@ -97,6 +90,7 @@ class HomeController < ApplicationController
 
   #weird having 2 update methods, weireder having devise's default user update method =/
   def update
+    return redirect_to '/h/1' unless params[:user]
     condition = params[:user][:username] || params[:user][:email] || params[:user][:password]
     
     updated = current_user.update_attributes params[:user] if !condition

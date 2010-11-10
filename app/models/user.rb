@@ -8,17 +8,28 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable , :lockable
 
+  class << self
+    #DEVISE
+    def find_for_database_authentication(conditions)
+      key = conditions[:email].rindex("@") ? 'email' : 'username'
+      where("lower(#{key})=?", conditions[:email].downcase).first
+    end
 
-  def self.find_for_database_authentication(conditions)
-    key = conditions[:email].rindex("@") ? 'email' : 'username'
-    where("lower(#{key})=?", conditions[:email].downcase).first
-  end
+    #CUSTOM METHODS  
+    def my_find(param)
+      r = (param.to_i > 0) ? where(:id=>param) : where("lower(username)=?", param.downcase.delete("@"))
+      r.first
+    end
 
-
-  #CUSTOM METHODS  
-  def self.my_find(param)
-    r = (param.to_i > 0) ? where(:id=>param) : where("lower(username)=?", param.downcase.delete("@"))
-    r.first
+    def username_allowed(username, options={:current_user => nil})
+      regex_result = username[USERNAME_REGEX]#validation
+      usernamedown = regex_result.downcase
+      cu = options[:current_user]
+      #
+      is_equal_mine = cu.username.downcase==usernamedown if cu#validation
+      is_allowed = regex_result && (is_equal_mine || !exists?(:username=>usernamedown))#validation
+      {:regular=>regex_result, :allowed=>is_allowed}
+    end
   end
   
   def read_photo
@@ -119,7 +130,8 @@ class User < ActiveRecord::Base
   
   #CONSTANTS
 
-  USERNAME_REGEX = /[^a-zA-Z0-9_-]/
+  USERNAME_REGEX_NOT = /[^a-zA-Z0-9_-]{2,}/
+  USERNAME_REGEX = /[a-zA-Z0-9_-]{2,}/
   
   #GENDER_POLICIES = {} #using checkbox
   BACKGROUND_REPEAT_POLICIES = {0=>'no-repeat',1=>'repeat'}#repeat-X, repeat-Y

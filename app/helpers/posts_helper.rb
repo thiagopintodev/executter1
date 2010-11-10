@@ -13,7 +13,7 @@ d: '@username'
     r = s.split(" ").collect do |w|
       if w[0,1]==at
         a = w[1..-1]
-        b = a.gsub(User::USERNAME_REGEX,'')
+        b = a.gsub(User::USERNAME_REGEX_NOT,'')
         c = a.gsub(b,'')
         d = "@#{b}"
         "#{link_to(d, b)}#{c}"
@@ -29,8 +29,8 @@ d: '@username'
 
   def my_post_actions(post)
     html = "<li class='icons' style='display:none'>"
-    html += link_to image_tag("/images/layout/trash_icon.png"), post, :method => :delete, :remote=>true if current_user && post.user_id == current_user.id
-    html += link_to image_tag("/images/layout/write_icon.png"), "#", :"data-mention"=>post.user.username
+    html += link_to image_tag("/images/layout/trash_icon.png"), post, :method => :delete, :title=>'Remove', :remote=>true if current_user && post.user_id == current_user.id
+    html += link_to image_tag("/images/layout/write_icon.png"), "#", :title=>'Mention', :"data-mention"=>post.user.username
     #html = 
     # mention_path(post.user.username) #
     raw "#{html}</li>"

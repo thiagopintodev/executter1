@@ -32,7 +32,6 @@ Ex1::Application.routes.draw do
   match "h/ajax_tab/:tab_id" => "home#ajax_index_tab", :as => :ajax_home_index_tab
   match "h/ajax_tab_data/:tab_id" => "home#ajax_index_tab_data", :as => :ajax_home_index_tab_data
   
-  get "h/ajax_username_available/:username" => "home#ajax_username_available"
   
   get "h/1" => "home#settings_profile"
   get "h/2" => "home#settings_username"
@@ -47,6 +46,7 @@ Ex1::Application.routes.draw do
   match "h/new_post" => "home#new_post"
   
   get "s/:text" => "site#search", :as => :search
+  get "s/ajax_username_available/:username" => "site#ajax_username_available"
   
   get "site/search"
   get "site/index"
@@ -54,7 +54,7 @@ Ex1::Application.routes.draw do
   root :to => "home#index"
 
 
-  match ":id" => "users#show", :as => "profile", :constraints => { :id => /\w{2,}/ }
+  match ":id" => "users#show", :as => "profile", :constraints => { :id => User::USERNAME_REGEX }
   match "profile" => "users#show", :as => "my_profile"
   
   match ":mention_username/mention" => "home#index", :as => "mention"
