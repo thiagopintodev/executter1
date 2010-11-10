@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
   
   #CONSTANTS
 
-  USERNAME_REGEX_NOT = /[^a-zA-Z0-9_-]{2,}/
+  USERNAME_REGEX_NOT = /[^a-zA-Z0-9_-]/
   USERNAME_REGEX = /[a-zA-Z0-9_-]{2,}/
   
   #GENDER_POLICIES = {} #using checkbox
