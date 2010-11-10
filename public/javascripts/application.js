@@ -50,7 +50,9 @@ $(function() {
   /// isso não será mais estático
   ///
   $(".username-available").live("blur", function(e) {
-    v = $(this).val();
+    v = $(this).val().replace(' ', '');
+    if (v=='')
+      return;
     url = ROUTE_USERNAME_AVAILABLE.replace(":u", v);
     
     $("#username_preview").html(v);

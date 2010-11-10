@@ -40,6 +40,7 @@ if verify_recaptcha(:model => @user, :message => 'Erro no reCAPTCHA! tudo que pr
 
   # PUT /resource
   def update
+    #not anymore used
     if resource.update_with_password(params[resource_name])
       #set_flash_message :notice, :updated
       redirect_to request.referer #after_update_path_for(resource)

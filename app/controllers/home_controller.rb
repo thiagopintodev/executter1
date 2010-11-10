@@ -91,6 +91,12 @@ class HomeController < ApplicationController
   #weird having 2 update methods, weireder having devise's default user update method =/
   def update
     return redirect_to '/h/1' unless params[:user]
+
+    if params[:user][:username]
+      allow = User.username_allowed(params[:user][:username], :current_user => current_user)
+      params[:user][:username] = allow[:allowed] ? allow[:regular] : ""
+    end
+    
     condition = params[:user][:username] || params[:user][:email] || params[:user][:password]
     
     updated = current_user.update_attributes params[:user] if !condition
