@@ -19,7 +19,8 @@
   <![endif]-->
   <% if @user %>
   <style type="text/css">
-    html, body {
+    body {background:transparent none}
+    html {
       <%= "background-color: #{@user.background_color};" unless @user.background_color.blank?  %>
       <% if @user.background_image? %>
       background-image:url("<%= @user.background_image.url %>");
