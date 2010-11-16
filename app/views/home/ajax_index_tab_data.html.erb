@@ -23,11 +23,14 @@
       <% if at.file_image? %>
 
 <li class="foto">
+  <%= link_to image_tag(at.file.url(:me)), post %>
+  <%if false%>
   <%= link_to image_tag(at.file.url(:me)), at.file.url, :target=>"_blank" %>
   <span><%= link_to "Baixar arquivo original", at.file.url, :target=>"_blank" %></span><br/>
   <span>Format: <%= at.file_content_type %></span><br/>
   <span>Size: <%= number_to_human_size at.file_file_size %></span><br/>
   <span>Dimensões: <%= "#{at.file_width}x#{at.file_height}" %></span><br/>
+  <%end%>
 </li>
 
       <% else %>
@@ -36,6 +39,7 @@
   <span>
     <img border="0" width="16" height="16" alt="Name" src="/images/layout1/anexo/_attach.gif">
     <%= link_to at.file_file_name, at.file.url, :target=>"_blank" %>
+    (<%= number_to_human_size at.file_file_size %>)
   </span>
 </li>
 
