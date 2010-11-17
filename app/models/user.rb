@@ -132,6 +132,32 @@ class User < ActiveRecord::Base
 
   USERNAME_REGEX_NOT = /[^a-zA-Z0-9_-]/
   USERNAME_REGEX = /[a-zA-Z0-9_-]{2,}/
+
+  GENDERS_NONE = 0
+  GENDERS_MALE = 1
+  GENDERS_FEMALE = 2
+  
+  GENDER_POLICE_DONT_SHOW = 0
+  GENDER_POLICE_SHOW = 1
+  
+  BIRTH_POLICE_DM = 0
+  BIRTH_POLICE_DMY = 1
+  BIRTH_POLICE_NOTHING = 2
+  
+  def gender?
+    self.gender!=GENDERS_NONE && self.gender_policy!=User::GENDER_POLICE_DONT_SHOW
+  end
+  def birth?
+    self.birth_policy!=User::BIRTH_POLICE_NOTHING
+  end
+  
+  def gender_to_s
+    I18n.t GENDERS.keys[self.gender]
+  end
+  
+  def birth_to_s
+    I18n.l GENDERS.keys[self.gender]
+  end
   
   #GENDER_POLICIES = {} #using checkbox
   BACKGROUND_REPEAT_POLICIES = {0=>'no-repeat',1=>'repeat'}#repeat-X, repeat-Y

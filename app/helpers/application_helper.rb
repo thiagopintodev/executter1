@@ -35,27 +35,4 @@ module ApplicationHelper
       </script>"
     end
   end
-=begin
-  def my_user_links(s)
-    at = "@";
-    words = s.split(" ");
-    r = words.collect { |w| w[0,1]==at ? link_to(w, "/#{w}") : w }
-    r.join(" ");
-  end
-  
-  def my_tabs(*tabs)
-    content_tag :ul, {:id=>"menu-abas"} do
-      tabs.collect do |tab|
-        li_content = "<img src='/images/layout/havatar16x16.jpg' width='16' height='16' /> #{tab[:text]}"
-        unless tab[:action] == controller.action_name
-          li_content = link_to li_content, tab[:path]
-        else
-          options = {:class=>'atual'}
-        end
-        content_tag(:li, li_content, options)
-      end
-    end
-  
-  end
-=end
 end
