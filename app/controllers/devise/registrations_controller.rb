@@ -13,7 +13,8 @@ class Devise::RegistrationsController < ApplicationController
   # POST /resource/sign_up
   def create
     build_resource
-
+    location = MyGeoKit.geocode(request.remote_ip)
+    resource.local = location.city
 =begin
 if verify_recaptcha(:model => @user, :message => 'Erro no reCAPTCHA! tudo que precisa eh ficar dentro do form') && @user.save
       redirect_to(@user, :notice => 'Usuario Criado')
