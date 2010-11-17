@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   protected
   
   def my_locale
+    #no  www
+    redirect_to("http://executter.com") and return false if request.env["SERVER_NAME"].starts_with? "www"
     #cookies[:locale] = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first unless cookies[:locale]
     I18n.locale = cookies[:locale]
   end

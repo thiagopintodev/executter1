@@ -156,7 +156,9 @@ class User < ActiveRecord::Base
   end
   
   def birth_to_s
-    I18n.l GENDERS.keys[self.gender]
+    #fmt = "dd" if self.birth_policy == BIRTH_POLICE_DMY
+    #I18n.l GENDERS.keys[self.gender]
+    self.birth
   end
   
   #GENDER_POLICIES = {} #using checkbox

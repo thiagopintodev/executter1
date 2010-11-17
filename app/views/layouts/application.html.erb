@@ -75,9 +75,7 @@
       </div>
 
 
-<% if false %>
-
-<% if Rails.env.development? %>
+<% if true && Rails.env.development? %>
 <h3>test</h3>
 <%= request.path_info %>
 <h3>session</h3>
@@ -87,8 +85,6 @@
 <%= debug request %>
 <h3>params</h3>
 <%= debug params %>
-<% end %>
-
 <% end %>
 
 
