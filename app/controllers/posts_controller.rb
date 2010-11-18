@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_filter :my_admin_only, :except=>:show
+
   # GET /posts
   # GET /posts.xml
   def index
@@ -13,7 +16,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = Post.find(params[:id])
+    begin
+      @post = Post.find(params[:id])
+    rescue
+      redirect_to root_path
+      return false
+    end
     
     respond_to do |format|
       format.html # show.html.erb

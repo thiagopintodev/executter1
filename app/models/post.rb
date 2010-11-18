@@ -13,7 +13,7 @@ class Post < ActiveRecord::Base
     post_attachments.first || post_attachments.build
   end
 
-  default_scope where(:is_deleted => false)
+  #default_scope where(:is_deleted => false)
 
   scope :with_image, where(:has_image => true)
   scope :with_file, where(:has_file => true)
