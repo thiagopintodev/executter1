@@ -1,5 +1,7 @@
 $(function() {
 
+  $("form.executa #post_submit").attr("disabled",true);
+
   $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
       h = $('#myframe').css('height');
       //$('#myframe').css('height', (h=="200px") ? 350 : 200);
@@ -18,8 +20,13 @@ $(function() {
     //
     t = $(this);
     m = t.attr("maxlength");
-    n = m - t.val().length;
+    l = t.val().length;
+    n = m - l;
     //
+    $("form.executa #post_submit").attr("disabled",(m < l || l == 0));
+    
+  
+    
     if (n < 0)
       t.val(t.val().substring(0,m));
     else

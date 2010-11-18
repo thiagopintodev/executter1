@@ -17,6 +17,8 @@ form.executa .anexo p img {margin: 0 2px;}
 
 form.executa .btn {float:right;display:inline-block;width:100px;font-weight:bold;color:#666;height:30px;background:#fafafa;padding:2px;border: #F0F0F0 outset 1px;margin:0px;}
 
+form.executa .btn:disabled { background:#ccc;color:#e1e1e1; }
+
 /*
 form.executa .anexos { color:#ccc;float:left;display:inline-block; }
 form.executa .anexos strong { float:left;padding-top:10px; }
