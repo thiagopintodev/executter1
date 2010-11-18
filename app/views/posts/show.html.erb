@@ -14,7 +14,7 @@
     </a>
   </div>
   <div class="fl r">
-    <%= link_to @post.user.username, profile_path(@post.user.username) %>
+    <%= link_to @user.username, profile_path(@post.user.username) %>
     <%= content_tag :span, @post.user.full_name, :class=>:full_name %>
     <%= content_tag :span, @post.body, :class=>:body %>
     <%#= content_tag :span, "#{t 'model.subject.model_name'}: #{@post.subject.name}", :class=>:subject if @post.subject %>

@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
   scope :with_image, where(:has_image => true)
   scope :with_file, where(:has_file => true)
 
-  validates :body, :presence => true, :length => { :within => 3..500 }
+  validates :body, :presence => true, :length => { :within => 1..200 }
 
   MY_LIMIT = 10
 

@@ -23,7 +23,7 @@ $(function() {
     l = t.val().length;
     n = m - l;
     //
-    $("form.executa #post_submit").attr("disabled",(m < l || l == 0));
+    $("form.executa #post_submit").attr("disabled",(m < l || l < 2));
     
   
     

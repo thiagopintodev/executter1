@@ -22,7 +22,7 @@ class PostsController < ApplicationController
       redirect_to root_path
       return false
     end
-    
+    @user = @post.user #so it customizes background ;)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post }
