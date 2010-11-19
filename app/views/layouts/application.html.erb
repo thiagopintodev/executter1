@@ -40,8 +40,6 @@
 <% if current_user? %>
   <%= link_to t("application.header.sign_out"), out_path %>
   <%#= link_to t("application.header.orientation"), "#" %>
-  <%= link_to t("application.header.orientation"), Time.zone.to_s %>
-  <%= link_to t("application.header.orientation"), I18n.locale.to_s %>
   <%= link_to t("application.header.settings"), "/h/1" %>
   <%#= link_to t("application.header.find_people"), "#" %>
   <%= link_to t("application.header.profile"), my_profile_path %>
@@ -79,7 +77,8 @@
 
 <% if true && Rails.env.development? %>
 <h3>test</h3>
-<%= request.path_info %>
+<%#= request.env["HTTP_ACCEPT_LANGUAGE"] %>
+<%#= debug request.env %>
 <h3>session</h3>
 <%= debug session %>
 <h3>request</h3>
