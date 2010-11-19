@@ -12,6 +12,7 @@ gem 'devise', '1.1.3'
 gem 'jquery-rails'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'geokit' #MyGeoKit.geocode('189.27.55.57')
+gem 'htmlentities'
 
 #gem 'scrooge'
 
