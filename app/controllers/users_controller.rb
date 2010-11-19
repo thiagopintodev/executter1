@@ -13,11 +13,11 @@ class UsersController < ApplicationController
   def show
     if params[:id] != "profile"
       @user = User.my_find(params[:id])
-    elsif current_user
+    elsif current_user?
       @user = current_user
     end
     return redirect_to root_path unless @user
-    @isme = current_user && @user.id == current_user.id
+    @isme = @user.id == current_user_id
   end
 
   

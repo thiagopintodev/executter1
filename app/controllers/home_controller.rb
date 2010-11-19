@@ -104,7 +104,11 @@ class HomeController < ApplicationController
     
     unless updated
       @errors = current_user.errors
-      cookies[:flavour] = current_user.flavour
+      #cookies[:flavour] = current_user.flavour#why?
+    end
+    if updated
+      set_current_locale    current_user.locale
+      set_current_time_zone current_user.time_zone
     end
     settings_subjects
     render params[:return_action]

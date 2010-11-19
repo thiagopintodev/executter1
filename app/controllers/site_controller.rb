@@ -8,8 +8,11 @@ class SiteController < ApplicationController
     render :inline => allow[:allowed] ? allow[:regular] : '0'
   end
 
-  def set_locale
-    cookies[:locale] = params[:locale] if params[:locale]
+  def do_locale
+    if params[:locale]
+      set_current_locale params[:locale]
+      current_user.update_attributes(:locale=>cookies[:locale]) if current_user?
+    end
     redirect_to request.referer
   end
 end

@@ -10,7 +10,7 @@ Ex1::Application.routes.draw do
   
   devise_for :users #,  :path_names => { :sign_up => "/new", :sign_in => "/in", :sign_out => "/out" }
 
-  get "l/:locale" => "site#set_locale", :as => :locale
+  get "l/:locale" => "site#do_locale", :as => :locale
   
   #get "home/index"
 
@@ -53,9 +53,9 @@ Ex1::Application.routes.draw do
   #post "/", :controller => :home, :action => :create_post, :as => :my_create_post
   root :to => "home#index"
 
-
+  match "p" => "users#show", :as => "my_profile", :id=>"profile"
   match ":id" => "users#show", :as => "profile", :constraints => { :id => User::USERNAME_REGEX }
-  match "profile" => "users#show", :as => "my_profile"
+  
   
   match ":mention_username/mention" => "home#index", :as => "mention"
 
