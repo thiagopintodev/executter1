@@ -111,6 +111,11 @@ class User < ActiveRecord::Base
     :uniqueness => {:case_sensitive => false}
   validates :full_name,
     :presence => true, :length => { :minimum => 2 }
+  validate :custom_validations
+
+  def custom_validations
+    errors.add(:username, "username is not valid or is already taken") unless User.username_allowed username
+  end
 
   #OBSERVERS
   
@@ -118,6 +123,7 @@ class User < ActiveRecord::Base
   before_save :my_before_save
 
   def my_before_save
+    self.username = self.username.gsub ' ','_'
     self.email = self.email.downcase
   end
   
