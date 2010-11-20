@@ -23,7 +23,7 @@ Ex1::Application.routes.draw do
   end
   
   resources :users, :only =>[:show, :index, :update]
-  resources :posts, :only =>[:index, :show, :destroy] #:create, 
+  resources :posts, :only =>[:show, :destroy] #:create, 
 
   
   #match "h/ajax_tab1" => "home#ajax_index_tab1", :as => :ajax_home_index_tab1
