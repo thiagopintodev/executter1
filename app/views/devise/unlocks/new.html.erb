@@ -1,12 +1,28 @@
-<h2>Resend unlock instructions</h2>
+<% my_title "Resend unlock instructions" %>
+<% my_css_files("cadastro") %>
+
+<div id="cadastro">
+
+	<h1><span>Resend</span> unlock instructions</h1>
+
 
 <%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
 
-  <p><%= f.submit "Resend unlock instructions" %></p>
+	<div class="campos">
+	
+    <div class="campo">
+	    <%= f.label :email %>
+      <%= f.password_field :email %>
+    </div>
+
+    <div class="bt-sign-in">
+      <a href="#" class="form-submit" style="width: 300px;">Resend unlock instructions</a>
+      <input type="submit" style="display:none"/>
+    </div>
+
+    <%= render :partial => "devise/shared/links" %>
+        
+   </div>
 <% end %>
-
-<%= render :partial => "devise/shared/links" %>
