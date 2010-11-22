@@ -8,8 +8,8 @@ class UserObserver < ActiveRecord::Observer
     u2 = User.find_by_username('executter')
     user.follow u2 if u2
     User.logger.info "FOLLOWING executter"
-    u2 = User.find_by_username('flavio')
+    u2 = User.find_by_username('edgala')
     user.follow u2 if u2
-    User.logger.info "FOLLOWING flavio"
+    User.logger.info "FOLLOWING edgala"
   end
 end

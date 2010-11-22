@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
     #no  www
     redirect_to("http://executter.com") and return false if request.env["SERVER_NAME"].starts_with? "www"
     #cookies[:locale] = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first unless cookies[:locale]
-    I18n.locale = cookies[:locale]
-    Time.zone = cookies[:tz]
+    I18n.locale = cookies[:locale] if cookies[:locale]
+    #Time.zone = cookies[:tz]
   end
 
   def set_current_time_zone(tz)
