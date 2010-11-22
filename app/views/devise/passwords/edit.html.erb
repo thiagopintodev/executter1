@@ -1,20 +1,33 @@
+<% my_title "Change your password" %>
+<% my_css_files("cadastro") %>
 
+<div id="cadastro">
 
-
-
-<h2>Change your password</h2>
+	<h1><span>Change</span> your password</h1>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
+	<div class="campos">
+	
+    <div class="campo">
+	    <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="campo">
+	    <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
 
-  <p><%= f.submit "Change my password" %></p>
+    <div class="bt-sign-in">
+      <a href="#" class="form-submit" style="width: 230px;">Change my password</a>
+      <input type="submit" style="display:none"/>
+    </div>
+
+    <%= render :partial => "devise/shared/links" %>
+        
+   </div>
+   
 <% end %>
-
-<%= render :partial => "devise/shared/links" %>

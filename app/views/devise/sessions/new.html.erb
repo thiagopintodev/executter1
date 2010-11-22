@@ -8,35 +8,34 @@
 
   		<div class="campos">
 		      <% if flash[:alert] %>
-         	<div class="erro">Incorrect Combination</div>
+         	  <div class="erro">Incorrect Combination</div>
          	<% end %>
          	
-            <label>Username or E-mail</label>
-            <%= f.text_field :email %>
-            <label>Password</label>
-    		<%= f.password_field :password %>
-    		<div class="remember">
-				<%= f.check_box :remember_me, :class=>"check" %> 
-                <span>Remember Me</span>
-            </div>
-            <div class="bt-sign-in">
-                <a href="#" class="form-submit">Sign in</a>
-                <input type="submit" style="display:none"/>
-            </div>
+          <label>Username or E-mail</label>
+              <%= f.text_field :email %>
+          <label>Password</label>
+          		<%= f.password_field :password %>
+          		<div class="remember">
+			        <%= f.check_box :remember_me, :class=>"check" %> 
+              <span>Remember Me</span>
+          </div>
+          <div class="bt-sign-in">
+              <a href="#" class="form-submit">Sign in</a>
+              <input type="submit" style="display:none"/>
+          </div>
 
-            
-            <%= render :partial => "devise/shared/links" %>
+          
+          <%= render :partial => "devise/shared/links" %>
 
-            
-         </div>
-
-         
-         <div id="publicidade">
-          <%= image_tag my_banner.img.url if my_banner.link.blank? %>
-          <%= link_to image_tag(my_banner.img.url), my_banner.link unless my_banner.link.blank? %>
-         </div>
+          
+       </div>
 
          
+       <div id="publicidade">
+        <%= image_tag my_banner.img.url if my_banner.link.blank? %>
+        <%= link_to image_tag(my_banner.img.url), my_banner.link unless my_banner.link.blank? %>
+       </div>
+
     <% end %>
 </div>
 

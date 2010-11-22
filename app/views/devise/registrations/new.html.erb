@@ -8,59 +8,59 @@
   <div class="singup">
     Already on Executter? <%= link_to t("application.header.sign_in"), in_path %>
   </div>
-
-
-
   
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%#= devise_error_messages! %>
-    <div class="campo">
-    	<label>Full name</label>
-      <%= f.text_field :full_name %>
-      <%= my_error_msg resource, :full_name %>
-    </div>
-    <div class="campo">
-    	<label>Username</label>
-      <%= f.text_field :username %>
-      <%= my_error_msg resource, :username %>
-      <div class="legenda">Your URL: http://executter.com/username</div>
-    </div>
-    <div class="campo">
-    	<label>E-mail</label>
-      <%= f.text_field :email %>
-      <%= my_error_msg resource, :email %>
-    </div>
-    <div class="campo">
-   	  <%= f.label :password %>
-      <%= f.password_field :password %>
-      <%= my_error_msg resource, :password %>
-    </div> 
-    <div class="campo">
-   	  <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-      <%= my_error_msg resource, :password_confirmation %>
-      <div class="legenda">Clicking on Create my account above, you confirm that you accept the <a href="#">Terms of Service</a>.</div>
-    </div> 
+  
+  		<div class="campos">
+  		
+        <div class="campo">
+        	<label>Full name</label>
+          <%= f.text_field :full_name %>
+          <%= my_error_msg resource, :full_name %>
+        </div>
+        <div class="campo">
+        	<label>Username</label>
+          <%= f.text_field :username %>
+          <%= my_error_msg resource, :username %>
+          <div class="legenda">Your URL: http://executter.com/username</div>
+        </div>
+        <div class="campo">
+        	<label>E-mail</label>
+          <%= f.text_field :email %>
+          <%= my_error_msg resource, :email %>
+        </div>
+        <div class="campo">
+       	  <%= f.label :password %>
+          <%= f.password_field :password %>
+          <%= my_error_msg resource, :password %>
+        </div> 
+        <div class="campo">
+       	  <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation %>
+          <%= my_error_msg resource, :password_confirmation %>
+          <div class="legenda">Clicking on Create my account above, you confirm that you accept the <a href="#">Terms of Service</a>.</div>
+        </div> 
 
 
       
-    <% unless Rails.env.development? %>
-      <div class="campo">
-   	    <label class="label-words">Type the words above</label>
-        <p><%= raw recaptcha_tags %></p>
-      </div>
-    <% end %>
+        <% unless Rails.env.development? %>
+          <div class="campo">
+       	    <label class="label-words">Type the words above</label>
+            <p><%= raw recaptcha_tags %></p>
+          </div>
+        <% end %>
+        
+        <div class="bt-sign-in">
+            <a href="#" class="form-submit">Create my account</a>
+            <input type="submit" style="display:none"/>
+        </div>
 
+        <%= render :partial => "devise/shared/links" %>
+        
+     </div>
 
-    
-    <div class="bt-sign-in">
-        <a href="#" class="form-submit">Create my account</a>
-        <input type="submit" style="display:none"/>
-    </div>
-
-    
+         
   <% end %>
-
-
-  
 </div>
+

@@ -1,12 +1,31 @@
-<h2>Forgot your password?</h2>
+<% my_title "Forgot Password" %>
+<% my_css_files("cadastro") %>
+
+<div id="cadastro">
+
+	<h1><span>Forgot</span> your password?</h1>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
 
-  <p><%= f.submit "Send me reset password instructions" %></p>
-<% end %>
+	<div class="campos">
+	
+    <div class="campo">
+    	<label>email</label>
+      <%= f.text_field :email %>
+    </div>
+    
+    <div class="bt-sign-in">
+      <a href="#" class="form-submit" style="width: 180px;">Make new Password</a>
+      <input type="submit" style="display:none"/>
+    </div>
+    
+    <%= render :partial => "devise/shared/links" %>
+        
+   </div>
 
-<%= render :partial => "devise/shared/links" %>
+       
+  <% end %>
+</div>
+

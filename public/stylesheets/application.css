@@ -43,8 +43,8 @@ ul#menu-estilos { background: #fff none;border:1px outset #E2E2E2;width:171px;he
 
 .post li.icons { text-align:right; }
 
-
-
+form .campos { float:left; width:400px; }
+form .campos .devise-links a { float:left; font-size:12px; padding:0 0 5px 180px; width:190px; }
 
 /* of7 at R3 till this point  */
 
