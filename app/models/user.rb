@@ -116,23 +116,6 @@ class User < ActiveRecord::Base
   def custom_validations
     errors.add(:username, "username is not valid or is already taken") unless User.username_allowed username
   end
-
-  #OBSERVERS
-  
-  after_create :my_after_create
-  before_save :my_before_save
-
-  def my_before_save
-    self.username = self.username.gsub ' ','_'
-    self.email = self.email.downcase
-  end
-  
-  def my_after_create
-    u = User.find_by_username('executter')
-    self.follow u if u
-  end
-
-  
   
   #CONSTANTS
 

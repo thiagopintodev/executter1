@@ -1,13 +1,15 @@
 class UserObserver < ActiveRecord::Observer
-=begin
-  def after_create(user)
-   #user.create_user_profile unless user.user_profile
-  end
   def before_save(user)
-    User.logger.info('observer before save :))))))))))))))')
-    puts 'observer before save <-------------'
+    user.username = user.username.gsub ' ','_'
     user.email = user.email.downcase
-    #user.username = user.username.downcase
   end
-=end
+  
+  def after_create(user)
+    u2 = User.find_by_username('executter')
+    user.follow u2 if u2
+    User.logger.info "FOLLOWING executter"
+    u2 = User.find_by_username('flavio')
+    user.follow u2 if u2
+    User.logger.info "FOLLOWING flavio"
+  end
 end
