@@ -37,3 +37,9 @@ pt-BR:
         subject: 'Reinicie as instruções da palavra-passe'
       unlock_instructions:
         subject: 'Instruções de desbloqueio'
+    shared:
+      new_session: "Login"
+      new_registration: "Cadastrar"
+      new_password: "Esqueceu sua senha?"
+      new_confirmation: "Não recebeu instruções de confirmação?"
+      new_unlock: "Não recebeu instruções de desbloqueio?"

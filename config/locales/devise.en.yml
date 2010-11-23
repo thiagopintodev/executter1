@@ -37,3 +37,9 @@ en:
         subject: 'Reset password instructions'
       unlock_instructions:
         subject: 'Unlock Instructions'
+    shared:
+      new_session: "Sign in"
+      new_registration: "Sign up"
+      new_password: "Forgot your password?"
+      new_confirmation: "Didn't receive confirmation instructions?"
+      new_unlock: "Didn't receive unlock instructions?"
