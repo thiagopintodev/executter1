@@ -19,8 +19,8 @@ div#content { min-height:500px; }
 .pg-posts-show div#content span.file a { color:#999; }
 
 .pg-posts-show div#content .fl {  }
-.pg-posts-show div#content .l { float:left;width:115px  }
-.pg-posts-show div#content .r { float:left;}
+.pg-posts-show div#content .l { float:left;width:115px }
+.pg-posts-show div#content .r { float:left;width:500px }
 .pg-posts-show div#content .full_name { color:#999; }
 .pg-posts-show div#content .body { display:block;color:purple;font-size:18px;margin-top:5px }
 
