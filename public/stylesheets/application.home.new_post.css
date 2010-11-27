@@ -1,6 +1,6 @@
 
 form.executa {}
-form.executa textarea {margin-top:5px;font-family:Arial; font-size: 15px;color:#333;width:100%}
+form.executa textarea {margin-top:5px;font-family:Arial; font-size: 15px;color:#333;width:100%;overflow-y:scroll;}
 form.executa h3{ color:#333;float:left;display:inline-block;float:left;font-size:18px; }
 form.executa .caracteres{color:#999;float:right;display:inline-block;font-size:20px;text-align:right}
 
