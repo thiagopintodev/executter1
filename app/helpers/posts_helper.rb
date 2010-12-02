@@ -9,7 +9,7 @@ c: '...'
 d: '@username'
 =end
   def my_post_links(s)
-    s = s.gsub("\r"," <br/> ")
+    s = s.gsub("\r"," ")
     at = "@";
     r = s.split(" ").collect do |w|
       if w[0,1]==at
