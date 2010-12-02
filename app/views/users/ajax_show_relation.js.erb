@@ -3,13 +3,21 @@
 <ul class="menu-add">
 
   <li class="user"><%= @user.username %></li>
+  
   <% if @r %>
+    <% unless @r.is_blocker %>
     <li class="mais">
       <%= link_to @main_button[:text], "#", :class=>"clickable", 'data-url'=>ajax_user_show_relation_path(@main_button[:params]) if @main_button %>
     </li>
+    <% end %>
     
+    <% if @r.is_blocker %>
+      <li class="topico"><img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" /> Blocking @<%= @user.username %>
+        <a href="#" class="clickable" data-url="<%= ajax_user_show_relation_path({:p1=>'block', :p2=>0}) %>">(stop)</a>
+      </li>
+    <% end %>
     <% if @r.is_blocked %>
-      <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> U B-in Block'd</li>
+      <li class="topico"><img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" /> Blocked by @<%= @user.username %></li>
     <% else %>
     
       <% if @r.is_follower %>
