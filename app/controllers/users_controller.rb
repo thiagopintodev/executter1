@@ -61,7 +61,9 @@ class UsersController < ApplicationController
   end
   
   def ajax_show_tab
-    render :layout=> false
+    @user = User.find(params[:id])
+    options = (@user.posts_count > 0) ? {:layout=> false} : {:nothing => true}
+    render options
   end
   
   def ajax_show_tab_data
