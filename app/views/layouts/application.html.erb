@@ -42,7 +42,7 @@
   <%#= link_to t("application.header.orientation"), "#" %>
   <%= link_to t("application.header.settings"), "/h/1" %>
   <%#= link_to t("application.header.find_people"), "#" %>
-  <%= link_to t("application.header.profile"), my_profile_path %>
+  <%= link_to t("application.header.profile"), profile_path(current_user.username) %>
   <%= link_to t("application.header.home"), "/" %>
 <% else %>
   <%= link_to t("application.header.sign_up"), new_path %>

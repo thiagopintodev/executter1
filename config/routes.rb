@@ -53,7 +53,7 @@ Ex1::Application.routes.draw do
   #post "/", :controller => :home, :action => :create_post, :as => :my_create_post
   root :to => "home#index"
 
-  match "p" => "users#show", :as => "my_profile", :id=>"profile"
+  match "p" => "users#redirect", :as => "my_profile"
   match ":id" => "users#show", :as => "profile", :constraints => { :id => User::USERNAME_REGEX }
   
   

@@ -9,11 +9,16 @@ class UsersController < ApplicationController
     @user.update_attributes!(params[:user]) #if current_user.id.to_s == params[:id]
     redirect_to request.referer
   end
+
+  def redirect
+    redirect_to profile_path(current_user.username)
+  end
   
   def show
-    if params[:id] != "profile"
-      @user = User.my_find(params[:id])
-    elsif current_user?
+    #if params[:id] != "profile"
+    #  @user = User.my_find(params[:id])
+    #els
+    if current_user?
       @user = current_user
     end
     return redirect_to root_path unless @user
