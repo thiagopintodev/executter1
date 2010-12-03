@@ -1,3 +1,6 @@
+<% content_for :sub_header do %>
+<%= raw render("parts/sub_header_register") %>
+<% end %>
 
 <div class="in">
   <h1><%= "#{time_ago_in_words @post.created_at} - #{l @post.created_at, :format => :short}" %></h1>

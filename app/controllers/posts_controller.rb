@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_filter :my_must_be_logged, :except => :show
+  
   # GET /posts/1
   # GET /posts/1.xml
   def show

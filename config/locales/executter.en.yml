@@ -14,6 +14,9 @@ en:
       sign_out: "Sign Out"
       sign_up: "Sign Up"
       sign_in: "Sign In"
+    sub_header:
+      title: "Hey! <span>%{username}</span> está Executtando"
+      body: "Executter é um serviço GRÁTIS que permite você acompanhar e organizar em listas as postagens de sua rede de interesse. Cadastre-se agora mesmo para começar a receber os executs de %{username}."
     footer:
       about_us: "About us"
       terms: "Terms"
