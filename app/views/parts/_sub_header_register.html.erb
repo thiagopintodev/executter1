@@ -1,0 +1,14 @@
+<% unless true #current_user? %>
+<div id="topo-cadastro">
+  <div class="desenho"></div>
+  <div id="box-chamada">
+  	<h1><%= raw t('application.sub_header.title', :username => @user.username) %></h1>
+    <div class="texto">
+      <%= raw t('application.sub_header.body', :username => link_to( "@#{@user.username}", profile_path(@user.username) )) %>
+    </div>
+    <div class="p-botao">
+    	<%= link_to t("application.header.sign_up"), new_path %>
+    </div>
+  </div>
+</div>
+<% end %>
