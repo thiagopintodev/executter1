@@ -8,8 +8,18 @@ class UserObserver < ActiveRecord::Observer
     u2 = User.find_by_username('executter')
     user.follow u2 if u2
     User.logger.info "FOLLOWING executter"
+    
     u2 = User.find_by_username('edgala')
     user.follow u2 if u2
     User.logger.info "FOLLOWING edgala"
+
+    if user.temp && user.temp[:follow_on_registration]
+      u2 = User.find(user.temp[:follow_on_registration])
+      user.follow u2
+      User.logger.info "FOLLOWING #{u2.username}"
+      user.temp = nil
+      user.save
+    end
+    
   end
 end

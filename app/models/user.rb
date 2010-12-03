@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable , :lockable
-
+  serialize :temp
+  
   class << self
     #DEVISE
     def find_for_database_authentication(conditions)
@@ -170,8 +171,8 @@ class User < ActiveRecord::Base
 
   
   #RELATIONSHIP METHODS
-  def follow(u2, value=true)
-    Relationship.change('follow', self.id, u2, value)
+  def follow(u2, value=true, options={})
+    Relationship.change('follow', self.id, u2, value, options)
   end
   def block(u2, value=true)
     Relationship.change('block', self.id, u2, value)

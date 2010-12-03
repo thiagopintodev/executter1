@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
   end
   
   protected
+
+  def my_suggest_registration
+    #after_filter :my_suggest_registration, :only=>:show
+    cookies[:follow_on_registration] = @user.id unless current_user? || !@user || cookies[:follow_on_registration]
+  end
   
   def my_before_every_request
     #no  www

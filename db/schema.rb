@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101103184613) do
+ActiveRecord::Schema.define(:version => 20101203024830) do
 
   create_table "banners", :force => true do |t|
     t.string   "name"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(:version => 20101103184613) do
     t.string   "body"
     t.string   "remote_ip"
     t.boolean  "is_public",  :default => false
-    t.boolean  "is_deleted", :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "has_image",  :default => false
@@ -141,6 +140,9 @@ ActiveRecord::Schema.define(:version => 20101103184613) do
     t.datetime "background_image_updated_at"
     t.integer  "posts_count",                                  :default => 0
     t.integer  "subjects_count",                               :default => 0
+    t.string   "temp"
+    t.integer  "posts_file_count",                             :default => 0
+    t.integer  "posts_image_count",                            :default => 0
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -82,7 +82,9 @@
 <h3>test</h3>
 <%#= request.env["HTTP_ACCEPT_LANGUAGE"] %>
 <%#= debug request.env %>
-<h3>session</h3>
+<h3>cookies</h3>
+<%= debug cookies %>
+<h3>request</h3>
 <%= debug session %>
 <h3>request</h3>
 <%#= debug request.env['rack.session.record'] %>

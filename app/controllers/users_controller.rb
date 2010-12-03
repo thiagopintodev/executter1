@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  after_filter :my_suggest_registration, :only=>:show
+
   def index
     @users = User.all
   end
@@ -15,10 +18,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    #if params[:id] != "profile"
-    #  @user = User.my_find(params[:id])
-    #els
-    if current_user?
+    if params[:id]# != "profile"
+      @user = User.my_find(params[:id])
+    elsif current_user?
       @user = current_user
     end
     return redirect_to root_path unless @user

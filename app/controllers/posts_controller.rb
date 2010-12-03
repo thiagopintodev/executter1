@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 
+  after_filter :my_suggest_registration, :only=>:show
   before_filter :my_must_be_logged, :except => :show
   
   # GET /posts/1
