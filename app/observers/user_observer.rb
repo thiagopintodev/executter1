@@ -5,11 +5,11 @@ class UserObserver < ActiveRecord::Observer
   end
   
   def after_create(user)
-    u2 = User.find_by_username('executter')
+    u2 = User.my_find 'executter'
     user.follow u2 if u2
     User.logger.info "FOLLOWING executter"
     
-    u2 = User.find_by_username('edgala')
+    u2 = User.my_find 'edgala'
     user.follow u2 if u2
     User.logger.info "FOLLOWING edgala"
 
