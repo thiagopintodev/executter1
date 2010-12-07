@@ -15,7 +15,7 @@
 
 <% @hostnesses.each do |hostness| %>
   <tr>
-    <td><%= hostness.user_id %></td>
+    <td>@<%= hostness.user.username %></td>
     <td><%= hostness.country %></td>
     <td><%= hostness.state %></td>
     <td><%= hostness.city %></td>

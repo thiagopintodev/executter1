@@ -19,7 +19,7 @@ class UserObserver < ActiveRecord::Observer
       user.follow host.user_id
       User.logger.info "FOLLOWING host at state #{user.first_geo_state}, user_id=>#{host.user_id}"
     end
-    
+=begin
     u2 = User.my_find 'executter'
     user.follow u2 if u2
     User.logger.info "FOLLOWING executter"
@@ -27,11 +27,11 @@ class UserObserver < ActiveRecord::Observer
     u2 = User.my_find 'edgala'
     user.follow u2 if u2
     User.logger.info "FOLLOWING edgala"
-
+=end
     if user.temp && user.temp[:follow_on_registration]
       u2 = User.find(user.temp[:follow_on_registration])
       user.follow u2
-      User.logger.info "FOLLOWING #{u2.username}"
+      User.logger.info "FOLLOWING inviter #{u2.username}"
       user.temp = nil
       user.save
     end
