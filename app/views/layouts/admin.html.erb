@@ -34,16 +34,13 @@
     <% flash.each do |k,v| %>
       <%= raw "<p class='flash flash-#{k}'>#{v}</p>" %>
     <% end %>
-
-
     
+    <div>admin:
+      <%= link_to "banners", banners_path %> |
+      <%= link_to "hosts", hostnesses_path %>
+    </div>
 
-
-<div>admin:
-  <%= link_to "banners", banners_path %>
-<div>
-<hr/>
-
+    <hr/>
 
     <%= yield %>
   </div>

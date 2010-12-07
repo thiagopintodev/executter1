@@ -1,0 +1,33 @@
+<h1>Regras de Anfitrião</h1>
+<h2>adicione várias regras para o mesmo anfitrião :)</h2>
+<hr/>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Country</th>
+    <th>State</th>
+    <th>City</th>
+    <th>Type</th>
+    <th>Is Active</th>
+    <th></th>
+  </tr>
+
+<% @hostnesses.each do |hostness| %>
+  <tr>
+    <td><%= hostness.user_id %></td>
+    <td><%= hostness.country %></td>
+    <td><%= hostness.state %></td>
+    <td><%= hostness.city %></td>
+    <td><%= hostness.hostness_type %></td>
+    <td><%= hostness.is_active ? 'ATIVO' : '' %></td>
+    <td><%= link_to 'Edit', edit_hostness_path(hostness) %></td>
+    <td><%= link_to 'Destroy', hostness, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr/>
+
+
+<%= link_to 'New Hostness', new_hostness_path %>

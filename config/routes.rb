@@ -1,8 +1,11 @@
 Ex1::Application.routes.draw do
   
+
   #resource :photo, :only => [:create]
 
-  resources :banners, :path => "admin/banners" #except => :show
+  resources :hostnesses, :path => "a/hostnesses", :except => :show
+  resources :banners, :path => "a/banners" #except => :show
+  get "a"  => "banners#index"
   #resources :flavours, :path => "admin/flavours"
   
   #resources :user_profiles
@@ -69,6 +72,7 @@ Ex1::Application.routes.draw do
   
   match ":id/ajax_relation" => "users#ajax_show_relation", :as => :ajax_user_show_relation
   
+  match ":id/set_host/:val" => "users#set_host", :as => :user_set_host
 
 
   # The priority is based upon order of creation:

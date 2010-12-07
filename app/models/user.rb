@@ -204,6 +204,17 @@ class User < ActiveRecord::Base
     Post.get self, self.friends, options
   end
 
+  #OTHER METHODS
+  def update_geo
+    g = MyGeoKit.geocode(self.first_ip)
+    self.first_geo_city = g.city
+    self.first_geo_state = g.state
+    self.first_geo_country = g.country_code
+    self.save
+    #self.first_geo_zip = g.zip
+    #self.first_geo_street = g.street
+  end
+      
   
 
 =begin

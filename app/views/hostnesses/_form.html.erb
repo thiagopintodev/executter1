@@ -1,0 +1,34 @@
+<%= form_for(@hostness) do |f| %>
+  <% if @hostness.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hostness.errors.count, "error") %> prohibited this hostness from being saved:</h2>
+
+      <ul>
+      <% @hostness.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table width="100%">
+    <tr>
+      <th>Anfitrião</th>
+      <th>Cidade</th>
+      <th>Estado</th>
+      <th>Pais</th>
+      <th>Tipo</th>
+      <th>Ativo?</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td><%= collection_select(:hostness, :user_id, @user_hosts, :id, :username) %></td>
+      <td><%= collection_select(:hostness, :city, @user_cities, :first_geo_city, :first_geo_city) %></td>
+      <td><%= collection_select(:hostness, :state, @user_states, :first_geo_state, :first_geo_state) %></td>
+      <td><%= collection_select(:hostness, :country, @user_countries, :first_geo_country, :first_geo_country) %></td>
+      <td><%= collection_select(:hostness, :hostness_type, Hostness::TYPES, :to_s, :to_s) %></td>
+      <td><%= f.check_box :is_active %></td>
+      <td><%= f.submit %></td>
+    </tr>
+  </table>
+  
+<% end %>

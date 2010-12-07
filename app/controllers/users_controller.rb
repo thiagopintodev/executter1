@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
 
   after_filter :my_suggest_registration, :only=>:show
+  before_filter :my_admin_only, :only => :set_host
 
+  def set_host
+    @user = User.my_find(params[:id])
+    @user.is_host = params[:val]=='1'
+    @user.save
+    redirect_to profile_path(@user.username)
+  end
+  
   def index
     @users = User.all
   end

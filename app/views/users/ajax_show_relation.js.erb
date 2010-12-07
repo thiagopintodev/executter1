@@ -3,7 +3,7 @@
 <ul class="menu-add">
 
   <li class="user"><%= @user.username %></li>
-  
+
   <% if @r %>
     <% unless @r.is_blocker %>
     <li class="mais">
@@ -47,7 +47,21 @@
 </div>
 
 <ul id="menu-estilos" style="display:none">
-      
+
+  <% if current_user.admin %>
+    <% if @user.is_host %>
+      <li><a href="<%= user_set_host_path(@user.id, 0) %>">
+        <img src="/images/layout/0_Block.gif" width="16" height="16" />
+        tirar anfitrião
+      </a></li>
+    <% else %>
+      <li><a href="<%= user_set_host_path(@user.id, 1) %>">
+        <img src="/images/layout/0_Block.gif" width="16" height="16" />
+        tornar anfitrião
+      </a></li>
+    <% end %>
+  <% end %>
+
   <% if @r.is_follower %>
   
   <%= content_tag :li,
@@ -58,7 +72,6 @@
   
   <% if @r.is_blocker %>
 
-  
     <li><a href="#" class="clickable"
       data-url="<%= ajax_user_show_relation_path({:p1=>'block', :p2=>0}) %>">
       <img src="/images/layout/0_Unblock.gif" width="16" height="16" />

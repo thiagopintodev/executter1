@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101203024830) do
+ActiveRecord::Schema.define(:version => 20101207182740) do
 
   create_table "banners", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(:version => 20101203024830) do
     t.string   "img_content_type"
     t.integer  "img_file_size"
     t.datetime "img_updated_at"
+  end
+
+  create_table "hostnesses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
+    t.string   "hostness_type", :default => "normal"
+    t.boolean  "is_active",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photos", :force => true do |t|
@@ -143,6 +154,11 @@ ActiveRecord::Schema.define(:version => 20101203024830) do
     t.string   "temp"
     t.integer  "posts_file_count",                             :default => 0
     t.integer  "posts_image_count",                            :default => 0
+    t.boolean  "is_host"
+    t.string   "first_ip"
+    t.string   "first_geo_city"
+    t.string   "first_geo_state"
+    t.string   "first_geo_country"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
