@@ -38,7 +38,7 @@ class HomeController < ApplicationController
     end
     
     if u.temp && u.temp[:follow_on_registration]
-      u2 = u.find(u.temp[:follow_on_registration])
+      u2 = User.find(u.temp[:follow_on_registration])
       u.follow u2
       u.logger.info "FOLLOWING inviter #{u2.username}"
       u.temp = nil
