@@ -206,7 +206,7 @@ class User < ActiveRecord::Base
 
   #OTHER METHODS
   def update_geo
-    g = MyGeoKit.geocode(self.first_ip)
+    g = MyGeoKit.geocode(self.last_sign_in_ip)
     self.first_geo_city = g.city
     self.first_geo_state = g.state
     self.first_geo_country = g.country_code
