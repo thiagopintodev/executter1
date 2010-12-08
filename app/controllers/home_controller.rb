@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   def index
     @user = current_user
   end
+  
   def new_post
     render :layout=>'iframe'
     unless params[:post]
@@ -17,6 +18,34 @@ class HomeController < ApplicationController
         flash[:too_soon] = t "home.too_quick"
       end
     end
+  end
+  
+  def after_sign_up
+    u = current_user
+    #u.first_ip = u.last_sign_in_ip
+    u.update_geo
+    
+    hosts = Hostness.where(:is_active=>true, :country=>u.first_geo_country)
+    hosts.each do |host|
+      u.follow host.user_id
+      u.logger.info "FOLLOWING host at country #{u.first_geo_country}, u_id=>#{host.user_id}"
+    end
+
+    hosts = Hostness.where(:is_active=>true, :state=>u.first_geo_state)
+    hosts.each do |host|
+      u.follow host.user_id
+      u.logger.info "FOLLOWING host at state #{u.first_geo_state}, u_id=>#{host.user_id}"
+    end
+    
+    if u.temp && u.temp[:follow_on_registration]
+      u2 = u.find(u.temp[:follow_on_registration])
+      u.follow u2
+      u.logger.info "FOLLOWING inviter #{u2.username}"
+      u.temp = nil
+      u.save
+    end
+    #render :inline=>":)"
+    redirect_to root_path
   end
 
 

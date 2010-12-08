@@ -35,7 +35,7 @@ Ex1::Application.routes.draw do
   match "h/ajax_tab/:tab_id" => "home#ajax_index_tab", :as => :ajax_home_index_tab
   match "h/ajax_tab_data/:tab_id" => "home#ajax_index_tab_data", :as => :ajax_home_index_tab_data
   
-  
+  get "h/after_sign_up" => "home#after_sign_up"
   get "h/1" => "home#settings_profile"
   get "h/2" => "home#settings_username"
   get "h/3" => "home#settings_password"

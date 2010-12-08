@@ -22,7 +22,9 @@ class Devise::RegistrationsController < ApplicationController
     
     if did && resource.save
       #set_flash_message :notice, :signed_up
-      sign_in_and_redirect(resource_name, resource)
+      #sign_in_and_redirect(resource_name, resource)
+      sign_in(resource_name, resource)
+      redirect_to(h_after_sign_up_path)
     else
       clean_up_passwords(resource)
       render_with_scope :new
