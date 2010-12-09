@@ -156,10 +156,12 @@ $(function() {
 
     $("form.executa").live("submit", function() {
       $("form.executa #post_submit").hide();
+      functions.posts.clearAfterCountTimeout();
     });
     
     $('#new_post').ajaxForm(function() {
-      $('#new_post textarea').val("");
+      t_maxlength = $('#new_post textarea').val("").attr("maxlength");
+      $('#new_post .caracteres').html( t_maxlength );
       
       $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
       functions.posts.after();
