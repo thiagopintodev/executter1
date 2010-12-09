@@ -8,8 +8,32 @@
 <p><%= time_ago_in_words(Time.now - 15.hours) %></p>
 <p><%= time_ago_in_words(Time.now) %></p>
 
-<h3>frame</h3>
+<h3>jquery form</h3>
 
+
+<script type="text/javascript" src="/javascripts/jquery.form.js"></script>
+<script type="text/javascript"> 
+    // wait for the DOM to be loaded 
+    $(function() { 
+        // bind 'myForm' and provide a simple callback function 
+        $('#new_post').ajaxForm(function() { 
+            alert("Thank you for your comment!"); 
+        }); 
+    }); 
+</script> 
+
+
+
+
+<%= form_for Post.new, :url=>h_new_post_path, :html=>{:class=>"executa", :multipart=>true} do |f| %>
+
+
+  <%= f.text_area :body, :rows=>3, :maxlength=>196 %>
+<p><input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'></p>
+
+  <%= f.submit "Executte", :class=>"btn" %>
+
+<% end %>
 
 
 
