@@ -1,6 +1,9 @@
 Ex1::Application.routes.draw do
   
 
+  resources :xlinks, :path => "a/xlinks"
+  match "x/:micro(.:format)" => "xlinks#display", :as => :micro
+
   #resource :photo, :only => [:create]
 
   resources :hostnesses, :path => "a/hostnesses", :except => :show

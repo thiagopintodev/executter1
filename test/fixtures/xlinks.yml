@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  micro: MyString
+  file_width: 1
+  file_height: 1
+
+two:
+  user_id: 1
+  micro: MyString
+  file_width: 1
+  file_height: 1

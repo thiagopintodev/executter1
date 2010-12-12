@@ -17,19 +17,15 @@
       
 <%= my_post_actions post %>
 
-
-    <% at = post.read_first_post_attachments %>
-    <% if at.file? %>
-      <% if at.file_image? %>
+<% if post.links %>
+  <% post.links.each do |x| %>
+      <% if x.ends_with? '.jpg' %>
 
 <li class="foto">
-  <%= link_to image_tag(at.file.url(:me)), post %>
+  <%= link_to image_tag(x, :width=>200), post %>
   <%if false%>
-  <%= link_to image_tag(at.file.url(:me)), at.file.url, :target=>"_blank" %>
-  <span><%= link_to "Baixar arquivo original", at.file.url, :target=>"_blank" %></span><br/>
-  <span>Format: <%= at.file_content_type %></span><br/>
-  <span>Size: <%= number_to_human_size at.file_file_size %></span><br/>
-  <span>Dimensões: <%= "#{at.file_width}x#{at.file_height}" %></span><br/>
+  <%= link_to image_tag(x, :style=>"width:200px"), x, :target=>"_blank" %>
+  <span><%= link_to "Baixar arquivo original", x, :target=>"_blank" %></span><br/>
   <%end%>
 </li>
 
@@ -38,13 +34,19 @@
 <li class="hora" style="clear:both">
   <span>
     <img border="0" width="16" height="16" alt="Name" src="/images/layout1/anexo/_attach.gif">
-    <%= link_to at.file_file_name, at.file.url, :target=>"_blank" %>
-    (<%= number_to_human_size at.file_file_size %>)
+    <%= link_to "#{request.env['HTTP_HOST']}#{x}", x, :target=>"_blank" %>
   </span>
 </li>
 
       <% end %>
     <% end %>
+  <% end %>
+
+
+
+
+
+    
 
     <li class="hora" style="clear:both">
       <%= link_to "#{time_ago_in_words post.created_at} - #{l post.created_at, :format => :short}", post %>

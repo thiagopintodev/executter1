@@ -6,6 +6,7 @@ class Myh
       m.attributes.each { |k,v| puts "#{k.ljust(30,'.')} #{v || 'nil'}" if v }
       puts "LAST UPDATE AT: #{m.updated_at}"
     end
+    "array size: #{ma.size}"
   end
   
 end

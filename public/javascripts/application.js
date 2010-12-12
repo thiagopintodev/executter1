@@ -163,7 +163,7 @@ $(function() {
       t_maxlength = $('#new_post textarea').val("").attr("maxlength");
       $('#new_post .caracteres').html( t_maxlength );
       
-      $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
+      $("#anexoBox p:last").html("<input type='file' name='file' id='file'>");
       functions.posts.after();
       $("form.executa #post_submit").show();
     });

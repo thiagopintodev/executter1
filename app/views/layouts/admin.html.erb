@@ -13,33 +13,25 @@
 </head>
 <body style="background-color:#326496;background-color:#333;">
 
-<div style="width:1000px;margin:100px auto;border: #333 solid 0px;border-width: 0 2px;background:white;">
-  <div class="my_border" style="text-align:right;border-bottom: #666 solid 1px;">
-    <% if user_signed_in? %>
-      <%#= link_to "Change Password", edit_user_password_path %>
-      <%= link_to "Edit Profile", edit_user_registration_path %> |
-      <%= link_to "Out", destroy_user_session_path %>
-    <% else %>
-      <%= link_to "I'm a New User", new_user_registration_path %> |
-      <%= link_to "Forgot Password?", new_user_password_path %> |
-      <%= link_to "Sign In", new_user_session_path %>
-    <% end %>
-  </div>
+<div style="width:1000px;margin:100px auto;border: #333 solid 0px;border-width: 0 2px;background:white;padding: 0 10px">
+
 
 
   <div class="my_border" style="min-height:1000px;">
+  
+<a href="/" style="background: url('/images/layout/1_E_Orange.png') no-repeat;cursor: pointer;float: left;height: 47px;margin: 20px 0 0;width: 200px;">
+</a>
 
-
+    <div style="float:right">
+      <%= link_to "banners", banners_path %> |
+      <%= link_to "hosts", hostnesses_path %> |
+      <%= link_to "xlinks", xlinks_path %> &nbsp; - &nbsp;
+      <%= link_to "Out", destroy_user_session_path %>
+    </div>
 
     <% flash.each do |k,v| %>
       <%= raw "<p class='flash flash-#{k}'>#{v}</p>" %>
     <% end %>
-    
-    <div>admin:
-      <%= link_to "banners", banners_path %> |
-      <%= link_to "hosts", hostnesses_path %>
-    </div>
-
     <hr/>
 
     <%= yield %>

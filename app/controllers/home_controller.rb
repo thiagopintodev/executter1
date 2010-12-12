@@ -6,18 +6,38 @@ class HomeController < ApplicationController
   end
   
   def new_post
-    render :layout=>'iframe'
+    #render :layout=>'iframe'
     unless params[:post]
       @post = Post.new
     else
       if not_many_posts
-        current_user.my_create_post(params[:post], request.remote_ip)
+        #current_user.my_create_post(params[:post], request.remote_ip)
+        new_post2
         @post = Post.new
       else
         @post = Post.new(params[:post])
         flash[:too_soon] = t "home.too_quick"
       end
     end
+  end
+
+  def new_post2
+    post_attributes = params[:post]
+    remote_ip = request.remote_ip
+    @user = current_user
+    
+    @p = @user.posts.build(post_attributes)
+    if params[:file]
+      @x = Xlink.new(:file=>params[:file], :user_id=>@user.id)
+      @x.file.file_name = "amarelo"
+      @x.save
+      @p.links = [ @x.to_path ]
+      @p.has_image = @x.file? && @x.file_image?
+      @p.has_file = @x.file? && !@x.file_image?
+    end
+    
+    @p.remote_ip = remote_ip
+    @p.save ? @p : nil
   end
   
   def after_sign_up

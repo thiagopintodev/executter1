@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101207182740) do
+ActiveRecord::Schema.define(:version => 20101211224534) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20101207182740) do
     t.timestamp "updated_at"
     t.boolean   "has_image",  :default => false
     t.boolean   "has_file",   :default => false
+    t.string    "links"
   end
 
   create_table "relationships", :force => true do |t|
@@ -167,5 +168,18 @@ ActiveRecord::Schema.define(:version => 20101207182740) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "xlinks", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "micro"
+    t.integer  "file_width"
+    t.integer  "file_height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
 
 end

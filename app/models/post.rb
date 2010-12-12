@@ -18,6 +18,8 @@ class Post < ActiveRecord::Base
   scope :with_image, where(:has_image => true)
   scope :with_file, where(:has_file => true)
 
+  serialize :links
+
   validates :body, :presence => true, :length => { :within => 1..200 }
 
   MY_LIMIT = 10

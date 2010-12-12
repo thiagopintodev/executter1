@@ -11,6 +11,15 @@
     <%= image_tag at.file.url(:original), :class=>"file" %>
   <% end %>
   
+<% if @post.links %>
+  <% @post.links.each do |x| %>
+    <% if x.ends_with? '.jpg' %>
+      <%= image_tag x, :class=>"file" %>
+    <% end %>
+  <% end %>
+<% end %>
+  
+  
   <div class="fl l">
     <a href="/<%= @post.user.username %>">
       <img src="<%= @post.user.read_photo.img.url(:me) %>" border="0" />
@@ -23,13 +32,17 @@
 
     <%#= content_tag :span, "#{t 'model.subject.model_name'}: #{@post.subject.name}", :class=>:subject if @post.subject %>
     
-  <% if at.file? && !at.file_image? %>
-    <span class="file">
-      <img border="0" width="32" height="32" alt="Name" src="/images/layout1/anexo/_attach.gif">
-      <%= link_to at.file_file_name, at.file.url, :target=>"_blank" %>
-      (<%= number_to_human_size at.file_file_size %>)
-    </span>
+  <% if @post.links %>
+    <% @post.links.each do |x| %>
+
+      <span class="file">
+        <img border="0" width="32" height="32" alt="Name" src="/images/layout1/anexo/_attach.gif">
+        <%= link_to "#{request.env['HTTP_HOST']}#{x}", x, :target=>"_blank" %>
+      </span>
+
+    <% end %>
   <% end %>
+
   </div>
 
 </div>

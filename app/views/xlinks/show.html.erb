@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @xlink.user_id %>
+</p>
+
+<p>
+  <b>Micro:</b>
+  <%= @xlink.micro %>
+</p>
+
+<p>
+  <b>File width:</b>
+  <%= @xlink.file_width %>
+</p>
+
+<p>
+  <b>File height:</b>
+  <%= @xlink.file_height %>
+</p>
+
+
+<%= link_to 'Edit', edit_xlink_path(@xlink) %> |
+<%= link_to 'Back', xlinks_path %>
