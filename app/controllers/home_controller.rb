@@ -28,9 +28,7 @@ class HomeController < ApplicationController
     
     @p = @user.posts.build(post_attributes)
     if params[:file]
-      @x = Xlink.new(:file=>params[:file], :user_id=>@user.id)
-      @x.file.file_name = "amarelo"
-      @x.save
+      @x = Xlink.create(:file=>params[:file], :user_id=>@user.id)
       @p.links = [ @x.to_path ]
       @p.has_image = @x.file? && @x.file_image?
       @p.has_file = @x.file? && !@x.file_image?
