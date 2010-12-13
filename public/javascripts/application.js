@@ -160,12 +160,12 @@ $(function() {
     });
     
     $('#new_post').ajaxForm(function() {
-      t_maxlength = $('#new_post textarea').val("").attr("maxlength");
+      t_maxlength = $('#new_post textarea').val("").focus().attr("maxlength");
       $('#new_post .caracteres').html( t_maxlength );
       
       $("#anexoBox p:last").html("<input type='file' name='file' id='file'>");
       functions.posts.after();
-      $("form.executa #post_submit").show();
+      $("form.executa #post_submit").attr("disabled",true).show();
     });
     
     //start home

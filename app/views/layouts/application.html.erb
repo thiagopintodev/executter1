@@ -79,18 +79,14 @@
 
 
 <% if true && Rails.env.development? %>
-<h3>test</h3>
-<%#= request.env["HTTP_ACCEPT_LANGUAGE"] %>
-<%#= debug request.env %>
-<h3>cookies</h3>
-<%= debug cookies %>
-<h3>request</h3>
-<%= debug session %>
-<h3>request</h3>
-<%#= debug request.env['rack.session.record'] %>
-<%= debug request %>
 <h3>params</h3>
 <%= debug params %>
+<h3>cookies</h3>
+<%= debug cookies %>
+<h3>session</h3>
+<%= debug session %>
+<h3>request env</h3>
+<small><%= debug request.env %></small>
 <% end %>
 
 
