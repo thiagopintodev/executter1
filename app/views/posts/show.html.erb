@@ -13,8 +13,8 @@
   
 <% if @post.links %>
   <% @post.links.each do |x| %>
-    <% if x.ends_with? '.jpg' %>
-      <%= image_tag x, :class=>"file" %>
+    <% if x[:url].ends_with? '.jpg' %>
+      <%= image_tag x[:url], :class=>"file" %>
     <% end %>
   <% end %>
 <% end %>
@@ -37,7 +37,7 @@
 
       <span class="file">
         <img border="0" width="32" height="32" alt="Name" src="/images/layout1/anexo/_attach.gif">
-        <%= link_to "#{request.env['HTTP_HOST']}#{x}", x, :target=>"_blank" %>
+        <%= link_to "#{x[:name]}", x[:url], :target=>"_blank" %>
       </span>
 
     <% end %>

@@ -19,13 +19,13 @@
 
 <% if post.links %>
   <% post.links.each do |x| %>
-      <% if x.ends_with? '.jpg' %>
+      <% if x[:url].ends_with? '.jpg' %>
 
 <li class="foto">
-  <%= link_to image_tag(x, :width=>200), post %>
+  <%= link_to image_tag(x[:url], :width=>200), post %>
   <%if false%>
-  <%= link_to image_tag(x, :style=>"width:200px"), x, :target=>"_blank" %>
-  <span><%= link_to "Baixar arquivo original", x, :target=>"_blank" %></span><br/>
+  <%= link_to image_tag(x[:url], :style=>"width:200px"), x[:name], :target=>"_blank" %>
+  <span><%= link_to "Baixar arquivo original #{x[:name]}", x[:url], :target=>"_blank" %></span><br/>
   <%end%>
 </li>
 
