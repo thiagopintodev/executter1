@@ -10,7 +10,7 @@ class MigratePaToXlink < ActiveRecord::Migration
           x.file_height = pa.file_height
           x.user_id = p.user_id
           x.save
-          p.links = [ {:url=>x.to_url, :name => x.to_url} ]
+          p.links = [ {:url=>x.to_url, :name => x.file_file_name} ]
           p.save
           pa.destroy
         end
