@@ -1,3 +1,4 @@
+#encode: utf-8
 class MigratePaToXlink < ActiveRecord::Migration
   def self.up
 
@@ -10,7 +11,7 @@ class MigratePaToXlink < ActiveRecord::Migration
           x.file_height = pa.file_height
           x.user_id = p.user_id
           x.save
-          p.links = [ {:url=>x.to_url, :name => x.file_file_name} ]
+          p.links = [ {:url=>x.to_url, :name => pa.file_file_name} ]
           p.save
           pa.destroy
         end
