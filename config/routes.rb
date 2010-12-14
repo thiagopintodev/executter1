@@ -3,7 +3,7 @@ Ex1::Application.routes.draw do
 
   resources :xlinks, :path => "a/xlinks"
   match "x/:micro(.:format)" => "xlinks#display", :as => :micro
-  constraints :subdomain => 'box' do
+  constraints :subdomain => /box/ do
     match ":micro(.:format)" => "xlinks#display", :as => :microbox
   end
 
