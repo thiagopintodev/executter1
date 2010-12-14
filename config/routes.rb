@@ -1,11 +1,11 @@
 Ex1::Application.routes.draw do
   
-
   resources :xlinks, :path => "a/xlinks"
-  match "x/:micro(.:format)" => "xlinks#display", :as => :micro
+  
   constraints :subdomain => /box/ do
-    match ":micro(.:format)" => "xlinks#display", :as => :microbox
+    match ":micro(.:format)" => "xlinks#display", :as => :micro
   end
+  match "x/:micro(.:format)" => "xlinks#display", :as => :xmicro
 
   #resource :photo, :only => [:create]
 

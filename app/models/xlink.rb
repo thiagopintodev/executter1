@@ -4,8 +4,8 @@ class Xlink < ActiveRecord::Base
   def to_param
     file_image? ? "#{self.micro}.jpg" : self.micro
   end
-  def to_path
-    "/x/#{self.to_param}"
+  def to_url
+    MyConfig.production? "http://box.executter.com/#{self.to_param}" : "/x/#{self.to_param}"
   end
   def get_url
     self.url(me)

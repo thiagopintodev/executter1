@@ -1,6 +1,7 @@
 save file name at post instance
 subdomain box instead of /x
 publish xlink to production
+micro.pdf micro.doc.....
 remove old code/table from PA
 remove old code from IFRAME
 ajax registration
