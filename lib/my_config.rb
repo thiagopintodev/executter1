@@ -51,5 +51,23 @@ class MyConfig
     end
     r
   end
+  
+  def self.paperclip_xlink_options(styles)
+    r = {}
+    r[:default_url] = "/images/application/default/:class/:attachment/:style.png"
+    r[:styles] = styles
+    path = "/#{app_name}/:class/:attachment/:micro_:basename.:extension"
+    
+    if s3_credentials
+      r[:storage] = :s3
+      r[:s3_credentials] = s3_credentials
+      r[:bucket] = "of7_#{bucket_name}"
+      r[:path] = path
+    else
+		  r[:path] = ":rails_root/public/assets#{path}"
+		  r[:url] = "/assets#{path}"
+    end
+    r
+  end
 
 end
