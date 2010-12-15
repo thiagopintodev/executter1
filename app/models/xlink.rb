@@ -32,10 +32,13 @@ class Xlink < ActiveRecord::Base
   # :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] }
 
   def generate_micro
-    len = rand(11)+5
     chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a + ['_','-','!','*']
-    self.micro = ""
-    1.upto(len) { |i| self.micro << chars[rand(chars.size-1)] }
+    exists = true
+    while exists
+      self.micro = ""
+      5.times { self.micro << chars[rand(chars.size-1)] }
+      exists = Xlink.exists?(:micro=>self.micro)
+    end
   end
   
   before_save :learn_image_geometry
