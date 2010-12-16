@@ -35,10 +35,12 @@
   <% if @post.links %>
     <% @post.links.each do |x| %>
 
-      <span class="file">
-        <img border="0" width="32" height="32" alt="Name" src="/images/layout1/anexo/_attach.gif">
-        <%= link_to "#{x[:name]}", x[:url], :target=>"_blank" %>
-      </span>
+      <% unless x[:url].ends_with? '.jpg' %>
+        <span class="file">
+          <img border="0" width="32" height="32" alt="Name" src="/images/layout1/anexo/_attach.gif">
+          <%= link_to x[:name], x[:url], :target=>"_blank" %>
+        </span>
+      <% end %>
 
     <% end %>
   <% end %>

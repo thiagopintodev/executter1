@@ -7,9 +7,6 @@ class Xlink < ActiveRecord::Base
   def to_url
     MyConfig.production? ? "http://box.executter.com/#{self.to_param}" : "/x/#{self.to_param}"
   end
-  def get_url
-    self.url(me)
-  end
   
   validates_attachment_size :file, :less_than => 11.megabytes
   

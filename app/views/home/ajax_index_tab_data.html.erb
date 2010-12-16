@@ -34,7 +34,7 @@
 <li class="hora" style="clear:both">
   <span>
     <img border="0" width="16" height="16" alt="Name" src="/images/layout1/anexo/_attach.gif">
-    <%= link_to "#{request.env['HTTP_HOST']}#{x}", x, :target=>"_blank" %>
+    <%= link_to x[:name], x[:url], :target=>"_blank" %>
   </span>
 </li>
 
