@@ -18,6 +18,11 @@ class MyFunctions
     r
   end
 
+  def self.model(ma)
+    ma = [ma] unless ma.is_a? Array
+    ma.to_yaml.split("\n").each {|a| puts a}; puts ""
+  end
+
   def self.migrate_pa_to_x
     Post.all.each do |p|
       p.post_attachments.all.each do |pa|
