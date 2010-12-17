@@ -8,11 +8,11 @@ class MigratePaToXlink < ActiveRecord::Migration
         if pa.file?
           puts "PA ##{pa.id} has a file!"
           x = Xlink.new
-          x.file = pa.file
+          x.file = nil#pa.file
           x.file_width = pa.file_width
           x.file_height = pa.file_height
           x.user_id = p.user_id
-          x.save
+          #x.save
           p.links = [ {:url=>x.to_url, :name => pa.file_file_name} ]
           p.save
           #pa.destroy
