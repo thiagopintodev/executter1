@@ -31,8 +31,8 @@ Ex1::Application.routes.draw do
     #get "/conf/2" => "devise/registrations#edit"
   end
   
-  resources :users, :only =>[:show, :index, :update]
-  resources :posts, :only =>[:show, :destroy] #:create, 
+  resources :users, :path => "u", :only =>[:show, :index, :update]
+  resources :posts, :path => "p", :only =>[:show, :destroy] #:create, 
 
   
   #match "h/ajax_tab1" => "home#ajax_index_tab1", :as => :ajax_home_index_tab1
