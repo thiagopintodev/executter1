@@ -9,7 +9,7 @@ class MigratePaToXlink < ActiveRecord::Migration
           puts "PA ##{pa.id} has a file!"
           x = Xlink.new
           x.file = nil#
-          puts pa.file
+          puts pa.file.to_file
           x.file_width = pa.file_width
           x.file_height = pa.file_height
           x.user_id = p.user_id
