@@ -18,8 +18,7 @@ class MyFunctions
     r
   end
 
-  def self.model(ma)
-    ma = [ma] unless ma.is_a? Array
-    ma.to_yaml.split("\n").each {|a| puts a}; puts ""
+  def self.model(models)
+    models.to_yaml.split("\n").each {|a| puts a}; puts ""
   end
 end
