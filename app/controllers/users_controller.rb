@@ -42,6 +42,11 @@ class UsersController < ApplicationController
     @isme = @user.id == current_user_id
   end
 
+  def ajax_followings_thumbs
+    fill_user
+    @users = @user.followings_users.includes(:photo).limit(28).select(:full_name, :username)
+    render :layout=>false
+  end
   
   def ajax_show_relation
     #js only

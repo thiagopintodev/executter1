@@ -6,8 +6,9 @@ String.prototype.endsWith = function(pattern) {
 
 
 ROUTE_USERNAME_AVAILABLE = "/s/ajax_username_available/:u"
+ROUTE_USER_FOLLOWINGS_THUMBS = ":id/ajax_followings_thumbs"
 
-POSTS_TIMEOUT = 30 * 1000;
+POSTS_TIMEOUT = 60 * 1000;
 
 $after_count_timeout_id = 0;
 $main_data = {}
@@ -78,6 +79,12 @@ $(function() {
     $main_data.is_me             = d.attr("data-user-is-me")=="true";
     $main_data.logged_in         = d.attr("data-visitor-logged-in")=="true";
     $main_data.user_has_picture  = d.attr("data-user-has-photo")=="true";
+
+    
+    url = ROUTE_USER_FOLLOWINGS_THUMBS.replace(":id", $main_data.user_id);
+    $("#labels-thumbs").load(url);
+    
+    
 
     $(".pack:hidden").slideToggle();
     

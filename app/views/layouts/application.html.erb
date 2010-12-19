@@ -56,8 +56,13 @@
 
       <div id="content">
 
-
-        
+<%= hidden_field_tag :main_data, false,
+  :"data-user-id" => @user.id,
+  :"data-user-is-me" => !!@isme,
+  :"data-user-has-photo" => !@user.read_photo.new_record?,
+  :"data-visitor-logged-in" => !!current_user if @user
+  %>
+  
 <%#= my_flash_keys %>
 <%= yield %>
 
@@ -83,11 +88,11 @@
 <h3>params</h3>
 <%= debug params %>
 <h3>cookies</h3>
-<%= debug cookies %>
+<%#= debug cookies %>
 <h3>session</h3>
-<%= debug session %>
+<%#= debug session %>
 <h3>request env</h3>
-<small><%= debug request.env %></small>
+<small><%#= debug request.env %></small>
 </div>
 <% end %>
 

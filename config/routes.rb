@@ -70,6 +70,7 @@ Ex1::Application.routes.draw do
   match ":mention_username/mention" => "home#index", :as => "mention"
 
   match ":id/list/:list" => "users#list", :as => :user_list
+  match ":id/ajax_followings_thumbs" => "users#ajax_followings_thumbs"
 #  match ":id/ajax_list_data/:list" => "users#list_data", :as => :ajax_user_list_data
 
   match ":id/ajax_tab/:tab_id" => "users#ajax_show_tab", :as => :ajax_user_show_tab

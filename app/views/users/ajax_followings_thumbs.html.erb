@@ -1,0 +1,3 @@
+<% @users.each do |user| %>
+  <%= link_to image_tag(user.read_photo.img.url(:mi), width: 25, height: 25), profile_path(user.username), :title=>user.full_name %>
+<% end %>

@@ -41,12 +41,9 @@
 
   
   <h3><a href="#"><%= t "application.words.followings" %></a></h3>	
-  <div id="labels-thumbs">
+  <div id="labels-thumbs"></div>
+
   
- 	  <% @user.followings_users.limit(28).each do |user| %>
- 	    <%= link_to image_tag(user.read_photo.img.url(:mi), width: 25, height: 25), profile_path(user.username), :title=>user.full_name %>
-    <% end %>
-  </div>
   <!--
   <div class="more"><a href="#" class="nao-clique">View all</a></div>
     <div class="rss"><a href="#" class="nao-clique"><img src="/images/layout/RSS16.png" width="16" height="16" />RSS feed de <%= @user.username %></a></div>
