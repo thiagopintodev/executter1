@@ -388,7 +388,7 @@ bottom_post = view.contents().find(".post:last");
 
 url = view.attr("data-url2");
 if (bottom_post.size())
-  url += "?before=:before".replace(":before", bottom_post.attr("data-id"));
+  url += "/before/:before".replace(":before", bottom_post.attr("data-id"));
 
 view.contents().find("#btn-more").hide();
 
@@ -407,7 +407,7 @@ top_post = view.contents().find(".post:first");
 
 url = view.attr("data-url2");
 if (top_post.size())
-  url += "?after=:after".replace(":after", top_post.attr("data-id"));
+  url += "/after/:after".replace(":after", top_post.attr("data-id"));
 
 $.get(url, function(data) {
   functions.posts.handle(data, view, 'after');
@@ -424,7 +424,7 @@ top_post = view.contents().find(".post:first");
 
 url = view.attr("data-url2");
 if (top_post.size())
-  url += "?after=:after&count=1".replace(":after", top_post.attr("data-id"));
+  url += "/after/:after/count/1".replace(":after", top_post.attr("data-id"));
 
 $.get(url, function(data) {
   if (data > 0)

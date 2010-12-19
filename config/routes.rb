@@ -40,6 +40,9 @@ Ex1::Application.routes.draw do
   #match "h/ajax_tab3" => "home#ajax_index_tab3", :as => :ajax_home_index_tab3
   match "h/ajax_tab/:tab_id" => "home#ajax_index_tab", :as => :ajax_home_index_tab
   match "h/ajax_tab_data/:tab_id" => "home#ajax_index_tab_data", :as => :ajax_home_index_tab_data
+  match "h/ajax_tab_data/:tab_id/before/:before" => "home#ajax_index_tab_data"
+  match "h/ajax_tab_data/:tab_id/after/:after" => "home#ajax_index_tab_data"
+  match "h/ajax_tab_data/:tab_id/after/:after/count/:count" => "home#ajax_index_tab_data"
   
   get "h/after_sign_up" => "home#after_sign_up"
   get "h/1" => "home#settings_profile"
@@ -75,6 +78,10 @@ Ex1::Application.routes.draw do
 
   match ":id/ajax_tab/:tab_id" => "users#ajax_show_tab", :as => :ajax_user_show_tab
   match ":id/ajax_tab_data/:tab_id" => "users#ajax_show_tab_data", :as => :ajax_user_show_tab_data
+  
+  match ":id/ajax_tab_data/:tab_id/before/:before" => "users#ajax_show_tab_data_before"
+  match ":id/ajax_tab_data/:tab_id/after/:after" => "users#ajax_show_tab_data_after"
+  match ":id/ajax_tab_data/:tab_id/after/:after/count/:count" => "users#ajax_show_tab_data_after_count"
 
 #  match ":id/ajax_tab1(/:last_post_id)" => "users#ajax_show_tab1", :as => :ajax_user_show_tab1
 #  match ":id/ajax_tab2(/:last_post_id)" => "users#ajax_show_tab2", :as => :ajax_user_show_tab2

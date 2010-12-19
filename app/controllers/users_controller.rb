@@ -2,6 +2,14 @@ class UsersController < ApplicationController
 
   after_filter :my_suggest_registration, :only=>:show
   before_filter :my_admin_only, :only => :set_host
+  
+  #caches_action :show, :layout=>false, :expires_in => 1.minutes
+  #caches_action :ajax_show_tab, :expires_in => 1.minutes
+  
+  #caches_action :ajax_followings_thumbs, :expires_in => 5.minutes
+  #caches_action :ajax_show_tab_data, :expires_in => 1.minutes
+  #caches_action :ajax_show_tab_data_before, :expires_in => 10.minutes
+  #caches_action :ajax_show_tab_data_after, :expires_in => 10.minutes
 
   def set_host
     User.update(params[:id], :is_host => params[:val]=='1')
@@ -94,6 +102,28 @@ class UsersController < ApplicationController
   end
   
   def ajax_show_tab_data
+    fill_tab_data
+    render :layout=> false
+  end
+  
+  def ajax_show_tab_data_before
+    fill_tab_data
+    render :layout=> false, :action => :ajax_show_tab_data
+  end
+  
+  def ajax_show_tab_data_after
+    fill_tab_data
+    render :layout=> false, :action => :ajax_show_tab_data
+  end
+  
+  def ajax_show_tab_data_after_count
+    fill_tab_data
+    render :text=>@posts.count
+  end
+
+  private
+
+  def fill_tab_data
     options = {}
     options[:limit] = params[:limit]
     options[:after] = params[:after]
@@ -108,16 +138,8 @@ class UsersController < ApplicationController
     
     @user = User.find(params[:id])
     @posts = @user.my_posts(options)
-    
-    if params[:count]
-      render :text=>@posts.count
-    else
-      render :layout=> false
-    end
   end
-
-  private
-
+  
   def fill_user
     if params[:id]
       @user = User.my_find(params[:id])
