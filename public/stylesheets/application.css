@@ -30,6 +30,10 @@ div#content { min-height:500px; }
 .pg-site-search #container .ui-button { width:499px;padding:10px 0;margin: 20px 0 0 20px; }
 .pg-site-search #container h2 { color:#111;font-size:16px;margin:10px 20px; }
 
+
+.pg-users-list #container h2 { color:#111;font-size:18px;margin:10px 20px; }
+.pg-users-list #container p { color:#999;margin:10px 20px;font-size:13px; }
+
 div#footer {margin:20px 0; !important}
 div#footer ul#menu-footer {padding-left: 300px !important}
 

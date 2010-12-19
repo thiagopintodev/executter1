@@ -4,10 +4,21 @@ class UsersController < ApplicationController
   before_filter :my_admin_only, :only => :set_host
 
   def set_host
-    @user = User.my_find(params[:id])
-    @user.is_host = params[:val]=='1'
-    @user.save
-    redirect_to profile_path(@user.username)
+    User.update(params[:id], :is_host => params[:val]=='1')
+    redirect_to user_path(params[:id])
+  end
+
+  def list
+    fill_user
+    return render :nothing=>true unless @user
+    params[:list] = 'followers' unless 'followers|followings|blockers|blockings|friends'.include? params[:list]
+    assossiation = params[:list]
+    array_of_user_id = @user.send(assossiation).select('user2_id').collect(&:user2_id)
+    @posts = User.find(array_of_user_id).collect { |user| user.posts.build(:body=>'Loren Ipsum') }
+  end
+
+  def list_data
+    render :text=>":D"
   end
   
   def index
@@ -26,11 +37,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    if params[:id]# != "profile"
-      @user = User.my_find(params[:id])
-    elsif current_user?
-      @user = current_user
-    end
+    fill_user
     return redirect_to root_path unless @user
     @isme = @user.id == current_user_id
   end
@@ -101,6 +108,16 @@ class UsersController < ApplicationController
       render :text=>@posts.count
     else
       render :layout=> false
+    end
+  end
+
+  private
+
+  def fill_user
+    if params[:id]
+      @user = User.my_find(params[:id])
+    elsif current_user?
+      @user = current_user
     end
   end
   

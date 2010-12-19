@@ -1,0 +1,56 @@
+<% my_title @user.username %>
+<% my_css_files "profile" %>
+
+<div id="sidebar">
+
+  <div id="username">
+      <%= image_tag current_user.read_photo.img.url(:mi) %>
+      <%= link_to @user.username, profile_path(@user.username) %>
+  </div>
+  
+  <div class="menu" style="margin-top:20px">
+  
+    <a href="<%= user_list_path(@user.username, 'followers') %>"
+      <%= "class='atual'" if params[:list]=='followers' %>
+      ><span class="desc">
+      <%= t "application.words.followers" %></span><span>
+      <%= @user.count_of_followers %></span></a>
+      
+    <a href="<%= user_list_path(@user.username, 'followings') %>"
+      <%= "class='atual'" if params[:list]=='followings' %>
+      ><span class="desc">
+      <%= t "application.words.followings" %></span><span>
+      <%= @user.count_of_followings %></span></a>
+      
+    <a href="<%= user_list_path(@user.username, 'friends') %>"
+      <%= "class='atual'" if params[:list]=='friends' %>
+      ><span class="desc">
+      <%= t "application.words.friends" %></span><span>
+      <%= @user.count_of_friends %></span></a>
+      
+    <a href="<%= user_list_path(@user.username, 'blockers') %>"
+      <%= "class='atual'" if params[:list]=='blockers' %>
+      ><span class="desc">
+      <%= t "application.words.blockers" %></span><span>
+      <%= @user.count_of_blockers %></span></a>
+      
+    <a href="<%= user_list_path(@user.username, 'blockings') %>"
+      <%= "class='atual'" if params[:list]=='blockings' %>
+      ><span class="desc">
+      <%= t "application.words.blockings" %></span><span>
+      <%= @user.count_of_blockings %></span></a>
+      
+  </div>
+  <!--
+  <div class="banner">
+      <a href="#">Faça sua doação ao Projeto Executter</a>
+      <a href="#"><img src="/images/layout/paypal.jpg" width="101" height="86" /></a>
+      <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+  </div>
+  -->
+</div>  
+<div id="container">
+<h2><%= params[:list] %></h2>
+<p><%= params[:list] %> Lorem Ipsum</p>
+<%= render 'parts/posts' %>
+</div>

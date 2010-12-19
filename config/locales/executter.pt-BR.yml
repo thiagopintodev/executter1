@@ -23,6 +23,8 @@ pt-BR:
     words:
       followings: "Seguindo"
       followers: "Seguidores"
+      blockings: "Bloqueando"
+      blockers: "Bloquearam-me"
       friends: "Amigos"
       search: "Pesquisa"
       older_results: "Mais"

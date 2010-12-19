@@ -79,6 +79,8 @@ $(function() {
     $main_data.logged_in         = d.attr("data-visitor-logged-in")=="true";
     $main_data.user_has_picture  = d.attr("data-user-has-photo")=="true";
 
+    $(".pack:hidden").slideToggle();
+    
     $("#sidebar form input[name='text']").live('focus', function() {
       if ($(this).val()==$(this).attr('data-value'))
         $(this).val('');
@@ -146,6 +148,14 @@ $(function() {
       });
     //}
     
+  }
+  
+  ///
+  /// LIST PAGE
+  ///
+  if (functions.page.isList())
+  {
+      
   }
   
   ///
@@ -350,7 +360,8 @@ $(".post").live("mouseover mouseout", function(){
     page : {
       isHome: function() { return $("body.pg-home-index, body.pg-home-create_post").size(); },
       isProfile: function() { return $("body.pg-users-show").size(); },
-      isSearch: function() { return $("body.pg-site-search").size(); }
+      isSearch: function() { return $("body.pg-site-search").size(); },
+      isList: function() { return $("body.pg-users-list").size(); }
     },
     mention : {
       write: function(username) {

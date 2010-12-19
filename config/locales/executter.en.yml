@@ -22,7 +22,9 @@ en:
       terms: "Terms"
     words:
       followings: "Followings"
-      followers: "Followings"
+      followers: "Followers"
+      blockings: "Blockings"
+      blockers: "Blockers"
       friends: "Friends"
       search: "Search"
       older_results: "More"
