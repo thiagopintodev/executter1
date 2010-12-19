@@ -354,7 +354,7 @@ $(".post").live("mouseover mouseout", function(){
     },
     mention : {
       write: function(username) {
-        a = $("#myframe").contents().find("form textarea#post_body");
+        a = $("form textarea#post_body");
         if (username) {
           u = "@:u ".replace(":u", username);
           if (!a.val().endsWith(' '))
