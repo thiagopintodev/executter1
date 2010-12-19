@@ -58,14 +58,14 @@
   </ul>
 <% end %>
 
-
+<% if @posts.size == Post.post_size_limit %>
   <%= form_tag search_data_path, :remote=>true do %>
-    <%= hidden_field_tag :before, @posts.last.id if @posts.size == Post.post_size_limit %>
+    <%= hidden_field_tag :before, @posts.last.id unless params[:after] %>
     <%= hidden_field_tag :text, params[:text] %>
     <%#= hidden_field_tag :flags, params[:flags] %>
     <%= submit_tag t('application.words.older_results') %>
   <% end %>
-
+<% end %>
   
 </div>
 <% elsif params[:before]==nil %>
