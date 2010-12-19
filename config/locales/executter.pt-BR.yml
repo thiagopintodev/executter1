@@ -24,6 +24,10 @@ pt-BR:
       followings: "Seguindo"
       followers: "Seguidores"
       friends: "Amigos"
+      search: "Pesquisa"
+      older_results: "Mais"
+      latest_results: "Novos Posts"
+      latest_x_results: "%{x} Novos Posts"
   view:
     home:
       index:
@@ -37,6 +41,14 @@ pt-BR:
           0: 'Tudo'
           1: 'Fotos'
           2: 'Arquivos'
+    search:
+      sidebar:
+        title: 'O que você procura?'
+        checkboxes:
+          0: 'Status'
+          1: 'Image'
+          2: 'Audio'
+          3: 'Arquivo'
   home:
     title: "O que acontece agora?"
     attach_link: "Anexar um arquivo"

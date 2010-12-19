@@ -78,6 +78,15 @@ $(function() {
     $main_data.is_me             = d.attr("data-user-is-me")=="true";
     $main_data.logged_in         = d.attr("data-visitor-logged-in")=="true";
     $main_data.user_has_picture  = d.attr("data-user-has-photo")=="true";
+
+    $("#sidebar form input[name='text']").live('focus', function() {
+      if ($(this).val()==$(this).attr('data-value'))
+        $(this).val('');
+    });
+    $("#sidebar form input[name='text']").live('blur', function() {
+      if ($(this).val()=='')
+        $(this).val($(this).attr('data-value'));
+    });
   }
 
   ///
@@ -138,7 +147,37 @@ $(function() {
     //}
     
   }
+  
+  ///
+  /// SEARCH PAGE
+  ///
+  if (functions.page.isSearch())
+  {
+    $("#sidebar form").live("submit", function() {
+      $("#container").html("");
+      window.location='#'+$("#sidebar form input[name='text']").val();
+    });
+    //
+    $("#container form").live("submit", function() {
+      $(this).fadeOut();
+    });
+    //
+    if (window.location.hash)
+    {
+      $("#sidebar form input[name='text']").val(window.location.hash.substring(1));
+      $("#sidebar form").submit();
+    }
+  }
+  else
+  {
+    $("#sidebar form").live("submit", function(e) {
+      $("#container").html("");
+      window.location='/s#'+$("#sidebar form input[name='text']").val();
+      e.preventDefault();
+    });
+  }
 
+  
   ///
   /// HOME PAGE
   ///
@@ -310,7 +349,8 @@ $(".post").live("mouseover mouseout", function(){
   functions = {
     page : {
       isHome: function() { return $("body.pg-home-index, body.pg-home-create_post").size(); },
-      isProfile: function() { return $("body.pg-users-show").size(); }
+      isProfile: function() { return $("body.pg-users-show").size(); },
+      isSearch: function() { return $("body.pg-site-search").size(); }
     },
     mention : {
       write: function(username) {
@@ -783,3 +823,4 @@ profile = {
       return false;
     });
     */
+    

@@ -23,6 +23,9 @@ class Post < ActiveRecord::Base
   validates :body, :presence => true, :length => { :within => 1..200 }
 
   MY_LIMIT = 10
+  def self.post_size_limit
+    MyConfig.production? ? 10 : 3
+  end
 
   def self.count_latest_by_user(user_id, time)
     where(:user_id=>user_id).where("created_at > ?", Time.now - time).count
@@ -31,12 +34,18 @@ class Post < ActiveRecord::Base
     where(:remote_ip=>remote_ip).where("created_at > ?", Time.now - time).count
   end
 
-
+  def self.search(text, options={})
+    posts = order("id DESC").limit(post_size_limit)
+    posts = posts.where('BODY like ?', "%#{text}%") if text
+    posts = posts.where("id > ?", options[:after]) if options[:after]
+    posts = posts.where("id < ?", options[:before]) if options[:before]
+    posts
+  end
   
-  def self.get(u, source, options)
+  def self.get(u, source, options={})
     user = MyFunctions.users([u]).first
     #must-have filters
-    posts = Post.order("id DESC").limit(options[:limit] || Post::MY_LIMIT)
+    posts = order("id DESC").limit(post_size_limit)
     #
     posts = posts.includes([{:user => :photo}, :post_attachments, :subject]) if options[:includes]
     

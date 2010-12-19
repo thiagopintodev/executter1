@@ -24,6 +24,10 @@ en:
       followings: "Followings"
       followers: "Followings"
       friends: "Friends"
+      search: "Search"
+      older_results: "More"
+      latest_results: "New Posts"
+      latest_x_results: "%{x} New Posts"
   view:
     home:
       index:
@@ -37,6 +41,14 @@ en:
           0: 'All'
           1: 'Pictures'
           2: 'Files'
+    search:
+      sidebar:
+        title: 'What do you seek?'
+        checkboxes:
+          0: 'Status'
+          1: 'Image'
+          2: 'Audio'
+          3: 'File'
   home:
     title: "What happens now?"
     attach_link: "Attach a file"

@@ -1,0 +1,73 @@
+<% if @posts.length > 0 %>
+<div class="pack show-more-button" style="display:none">
+
+  <%#= form_tag search_data_path, :remote=>true do #this should be in another partial =/ %>
+  <% if false %>
+    <%= hidden_field_tag :after, @posts.first.id if @posts.size == Post.post_size_limit %>
+    <%= hidden_field_tag :text, params[:text] %>
+    <%#= hidden_field_tag :flags, params[:flags] %>
+    <%= submit_tag t('application.words.latest_x_results', :x=>10) %>
+  <% end %>
+
+<% @posts.each do |post| %>
+
+  <ul class="lista-execute post" data-id="<%= post.id %>" <%= "style='border-top:1px solid #E2E2E2'" if @posts.first==post%>>
+	  <li class="havatar">
+	    <a href="/<%= post.user.username %>">
+	      <img src="<%= post.user.read_photo.img.url(:sm) %>" border="0" />
+	    </a>
+	  </li>
+    <li class="execute">
+      <%= link_to post.user.username, profile_path(post.user.username) %>
+	    <%= content_tag :span, post.user.full_name, :class=>:full_name %>
+	    <%= content_tag :span, "#{t 'model.subject.model_name'}: #{post.subject.name}", :class=>:subject if post.subject %>
+      <p><%= my_post_links h(post.body) %></p>
+    </li>
+      
+<%= my_post_actions post %>
+
+<% if post.links %>
+  <% post.links.each do |x| %>
+      <% if x[:url].ends_with? '.jpg' %>
+
+<li class="foto">
+  <%= link_to image_tag(x[:url], :width=>200), post %>
+  <%if false%>
+  <%= link_to image_tag(x[:url], :style=>"width:200px"), x[:name], :target=>"_blank" %>
+  <span><%= link_to "Baixar arquivo original #{x[:name]}", x[:url], :target=>"_blank" %></span><br/>
+  <%end%>
+</li>
+
+      <% else %>
+      
+<li class="hora" style="clear:both">
+  <span>
+    <img border="0" width="16" height="16" alt="Name" src="/images/layout1/anexo/_attach.gif">
+    <%= link_to x[:name], x[:url], :target=>"_blank" %>
+  </span>
+</li>
+
+      <% end %>
+    <% end %>
+  <% end %>
+
+    <li class="hora" style="clear:both">
+      <%= link_to "#{time_ago_in_words post.created_at} - #{l post.created_at, :format => :short}", post %>
+    </li>
+    
+  </ul>
+<% end %>
+
+
+  <%= form_tag search_data_path, :remote=>true do %>
+    <%= hidden_field_tag :before, @posts.last.id if @posts.size == Post.post_size_limit %>
+    <%= hidden_field_tag :text, params[:text] %>
+    <%#= hidden_field_tag :flags, params[:flags] %>
+    <%= submit_tag t('application.words.older_results') %>
+  <% end %>
+
+  
+</div>
+<% elsif params[:before]==nil %>
+<h2>zero posts</h2>
+<% end %>

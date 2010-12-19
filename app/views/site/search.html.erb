@@ -1,1 +1,14 @@
-isso vai fazer uma pesquisa sobre <%= params[:text] %>
+<% my_title "Search" %>
+<% my_css_files "home" %>
+
+<div id="sidebar">
+  <%= render 'parts/search_box', :locals=>{:full_search=>true} %>
+  <!--
+  <div class="banner">
+      <a href="#">Faça sua doação ao Projeto Executter</a>
+      <a href="#"><img src="/images/layout/paypal.jpg" width="101" height="86" /></a>
+      <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+  </div>
+  -->
+</div>  
+<div id="container"></div>

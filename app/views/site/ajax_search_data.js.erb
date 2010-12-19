@@ -1,0 +1,15 @@
+<% r = raw escape_javascript render("parts/posts") %>
+s = "<%= r %>";
+
+
+if ($("#container").html().length < 10)
+  $("#container").prepend('<h2><%= params[:text] %></h2>');
+
+<% if params[:after] %>
+$("#container").prepend(s);
+<% else %>
+$("#container").append(s);
+<% end %>
+
+$("#container form input:submit").button();
+$(".pack:hidden").slideToggle();

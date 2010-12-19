@@ -1,0 +1,23 @@
+<%= form_tag search_data_path, :remote=>true do %>
+  <%= content_tag :h2, t('view.search.sidebar.title') if @full_search %>
+  <input name="" type="submit" class="bt" value=" " />
+  <% search_word = t 'application.words.search' %>
+  <%= text_field_tag :text, search_word, :'data-value'=>search_word %>
+<% end %>
+<% if false %>
+    <% cb_labels = t 'view.search.sidebar.checkboxes' %>
+    
+    <p>&nbsp;</p>
+    <p><label>
+      <%= check_box_tag 'flags[]', "text" %>&nbsp;<%= cb_labels[0] %>
+    </label></p>
+    <p><label>
+      <%= check_box_tag 'flags[]', "image" %>&nbsp;<%= cb_labels[1] %>
+    </label></p>
+    <p><label>
+      <%= check_box_tag 'flags[]', "audio" %>&nbsp;<%= cb_labels[2] %>
+    </label></p>
+    <p><label>
+      <%= check_box_tag 'flags[]', "other" %>&nbsp;<%= cb_labels[3] %>
+    </label></p>
+  <% end %>

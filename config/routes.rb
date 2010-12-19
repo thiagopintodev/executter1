@@ -54,10 +54,11 @@ Ex1::Application.routes.draw do
   match "h/update" => "home#update", :method => :post, :as => :home_update
   match "h/new_post" => "home#new_post"
   
-  get "s/:text" => "site#search", :as => :search
   get "s/ajax_username_available/:username" => "site#ajax_username_available"
   
-  get "site/search"
+  get "s" => "site#search", :as => :search
+  post "s/data" => "site#ajax_search_data", :as => :search_data
+  
   get "site/index"
   #post "/", :controller => :home, :action => :create_post, :as => :my_create_post
   root :to => "home#index"
