@@ -31,7 +31,7 @@ d: '@username'
 
   def my_post_actions(post)
     html = "<li class='icons' style='display:none'>"
-    html += link_to image_tag("/images/layout/trash_icon.png", :alt=>""), post, :confirm => 'delete?', :method => :delete, :title=>'Remove', :remote=>true if current_user && post.user_id == current_user.id
+    html += link_to image_tag("/images/layout/trash_icon.png", :alt=>""), post, :confirm => 'delete?', :method => :delete, :title=>'Remove', :remote=>true if !post.new_record? && current_user && post.user_id == current_user.id
     html += link_to image_tag("/images/layout/write_icon.png", :alt=>""), "#", :title=>'Mention', :"data-mention"=>post.user.username
     #html = 
     # mention_path(post.user.username) #
