@@ -10,7 +10,8 @@ d: '@username'
 =end
   def my_post_links(s)
     s = s.gsub("\r"," ")
-    at = "@";
+    at = "@"
+    sharp = "#"
     r = s.split(" ").collect do |w|
       if w[0,1]==at
         a = w[1..-1]
@@ -19,6 +20,8 @@ d: '@username'
         d = "@#{b}"
         e = "/#{b}"
         "#{link_to(d, e)}#{c}"
+      elsif w[0,1]==sharp
+        link_to(w, "/s#{w}")
       elsif w[0..2] == 'www' || w[0..6]=='http://' || w[0..5]=='ftp://' || w[0..7]=='https://'
         w2 = "http://#{w}" if w[0..2] == 'www'
         link_to w, w2||w, :target=>'_blank'
