@@ -11,6 +11,8 @@ div#content { min-height:500px; }
 .ajax-content-white { background-image: none !important;width:100%; }
 
 
+
+
 .pg-posts-show div#content div.in { margin: 30px 50px }
 .pg-posts-show div#content h1 { font-size:18px; color:#999; border-bottom:#666 solid 1px;padding-bottom:10px;margin-bottom:15px }
 
@@ -30,9 +32,9 @@ div#content { min-height:500px; }
 .pg-site-search #container .ui-button { width:499px;padding:10px 0;margin: 20px 0 0 20px; }
 .pg-site-search #container h2 { color:#111;font-size:16px;margin:10px 20px; }
 
-
-.pg-users-list #container h2 { color:#111;font-size:18px;margin:10px 20px; }
-.pg-users-list #container p { color:#999;margin:10px 20px;font-size:13px; }
+/*css3*/
+.pg-users-list #container > h2 { color:#111;font-size:18px;margin:10px 20px; }
+.pg-users-list #container > p { color:#999;margin:10px 20px;font-size:13px; }
 
 div#footer {margin:20px 0; !important}
 div#footer ul#menu-footer {padding-left: 300px !important}

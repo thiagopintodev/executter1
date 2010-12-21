@@ -34,7 +34,10 @@ class User < ActiveRecord::Base
   end
   
   def read_photo
-    self.photo || Photo.new
+    self.photo || self.photos.build
+  end
+  def read_post
+    self.post || self.posts.build
   end
 
 
@@ -61,6 +64,7 @@ class User < ActiveRecord::Base
   #ASSOCIATIONS
   
   belongs_to :photo
+  belongs_to :post
   has_many :photos, :dependent => :destroy
   has_many :posts, :dependent => :destroy
   has_many :subjects, :dependent => :destroy

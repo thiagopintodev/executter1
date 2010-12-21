@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101211224534) do
+ActiveRecord::Schema.define(:version => 20101221175626) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(:version => 20101211224534) do
   end
 
   create_table "hostnesses", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "country"
-    t.string   "state"
-    t.string   "city"
-    t.string   "hostness_type", :default => "normal"
-    t.boolean  "is_active",     :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.string    "country"
+    t.string    "state"
+    t.string    "city"
+    t.string    "hostness_type", :default => "normal"
+    t.boolean   "is_active",     :default => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "photos", :force => true do |t|
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20101211224534) do
     t.string    "first_geo_city"
     t.string    "first_geo_state"
     t.string    "first_geo_country"
+    t.integer   "post_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
@@ -170,16 +171,16 @@ ActiveRecord::Schema.define(:version => 20101211224534) do
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "xlinks", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "micro"
-    t.integer  "file_width"
-    t.integer  "file_height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
+    t.integer   "user_id"
+    t.string    "micro"
+    t.integer   "file_width"
+    t.integer   "file_height"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "file_file_name"
+    t.string    "file_content_type"
+    t.integer   "file_file_size"
+    t.timestamp "file_updated_at"
   end
 
 end

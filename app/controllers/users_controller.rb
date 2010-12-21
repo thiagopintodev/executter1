@@ -22,7 +22,13 @@ class UsersController < ApplicationController
     params[:list] = 'followers' unless 'followers|followings|blockers|blockings|friends'.include? params[:list]
     assossiation = params[:list]
     array_of_user_id = @user.send(assossiation).select('user2_id').collect(&:user2_id)
-    @posts = User.find(array_of_user_id).collect { |user| user.posts.build(:body=>'Loren Ipsum') }
+    users = User.where('users.id in (?)',array_of_user_id)
+    users = users.includes([:post, :photo])
+    @posts = users.collect do |u|
+      p = u.read_post
+      p.user = u
+      p
+    end
   end
 
   def list_data

@@ -27,18 +27,20 @@
       ><span class="desc">
       <%= t "application.words.friends" %></span><span>
       <%= @user.count_of_friends %></span></a>
-      
+    <% if @user.count_of_blockers > 0 %>
     <a href="<%= user_list_path(@user.username, 'blockers') %>"
       <%= "class='atual'" if params[:list]=='blockers' %>
       ><span class="desc">
       <%= t "application.words.blockers" %></span><span>
       <%= @user.count_of_blockers %></span></a>
-      
+    <% end %>
+    <% if @user.count_of_blockings > 0 %>
     <a href="<%= user_list_path(@user.username, 'blockings') %>"
       <%= "class='atual'" if params[:list]=='blockings' %>
       ><span class="desc">
       <%= t "application.words.blockings" %></span><span>
       <%= @user.count_of_blockings %></span></a>
+    <% end %>
       
   </div>
   <!--
@@ -51,6 +53,6 @@
 </div>  
 <div id="container">
 <h2><%= params[:list] %></h2>
-<p><%= params[:list] %> Lorem Ipsum</p>
+<p><%= "@#{@user.username} #{params[:list]}" %></p>
 <%= render 'parts/posts' %>
 </div>

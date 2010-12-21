@@ -35,7 +35,10 @@ class HomeController < ApplicationController
     end
     
     @p.remote_ip = remote_ip
-    @p.save ? @p : nil
+    if @p.save
+      @user.post_id = @p.id
+      @user.save
+    end
   end
   
   def after_sign_up
