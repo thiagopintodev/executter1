@@ -36,15 +36,12 @@ class Post < ActiveRecord::Base
 
   def self.search(text, options={})
     return [] unless text && text.length > 2
+    text = text.downcase
     posts = order("id DESC").limit(post_size_limit)
-
-    user_ids = User.where("username=:text OR full_name LIKE :text", :text=>"%#{text}%").select(:id).collect(&:id)
-    posts = posts.where('user_id IN (?)',user_ids)
-    
-    posts = posts.where('body LIKE :text OR links LIKE :text', :text=>"%#{text}%")
+    user_ids = User.where("lower(username)=:text OR lower(full_name) LIKE :text", :text=>"%#{text}%").select(:id).collect(&:id)
+    posts = posts.where('lower(body) LIKE :text OR lower(links) LIKE :text OR user_id IN (:user_ids)', :text=>"%#{text}%", :user_ids => user_ids)
     posts = posts.where("id > ?", options[:after]) if options[:after]
     posts = posts.where("id < ?", options[:before]) if options[:before]
-    #users.collect(&:posts).each {|users_posts| posts.concat users_posts} 
     posts
   end
   
