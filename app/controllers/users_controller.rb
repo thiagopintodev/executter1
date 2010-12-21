@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def list
     fill_user
     return redirect_to :root unless @user
+    return redirect_to profile_path(@user.username) unless current_user
     params[:list] = 'followers' unless 'followers|followings|blockers|blockings|friends'.include? params[:list]
     assossiation = params[:list]
     array_of_user_id = @user.send(assossiation).select('user2_id').collect(&:user2_id)
