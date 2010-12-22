@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101221175626) do
+ActiveRecord::Schema.define(:version => 20101222223607) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -33,6 +33,23 @@ ActiveRecord::Schema.define(:version => 20101221175626) do
     t.boolean   "is_active",     :default => false
     t.timestamp "created_at"
     t.timestamp "updated_at"
+  end
+
+  create_table "page_translations", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "locale"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
+
+  create_table "pages", :force => true do |t|
+    t.string   "key"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photos", :force => true do |t|

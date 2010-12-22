@@ -122,20 +122,25 @@ class HomeController < ApplicationController
 
   def settings_login
     @user = current_user
+    @page = Page.find_by_key('config_login')
   end
   def settings_subjects
     @user = current_user
     remaining = 12 - @user.subjects.size
     remaining.times { @user.subjects.build }
+    @page = Page.find_by_key('config_subjects')
   end
   def settings_profile
     @user = current_user
+    @page = Page.find_by_key('config_profile')
   end
   def settings_design
     @user = current_user
+    @page = Page.find_by_key('config_design')
   end
   def settings_picture
     @user = current_user
+    @page = Page.find_by_key('config_picture')
   end
 
   #weird having 2 update methods, weireder having devise's default user update method =/

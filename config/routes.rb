@@ -1,7 +1,5 @@
 Ex1::Application.routes.draw do
   
-  resources :xlinks, :path => "a/xlinks"
-  
   constraints :subdomain => /box/ do
     match ":micro(.:format)" => "xlinks#display", :as => :micro
   end
@@ -9,9 +7,6 @@ Ex1::Application.routes.draw do
 
   #resource :photo, :only => [:create]
 
-  resources :hostnesses, :path => "a/hostnesses", :except => :show
-  resources :banners, :path => "a/banners" #except => :show
-  get "a"  => "banners#index"
   #resources :flavours, :path => "admin/flavours"
   
   #resources :user_profiles
@@ -91,6 +86,12 @@ Ex1::Application.routes.draw do
   
   match ":id/set_host/:val" => "users#set_host", :as => :user_set_host
 
+
+  resources :pages, :path => "a/pages"
+  resources :xlinks, :path => "a/xlinks"
+  resources :hostnesses, :path => "a/hostnesses", :except => :show
+  resources :banners, :path => "a/banners" #except => :show
+  get "a"  => "banners#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

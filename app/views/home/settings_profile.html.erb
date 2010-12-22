@@ -22,68 +22,55 @@
 
 
           
-        <div id="campos">
-  
-        	<div class="normal">
-            <%= f.label :full_name %>
-            <%= f.text_field :full_name %>
-          </div>
-          <div class="normal">
-            <%= f.label :gender %>
-            <%= select("user", "gender", User.GENDERS, {:blank => false}) %>
-          </div>
-          <div class="recuo">
-         	  <%= f.check_box :gender_policy, :class=>"check" %>
-            <span class="check-texto"><%= t "model.user.gender_policy.checkbox" %></span>
-          </div>
+<div id="campos">
 
-          <div class="normal">
-        	  <label>Data de Nascimento:</label>
-            <%= f.date_select :birth, :start_year => 1916 %>
-          </div>
-        	<div class="recuo">
-            <%= select("user", "birth_policy", User.BIRTH_POLICIES, {:blank => false}) %>
-          </div>
-        	<div class="normal">
-          	<label>Localização:</label>
-            <%= f.text_field :local %>
-          </div>
-        	<div class="normal">
-          	<label>Fuso Horário:</label>
-            <%= f.time_zone_select :time_zone %>
-          </div>
-        	<div class="normal">
-          	<label>Web Site (URL):</label>
-            <%= f.text_field :website %>
-          </div>
-        	<div class="normal">
-          	<label>Descrição:</label>
-              <%= f.text_field :description %>
-            <span class="recuado">Fale de você em até 196 caracteres</span>
-          </div>
-        	<div class="normal">
-          	<label>Idioma:</label>
-              <%= select("user", "locale", User.LOCALES, {:blank => false}) %>
-            <span class="recuado">Qual idioma você prefere usar no Executter?</span>
-          </div>
-          <div class="recuo">
-		        <input type="submit" class="bt" value="Salvar" />
-          </div>
-        </div>
+	<div class="normal">
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name %>
+  </div>
+  <div class="normal">
+    <%= f.label :gender %>
+    <%= select("user", "gender", User.GENDERS, {:blank => false}) %>
+  </div>
+  <div class="recuo">
+ 	  <%= f.check_box :gender_policy, :class=>"check" %>
+    <span class="check-texto"><%= t "model.user.gender_policy.checkbox" %></span>
+  </div>
 
-      <% end %>
+  <div class="normal">
+	  <label>Data de Nascimento:</label>
+    <%= f.date_select :birth, :start_year => 1916 %>
+  </div>
+	<div class="recuo">
+    <%= select("user", "birth_policy", User.BIRTH_POLICIES, {:blank => false}) %>
+  </div>
+	<div class="normal">
+  	<label>Localização:</label>
+    <%= f.text_field :local %>
+  </div>
+	<div class="normal">
+  	<label>Fuso Horário:</label>
+    <%= f.time_zone_select :time_zone %>
+  </div>
+	<div class="normal">
+  	<label>Web Site (URL):</label>
+    <%= f.text_field :website %>
+  </div>
+	<div class="normal">
+  	<label>Descrição:</label>
+      <%= f.text_field :description %>
+    <span class="recuado">Fale de você em até 196 caracteres</span>
+  </div>
+	<div class="normal">
+  	<label>Idioma:</label>
+      <%= select("user", "locale", User.LOCALES, {:blank => false}) %>
+    <span class="recuado">Qual idioma você prefere usar no Executter?</span>
+  </div>
+  <div class="recuo">
+    <input type="submit" class="bt" value="Salvar" />
+  </div>
+</div>
 
+<% end %>
 
-
-
-      
-      <ul id="box-infos">
-      	<li class="titulo">Dicas</li>
-        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
-        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
-        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
-
-        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
-        <li><span>»</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</li>
-      </ul>
-      
+<%= raw @page.body %>

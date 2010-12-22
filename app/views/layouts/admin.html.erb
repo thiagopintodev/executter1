@@ -23,9 +23,18 @@
 </a>
 
     <div style="float:right">
+  	  Paginas:
       <%= link_to "banners", banners_path %> |
       <%= link_to "hosts", hostnesses_path %> |
-      <%= link_to "xlinks", xlinks_path %> &nbsp; - &nbsp;
+      <%= link_to "pages", pages_path %> |
+      <%= link_to "xlinks", xlinks_path %>
+      <br/>
+      Idiomas:
+  	  <% User.LOCALES.each do |k,v| %>
+        <%= link_to k, locale_path(v) %>
+  	  <% end %>
+  	  <br/>
+      Logout:
       <%= link_to "Out", destroy_user_session_path %>
     </div>
 
