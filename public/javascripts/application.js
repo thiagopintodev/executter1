@@ -164,6 +164,14 @@ $(function() {
   {
       
   }
+
+
+  $("a.hash_tag").live("click", function(e) {
+    text = $(e.currentTarget).html().substring(1);
+    $("#sidebar form input[name='text']").val(text);
+    $("#sidebar form").submit();
+    return false;
+  });
   
   ///
   /// SEARCH PAGE
@@ -181,7 +189,8 @@ $(function() {
     //
     if (window.location.hash)
     {
-      $("#sidebar form input[name='text']").val(window.location.hash.substring(1));
+      text = window.location.hash.substring(1);
+      $("#sidebar form input[name='text']").val(text);
       $("#sidebar form").submit();
     }
   }

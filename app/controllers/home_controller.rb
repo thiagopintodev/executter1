@@ -114,38 +114,34 @@ class HomeController < ApplicationController
   end
 
   def settings_remove_bg
-    @user = settings_design
-    @user.background_image = nil
-    @user.save
-    render :settings_design
+    current_user.update_attributes(:background_image => nil)
+    redirect_to h_4_path
   end
 
-  def settings_login
-    @user = current_user
-    @page = Page.find_by_key('config_login')
+  def settings_username
+    @page = Page.find_by_key('config_username')
+  end
+  def settings_password
+    @page = Page.find_by_key('config_password')
   end
   def settings_subjects
-    @user = current_user
-    remaining = 12 - @user.subjects.size
-    remaining.times { @user.subjects.build }
+    remaining = 12 - current_user.subjects.size
+    remaining.times { current_user.subjects.build }
     @page = Page.find_by_key('config_subjects')
   end
   def settings_profile
-    @user = current_user
     @page = Page.find_by_key('config_profile')
   end
   def settings_design
-    @user = current_user
     @page = Page.find_by_key('config_design')
   end
   def settings_picture
-    @user = current_user
     @page = Page.find_by_key('config_picture')
   end
 
   #weird having 2 update methods, weireder having devise's default user update method =/
   def update
-    return redirect_to '/h/1' unless params[:user]
+    return redirect_to :h_1 unless params[:user]
 
     if params[:user][:username]
       allow = User.username_allowed(params[:user][:username], :current_user => current_user)
@@ -165,8 +161,7 @@ class HomeController < ApplicationController
       set_current_locale    current_user.locale
       set_current_time_zone current_user.time_zone
     end
-    settings_subjects
-    render params[:return_action]
+    redirect_to request.referrer
   end
 
   def new_photo
@@ -177,8 +172,7 @@ class HomeController < ApplicationController
     else
       @errors = p.errors
     end
-    settings_picture
-    render :settings_picture
+    redirect_to request.referrer
   end
 
 

@@ -21,7 +21,7 @@ d: '@username'
         e = "/#{b}"
         "#{link_to(d, e)}#{c}"
       elsif w[0,1]==sharp
-        link_to(w, "/s#{w}")
+        link_to(w, "/s#{w}", :class=>:hash_tag)
       elsif w[0..2] == 'www' || w[0..6]=='http://' || w[0..5]=='ftp://' || w[0..7]=='https://'
         w2 = "http://#{w}" if w[0..2] == 'www'
         link_to w, w2||w, :target=>'_blank'
