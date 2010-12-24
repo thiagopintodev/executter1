@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :my_must_be_logged
 
   def index
-    @user = current_user
+    @user = current_user#this makes user background show ;)
   end
   
   def new_post
@@ -119,23 +119,29 @@ class HomeController < ApplicationController
   end
 
   def settings_username
+    index
     @page = Page.find_by_key('config_username')
   end
   def settings_password
+    index
     @page = Page.find_by_key('config_password')
   end
   def settings_subjects
+    index
     remaining = 12 - current_user.subjects.size
     remaining.times { current_user.subjects.build }
     @page = Page.find_by_key('config_subjects')
   end
   def settings_profile
+    index
     @page = Page.find_by_key('config_profile')
   end
   def settings_design
+    index
     @page = Page.find_by_key('config_design')
   end
   def settings_picture
+    index
     @page = Page.find_by_key('config_picture')
   end
 
