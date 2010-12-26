@@ -4,7 +4,7 @@ module ApplicationHelper
   end
   def my_css_files(*values)
     s = values.collect { |v| stylesheet_link_tag("/layout1/css/#{v}") }
-    content_for(:css_files) { s.join }
+    raw content_for(:css_files) { s.join }
   end
   def my_flavour_stylesheet
     user = @user || current_user

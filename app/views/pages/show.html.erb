@@ -1,15 +1,7 @@
-<p id="notice"><%= notice %></p>
+<div style="width:100%;background:#fff">
+<div style="margin:20px">
 
-<p>
-  <b>Key:</b>
-  <%= @page.key %>
-</p>
+<%= raw @page.body %>
 
-<p>
-  <b>Body:</b>
-  <%= @page.body %>
-</p>
-
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+</div>
+</div>

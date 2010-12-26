@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  before_filter :my_admin_only
+  before_filter :my_admin_only, :except=>:show
   layout "admin"
   
   # GET /pages
@@ -17,12 +17,9 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.xml
   def show
-    @page = Page.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @page }
-    end
+    @page = Page.find(params[:id]) if params[:id]
+    @page = Page.find_by_key(params[:key].downcase) if params[:key]
+    render :layout=>"application"
   end
 
   # GET /pages/new

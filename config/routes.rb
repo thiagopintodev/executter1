@@ -4,6 +4,7 @@ Ex1::Application.routes.draw do
     match ":micro(.:format)" => "xlinks#display", :as => :micro
   end
   match "x/:micro(.:format)" => "xlinks#display", :as => :xmicro
+  match "z/:key(.:format)" => "pages#show", :as => :z
 
   #resource :photo, :only => [:create]
 
