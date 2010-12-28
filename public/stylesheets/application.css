@@ -10,7 +10,7 @@ div#content { min-height:500px; }
 .view-in { background:white }
 .ajax-content-white { background-image: none !important;width:100%; }
 
-
+label.error {color:red}
 
 
 .pg-posts-show div#content div.in { margin: 30px 50px }

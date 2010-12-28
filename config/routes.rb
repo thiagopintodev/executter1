@@ -58,6 +58,9 @@ Ex1::Application.routes.draw do
   get "s" => "site#search", :as => :search
   post "s/data" => "site#ajax_search_data", :as => :search_data
   
+  get 's/check_email' => "site#check_email"
+  get 's/check_username' => "site#check_username"
+  
   get "site/index"
   #post "/", :controller => :home, :action => :create_post, :as => :my_create_post
   root :to => "home#index"

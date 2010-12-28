@@ -5,7 +5,7 @@ class Devise::RegistrationsController < ApplicationController
 
   # GET /resource/sign_up
   def new
-    return redirect_to profile_path("executter") if !params[:forno] && MyConfig.production?
+    #return redirect_to profile_path("executter") if !params[:forno] && MyConfig.production?
     build_resource({})
     render_with_scope :new
   end

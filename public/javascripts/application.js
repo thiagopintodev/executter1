@@ -48,26 +48,6 @@ $(function() {
 
 
   
-  ///
-  /// isso não será mais estático
-  ///
-  $(".username-available").live("blur", function(e) {
-    v = $(this).val().replace(' ', '');
-    if (v=='')
-      return;
-    url = ROUTE_USERNAME_AVAILABLE.replace(":u", v);
-    
-    $("#username_preview").html(v);
-    $("#username_resultado").html("checking...");
-    $.getScript(url, function(data){
-      if (data=="0")
-        $("#username_resultado").html("NO");
-      else {
-        $("#username_resultado").html("YES");
-        $("input#user_username").val(data);
-      }
-    });
-  });
 
   ///
   /// EVENTS FOR ALL PAGES, ONLY ACTUALLY BEING USED
@@ -155,6 +135,102 @@ $(function() {
       });
     //}
     
+  }
+
+
+  
+  ///
+  /// LOGIN PAGE
+  ///
+  if (functions.page.isLogin())
+  {
+    ///
+    /// isso não será mais estático
+    ///
+    $(".username-available").live("blur", function(e) {
+      v = $(this).val().replace(' ', '');
+      if (v=='')
+        return;
+      url = ROUTE_USERNAME_AVAILABLE.replace(":u", v);
+      
+      $("#username_preview").html(v);
+      $("#username_resultado").html("checking...");
+      $.getScript(url, function(data){
+        if (data=="0")
+          $("#username_resultado").html("NO");
+        else {
+          $("#username_resultado").html("YES");
+          $("input#user_username").val(data);
+        }
+      });
+    });
+  }
+  
+  ///
+  /// REGISTRATION PAGE
+  ///
+  if (functions.page.isRegistration())
+  {
+  $("form").validate({
+    debug: true,
+    rules: {
+      "user[full_name]": {required: true },
+      "user[username]": {required: true, remote:"/s/check_username" },
+      "user[email]": {required: true, email: true, remote:"/s/check_email" },
+      "user[password]": {required: true, minlength: 6},
+      "user[password_confirmation]": {required: true, equalTo: "#user_password"}
+    }
+  });
+
+  /*
+    $("#user_full_name").rules("add", { required: true, minlength:8, messages: { required: "uh required?", minlength: "uh minlength?"}}
+    $("form#user_new").validate({
+      onfocusout: true
+    });
+
+  ,
+      rules: {
+        user_full_name: {required: true, minlength: 3, maxlength: 255},
+        user_username: {required: true, minlength: 2, maxlength: 255},
+        user_email: {required: true, email: true, maxlength: 255}
+      }
+    $("f2orm").validate({
+      submitHandler: function(form) {
+        // some other code
+        // maybe disabling submit button
+        // then:
+        alert('submetendo');
+        return false;
+        //$(form).submit();
+      }
+      rules: {
+        // simple rule, converted to {required:true}
+        user_full_name: "required",
+        // compound rule
+        email: {
+          required: true,
+          email: true
+        }
+      }
+$("form").validate({
+  onfocusout: true,
+  rules: {
+    user_full_name: "required",
+    user_username: "required",
+    user_password: "required",
+    user_password_confirmation: "required"
+  }
+});
+    });
+*/
+
+  /*
+    $(".campo input[type='text']").live("blur", function() {
+      t = $(this);
+      
+      alert(t.parent().find(".alert").html());
+    });
+    */
   }
   
   ///
@@ -377,7 +453,9 @@ $(".post").live("mouseover mouseout", function(){
       isHome: function() { return $("body.pg-home-index, body.pg-home-create_post").size(); },
       isProfile: function() { return $("body.pg-users-show").size(); },
       isSearch: function() { return $("body.pg-site-search").size(); },
-      isList: function() { return $("body.pg-users-list").size(); }
+      isList: function() { return $("body.pg-users-list").size(); },
+      isRegistration: function() { return $("body.pg-registrations-new").size(); },
+      isLogin: function() { return $("body.pg-sessions-new").size(); }
     },
     mention : {
       write: function(username) {
