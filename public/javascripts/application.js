@@ -46,8 +46,10 @@ $(function() {
   });
 
 
-
-  
+  $("#tabs").tabs().removeClass("ui-corner-all");
+  $("#tabs ul").removeClass("ui-widget-header ui-corner-all");
+  $("#tabs li").removeClass("ui-corner-top");
+  $("#tabs .ui-tabs-panel").removeClass("ui-corner-bottom");
 
   ///
   /// EVENTS FOR ALL PAGES, ONLY ACTUALLY BEING USED
