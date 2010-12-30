@@ -10,8 +10,6 @@ I could make a 1-1 relationship for a UserData model
 I could cache the user followings query params into the user model as a serialized field :)
 
 micro.pdf micro.doc.....
-remove old code/table from PA
-remove old code from IFRAME
 ajax registration
 index all tables
 conclude hostness system

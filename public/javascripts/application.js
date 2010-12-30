@@ -171,66 +171,25 @@ $(function() {
   ///
   if (functions.page.isRegistration())
   {
-  $("form").validate({
-    debug: true,
-    rules: {
-      "user[full_name]": {required: true },
-      "user[username]": {required: true, remote:"/s/check_username" },
-      "user[email]": {required: true, email: true, remote:"/s/check_email" },
-      "user[password]": {required: true, minlength: 6},
-      "user[password_confirmation]": {required: true, equalTo: "#user_password"}
-    }
-  });
-
-  /*
-    $("#user_full_name").rules("add", { required: true, minlength:8, messages: { required: "uh required?", minlength: "uh minlength?"}}
-    $("form#user_new").validate({
-      onfocusout: true
-    });
-
-  ,
+    $("form").validate({
       rules: {
-        user_full_name: {required: true, minlength: 3, maxlength: 255},
-        user_username: {required: true, minlength: 2, maxlength: 255},
-        user_email: {required: true, email: true, maxlength: 255}
-      }
-    $("f2orm").validate({
-      submitHandler: function(form) {
-        // some other code
-        // maybe disabling submit button
-        // then:
-        alert('submetendo');
-        return false;
-        //$(form).submit();
-      }
-      rules: {
-        // simple rule, converted to {required:true}
-        user_full_name: "required",
-        // compound rule
-        email: {
-          required: true,
-          email: true
+        "user[full_name]": {required: true, rangelength: [6, 50] },
+        "user[username]": {required: true, rangelength: [2, 20], remote:"/s/check_username" },
+        "user[email]": {required: true, email: true, remote:"/s/check_email" },
+        "user[password]": {required: true, rangelength: [4, 30]}
+        //,
+        //"user[password_confirmation]": {required: true, equalTo: "#user_password"}
+      },
+      messages: {
+        "user[username]": {
+          remote: "It's already been taken"
+        },
+        "user[email]": {
+          remote: "It's already been taken. Forgot password? <a href='/users/password/new'>click here</a>"
         }
       }
-$("form").validate({
-  onfocusout: true,
-  rules: {
-    user_full_name: "required",
-    user_username: "required",
-    user_password: "required",
-    user_password_confirmation: "required"
-  }
-});
-    });
-*/
 
-  /*
-    $(".campo input[type='text']").live("blur", function() {
-      t = $(this);
-      
-      alert(t.parent().find(".alert").html());
     });
-    */
   }
   
   ///
