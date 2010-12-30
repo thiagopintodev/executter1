@@ -40,7 +40,7 @@ class SiteController < ApplicationController
     ne = User.where("lower(username)=?", usernamedown).select(:id).limit(1).length==0
     render :json => ne
   end
-
+  #to-deprecate
   def ajax_username_available
     allow = User.username_allowed(params[:username], :current_user => current_user)
     render :inline => allow[:allowed] ? allow[:regular] : '0'

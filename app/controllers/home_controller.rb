@@ -4,41 +4,23 @@ class HomeController < ApplicationController
   def index
     @user = current_user#this makes user background show ;)
   end
-  
-  def new_post
-    #render :layout=>'iframe'
-    unless params[:post]
-      @post = Post.new
-    else
-      if not_many_posts
-        #current_user.my_create_post(params[:post], request.remote_ip)
-        new_post2
-        @post = Post.new
-      else
-        @post = Post.new(params[:post])
-        flash[:too_soon] = t "home.too_quick"
-      end
-    end
-  end
 
-  def new_post2
+  def new_post
+    #return flash[:too_soon] = t "home.too_quick" unless not_many_posts
     post_attributes = params[:post]
     remote_ip = request.remote_ip
-    @user = current_user
     
-    @p = @user.posts.build(post_attributes)
+    post = current_user.posts.build(post_attributes)
+    post.remote_ip = remote_ip
     if params[:file]
-      @x = Xlink.create(:file=>params[:file], :user_id=>@user.id)
-      @p.links = [ {:url=>@x.to_url, :name => @x.file_file_name} ]
-      @p.has_image = @x.file? && @x.file_image?
-      @p.has_file = @x.file? && !@x.file_image?
+      @x = Xlink.create(:file=>params[:file], :user_id=>current_user.id)
+      post.links = [ {:url=>@x.to_url, :name => @x.file_file_name} ]
+      post.has_image = @x.file? && @x.file_image?
+      post.has_file = @x.file? && !@x.file_image?
     end
     
-    @p.remote_ip = remote_ip
-    if @p.save
-      @user.post_id = @p.id
-      @user.save
-    end
+    User.update(current_user.id, :post_id => post.id) if post.save
+    render :nothing=>true
   end
   
   def after_sign_up

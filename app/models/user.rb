@@ -52,7 +52,8 @@ class User < ActiveRecord::Base
     :flavour, :description,
     :website, :locale, :local,
     :count_of_blockers, :count_of_blockings, :count_of_friends, :count_of_followers, :count_of_followings,
-    :subjects_attributes, :posts_count, :subjects_count
+    :subjects_attributes, :posts_count, :subjects_count,
+    :post_id
   
 
 
@@ -201,6 +202,13 @@ class User < ActiveRecord::Base
     Post.get self, self.friends, options
   end
 
+  #EVENT METHODS
+  before_save :my_before_save
+  def my_before_save
+    self.username = self.username.gsub ' ','_'
+    self.email = self.email.downcase
+  end
+
   #OTHER METHODS
   def update_geo
     g = MyGeoKit.geocode(self.last_sign_in_ip)
@@ -211,9 +219,7 @@ class User < ActiveRecord::Base
     #self.first_geo_zip = g.zip
     #self.first_geo_street = g.street
   end
-      
   
-
 =begin
 4.3.1 Methods Added by has_many
 

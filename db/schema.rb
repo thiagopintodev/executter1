@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101222223607) do
+ActiveRecord::Schema.define(:version => 20101230180552) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -60,19 +60,6 @@ ActiveRecord::Schema.define(:version => 20101222223607) do
     t.string    "img_content_type"
     t.integer   "img_file_size"
     t.timestamp "img_updated_at"
-  end
-
-  create_table "post_attachments", :force => true do |t|
-    t.integer   "post_id"
-    t.integer   "user_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "file_file_name"
-    t.string    "file_content_type"
-    t.integer   "file_file_size"
-    t.timestamp "file_updated_at"
-    t.integer   "file_width",        :default => 0
-    t.integer   "file_height",       :default => 0
   end
 
   create_table "posts", :force => true do |t|

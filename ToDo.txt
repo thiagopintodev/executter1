@@ -1,11 +1,18 @@
-save file name at post instance
-subdomain box instead of /x
-publish xlink to production
+I could
+  ajaxify application.html header and bottom,
+  change user's custom style to a partial file,
+  OR set user's custom style to a cookie and add them via js.
+  that way I could action_cache :layout=>true more oftenly
+
+I could make a 1-1 relationship for a UserData model
+  in other to reduce default behaviour of other events on User
+
+I could cache the user followings query params into the user model as a serialized field :)
+
 micro.pdf micro.doc.....
 remove old code/table from PA
 remove old code from IFRAME
 ajax registration
-subdomain post instead of /posts
 index all tables
 conclude hostness system
 

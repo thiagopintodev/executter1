@@ -81,14 +81,6 @@
 
   
 <div id="container">
-<%if false%>
-  <iframe src="<%= h_new_post_path%>"
-    name="myframe" id="myframe" scrolling="no" frameborder="0"
-    style="width:100%;height:335px"></iframe>
-<%end%>
-
-
-
 
 <%= form_for Post.new, :url=>h_new_post_path, :html=>{:class=>"executa", :multipart=>true} do |f| %>
   <h3><%= t "home.title" %></h3>
