@@ -29,7 +29,6 @@
             -->
             <% all_users.limit(20).each do |u| %>
               <a href="<%= profile_path u.username %>">
-              <%#= u.updated_at.strftime("%b%d %H:%M:%S")  %>  
                 <span class="desc">@<%= u.username %></span>
               </a>
             <% end %>

@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
   
   def all_users
-    User.order("id DESC")
+    User.select(:username).order("id DESC")
   end
   def my_must_be_logged
   #, :notice=>"ONLY LOGGED IN"
