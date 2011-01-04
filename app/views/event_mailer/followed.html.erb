@@ -1,0 +1,5 @@
+<%= content_tag :h2, "Now you're followed by #{pluralize @user_followed.count_of_followers, 'person'} " %>
+<p>
+  <%= link_to 'click here', user_url(@user_followed) %>
+  and see his profile, become <strong>friends</strong> if you want to.
+</p>
