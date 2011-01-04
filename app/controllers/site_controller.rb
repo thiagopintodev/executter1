@@ -5,6 +5,7 @@ class SiteController < ApplicationController
   
   def index
     #return redirect_to home_index_path if current_user
+    0/0
   end
 
   def search

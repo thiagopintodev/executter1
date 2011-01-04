@@ -1,4 +1,6 @@
-
+.pg-error #content .in {margin:20px;color:#333;}
+.pg-error #content .in h1 {margin:10px 0}
+.pg-error #content .in p {margin:10px 0}
 
 div#content { min-height:500px; }
 
