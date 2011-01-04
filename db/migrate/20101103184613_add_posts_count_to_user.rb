@@ -3,11 +3,11 @@ class AddPostsCountToUser < ActiveRecord::Migration
     add_column :users, :posts_count, :integer, :default => 0
     add_column :users, :subjects_count, :integer, :default => 0
     add_column :subjects, :posts_count, :integer, :default => 0
-    User.all.each do |u|
-      u.update_attributes(:posts_count => u.posts.length, :subjects_count => u.subjects.length)
+    User.select(:id).includes(:posts, :subjects).each do |u|
+      User.update_counters u.id, :posts_count=>u.posts.length, :subjects_count => u.subjects.length
     end
-    Subject.all.each do |s|
-      s.update_attributes(:posts_count => s.posts.length)
+    Subject.select(:id).includes(:posts).each do |s|
+      Subject.update_counters s.id, :posts_count=>s.posts.length
     end
   end
 
