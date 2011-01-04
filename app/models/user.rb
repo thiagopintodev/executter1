@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     :website, :locale, :local,
     :count_of_blockers, :count_of_blockings, :count_of_friends, :count_of_followers, :count_of_followings,
     :subjects_attributes, :posts_count, :subjects_count,
-    :post_id
+    :post_id, :is_host
   
 
 

@@ -15,8 +15,6 @@ class Devise::RegistrationsController < ApplicationController
     build_resource
     location = MyGeoKit.geocode(request.remote_ip)
     resource.local = location.city
-    
-    resource.temp = {:follow_on_registration => cookies[:follow_on_registration]} if cookies[:follow_on_registration]
 
     did = Rails.env.development? || verify_recaptcha(:model => resource, :message => 'Error at reCAPTCHA!')
     

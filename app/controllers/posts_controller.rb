@@ -22,9 +22,8 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy
-    #Post.delete_all(:user_id => current_user.id, :id=>params[:id])
-    @post = Post.where(:user_id => current_user.id, :id=>params[:id]).first
-    @post.destroy if @post
+    @post = Post.find(params[:id])
+    @post.destroy if @post && (@post.user_id == current_user.id || current_user.admin?)
     #@post.update_attribute(:is_deleted, true) if @post
 
     respond_to do |format|

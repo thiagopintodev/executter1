@@ -6,7 +6,7 @@ String.prototype.endsWith = function(pattern) {
 
 
 ROUTE_USERNAME_AVAILABLE = "/s/ajax_username_available/:u"
-ROUTE_USER_FOLLOWINGS_THUMBS = ":id/ajax_followings_thumbs"
+ROUTE_USER_FOLLOWINGS_THUMBS = "/:id/ajax_followings_thumbs"
 
 POSTS_TIMEOUT = 60 * 1000;
 
