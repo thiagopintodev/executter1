@@ -3,34 +3,33 @@
 
 <div id="cadastro">
 
-	<h1><span>Sign Up</span>It's  free and anyone can join</h1>
+	<h1>
+	  <span><%= t 'view.sign_up.title' %></span>
+	  <%= t 'view.sign_up.subtitle' %>
+	</h1>
 	
   <div class="singup">
-    Already on Executter? <%= link_to t("application.header.sign_in"), in_path %>
+    <%= t 'view.sign_up.already' %>
+    <%= link_to t("application.header.sign_in"), in_path %>
   </div>
   
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%#= devise_error_messages! %>
-    <%= hidden_field_tag :follow_on_registration, cookies[:follow_on_registration] if cookies[:follow_on_registration] %>
   
   		<div class="campos">
   		
         <div class="campo">
-        	<label>Full name</label>
+          <%= f.label :full_name %>
           <%= f.text_field :full_name %>
-          <% if false%>
-          <%#= my_error_msg resource, :full_name %>
-          <div class="alert" style="display:none">Enter your fist and last name</div>
-          <% end%>
         </div>
         <div class="campo">
-        	<label>Username</label>
+          <%= f.label :username %>
           <%= f.text_field :username %>
           <%= my_error_msg resource, :username %>
-          <div class="legenda">Your URL: http://executter.com/username</div>
+          <div class="legenda">http://executter.com/username</div>
         </div>
         <div class="campo">
-        	<label>E-mail</label>
+          <%= f.label :email %>
           <%= f.text_field :email %>
           <%= my_error_msg resource, :email %>
         </div>
@@ -40,23 +39,18 @@
           <%= my_error_msg resource, :password %>
         </div> 
         <div class="campo">
-       	  <%#= f.label :password_confirmation %>
-          <%#= f.password_field :password_confirmation %>
-          <%#= my_error_msg resource, :password_confirmation %>
-          <div class="legenda">Clicking on Create my account above, you confirm that you accept the <a href="/z/terms.html">Terms of Service</a>.</div>
+          <div class="legenda"><%= raw t 'view.sign_up.terms' %></div>
         </div> 
 
-
-      
         <% unless Rails.env.development? %>
           <div class="campo">
-       	    <label class="label-words">Type the words above</label>
+       	    <label class="label-words"><%= t 'view.sign_up.captcha' %></label>
             <p><%= raw recaptcha_tags %></p>
           </div>
         <% end %>
         
         <div class="bt-sign-in">
-            <a href="#" class="form-submit">Create my account</a>
+            <a href="#" class="form-submit"><%= t 'view.sign_up.submit' %></a>
             <input type="submit" style="display:none"/>
         </div>
 

@@ -2,38 +2,40 @@
 <% my_css_files("login") %>
 
 <div id="login">
-	<h1>Sing in to Executter</h1>
-    <div class="singup">Create your account? <%= link_to t("application.header.sign_up"), new_path %></div>
+	<h1><%= t 'view.sign_in.title' %></h1>
+    <div class="singup">
+      <%= t 'view.sign_in.subtitle' %>
+      <%= link_to t("application.header.sign_up"), new_path %>
+    </div>
+    
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
   		<div class="campos">
 		      <% if flash[:alert] %>
-         	  <div class="erro">Incorrect Combination</div>
+         	  <div class="erro"><%= t 'view.sign_in.error' %></div>
          	<% end %>
          	
-          <label>Username or E-mail</label>
+          <label><%= t 'view.sign_in.login' %></label>
               <%= f.text_field :email %>
-          <label>Password</label>
+          <%= f.label :password %>
           		<%= f.password_field :password %>
           		<div class="remember">
 			        <%= f.check_box :remember_me, :class=>"check" %> 
-              <span>Remember Me</span>
+              <span><%= t 'view.sign_in.remember_me' %></span>
           </div>
           <div class="bt-sign-in">
-              <a href="#" class="form-submit">Sign in</a>
+              <a href="#" class="form-submit"><%= t 'view.sign_in.submit' %></a>
               <input type="submit" style="display:none"/>
           </div>
-
+          
           
           <%= render :partial => "devise/shared/links" %>
 
           
        </div>
 
-         
        <div id="publicidade">
-        <%= image_tag my_banner.img.url if my_banner.link.blank? %>
-        <%= link_to image_tag(my_banner.img.url), my_banner.link unless my_banner.link.blank? %>
+        <%= my_banner.link.blank? ? image_tag(my_banner.img.url) : link_to(image_tag(my_banner.img.url), my_banner.link) %>
        </div>
 
     <% end %>
