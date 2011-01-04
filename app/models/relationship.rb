@@ -58,13 +58,14 @@ class Relationship < ActiveRecord::Base
     r1.is_follower = r2.is_followed = value
     r1.is_friend = r2.is_friend = false
     r1.is_friend = r2.is_friend = true  if r1.is_follower && r1.is_followed
-    r1 if r1.save && r2.save
+    return false unless r1.save && r2.save
     #transaction-end
     now_follows = r1.is_follower
     if (didnt_follow and now_follows)
       m = EventMailer.followed r1
       m.deliver
     end
+    r1
   end
   
   def self.change_subject(u1, u2, value, options={})
