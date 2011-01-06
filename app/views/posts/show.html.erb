@@ -5,12 +5,6 @@
 <div class="in">
   <h1><%= "#{time_ago_in_words @post.created_at} - #{l @post.created_at, :format => :short}" %></h1>
 
-
-  <% at = @post.read_first_post_attachments %>
-  <% if at.file? && at.file_image? %>
-    <%= image_tag at.file.url(:original), :class=>"file" %>
-  <% end %>
-  
 <% if @post.links %>
   <% @post.links.each do |x| %>
     <% if x[:url].ends_with? '.jpg' %>
