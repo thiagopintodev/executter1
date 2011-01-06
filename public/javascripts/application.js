@@ -277,7 +277,7 @@ $(function() {
         h = $('#myframe').css('height');
         //$('#myframe').css('height', (h=="200px") ? 350 : 200);
         $("#anexoLink, #anexoBox").slideToggle("fast");
-        $("#anexoBox p:last").html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
+      $("#anexoBox p:last").html("<input type='file' name='file' id='file'>");
       });
 
     $("form.executa #post_submit").live("click", function() {

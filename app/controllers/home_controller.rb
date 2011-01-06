@@ -31,14 +31,14 @@ class HomeController < ApplicationController
     hosts = hosts.where("hostness_type=? OR country=?", Hostness::TYPE_UNIVERSAL, u.first_geo_country)
     hosts.each do |host|
       u.follow host.user_id
-      u.logger.info "FOLLOWING host @#{u.username}"
+      u.logger.info "FOLLOWING host id-#{host.user_id}"
     end
     
     if hosts.size == 0
       hosts = Hostness.where(:is_active=>true, :hostness_type=>Hostness::TYPE_ESCAPE)
       hosts.each do |host|
         u.follow host.user_id
-        u.logger.info "FOLLOWING escape host @#{u.username}"
+        u.logger.info "FOLLOWING escape host id-#{host.user_id}"
       end
     end
     
