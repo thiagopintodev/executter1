@@ -9,6 +9,8 @@ I could make a 1-1 relationship for a UserData model
 
 I could cache the user followings query params into the user model as a serialized field :)
 
+I should optimize User#find in requests in order: home#ajax users#following_thumbs home#index users#show
+
 micro.pdf micro.doc.....
 ajax registration
 index all tables
