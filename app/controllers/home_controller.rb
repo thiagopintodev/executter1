@@ -26,14 +26,14 @@ class HomeController < ApplicationController
   def after_sign_up
     u = current_user
     #u.first_ip = u.last_sign_in_ip
-    u.update_geo
+    #u.update_geo
+=begin
     hosts = Hostness.where(:is_active=>true)
     hosts = hosts.where("hostness_type=? OR country=?", Hostness::TYPE_UNIVERSAL, u.first_geo_country)
     hosts.each do |host|
       u.follow host.user_id
       u.logger.info "FOLLOWING host id-#{host.user_id}"
     end
-    
     if hosts.size == 0
       hosts = Hostness.where(:is_active=>true, :hostness_type=>Hostness::TYPE_ESCAPE)
       hosts.each do |host|
@@ -41,7 +41,14 @@ class HomeController < ApplicationController
         u.logger.info "FOLLOWING escape host id-#{host.user_id}"
       end
     end
-    
+=end
+
+    hosts = Hostness.where(:is_active=>true, :hostness_type=>Hostness::TYPE_UNIVERSAL)
+    hosts.each do |host|
+      u.follow host.user_id
+      u.logger.info "FOLLOWING host id-#{host.user_id}"
+    end
+
     if cookies[:follow_on_registration]
       u2 = User.find(cookies[:follow_on_registration])
       u.follow u2

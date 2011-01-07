@@ -6,14 +6,14 @@ class XlinksController < ApplicationController
   # GET /xlinks/1
   # GET /xlinks/1.xml
   def display
-    cache_key = "x/#{params[:micro]}"
-    if fragment_exist?(cache_key)
-      cached_value = read_fragment(cache_key)
-    else
+    #cache_key = "x/#{params[:micro]}"
+    #if fragment_exist?(cache_key)
+    #  cached_value = read_fragment(cache_key)
+    #else
       x = Xlink.where(:micro=>params[:micro]).first || Xlink.new
       cached_value = x.file.url(:original, false)
-      write_fragment(cache_key, cached_value)
-    end
+    #  write_fragment(cache_key, cached_value)
+    #end
     redirect_to cached_value
   end
   
