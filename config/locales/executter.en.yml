@@ -15,8 +15,8 @@ en:
       sign_up: "Sign Up"
       sign_in: "Sign In"
     sub_header:
-      title: "Hey! <span>%{username}</span> está Executtando"
-      body: "Executter é um serviço GRÁTIS que permite você acompanhar e organizar em listas as postagens de sua rede de interesse. Cadastre-se agora mesmo para começar a receber os executs de %{username}."
+      title: "Hey! <span>%{username}</span> is a pioneer for Executter"
+      body: "%{username} is helping in the Testing Phase of the first social network in the world specialized in file sharing through microblog. You can come on and join now, making history as a pioneer like %{username} is. If you sign up right now you can still get yourself a good @Username."
     footer:
       about_us: "About us"
       terms: "Terms"

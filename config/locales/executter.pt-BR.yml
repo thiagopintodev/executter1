@@ -15,8 +15,8 @@ pt-BR:
       sign_up: "Cadastro"
       sign_in: "Login"
     sub_header:
-      title: "Ei! <span>%{username}</span> está Executtando"
-      body: "Executter é um serviço GRÁTIS que permite você acompanhar e organizar em listas as postagens de sua rede de interesse. Cadastre-se agora mesmo para começar a receber os executs de %{username}."
+      title: "Hey! <span>%{username}</span> é pioneiro do Executter"
+      body: "%{username} está ajudando na Fase de Teste da primeira rede social do mundo especializada no compartilhamento de arquivos via microblog. Você pode ser fazer parte da história juntando-se a rede de Pioneiros como %{username}. Cadastrando-se agora você ainda consegue garantir um bom Username."
     footer:
       about_us: "Sobre"
       terms: "Contrato"

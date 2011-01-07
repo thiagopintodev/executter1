@@ -36,20 +36,20 @@ ActiveRecord::Schema.define(:version => 20101230180552) do
   end
 
   create_table "page_translations", :force => true do |t|
-    t.integer  "page_id"
-    t.string   "locale"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "page_id"
+    t.string    "locale"
+    t.text      "body"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
-    t.string   "key"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "key"
+    t.text      "body"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "photos", :force => true do |t|
