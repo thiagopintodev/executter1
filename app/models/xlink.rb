@@ -1,11 +1,11 @@
 class Xlink < ActiveRecord::Base
   belongs_to :user
   
-  def to_param
+  def to_param2
     file_image? ? "#{self.micro}.jpg" : self.micro
   end
   def to_url
-    MyConfig.production? ? "http://box.executter.com/#{self.to_param}" : "/x/#{self.to_param}"
+    MyConfig.production? ? "http://box.executter.com/#{self.to_param2}" : "/x/#{self.to_param2}"
   end
   
   validates_attachment_size :file, :less_than => 11.megabytes
@@ -13,12 +13,10 @@ class Xlink < ActiveRecord::Base
   Paperclip.interpolates :micro do |attachment, style|
     attachment.instance.micro
   end
-  
   has_attached_file :file,
     MyConfig.paperclip_xlink_options(
       lambda { |a| MyConfig::image?(a) ? { :original=>["700x2800>", :jpg] } : {} }
     )
-  
   def file_image?
     return false unless file?
     MyConfig::image?(file)
