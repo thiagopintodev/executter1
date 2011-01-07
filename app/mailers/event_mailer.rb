@@ -1,5 +1,5 @@
 class EventMailer < ActionMailer::Base
-  default :from => "Executter Notifications <notifications@executter.com>"
+  default :from => "Executter <notifications@executter.com>"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
