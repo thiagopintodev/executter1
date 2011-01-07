@@ -12,13 +12,13 @@
       <strong style="font-size:large"><%= @user_follower.full_name %></strong><br />
       <span style="font-size:medium;"><%= link_to @user_follower.username_at, profile_url(@user_follower.username), :style=>"text-decoration:none" %></span><br />
       <p style="color:#999;float:left;width:100px;height:50px;padding:0 5px;border-right:1px solid #ccc;">
-      <%= @user_follower.count_of_followers %></br>Seguidores
+      <%= @user_follower.count_of_followers %><br/>Seguidores
       </p>
       <p style="color:#999;float:left;width:100px;height:50px;padding:0 5px;border-right:1px solid #ccc;">
-      <%= @user_follower.count_of_followings %></br>Seguindo
+      <%= @user_follower.count_of_followings %><br/>Seguindo
       </p>
       <p style="color:#999;float:left;width:100px;height:50px;padding:0 5px">
-      <%= @user_follower.count_of_friends %></br>Amigos
+      <%= @user_follower.count_of_friends %><br/>Amigos
       </p>
     </div>
   </div>
