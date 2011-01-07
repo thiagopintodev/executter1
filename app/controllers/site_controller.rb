@@ -5,6 +5,8 @@ class SiteController < ApplicationController
   
   def index
     #return redirect_to home_index_path if current_user
+    @user_follower = User.first
+    return render 'event_mailer/followed', :layout=>false
     0/0
   end
 

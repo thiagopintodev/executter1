@@ -39,6 +39,9 @@ class User < ActiveRecord::Base
   def read_post
     self.post || self.posts.build
   end
+  def username_at
+    "@#{username}"
+  end
 
 
   #ATTRIBUTES
