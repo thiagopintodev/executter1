@@ -57,7 +57,7 @@ class MyConfig
     r[:default_url] = "/images/application/default/:class/:attachment/:style.png"
     r[:styles] = styles
     path = "/#{app_name}/:class/:attachment/:micro.:extension"
-    #path = "/#{app_name}/box/:micro/:basename.:extension"
+    path = "/#{app_name}/box/:micro/:basename.:extension"
     
     if s3_credentials
       r[:storage] = :s3
