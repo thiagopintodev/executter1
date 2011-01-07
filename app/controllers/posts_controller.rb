@@ -1,22 +1,37 @@
 class PostsController < ApplicationController
 
-  after_filter :my_suggest_registration, :only=>:show
-  before_filter :my_must_be_logged, :except => :show
+  after_filter :my_suggest_registration, :only=> [:show,:previous, :next]
+  before_filter :my_must_be_logged, :except => [:show,:previous, :next]
   
   # GET /posts/1
   # GET /posts/1.xml
   def show
     begin
-      @post = Post.find(params[:id])
+      @post = Post.find(params[:id]) unless @post
     rescue
       redirect_to root_path
       return false
     end
     @user = @post.user #so it customizes background ;)
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :show }
       format.xml  { render :xml => @post }
     end
+  end
+
+
+  def previous
+    @post = Post.limit(1).order('id DESC')
+    @post = @post.where("id < ?", params[:id]).first
+    @post = Post.last unless @post
+    show
+  end
+
+  def next
+    @post = Post.limit(1).order('id')
+    @post = @post.where("id > ?", params[:id]).first
+    @post = Post.first unless @post
+    show
   end
   
   # DELETE /posts/1

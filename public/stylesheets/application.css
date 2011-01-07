@@ -16,18 +16,22 @@ div#content { min-height:500px; }
 
 label.error {color:red;background-color:#fafafa;border:1px solid #CCCCCC;text-align:center !important;width:250px !important}
 
-.pg-posts-show div#content div.in { margin: 30px 50px }
-.pg-posts-show div#content h1 { font-size:18px; color:#999; border-bottom:#666 solid 1px;padding-bottom:10px;margin-bottom:15px }
+.group-posts div#content div.in { margin: 30px 50px }
+.group-posts div#content h1 { font-size:18px; color:#999; border-bottom:#666 solid 1px;padding-bottom:10px;margin-bottom:15px }
 
-.pg-posts-show div#content img.file { display:block;border-bottom:#666 solid 1px;padding-bottom:10px;margin-bottom:15px }
-.pg-posts-show div#content span.file { display:block;clear:both;margin-top:15px;font-size:18px; color:#999; }
-.pg-posts-show div#content span.file a { color:#999; }
+.group-posts div#content img.file { display:block;border-bottom:#666 solid 1px;padding-bottom:10px;margin-bottom:15px }
+.group-posts div#content span.file { display:block;clear:both;margin-top:15px;font-size:18px; color:#999; }
+.group-posts div#content span.file a { color:#999; }
 
-.pg-posts-show div#content .fl {  }
-.pg-posts-show div#content .l { float:left;width:115px }
-.pg-posts-show div#content .r { float:left;width:500px }
-.pg-posts-show div#content .full_name { color:#999; }
-.pg-posts-show div#content .body { display:block;color:purple;font-size:18px;margin-top:5px }
+.group-posts div#content .fl {  }
+.group-posts div#content .l { float:left;width:115px }
+.group-posts div#content .r { float:left;width:500px }
+.group-posts div#content .full_name { color:#999; }
+.group-posts div#content .body { display:block;color:purple;font-size:18px;margin-top:5px }
+
+.group-posts div#content h2#pagination { position:absolute;right:50px;top:25px; }
+.group-posts div#content h2#pagination a {text-decoration:none;color:#ccc}
+.group-posts div#content h2#pagination a:hover {color:#f90}
 
 .pg-site-search #sidebar h2 { color:#111; margin: 15px 0;font-size:18px; }
 .pg-site-search #sidebar p { margin-top:5px; }

@@ -4,6 +4,10 @@
 
 <div class="in">
   <h1><%= "#{time_ago_in_words @post.created_at} - #{l @post.created_at, :format => :short}" %></h1>
+  <h2 id="pagination">
+    <%= link_to "<", previous_post_path(@post) %>
+    <%= link_to ">", next_post_path(@post) %>
+  </h2>
 
 <% if @post.links %>
   <% @post.links.each do |x| %>

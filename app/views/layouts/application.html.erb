@@ -31,7 +31,7 @@
   </style>
   <% end %>
 </head>
-<body <%= "class='pg-#{controller_name}-#{action_name}'"%>>
+<body <%= "class='pg-#{controller_name}-#{action_name} group-#{controller_name}'"%>>
 	<div id="all">
     	<div id="header">
    	    <a href="/" title="Executter" class="logo"></a>
@@ -52,7 +52,7 @@
         </div>
       </div>
 
-<%= yield :sub_header %>
+<%= yield :sub_header if content_for? :sub_header %>
 
       <div id="content">
 
