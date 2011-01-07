@@ -12,6 +12,9 @@ module ApplicationHelper
     s = (user && user.flavour) || "orange"
     stylesheet_link_tag "/layout1/css/sabor_#{s}.css"
   end
+  def body_class
+    "class='pg-#{controller_name}-#{action_name} group-#{controller_name}'"
+  end
   
   def my_flash_keys
     s = flash.keys.collect do |k|
