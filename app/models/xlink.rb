@@ -1,11 +1,9 @@
 class Xlink < ActiveRecord::Base
   belongs_to :user
   
-  def to_param2
-    file_image? ? "#{self.micro}.jpg" : self.micro
-  end
   def to_url
-    MyConfig.production? ? "http://box.executter.com/#{self.to_param2}" : "/x/#{self.to_param2}"
+    fmt_micro = file_image? ? "#{micro}.jpg" : micro
+    MyConfig.production? ? "http://box.executter.com/#{fmt_micro}" : "/x/#{fmt_micro}"
   end
   
   validates_attachment_size :file, :less_than => 11.megabytes
