@@ -8,7 +8,7 @@ class EventMailer < ActionMailer::Base
   #
   def followed(follower_relationship)
     @user_follower, @user_followed = follower_relationship.user1, follower_relationship.user2
-    subject = "#{@user_follower.username} agora está seguindo você"
+    subject = "#{@user_follower.username} agora esta seguindo você"
     
     mail :to => @user_followed.email, :subject => subject
   end
