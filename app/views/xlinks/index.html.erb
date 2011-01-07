@@ -21,7 +21,7 @@
     <td><%= link_to "@#{xlink.user.username}", profile_path( xlink.user.username), :target=>'_blank' %></td>
     <td><%= link_to xlink.micro, micro_path(xlink.micro), :target=>'_blank' %></td>
     <td><%= xlink.file_file_name %></td>
-    <td><%= link_to "#{s3_old_path}/#{xlink.micro}", "#{s3_old_path}/#{xlink.micro}" %></td>
+    <td><%= link_to "antigo", "#{s3_old_path}/#{xlink.micro}.#{xlink.file_file_name.split('.').last}" %></td>
     <td><%= link_to 'Edit', edit_xlink_path(xlink.id) %></td>
     <% if false %>
     <td><%= xlink.file_width %></td>
