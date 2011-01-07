@@ -42,7 +42,14 @@ class User < ActiveRecord::Base
   def username_at
     "@#{username}"
   end
-
+  def update_relationship_counters
+    self.count_of_blockers = self.blockers.count
+    self.count_of_blockings = self.blockings.count
+    self.count_of_followers = self.followers.count
+    self.count_of_followings = self.followings.count
+    self.count_of_friends = self.friends.count
+    self.save
+  end
 
   #ATTRIBUTES
   
