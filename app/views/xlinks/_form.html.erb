@@ -12,6 +12,17 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :file %><br />
+    <%= f.file_field :file %>
+    <%= link_to(f.object.file.url, f.object.file.url) %>
+  </div>
+  <div class="field">
+    <label></label><br />
+    <%= f.text_field :micro %>
+  </div>
+  
+  <% if false %>
+  <div class="field">
     <%= f.label :user_id %><br />
     <%= f.text_field :user_id %>
   </div>
@@ -27,6 +38,7 @@
     <%= f.label :file_height %><br />
     <%= f.text_field :file_height %>
   </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

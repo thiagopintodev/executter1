@@ -3,23 +3,32 @@
 <table width="100%">
   <tr>
     <th>User</th>
-    <th>Micro</th>
+    <th>good Micro</th>
+    <th>filename</th>
+    <th>bad Micro</th>
+    <th></th>
+    <% if false %>
     <th>File width</th>
     <th>File height</th>
     <th></th>
     <th></th>
     <th></th>
+    <% end %>
   </tr>
-
+<% s3_old_path = "http://s3.amazonaws.com/of7_production/ex1-production/xlinks/files" %>
 <% @xlinks.each do |xlink| %>
   <tr>
     <td><%= link_to "@#{xlink.user.username}", profile_path( xlink.user.username), :target=>'_blank' %></td>
     <td><%= link_to xlink.micro, micro_path(xlink.micro), :target=>'_blank' %></td>
+    <td><%= xlink.file_file_name %></td>
+    <td><%= link_to "#{s3_old_path}/#{xlink.micro}", "#{s3_old_path}/#{xlink.micro}" %></td>
+    <td><%= link_to 'Edit', edit_xlink_path(xlink.id) %></td>
+    <% if false %>
     <td><%= xlink.file_width %></td>
     <td><%= xlink.file_height %></td>
     <td><%#= link_to 'Show', micro_path(xlink.micro) %></td>
-    <td><%#= link_to 'Edit', edit_xlink_path(xlink) %></td>
     <td><%#= link_to 'Destroy', xlink.id, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
