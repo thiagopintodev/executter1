@@ -1,4 +1,4 @@
-<%= form_for(@xlink) do |f| %>
+<%= form_for(@xlink, :html=>{:multipart=>true}) do |f| %>
   <% if @xlink.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@xlink.errors.count, "error") %> prohibited this xlink from being saved:</h2>
