@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   #caches_action :ajax_show_tab_data_before, :expires_in => 10.minutes
   #caches_action :ajax_show_tab_data_after, :expires_in => 10.minutes
 
+  cache_sweeper :user_sweeper
+
   def set_host
     User.update(params[:id], :is_host => params[:val]=='1')
     redirect_to user_path(params[:id])
