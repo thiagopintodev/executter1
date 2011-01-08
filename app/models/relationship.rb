@@ -61,9 +61,12 @@ class Relationship < ActiveRecord::Base
     return false unless r1.save && r2.save
     #transaction-end
     now_follows = r1.is_follower
+    begin
     if (didnt_follow and now_follows)
       m = EventMailer.followed r1
       m.deliver
+    end
+    rescue
     end
     r1
   end
