@@ -4,9 +4,9 @@ class UsersController < ApplicationController
   before_filter :my_admin_only, :only => :set_host
   
   #caches_action :show, :layout=>false, :expires_in => 1.minutes
-  #caches_action :ajax_show_tab, :expires_in => 1.minutes
+  caches_action :ajax_show_tab, :expires_in => 5.minutes
   
-  #caches_action :ajax_followings_thumbs, :expires_in => 5.minutes
+  caches_action :ajax_followings_thumbs, :expires_in => 5.minutes
   #caches_action :ajax_show_tab_data, :expires_in => 1.minutes
   #caches_action :ajax_show_tab_data_before, :expires_in => 10.minutes
   #caches_action :ajax_show_tab_data_after, :expires_in => 10.minutes
