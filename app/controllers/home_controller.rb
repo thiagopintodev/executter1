@@ -42,7 +42,7 @@ class HomeController < ApplicationController
       end
     end
 =end
-
+    begin
     hosts = Hostness.where(:is_active=>true, :hostness_type=>Hostness::TYPE_UNIVERSAL)
     hosts.each do |host|
       u.follow host.user_id
@@ -53,6 +53,8 @@ class HomeController < ApplicationController
       u2 = User.find(cookies[:follow_on_registration])
       u.follow u2
       u.logger.info "FOLLOWING inviter @#{u2.username}"
+    end
+    rescue
     end
     redirect_to root_path
   end
