@@ -11,6 +11,8 @@ I could cache the user followings query params into the user model as a serializ
 
 I should optimize User#find in requests in order: home#ajax users#following_thumbs home#index users#show
 
+I should refactor relationship changes system for something faster, maybe BG or Thread
+
 micro.pdf micro.doc.....
 ajax registration
 index all tables
