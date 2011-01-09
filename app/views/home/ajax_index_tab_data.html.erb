@@ -43,12 +43,6 @@
   <% end %>
 
 
-
-    <li class="hora" style="clear:both">
-      <%= like post_url post %>
-    </li>
-    
-
     <li class="hora" style="clear:both">
       <%= link_to "#{time_ago_in_words post.created_at} - #{l post.created_at, :format => :short}", post %>
     </li>
