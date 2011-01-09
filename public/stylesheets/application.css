@@ -4,8 +4,11 @@
 
 div#content { min-height:500px; }
 
+
 .pg-home-index div#content,
-.pg-users-show div#content { min-height:1000px; }
+.pg-users-show div#content { min-height:1500px; }
+
+div#labels-thumbs { padding: 10px 0px 20px 20px; }
 
 #viewstack{ clear:both }
 #viewstack ul{ float:left }
