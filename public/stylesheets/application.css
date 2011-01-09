@@ -48,7 +48,7 @@ div#footer ul#menu-footer {padding-left: 300px !important}
 
 ul#menu-estilos { background: #fff none;border:1px outset #E2E2E2;width:171px;height:auto; }
 
-.post { background:#fff; min-height:50px; overflow:hidden; }
+.post { background:#fff; min-height:50px; overflow:hidden;padding: 10px 0px 0px !important; }
 
 .post span.full_name { color:#999999;font-size:12px; }
 .post span.subject {  }
