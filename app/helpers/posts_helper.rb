@@ -35,9 +35,7 @@ d: '@username'
   def my_post_actions(post)
     html = "<li class='icons' style='display:none'>"
     html += link_to image_tag("/images/layout/trash_icon.png", :alt=>""), post, :confirm => 'delete?', :method => :delete, :title=>'Remove', :remote=>true if !post.new_record? && current_user && (post.user_id == current_user.id || current_user.admin)
-    #html += link_to image_tag("/images/layout/write_icon.png", :alt=>""), "#", :title=>'Mention', :"data-mention"=>post.user.username
-    #html = 
-    # mention_path(post.user.username) #
+    html += link_to image_tag("/images/layout/write_icon.png", :alt=>""), "#", :title=>'Mention', :"data-mention"=>post.user.username
     raw "#{html}</li>"
   end
   def file_type(filename)

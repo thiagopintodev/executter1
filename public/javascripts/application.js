@@ -420,12 +420,10 @@ $(".post").live("mouseover mouseout", function(){
     },
     mention : {
       write: function(username) {
-        a = $("form textarea#post_body");
         if (username) {
-          u = "@:u ".replace(":u", username);
-          if (!a.val().endsWith(' '))
-            a.append(' ');
-          a.append(u).focus();
+          ta = $("#post_body");
+          u = "@:u".replace(":u", username);
+          ta.val(ta.val()+u).focus();
         }
       }
     },
