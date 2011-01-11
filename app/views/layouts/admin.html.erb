@@ -24,10 +24,14 @@
 
     <div style="float:right">
   	  Paginas:
-      <%= link_to "banners", banners_path %> |
       <%= link_to "hosts", hostnesses_path %> |
       <%= link_to "pages", pages_path %> |
-      <%= link_to "xlinks", xlinks_path %>
+      <%= link_to "xlinks", xlinks_path %> -
+      
+      <%= link_to "emails", a_emails_path %> |
+      <%= link_to "numeros", a_numbers_path %> -
+      
+      <%= link_to "PAINEL", a_path %>
       <br/>
       Idiomas:
   	  <% User.LOCALES.each do |k,v| %>

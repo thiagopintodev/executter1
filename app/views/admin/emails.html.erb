@@ -1,0 +1,4 @@
+<h3>Envio de e-mails em massa</h3>
+<p>Existe(m) <%= @emails_count %> email(s)</p>
+<p>Para <%= @followers_count %> destinatario(s)</p>
+<%= link_to "enviar agora", a_do_emails_path, :remote=>true, :onclick=>"$(this).remove(); alert('enviando, aguarde')" %>

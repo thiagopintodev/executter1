@@ -1,31 +1,41 @@
 <div style="color:#363636;background:#0cf;display:inline-block;width:600px;padding-bottom: 30px;">
 <%= image_tag "#{root_url}images/email/header1.jpg" %>
 <div style="background:#fff;margin: 0 20px 20px 20px;padding:20px">
+
+
+
+
+  <% @followers_user.each do |user| %>
   <p>
-    <strong><%= @user_follower.full_name %></strong>
-    (<%= link_to @user_follower.username_at, profile_url(@user_follower.username), :style=>"text-decoration:none" %>)
+    <strong><%= user.full_name %></strong>
+    (<%= link_to user.username_at, profile_url(user.username), :style=>"text-decoration:none" %>)
     agora está acompanhando suas postagens no Executter.
   </p>
   <div style="margin:10px 0 20px;background:#efefef;border-top:1px solid #ccc;padding:15px;height:110px">
-    <% if @user_follower.read_photo.img? %>
-      <%= image_tag @user_follower.read_photo.img.url(:me), :style=>"float:left;", :alt=>@user_follower.username %>
+    <% if user.read_photo.img? %>
+      <%= image_tag user.read_photo.img.url(:me), :style=>"float:left;", :alt=>user.username %>
     <% else %>
-      <%= image_tag "http://executter.com#{@user_follower.read_photo.img.url(:me)}", :style=>"float:left;", :alt=>@user_follower.username %>
+      <%= image_tag "http://executter.com#{user.read_photo.img.url(:me)}", :style=>"float:left;", :alt=>user.username %>
     <% end %>
     <div style="float:left;margin-left:15px">
-      <strong style="font-size:large"><%= @user_follower.full_name %></strong><br />
-      <span style="font-size:medium;"><%= link_to @user_follower.username_at, profile_url(@user_follower.username), :style=>"text-decoration:none" %></span><br />
+      <strong style="font-size:large"><%= user.full_name %></strong><br />
+      <span style="font-size:medium;"><%= link_to user.username_at, profile_url(user.username), :style=>"text-decoration:none" %></span><br />
       <p style="color:#999;float:left;width:100px;height:50px;padding:0 5px;border-right:1px solid #ccc;">
-      <%= @user_follower.count_of_followers %><br/>Seguidores
+      <%= user.count_of_followers %><br/>Seguidores
       </p>
       <p style="color:#999;float:left;width:100px;height:50px;padding:0 5px;border-right:1px solid #ccc;">
-      <%= @user_follower.count_of_followings %><br/>Seguindo
+      <%= user.count_of_followings %><br/>Seguindo
       </p>
       <p style="color:#999;float:left;width:100px;height:50px;padding:0 5px">
-      <%= @user_follower.count_of_friends %><br/>Amigos
+      <%= user.count_of_friends %><br/>Amigos
       </p>
     </div>
   </div>
+  <% end %>
+
+
+
+  
 </div>
 </div>
 <% if false %>

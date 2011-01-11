@@ -1,5 +1,6 @@
 Ex1::Application.routes.draw do
   
+
   constraints :subdomain => /box/ do
     match ":micro(.:format)" => "xlinks#display", :as => :micro
   end
@@ -99,7 +100,11 @@ Ex1::Application.routes.draw do
   resources :xlinks, :path => "a/xlinks"
   resources :hostnesses, :path => "a/hostnesses", :except => :show
   resources :banners, :path => "a/banners" #except => :show
-  get "a"  => "banners#index"
+  
+  get "a" => "admin#index"
+  get "a/emails" => "admin#emails"
+  get "a/do_emails" => "admin#do_emails"
+  get "a/numbers" => "admin#numbers"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
