@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
     def username_allowed(username, options={:current_user => nil})
       regex_result = username[USERNAME_REGEX]#validation
-      usernamedown = regex_result.downcase
+      usernamedown = regex_result.to_s.downcase
       cu = options[:current_user]
       #
       is_equal_mine = cu.username.downcase==usernamedown if cu#validation
@@ -125,6 +125,8 @@ class User < ActiveRecord::Base
   validates :username,
     :presence => true, :length => { :in => 2..16 },
     :uniqueness => {:case_sensitive => false}
+  validates :description,
+    :presence => true, :length => { :maximum => 196 }
   validates :full_name,
     :presence => true, :length => { :minimum => 2 }
   validate :custom_validations

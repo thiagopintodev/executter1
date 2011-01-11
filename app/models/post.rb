@@ -5,7 +5,8 @@ class Post < ActiveRecord::Base
   
   attr_accessible :type, :user_id, :subject_id, :body, :ip_address, :is_public, :is_deleted
   
-  #scope :with_image, where(:has_image => true)
+  scope :with_image, where("file_types LIKE ?", :jpg)
+  scope :with_any, where("file_types NOT NULL")
   #scope :with_audio, where(:has_audio => true)
   #scope :with_office, where(:has_office => true)
   #scope :with_other, where(:has_other => true)
@@ -48,9 +49,10 @@ class Post < ActiveRecord::Base
     
     posts = posts.where("id > ?", options[:after]) if options[:after]
     posts = posts.where("id < ?", options[:before]) if options[:before]
-    posts = posts.where("file_types LIKE ?", :jpg) if options[:with_image]
-    posts = posts.where("file_types NOT NULL") if options[:with_any]
-    #posts = posts.with_image if options[:with_image]
+    posts = posts.with_image if options[:with_image]
+    posts = posts.with_any if options[:with_any]
+    #posts = posts.where("file_types LIKE ?", :jpg) if options[:with_image]
+    #posts = posts.where("file_types NOT NULL") if options[:with_any]
     #posts = posts.with_audio if options[:with_audio]
     #posts = posts.with_office if options[:with_office]
     #posts = posts.with_other if options[:with_other]
