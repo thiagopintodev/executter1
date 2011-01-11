@@ -142,7 +142,7 @@ class UsersController < ApplicationController
     if params[:tab_id] == '2'
       options[:with_image] = true
     elsif params[:tab_id] == '3'
-      options[:with_file] = true
+      options[:with_any] = true
     end
     
     @user = User.find(params[:id])

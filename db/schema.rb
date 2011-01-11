@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111073930) do
+ActiveRecord::Schema.define(:version => 20110110215931) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -173,17 +173,16 @@ ActiveRecord::Schema.define(:version => 20110111073930) do
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "xlinks", :force => true do |t|
-    t.integer   "user_id"
-    t.string    "micro"
-    t.integer   "file_width"
-    t.integer   "file_height"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "file_file_name"
-    t.string    "file_content_type"
-    t.integer   "file_file_size"
-    t.timestamp "file_updated_at"
-    t.integer   "requests_count",    :default => 0
+    t.integer  "user_id"
+    t.string   "micro"
+    t.integer  "file_width"
+    t.integer  "file_height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
 end
