@@ -6,9 +6,9 @@ class SiteController < ApplicationController
   def index
     #return redirect_to home_index_path if current_user
     #0/0
-    @user_follower = User.first
-    render "event_mailer/followed", :layout=>false
-    #render :text=>User.count
+    #@user_follower = User.first
+    #render "event_mailer/followed", :layout=>false
+    render :text=>"user: #{User.count} | photo: #{Photo.count}  | box: #{Xlink.count} | posts: #{Post.count} | relationship: #{Relationship.count}"
   end
 
   def search
