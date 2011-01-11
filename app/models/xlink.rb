@@ -2,7 +2,8 @@ class Xlink < ActiveRecord::Base
   belongs_to :user
   
   def to_url
-    fmt_micro = file_image? ? "#{micro}.jpg" : micro
+    fmt = MyF.file_type(self.file_file_name)
+    fmt_micro = fmt == :other ? micro : "#{micro}.#{fmt}"
     MyConfig.production? ? "http://box.executter.com/#{fmt_micro}" : "/x/#{fmt_micro}"
   end
   
@@ -13,14 +14,15 @@ class Xlink < ActiveRecord::Base
   end
   has_attached_file :file,
     MyConfig.paperclip_xlink_options(
-      lambda { |a| MyConfig::image?(a) ? { :original=>["700x2800>", :jpg] } : {} }
+      lambda { |a| MyF.file_type(a.original_filename)==:jpg ? { :original=>["700x2800>", :jpg] } : {} }
     )
   def file_image?
     return false unless file?
-    MyConfig::image?(file)
+    MyF.file_type(self.file_file_name) == :jpg
   end
-  def file_music?
-    MyConfig::music?(file)
+  def file_mp3?
+    return false unless file?
+    MyF.file_type(self.file_file_name) == :mp3
   end
   # :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] }
 
@@ -39,7 +41,7 @@ class Xlink < ActiveRecord::Base
   
   def learn_image_geometry
     return unless self.file_image? && self.file_width
-    geo = Paperclip::Geometry.from_file(file.to_file)
+    geo = Paperclip::Geometry.from_file(self.file.to_file)
     self.file_width = geo.width
     self.file_height = geo.height
   end

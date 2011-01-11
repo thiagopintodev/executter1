@@ -5,12 +5,13 @@ class Post < ActiveRecord::Base
   
   attr_accessible :type, :user_id, :subject_id, :body, :ip_address, :is_public, :is_deleted
   
-  #default_scope where(:is_deleted => false)
-
   scope :with_image, where(:has_image => true)
-  scope :with_file, where(:has_file => true)
+  scope :with_audio, where(:has_audio => true)
+  scope :with_office, where(:has_office => true)
+  scope :with_other, where(:has_other => true)
 
   serialize :links
+  serialize :file_types
 
   validates :body, :presence => true, :length => { :within => 1..200 }
 
@@ -48,7 +49,9 @@ class Post < ActiveRecord::Base
     posts = posts.where("id > ?", options[:after]) if options[:after]
     posts = posts.where("id < ?", options[:before]) if options[:before]
     posts = posts.with_image if options[:with_image]
-    posts = posts.with_file if options[:with_file]
+    posts = posts.with_audio if options[:with_audio]
+    posts = posts.with_office if options[:with_office]
+    posts = posts.with_other if options[:with_other]
     posts = posts.where("lower(body) LIKE ?", "%@#{user.username.downcase}%") if options[:mentioned]
     #
     unless source#5 queries

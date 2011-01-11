@@ -13,10 +13,28 @@ class HomeController < ApplicationController
     post = current_user.posts.build(post_attributes)
     post.remote_ip = remote_ip
     if params[:file]
-      @x = Xlink.create(:file=>params[:file], :user_id=>current_user.id)
-      post.links = [ {:url=>@x.to_url, :name => @x.file_file_name} ]
-      post.has_image = @x.file? && @x.file_image?
-      post.has_file = @x.file? && !@x.file_image?
+      x = Xlink.create(:file=>params[:file], :user_id=>current_user.id)
+      post.links = [ {:url=>x.to_url, :name => x.file_file_name} ]
+      post.file_types = [ MyF.file_type(x.file_file_name) ] if x.file?
+=begin
+      if x.file?
+        post.has_any = true
+        if x.file_image?
+          post.has_image = true
+        elsif x.file_audio?
+          post.has_audio = true
+        #elsif x.file_video?
+        #  post.has_video = true
+        #elsif x.file_media?
+        #  post.has_media = true
+        #elsif x.file_office?
+        #  post.has_office = true
+        else
+          post.has_other = true
+        end
+        #post.has_other = !(post.has_image || post.has_office || post.has_audio)
+      end
+=end
     end
     
     User.update(current_user.id, :post_id => post.id) if post.save

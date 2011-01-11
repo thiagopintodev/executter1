@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108180559) do
+ActiveRecord::Schema.define(:version => 20110110215931) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -67,13 +67,11 @@ ActiveRecord::Schema.define(:version => 20110108180559) do
     t.integer  "subject_id"
     t.string   "body"
     t.string   "remote_ip"
-    t.boolean  "is_public",  :default => false
-    t.boolean  "is_deleted", :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "has_image",  :default => false
-    t.boolean  "has_file",   :default => false
     t.text     "links"
+    t.boolean  "has_office"
+    t.string   "file_types"
   end
 
   create_table "relationships", :force => true do |t|

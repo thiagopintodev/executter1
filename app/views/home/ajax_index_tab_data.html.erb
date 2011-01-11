@@ -19,8 +19,7 @@
 
 <% if post.links %>
   <% post.links.each do |x| %>
-      <% if x[:url].ends_with? '.jpg' %>
-
+      <% if MyF.file_type(x[:url]) == :jpg %>
 <li class="foto">
   <%= link_to image_tag(x[:url], :width=>200), post %>
   <%if false%>

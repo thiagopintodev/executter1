@@ -40,7 +40,9 @@ d: '@username'
     # mention_path(post.user.username) #
     raw "#{html}</li>"
   end
-
+  def file_type(filename)
+    MyF.file_type(filename)
+  end
 
 
 
