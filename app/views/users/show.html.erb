@@ -19,6 +19,15 @@
     <%= profile_field(@user, "Gender", 'gender_to_s', @user.gender_to_s) if @user.gender? %>
     <%= profile_field(@user, "Web", 'website', link_to(@user.website, @user.website)) unless @user.website.blank? %>
     <%= profile_field(@user, "Bio", 'description') %>
+    <% if current_user.admin? %>
+    
+    <p style="margin-top:20px"><strong>Admin </strong> </p>
+    <%= profile_field(@user, "Login", 'last_sign_in_at', l(@user.last_sign_in_at) ) %>
+    
+    <%= profile_field(@user, "Logins", 'sign_in_count' ) %>
+    <%= profile_field(@user, "E-mail", 'email' ) %>
+    
+    <% end %>
   </div>
 
   <ul id="estatistics" class="user_counters">
