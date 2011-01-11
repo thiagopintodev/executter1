@@ -1,5 +1,6 @@
 class MyF
   class << self
+  
     def file_type(filename)
       last = filename.split('.').last
       return :jpg if "jpg|jpeg|gif|bmp|png|psd".include? last
@@ -11,5 +12,10 @@ class MyF
       return :ppt if "pptx|ppsx".include? last
       :other
     end
+    
+    def production?
+      ENV['BUCKET_NAME'] == 'production'
+    end
+    
   end
 end

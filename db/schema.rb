@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110110215931) do
+ActiveRecord::Schema.define(:version => 20110111073930) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20110110215931) do
     t.string    "file_content_type"
     t.integer   "file_file_size"
     t.timestamp "file_updated_at"
+    t.integer   "requests_count",    :default => 0
   end
 
 end

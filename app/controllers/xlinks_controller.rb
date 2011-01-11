@@ -11,6 +11,8 @@ class XlinksController < ApplicationController
     #  cached_value = read_fragment(cache_key)
     #else
       x = Xlink.where(:micro=>params[:micro]).first || Xlink.new
+      #x.increment :requests_count
+      #x.save
       cached_value = x.file.url(:original, false)
     #  write_fragment(cache_key, cached_value)
     #end
