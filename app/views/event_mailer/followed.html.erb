@@ -7,7 +7,7 @@
     agora está acompanhando suas postagens no Executter.
   </p>
   <div style="margin:10px 0 20px;background:#efefef;border-top:1px solid #ccc;padding:15px;height:110px">
-    <%= image_tag @user_follower.read_photo.img.url(:me),:style=>"float:left;" %>
+    <%= image_tag url_for(@user_follower.read_photo.img.url(:me)), :style=>"float:left;", :alt=>@user_follower.username %>
     <div style="float:left;margin-left:15px">
       <strong style="font-size:large"><%= @user_follower.full_name %></strong><br />
       <span style="font-size:medium;"><%= link_to @user_follower.username_at, profile_url(@user_follower.username), :style=>"text-decoration:none" %></span><br />
