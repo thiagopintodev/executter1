@@ -60,6 +60,7 @@ class Relationship < ActiveRecord::Base
     r1.is_friend = r2.is_friend = true  if r1.is_follower && r1.is_followed
     return false unless r1.save && r2.save
     #transaction-end
+=begin
     now_follows = r1.is_follower
     begin
     if (didnt_follow and now_follows)
@@ -68,6 +69,7 @@ class Relationship < ActiveRecord::Base
     end
     rescue
     end
+=end
     r1
   end
   
