@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110110215931) do
+ActiveRecord::Schema.define(:version => 20110111205250) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20110110215931) do
     t.string    "img_content_type"
     t.integer   "img_file_size"
     t.timestamp "img_updated_at"
+  end
+
+  create_table "delayed_mail_followeds", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "follower_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "hostnesses", :force => true do |t|
@@ -63,15 +70,14 @@ ActiveRecord::Schema.define(:version => 20110110215931) do
   end
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "subject_id"
-    t.string   "body"
-    t.string   "remote_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "links"
-    t.boolean  "has_office"
-    t.string   "file_types"
+    t.integer   "user_id"
+    t.integer   "subject_id"
+    t.string    "body"
+    t.string    "remote_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.text      "links"
+    t.string    "file_types"
   end
 
   create_table "relationships", :force => true do |t|
@@ -173,16 +179,17 @@ ActiveRecord::Schema.define(:version => 20110110215931) do
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "xlinks", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "micro"
-    t.integer  "file_width"
-    t.integer  "file_height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
+    t.integer   "user_id"
+    t.string    "micro"
+    t.integer   "file_width"
+    t.integer   "file_height"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "file_file_name"
+    t.string    "file_content_type"
+    t.integer   "file_file_size"
+    t.timestamp "file_updated_at"
+    t.integer   "requests_count",    :default => 0
   end
 
 end

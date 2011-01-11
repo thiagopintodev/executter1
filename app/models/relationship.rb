@@ -60,16 +60,11 @@ class Relationship < ActiveRecord::Base
     r1.is_friend = r2.is_friend = true  if r1.is_follower && r1.is_followed
     return false unless r1.save && r2.save
     #transaction-end
-=begin
     now_follows = r1.is_follower
-    begin
-    if (didnt_follow and now_follows)
-      m = EventMailer.followed r1
-      m.deliver
-    end
-    rescue
-    end
-=end
+    DelayedMailFollowed.create(:user_id=>r1.user2_id, :follower_user_id=>r1.user1_id) if (didnt_follow and now_follows)
+      #m = EventMailer.followed r1
+      #m.deliver
+    #end
     r1
   end
   
