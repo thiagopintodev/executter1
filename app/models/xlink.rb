@@ -40,7 +40,7 @@ class Xlink < ActiveRecord::Base
   before_create :generate_micro
   
   def learn_image_geometry
-    return unless self.file_image? && self.file_width
+    return unless self.file_image? && !self.file_width
     geo = Paperclip::Geometry.from_file(self.file.to_file)
     self.file_width = geo.width
     self.file_height = geo.height
