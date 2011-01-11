@@ -1,13 +1,14 @@
 class MyF
   class << self
     def file_type(filename)
-      return :jpg if filename.ends_with? ".jpg"
-      return :mp3 if filename.ends_with? ".mp3"
-      return :zip if filename.ends_with? ".zip"
-      return :pdf if filename.ends_with? ".pdf"
-      return :doc if filename.ends_with? ".doc"
-      return :xls if filename.ends_with? ".xls"
-      return :ppt if filename.ends_with? ".ppt"
+      last = filename.split('.').last
+      return :jpg if "jpg|jpeg|gif|bmp|png|psd".include? last
+      return :mp3 if "mp3|wav".include? last
+      return :pdf if "pdf".include? last
+      return :zip if "zip|rar|gz|tar|7z".include? last
+      return :doc if "docx".include? last
+      return :xls if "xlsx".include? last
+      return :ppt if "pptx|ppsx".include? last
       :other
     end
   end

@@ -27,13 +27,6 @@ $(function() {
     $("head title").html(t);
   }, 1200);
 
-
-  $(".nao-clique").live("click", function(e) {
-    alert("NÃO TEM NADA NESSE LINK");
-    return false;
-  });
-  
-
   //$(".locale_setters a").live("click", function(e) {
   //  $("body *").hide();
   //  setTimeout(function() { location.reload() }, 500);
@@ -248,7 +241,6 @@ $(function() {
   {
     events.posts.register.toggle_buttons();
     events.posts.register.sooner_and_later();
-    //events.home.register.iframe();
 
     selected_tab = $("#viewstack").attr("data-selected");
     functions.tabs.load_tab(selected_tab, false);
@@ -337,48 +329,6 @@ $(function() {
   /// HELPERS FOR ALL PAGES, ONLY ACTUALLY BEING USED
   ///
   events = {
-    home : {
-      register : {
-        iframe: function() {
-//this code doesn't work on iframe reloading =/
-/*
-if ($('#myframe').get(0).contentDocument.readyState!="complete")
-{
-  setTimeout(events.home.register.iframe, 1000);
-  return;
-}
-
-var frame = $('#myframe').get(0).contentDocument.body;
-
-$("form.executa .anexo a.open, form.executa .anexo a.close",frame).live("click", function() {
-    h = $('#myframe').css('height');
-    $('#myframe').css('height', (h=="200px") ? 350 : 200);
-    $("#anexoLink, #anexoBox",frame).slideToggle("fast");
-    $("#anexoBox p:last",frame).html("<input type='file' name='post[post_attachments_attributes][0][file]' id='post_post_attachments_attributes_0_file'>");
-  });
-$("form.executa",frame).live("submit", function() {
-  $("form.executa #post_submit").hide();
-  setTimeout(functions.posts.after, 3000);
-});
-$("form.executa #post_submit",frame).live("click", function() {
-  $("form.executa #post_submit").hide();
-});
-$("textarea#post_body",frame).live("keyup", function(e) {
-  //
-  t = $(this);
-  m = t.attr("maxlength");
-  n = m - t.val().length;
-  //
-  if (n < 0)
-    t.val(t.val().substring(0,m));
-  else
-    t.closest('form').children(".caracteres").html(n);
-});
-*/
-//
-        }
-      }
-    },
     posts : {
       register : {
         sooner_and_later: function() {
