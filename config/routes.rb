@@ -85,7 +85,8 @@ Ex1::Application.routes.draw do
 
   match "p" => "users#redirect", :as => "my_profile"
   match ":username" => "users#show", :as => "profile", :constraints => { :username => User::USERNAME_REGEX }
-  match ":username/list/:list" => "users#list", :as => :user_list
+  match ":username/list/:list" => redirect("/%{username}/%{list}")
+  match ":username/:list" => "users#list", :as => :user_list, :constraints => {:list => /followers|followings|blockers|blockings|friends/}
   
   match ":mention_username/mention" => "home#index", :as => "mention"
 
