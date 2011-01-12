@@ -18,7 +18,7 @@ class MyF
     end
 
     def do_emails
-      user_ids = DelayedMailFollowed.select("distinct user_id").limit(10).collect &:user_id
+      user_ids = DelayedMailFollowed.select("distinct user_id").limit(200).collect &:user_id
       puts s = "fetching #{user_ids.length} distinct emails to send --> #{Time.now}"
       user_ids.each do |user_id|
         user = User.find(user_id)
