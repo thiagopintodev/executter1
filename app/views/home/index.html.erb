@@ -122,7 +122,9 @@
       
     </div>
   </div>
-  <%= f.submit "Executte", :class=>"btn" %>
+  <div id="submitholder">
+    <%= f.submit "Executte" %>
+  </div>
 <% end %>
 
   <%= content_tag :div, flash[:too_soon], :class=>"posting-error" if flash[:too_soon] %>

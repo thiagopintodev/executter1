@@ -246,10 +246,10 @@ $(function() {
     functions.tabs.load_tab(selected_tab, false);
     
     functions.mention.write( $("#mention").val() );
-
+    $("#post_submit").button({disabled:true}).addClass('gray').button();
 
     $("form.executa").live("submit", function() {
-      $("form.executa #post_submit").hide();
+      $("form.executa #post_submit").removeClass('gray').hide();
       functions.posts.clearAfterCountTimeout();
     });
     
@@ -259,11 +259,9 @@ $(function() {
       
       $("#anexoBox p:last").html("<input type='file' name='file' id='file'>");
       functions.posts.after();
-      $("form.executa #post_submit").attr("disabled",true).show();
+      $("form.executa #post_submit").button({disabled:true}).addClass('gray').show();
     });
     
-    //start home
-    $("form.executa #post_submit").attr("disabled",true);
 
     $("form.executa .anexo a.open, form.executa .anexo a.close").live("click", function() {
         h = $('#myframe').css('height');
@@ -282,8 +280,10 @@ $(function() {
       l = t.val().length;
       n = m - l;
       //
-      $("form.executa #post_submit").attr("disabled",(m < l || l < 2));
-      
+      if ((m < l || l < 2))
+        $("form.executa #post_submit").button({disabled:true}).addClass('gray');
+      else
+        $("form.executa #post_submit").button({disabled:false}).removeClass('gray');
     
       
       if (n < 0)
@@ -311,7 +311,7 @@ $(function() {
     }
     else
     {
-      url = ":u/mention".replace(":u", mention);
+      url = "/:u/mention".replace(":u", mention);
       window.location = url;
     }
   });

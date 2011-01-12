@@ -85,6 +85,9 @@ form.executa .anexo hr {border-top:1px solid #CCCCCC;margin:5px 0;}
 form.executa .anexo p {color:#666666;font-size:12px;margin-top:10px;text-align:center;}
 form.executa .anexo p img {margin: 0 2px;}
 
+form#new_post {position:relative;padding-bottom:40px}
+form#new_post #submitholder { position:absolute;bottom:0;right:0; background:url(/images/layout1/ajax3.gif) no-repeat center center;width:115px;height:40px; }
+form#new_post #post_submit.gray { color:#999;opacity:1 !important;}
 
 form.executa .btn {float:right;display:inline-block;width:100px;font-weight:bold;color:#666;height:30px;background:#fafafa;padding:2px;border: #F0F0F0 outset 1px;margin:0px;}
 
