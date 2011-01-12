@@ -13,7 +13,7 @@ class AdminController < ApplicationController
   end
 
   def do_emails
-    render :text => MyF.do_emails
+    render :text => DelayedMailFollowed.send_them
   end
 
   def numbers

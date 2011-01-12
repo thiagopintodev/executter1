@@ -17,8 +17,4 @@ class MyFunctions
     source.each { |k,v| r[I18n.t k] = v }
     r
   end
-
-  def self.model(models)
-    models.to_yaml.split("\n").each {|a| puts a}; puts ""
-  end
 end
