@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
     :presence => true, :length => { :in => 2..16 },
     :uniqueness => {:case_sensitive => false}
   validates :description,
-    :presence => true, :length => { :maximum => 196 }
+    :presence => false, :length => { :maximum => 196 }
   validates :full_name,
     :presence => true, :length => { :minimum => 2 }
   validate :custom_validations

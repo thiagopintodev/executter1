@@ -16,7 +16,9 @@ class AdminController < ApplicationController
     user_ids = DelayedMailFollowed.select("distinct user_id").limit(10).collect &:user_id
     user_ids.each do |user_id|
       @user = User.find(user_id)
-      @followers_user = DelayedMailFollowed.where(:user_id=>user_id).include(:follower_user).collect(&:follower_user)
+      dmf_list = DelayedMailFollowed.where(:user_id=>user_id).includes(:follower_user)
+      dmf_list
+      @followers_user = dmf_list.collect(&:follower_user)
       EventMailer.followed @user, @followers_user
       m.deliver
     end
