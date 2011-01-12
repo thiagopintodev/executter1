@@ -24,54 +24,18 @@ class HomeController < ApplicationController
   
   def after_sign_up
     u = current_user
-    #u.first_ip = u.last_sign_in_ip
-    #u.update_geo
-=begin
-    hosts = Hostness.where(:is_active=>true)
-    hosts = hosts.where("hostness_type=? OR country=?", Hostness::TYPE_UNIVERSAL, u.first_geo_country)
-    hosts.each do |host|
-      u.follow host.user_id
-      u.logger.info "FOLLOWING host id-#{host.user_id}"
-    end
-    if hosts.size == 0
-      hosts = Hostness.where(:is_active=>true, :hostness_type=>Hostness::TYPE_ESCAPE)
-      hosts.each do |host|
-        u.follow host.user_id
-        u.logger.info "FOLLOWING escape host id-#{host.user_id}"
-      end
-    end
-=end
+    
     hosts = Hostness.where(:is_active=>true, :hostness_type=>Hostness::TYPE_UNIVERSAL)
     hosts.each do |host|
       u.follow host.user_id
-      u.logger.info "FOLLOWING host id-#{host.user_id}"
     end
 
     if cookies[:follow_on_registration]
       u2 = User.find(cookies[:follow_on_registration])
       u.follow u2
-      u.logger.info "FOLLOWING inviter @#{u2.username}"
     end
     redirect_to root_path
   end
-
-
-
-=begin
-  def create_post
-    if not_many_posts
-      current_user.my_create_post(params[:post], request.remote_ip)
-      @post = Post.new
-    else
-      @post = Post.new(params[:post])
-      flash[:too_soon] = t "home.too_quick"
-    end
-    @user = current_user
-    render :index
-  end
-=end
-
-
 
   def ajax_index_tab
     render :layout=> false #view decides small changes because they don't depend on database
