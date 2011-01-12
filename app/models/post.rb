@@ -41,11 +41,11 @@ class Post < ActiveRecord::Base
   
   def self.get(u, source, options={})
     user = MyFunctions.users([u]).first
+    hash = {}
     #must-have filters
     posts = order("id DESC").limit(post_size_limit)
     #
-    #posts = posts.includes([{:user => :photo}, :subject]) if options[:includes]
-    posts = posts.includes([{:user => :photo}]) if options[:includes]
+    #posts = posts.includes([{:user => :photo}]) if options[:includes]
     
     posts = posts.where("id > ?", options[:after]) if options[:after]
     posts = posts.where("id < ?", options[:before]) if options[:before]
@@ -60,17 +60,19 @@ class Post < ActiveRecord::Base
     #
     unless source#5 queries
       posts = posts.where(:user_id=>user.id)
+      hash[:users_id] = user.id
     else#7 queries
-      ignored_subjects_ids, users_ids = [], [user.id]
+      ignored_subjects_ids, users_id = [], [user.id]
       source.each do |relation|
         #ignored_subjects_ids |= relation.ignored_subjects
-        users_ids << relation.user2_id
+        users_id << relation.user2_id
       end
-      
-      posts = posts.where("user_id IN (?)", users_ids)
+      hash[:users_id] = users_id
+      posts = posts.where("user_id IN (?)", users_id)
       #posts = posts.where("subject_id IS NULL OR subject_id NOT IN (?)", ignored_subjects_ids) if ignored_subjects_ids.length > 0
     end
-    posts
+    hash[:posts] = posts
+    hash
   end
 
 

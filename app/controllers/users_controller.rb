@@ -147,7 +147,8 @@ class UsersController < ApplicationController
     end
     
     @user = User.find(params[:id])
-    @posts = @user.my_posts(options)
+    @hash = @user.my_posts(options)
+    @posts = @hash[:posts]
   end
   
   def fill_user

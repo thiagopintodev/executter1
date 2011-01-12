@@ -46,19 +46,26 @@ class HomeController < ApplicationController
     options[:limit] = params[:limit]
     options[:after] = params[:after]
     options[:before] = params[:before]
-    options[:includes] = !params[:count]
+    #options[:includes] = !params[:count]
     
     if params[:tab_id] == '1'
-      @posts = current_user.my_followings_posts(options)
+      @hash = current_user.my_followings_posts(options)
     elsif params[:tab_id] == '2'
-      @posts = current_user.my_friends_posts(options)
+      @hash = current_user.my_friends_posts(options)
     elsif params[:tab_id] == '3'
       options[:mentioned] = true
-      @posts = current_user.my_followings_posts(options)
+      @hash = current_user.my_followings_posts(options)
     end
+    @posts = @hash[:posts]
     if params[:count]
       render :text=>@posts.count
     else
+      #@posts = posts.includes([{:user => :photo}]) if options[:includes]
+      users = User.select(:id, :username, :full_name, :photo_id)
+        .where("id IN (?)", @hash[:users_id])
+        .includes(:photo)
+      @users_hash = {}
+      users.each { |u| @users_hash[u.id] = u }
       render :layout=> false
     end
   end
