@@ -13,8 +13,8 @@ class Devise::RegistrationsController < ApplicationController
   # POST /resource/sign_up
   def create
     build_resource
-    location = MyGeoKit.geocode(request.remote_ip)
-    resource.local = location.city
+    #location = MyGeoKit.geocode(request.remote_ip)
+    #resource.local = location.city
 
     did = Rails.env.development? || verify_recaptcha(:model => resource, :message => 'Error at reCAPTCHA!')
     
