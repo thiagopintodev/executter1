@@ -13,8 +13,7 @@ class AdminController < ApplicationController
   end
 
   def do_emails
-    MyF.do_emails
-    render :nothing => true
+    render :text => MyF.do_emails
   end
 
   def numbers
