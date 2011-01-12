@@ -7,13 +7,13 @@
   <% if @r %>
     <% unless @r.is_blocker %>
     <li class="mais">
-      <%= link_to @main_button[:text], "#", :class=>"clickable", 'data-url'=>ajax_user_show_relation_path(@main_button[:params]) if @main_button %>
+      <%= link_to @main_button[:text], "#", :class=>"clickable", 'data-url'=>relation_user_path(@main_button[:params]) if @main_button %>
     </li>
     <% end %>
     
     <% if @r.is_blocker %>
       <li class="topico"><img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" /> Blocking @<%= @user.username %>
-        <a href="#" class="clickable" data-url="<%= ajax_user_show_relation_path({:p1=>'block', :p2=>0}) %>">(stop)</a>
+        <a href="#" class="clickable" data-url="<%= relation_user_path({:p1=>'block', :p2=>0}) %>">(stop)</a>
       </li>
     <% end %>
     <% if @r.is_blocked %>
@@ -50,12 +50,12 @@
 
   <% if current_user.admin %>
     <% if @user.is_host %>
-      <li><a href="<%= user_set_host_path(@user.id, 0) %>">
+      <li><a href="<%= set_host_user_path(@user.id, 0) %>">
         <img src="/images/layout/0_Block.gif" width="16" height="16" />
         tirar anfitrião
       </a></li>
     <% else %>
-      <li><a href="<%= user_set_host_path(@user.id, 1) %>">
+      <li><a href="<%= set_host_user_path(@user.id, 1) %>">
         <img src="/images/layout/0_Block.gif" width="16" height="16" />
         tornar anfitrião
       </a></li>
@@ -66,20 +66,20 @@
   
   <%= content_tag :li,
     link_to(raw("<img src='/images/layout/0_Unfollow.gif' /> Unfollow"), "#", :class=>"clickable",
-      'data-url'=>ajax_user_show_relation_path({:p1=>'follow', :p2=>false})) %>
+      'data-url'=>relation_user_path({:p1=>'follow', :p2=>false})) %>
       
   <% end %>
   
   <% if @r.is_blocker %>
 
     <li><a href="#" class="clickable"
-      data-url="<%= ajax_user_show_relation_path({:p1=>'block', :p2=>0}) %>">
+      data-url="<%= relation_user_path({:p1=>'block', :p2=>0}) %>">
       <img src="/images/layout/0_Unblock.gif" width="16" height="16" />
       <%= t "profile.button_block2", :username=> @user.username %>
     </a></li>
   <% else %>
     <li><a href="#" class="clickable"
-      data-url="<%= ajax_user_show_relation_path({:p1=>'block', :p2=>1}) %>">
+      data-url="<%= relation_user_path({:p1=>'block', :p2=>1}) %>">
       <img src="/images/layout/0_Block.gif" width="16" height="16" />
       <%= t "profile.button_block1", :username=> @user.username %>
     </a></li>
@@ -92,13 +92,13 @@
 
 <%= content_tag :li,
   link_to(raw("<img src='/images/layout/0_Follow.gif' /> watch #{subject.name}"), "#", :class=>"clickable",
-    'data-url'=>ajax_user_show_relation_path({:p1=>'subject', :p2=>subject.id})) %>
+    'data-url'=>relation_user_path({:p1=>'subject', :p2=>subject.id})) %>
 
       <% else %>
 
 <%= content_tag :li,
   link_to(raw("<img src='/images/layout/0_Block.gif' /> ignore #{subject.name}"), "#", :class=>"clickable",
-    'data-url'=>ajax_user_show_relation_path({:p1=>'subject', :p2=>subject.id})) %>
+    'data-url'=>relation_user_path({:p1=>'subject', :p2=>subject.id})) %>
 
 
 
@@ -110,7 +110,7 @@
   <% end %>
 </ul>
 
-  <!--
+<% if false %>
 
   <li><a href="#">
     <img src='/images/layout/0_Follow.gif' />
@@ -133,7 +133,7 @@
   <li><a href="#"><img src="/images/layout/0_Unblock.gif" width="16" height="16" /> Unblock MariaMia</a></li>
   <li><a href="#"><img src="/images/layout/0_Spam.gif" width="16" height="16" /> Report for Spam</a></li>
 </ul>
-  -->
+<% end %>
   
   <% end %>
 <% end %>

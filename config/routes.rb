@@ -28,7 +28,20 @@ Ex1::Application.routes.draw do
     #get "/conf/2" => "devise/registrations#edit"
   end
   
-  resources :users, :path => "u", :only =>[:show, :index, :update]
+  resources :users, :path => "u", :only =>[:show, :index, :update] do
+    member do
+      get "ajax/followings_thumbs" => "users#ajax_followings_thumbs"
+      match "ajax/tab/:tab_id" => "users#ajax_show_tab", :as => "ajax_tab"
+      match "ajax/tab_data/:tab_id" => "users#ajax_show_tab_data", :as => "ajax_tab_data"
+      
+      match "ajax/tab_data/:tab_id/before/:before" => "users#ajax_show_tab_data_before"
+      match "ajax/tab_data/:tab_id/after/:after" => "users#ajax_show_tab_data_after"
+      match "ajax/tab_data/:tab_id/after/:after/count/:count" => "users#ajax_show_tab_data_after_count"
+      
+      match "ajax/relation" => "users#ajax_show_relation", :as => :relation
+      match "ajax/host/:val" => "users#set_host", :as => :set_host
+    end
+  end
   resources :posts, :path => "p", :only =>[:show, :destroy] do
     member do
       get 'next', 'previous'
@@ -71,29 +84,28 @@ Ex1::Application.routes.draw do
   root :to => "home#index"
 
   match "p" => "users#redirect", :as => "my_profile"
-  match ":id" => "users#show", :as => "profile", :constraints => { :id => User::USERNAME_REGEX }
-  
+  match ":username" => "users#show", :as => "profile", :constraints => { :username => User::USERNAME_REGEX }
+  match ":username/list/:list" => "users#list", :as => :user_list
   
   match ":mention_username/mention" => "home#index", :as => "mention"
 
-  match ":id/list/:list" => "users#list", :as => :user_list
-  match ":id/ajax_followings_thumbs" => "users#ajax_followings_thumbs"
+  
+  #match ":id/ajax_followings_thumbs" => "users#ajax_followings_thumbs"
 #  match ":id/ajax_list_data/:list" => "users#list_data", :as => :ajax_user_list_data
 
-  match ":id/ajax_tab/:tab_id" => "users#ajax_show_tab", :as => :ajax_user_show_tab
-  match ":id/ajax_tab_data/:tab_id" => "users#ajax_show_tab_data", :as => :ajax_user_show_tab_data
+  #match ":id/ajax_tab/:tab_id" => "users#ajax_show_tab", :as => :ajax_user_show_tab
+  #match ":id/ajax_tab_data/:tab_id" => "users#ajax_show_tab_data", :as => :ajax_user_show_tab_data
   
-  match ":id/ajax_tab_data/:tab_id/before/:before" => "users#ajax_show_tab_data_before"
-  match ":id/ajax_tab_data/:tab_id/after/:after" => "users#ajax_show_tab_data_after"
-  match ":id/ajax_tab_data/:tab_id/after/:after/count/:count" => "users#ajax_show_tab_data_after_count"
+  #match ":id/ajax_tab_data/:tab_id/before/:before" => "users#ajax_show_tab_data_before"
+  #match ":id/ajax_tab_data/:tab_id/after/:after" => "users#ajax_show_tab_data_after"
+  #match ":id/ajax_tab_data/:tab_id/after/:after/count/:count" => "users#ajax_show_tab_data_after_count"
 
 #  match ":id/ajax_tab1(/:last_post_id)" => "users#ajax_show_tab1", :as => :ajax_user_show_tab1
 #  match ":id/ajax_tab2(/:last_post_id)" => "users#ajax_show_tab2", :as => :ajax_user_show_tab2
 #  match ":id/ajax_tab3(/:last_post_id)" => "users#ajax_show_tab3", :as => :ajax_user_show_tab3
   
-  match ":id/ajax_relation" => "users#ajax_show_relation", :as => :ajax_user_show_relation
-  
-  match ":id/set_host/:val" => "users#set_host", :as => :user_set_host
+  #match ":id/ajax_relation" => "users#ajax_show_relation", :as => :ajax_user_show_relation
+  #match ":id/set_host/:val" => "users#set_host", :as => :user_set_host
 
 
   resources :pages, :path => "a/pages"

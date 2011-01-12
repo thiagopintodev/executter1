@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   #caches_action :ajax_show_tab_data_before, :expires_in => 10.minutes
   #caches_action :ajax_show_tab_data_after, :expires_in => 10.minutes
 
-  cache_sweeper :user_sweeper
+  #cache_sweeper :user_sweeper
 
   def set_host
     User.update(params[:id], :is_host => params[:val]=='1')
@@ -44,9 +44,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(current_user.id)
-    
-    @user.update_attributes!(params[:user]) #if current_user.id.to_s == params[:id]
+    current_user.update_attributes!(params[:user]) #if current_user.id.to_s == params[:id]
     redirect_to request.referer
   end
 
@@ -68,7 +66,7 @@ class UsersController < ApplicationController
   
   def ajax_show_relation
     #js only
-    @user = User.find(params[:id])
+    fill_user
     return unless current_user
     return if current_user.id.to_s == params[:id].to_s
 
@@ -106,7 +104,7 @@ class UsersController < ApplicationController
   end
   
   def ajax_show_tab
-    @user = User.find(params[:id])
+    fill_user
     options = (@user.posts_count > 0) ? {:layout=> false} : {:nothing => true}
     render options
   end
@@ -146,7 +144,7 @@ class UsersController < ApplicationController
       options[:with_any] = true
     end
     
-    @user = User.find(params[:id])
+    fill_user
     @hash = @user.my_posts(options)
     @posts = @hash[:posts]
   end
@@ -154,9 +152,10 @@ class UsersController < ApplicationController
   def fill_user
     if params[:id]
       @user = User.my_find(params[:id])
+    elsif params[:username]
+      @user = User.my_findu(params[:username])
     elsif current_user?
       @user = current_user
     end
   end
-  
 end

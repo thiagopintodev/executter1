@@ -16,10 +16,12 @@ class User < ActiveRecord::Base
       where("lower(#{key})=?", conditions[:email].downcase).first
     end
 
-    #CUSTOM METHODS  
-    def my_find(param)
-      r = (param.to_i > 0) ? where(:id=>param) : where("lower(username)=?", param.downcase.delete("@"))
-      r.first
+    #CUSTOM METHODS
+    def my_find(param_id)
+      where(:id=>param_id).first
+    end
+    def my_findu(param_username)
+      where("lower(username)=?", param_username.downcase.delete("@")).first
     end
 
     def username_allowed(username, options={:current_user => nil})
