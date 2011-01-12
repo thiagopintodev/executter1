@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable , :lockable
-  serialize :temp
+  #serialize :temp
   
   class << self
     #DEVISE
@@ -217,7 +217,7 @@ class User < ActiveRecord::Base
   #EVENT METHODS
   before_save :my_before_save
   def my_before_save
-    self.username = self.username.gsub ' ','_'
+    self.username = self.username.gsub(' ','_').gsub('.','_')
     self.email = self.email.downcase
   end
 
