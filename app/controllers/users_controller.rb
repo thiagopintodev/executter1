@@ -77,6 +77,8 @@ class UsersController < ApplicationController
     p1, p2 = params[:p1], params[:p2]
     if p1
       @r = Relationship.change(p1, current_user, @user, p2)
+      current_user.update_relationship_counters
+      @user.update_relationship_counters
       @user = User.find(params[:id])
     end
 

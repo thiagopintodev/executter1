@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     self.count_of_followers = self.followers.count
     self.count_of_followings = self.followings.count
     self.count_of_friends = self.friends.count
-    self.save
+    self.save(:validate => false)
   end
 
   #ATTRIBUTES

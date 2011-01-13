@@ -34,7 +34,9 @@ class HomeController < ApplicationController
       u2 = User.find(cookies[:follow_on_registration])
       u.follow u2
     end
-    redirect_to root_path
+    u.update_relationship_counters
+    #redirect_to root_path
+    render :nothing => true
   end
 
   def ajax_index_tab

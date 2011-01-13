@@ -26,7 +26,7 @@ class Relationship < ActiveRecord::Base
     r = self.change_block u1, u2, value, options if property == 'block'
     r = self.change_follow u1, u2, value, options if property == 'follow'
     r = self.change_subject u1, u2, value, options if property == 'subject'
-    update_user_counters(u1, u2) if r
+    #update_user_counters(u1, u2) if r
     r || property
   end
 
@@ -81,6 +81,7 @@ class Relationship < ActiveRecord::Base
     #transaction-end
   end
 
+  #deprecated
   def self.update_user_counters(*user_ids)
     #I'm perfectly aware of how counter cache columns work in rails :)
     #are integers
