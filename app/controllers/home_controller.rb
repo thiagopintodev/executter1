@@ -35,8 +35,8 @@ class HomeController < ApplicationController
       u.follow u2
     end
     u.update_relationship_counters
-    #redirect_to root_path
-    render :nothing => true
+    redirect_to root_path
+    #render :nothing => true
   end
 
   def ajax_index_tab
