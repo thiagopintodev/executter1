@@ -23,6 +23,9 @@ module ApplicationHelper
     raw s.join if s.length>0
   end
   
+  def bitly
+    raw "<script>function bitly() { $('.bitly').remove();$('body').append(\"<img class='bitly' src='http://bit.ly/executter' style='display:none'/>\"); }$(function() { bitly(); });</script>" if MyF.production?
+  end
   
   def google_analytics codigo_google_analytics
     if Rails.env.production?
