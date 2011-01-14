@@ -22,11 +22,14 @@ Ex1::Application.routes.draw do
 
 
   devise_scope :user do
-    get "/out" => "devise/sessions#destroy",  :as => :out
-    get "/new" => "devise/registrations#new", :as => :new
-    get "/in"  => "devise/sessions#new",      :as => :in
+    get "/u/out" => "devise/sessions#destroy",  :as => :out
+    get "/u/new" => "devise/registrations#new", :as => :new
+    get "/u/in"  => "devise/sessions#new",      :as => :in
     #get "/conf/2" => "devise/registrations#edit"
   end
+  match "/out" => redirect("/u/out")
+  match "/new" => redirect("/u/new")
+  match "/in" => redirect("/u/in")
   
   resources :users, :path => "u", :only =>[:show, :index, :update] do
     member do
