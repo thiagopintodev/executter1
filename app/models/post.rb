@@ -134,7 +134,7 @@ class Post < ActiveRecord::Base
   end
   
   def self.new_search(text, options={})
-    return nil unless text && text.length > 2
+    return nil unless text
     text = text.downcase
     
     #basics

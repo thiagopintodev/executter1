@@ -1,7 +1,6 @@
 class SiteController < ApplicationController
 
   caches_action :search, :cache_path => proc { |controller| "search|locale=#{I18n.locale}" }
-
   
   def index
     #return redirect_to home_index_path if current_user
