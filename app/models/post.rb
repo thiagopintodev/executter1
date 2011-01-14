@@ -108,12 +108,12 @@ class Post < ActiveRecord::Base
     user = User.find(user) unless user.is_a? User
     posts = user.posts.limit(post_size_limit).order("id DESC").after(options[:after]).before(options[:before])
 
-    source = user.followings  if source == :followings
-    source = user.friends     if source == :friends
+    source_data = user.followings  if source == :followings
+    source_data = user.friends     if source == :friends
     
     #ignored_subjects_ids, users_id = [], [user.id]
     users_id = [user.id]
-    source.each do |relation|
+    source_data.each do |relation|
       #ignored_subjects_ids |= relation.ignored_subjects
       users_id << relation.user2_id
     end
