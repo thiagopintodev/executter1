@@ -12,22 +12,36 @@
     <% end %>
     
     <% if @r.is_blocker %>
-      <li class="topico"><img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" /> Blocking @<%= @user.username %>
-        <a href="#" class="clickable" data-url="<%= relation_user_path({:p1=>'block', :p2=>0}) %>">(stop)</a>
+      <li class="topico">
+        <img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" />
+        <%= t 'view.user.relationship.blocking', :username=>@user.username %>
+        <a href="#" class="clickable" data-url="<%= relation_user_path({:p1=>'block', :p2=>0}) %>">(<%= t 'view.user.relationship.blocking_stop'%>)</a>
       </li>
     <% end %>
     <% if @r.is_blocked %>
-      <li class="topico"><img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" /> Blocked by @<%= @user.username %></li>
+      <li class="topico">
+        <img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" />
+          <%= t 'view.user.relationship.blocked', :username=>@user.username %>
+       </li>
     <% else %>
     
       <% if @r.is_follower %>
-        <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Following</li>
+        <li class="topico">
+          <img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" />
+          <%= t 'view.user.relationship.following' %>
+        </li>
       <% end %>
       
       <% if @r.is_friend %>
-        <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Friend</li>
+        <li class="topico">
+          <img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" />
+          <%= t 'view.user.relationship.friend' %>
+        </li>
       <% elsif @r.is_followed %>
-        <li class="topico"><img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" /> Followed</li>
+        <li class="topico">
+          <img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" />
+          <%= t 'view.user.relationship.followed' %>
+        </li>
       <% end %>
       
     <% end %>
@@ -85,57 +99,7 @@
     </a></li>
   <% end %>
   
-  <% if false %>
-  <%# if @r.is_follower %>
-  
-    <% @user.subjects.each do |subject| %>
-      <% if @r.ignoring? subject.id %>
-
-
-<%= content_tag :li,
-  link_to(raw("<img src='/images/layout/0_Follow.gif' /> watch #{subject.name}"), "#", :class=>"clickable",
-    'data-url'=>relation_user_path({:p1=>'subject', :p2=>subject.id})) %>
-
-      <% else %>
-
-<%= content_tag :li,
-  link_to(raw("<img src='/images/layout/0_Block.gif' /> ignore #{subject.name}"), "#", :class=>"clickable",
-    'data-url'=>relation_user_path({:p1=>'subject', :p2=>subject.id})) %>
-
-
-
-
-      <% end %>
-    <% end %>
-
-    
-  <% end %>
 </ul>
-
-<% if false %>
-
-  <li><a href="#">
-    <img src='/images/layout/0_Follow.gif' />
-      <%#= t "profile.button_watch1", :subject=> subject.name %>
-  </a></li>
-
-  <li><a href="#">
-    <img src="/images/layout/0_Block.gif" width="16" height="16" />
-      <%#= t "profile.button_watch2", :subject=> subject.name %>
-  </a></li>
-
-
-  
-<ul id="menu-estilos">
-	<li><a href="#"><img src="/images/layout/0_metion.gif" width="16" height="16" /> Mention MariaMia</a></li>
-  <li><a href="#"><img src="/images/layout/0_Follow.gif" width="16" height="16" /> Follow MariaMia</a></li>
-  <li><a href="#"><img src="/images/layout/0_AddFriend.gif" width="16" height="16" /> Add as Friend MariaMia</a></li>
-  <li><a href="#"><img src="/images/layout/0_Unfollow.gif" width="16" height="16" /> Unfollow MariaMia</a></li>
-  <li><a href="#"><img src="/images/layout/0_Block.gif" width="16" height="16" /> Block MariaMia</a></li>
-  <li><a href="#"><img src="/images/layout/0_Unblock.gif" width="16" height="16" /> Unblock MariaMia</a></li>
-  <li><a href="#"><img src="/images/layout/0_Spam.gif" width="16" height="16" /> Report for Spam</a></li>
-</ul>
-<% end %>
   
   <% end %>
 <% end %>

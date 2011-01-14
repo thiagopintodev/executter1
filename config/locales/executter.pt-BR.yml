@@ -43,6 +43,13 @@ pt-BR:
           0: 'Tudo'
           1: 'Fotos'
           2: 'Arquivos'
+        relationship:
+          following: "Seguindo"
+          followed: "Seguido"
+          friend: "Amigo"
+          blocked: "Bloqueado por @%{username}"
+          blocking: "Bloqueando @%{username}"
+          blocking_stop: "remover"
     search:
       sidebar:
         title: 'O que você procura?'

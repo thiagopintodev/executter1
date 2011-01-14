@@ -43,6 +43,13 @@ en:
           0: 'All'
           1: 'Pictures'
           2: 'Files'
+        relationship:
+          following: "Following"
+          followed: "Followed"
+          friend: "Friend"
+          blocked: "Blocked By @%{username}"
+          blocking: "Blocking @%{username}"
+          blocking_stop: "stop"
     search:
       sidebar:
         title: 'What do you seek?'
