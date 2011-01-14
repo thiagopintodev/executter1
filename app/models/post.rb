@@ -50,58 +50,7 @@ class Post < ActiveRecord::Base
     where(:remote_ip=>remote_ip).where("created_at > ?", Time.now - time).count
   end
 
-  def self.search(text, options={})
-    return [] unless text && text.length > 2
-    text = text.downcase
-    posts = order("id DESC").limit(post_size_limit)
-    user_ids = User.where("lower(username)=:text OR lower(full_name) LIKE :text", :text=>"%#{text}%").select(:id).collect(&:id)
-    posts = posts.where('lower(body) LIKE :text OR lower(links) LIKE :text OR user_id IN (:user_ids)', :text=>"%#{text}%", :user_ids => user_ids)
-    posts = posts.where("id > ?", options[:after]) if options[:after]
-    posts = posts.where("id < ?", options[:before]) if options[:before]
-    posts
-  end
-  
-  def self.get(u, source, options={})
-    user = MyFunctions.users([u]).first
-    hash = {}
-    #must-have filters
-    posts = order("id DESC").limit(post_size_limit)
-    #
-    #posts = posts.includes([{:user => :photo}]) if options[:includes]
-    
-    posts = posts.where("id > ?", options[:after]) if options[:after]
-    posts = posts.where("id < ?", options[:before]) if options[:before]
-    posts = posts.with_image if options[:with_image]
-    posts = posts.with_any if options[:with_any]
-    #posts = posts.where("file_types LIKE ?", :jpg) if options[:with_image]
-    #posts = posts.where("file_types NOT NULL") if options[:with_any]
-    #posts = posts.with_audio if options[:with_audio]
-    #posts = posts.with_office if options[:with_office]
-    #posts = posts.with_other if options[:with_other]
-    posts = posts.mentioned(user.username) if options[:mentioned]
-    #
-    if !source#5 queries
-      posts = posts.where(:user_id=>user.id)
-      hash[:users_id] = users_id
-    elsif options[:mentioned]
-      hash[:users_id] = posts.collect(&:user_id)
-    else #7 queries
-      ignored_subjects_ids, users_id = [], [user.id]
-      source.each do |relation|
-        #ignored_subjects_ids |= relation.ignored_subjects
-        users_id << relation.user2_id
-      end
-      hash[:users_id] = users_id
-      posts = posts.where("user_id IN (?)", users_id)
-      #posts = posts.where("subject_id IS NULL OR subject_id NOT IN (?)", ignored_subjects_ids) if ignored_subjects_ids.length > 0
-    end
-    hash[:posts] = posts
-    hash
-  end
-
-
-
-
+  #SEARCH METHODS
   def self.from_home(user, source, options={})
     user = User.find(user) unless user.is_a? User
     posts = Post.limit(post_size_limit).order("id DESC").after(options[:after]).before(options[:before])

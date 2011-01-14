@@ -226,22 +226,6 @@ class User < ActiveRecord::Base
     Relationship.change('subject', self.id, u2, value)
   end
 
-
-  
-  #POST METHODS
-  def my_create_post(post_attributes, remote_ip="undefined")
-    puts "moved to home controller for a while :)"
-  end
-  def my_posts(options={})
-    Post.get self, false, options
-  end
-  def my_followings_posts(options={})
-    Post.get self, self.followings, options
-  end
-  def my_friends_posts(options={})
-    Post.get self, self.friends, options
-  end
-
   #EVENT METHODS
   before_save :my_before_save
   def my_before_save
@@ -260,26 +244,4 @@ class User < ActiveRecord::Base
     #self.first_geo_street = g.street
   end
   
-=begin
-4.3.1 Methods Added by has_many
-
-When you declare a has_many association, the declaring class automatically gains 13 methods related to the association:
-
-    * collection(force_reload = false)
-    * collection<<(object, …)
-    * collection.delete(object, …)
-    * collection=objects
-    * collection_singular_ids
-    * collection_singular_ids=ids
-    * collection.clear
-    * collection.empty?
-    * collection.size
-    * collection.find(…)
-    * collection.exists?(…)
-    * collection.build(attributes = {}, …)
-    * collection.create(attributes = {})
-
-=end
-
-
 end
