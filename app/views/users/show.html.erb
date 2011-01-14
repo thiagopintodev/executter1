@@ -23,7 +23,10 @@
     
     <p style="margin-top:20px"><strong>Admin </strong> </p>
     <%= profile_field(@user, "New", 'created_at', l(@user.created_at) ) %>
+    <%= profile_field(@user, "IP1", 'current_sign_in_ip' ) %>
+    <%= profile_field(@user, "IP2", 'last_sign_in_ip') %>
     <%= profile_field(@user, "In", 'last_sign_in_at', l(@user.last_sign_in_at) ) %>
+    <%= profile_field(@user, "Posts", 'posts_count') %>
     
     <%= profile_field(@user, "Logins", 'sign_in_count' ) %>
     <%= profile_field(@user, "E-mail", 'email' ) %>

@@ -139,7 +139,7 @@ class User < ActiveRecord::Base
     :presence => true, :length => { :in => 2..16 },
     :uniqueness => {:case_sensitive => false}
   validates :full_name,
-    :presence => true, :length => { :minimum => 2 }
+    :presence => true, :length => { :in => 2..40 }
   validate :custom_validations
 
   def custom_validations
