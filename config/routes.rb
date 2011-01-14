@@ -18,14 +18,10 @@ Ex1::Application.routes.draw do
 
   get "l/:locale" => "site#do_locale", :as => :locale
   
-  #get "home/index"
-
-
   devise_scope :user do
     get "/u/out" => "devise/sessions#destroy",  :as => :out
     get "/u/new" => "devise/registrations#new", :as => :new
     get "/u/in"  => "devise/sessions#new",      :as => :in
-    #get "/conf/2" => "devise/registrations#edit"
   end
   match "/out" => redirect("/u/out")
   match "/new" => redirect("/u/new")
@@ -51,10 +47,6 @@ Ex1::Application.routes.draw do
     end
   end
 
-  
-  #match "h/ajax_tab1" => "home#ajax_index_tab1", :as => :ajax_home_index_tab1
-  #match "h/ajax_tab2" => "home#ajax_index_tab2", :as => :ajax_home_index_tab2
-  #match "h/ajax_tab3" => "home#ajax_index_tab3", :as => :ajax_home_index_tab3
   match "h/ajax_tab/:tab_id" => "home#ajax_index_tab", :as => :ajax_home_index_tab
   match "h/ajax_tab_data/:tab_id" => "home#ajax_index_tab_data", :as => :ajax_home_index_tab_data
   match "h/ajax_tab_data/:tab_id/before/:before" => "home#ajax_index_tab_data"
@@ -93,25 +85,6 @@ Ex1::Application.routes.draw do
   
   match ":mention_username/mention" => "home#index", :as => "mention"
 
-  
-  #match ":id/ajax_followings_thumbs" => "users#ajax_followings_thumbs"
-#  match ":id/ajax_list_data/:list" => "users#list_data", :as => :ajax_user_list_data
-
-  #match ":id/ajax_tab/:tab_id" => "users#ajax_show_tab", :as => :ajax_user_show_tab
-  #match ":id/ajax_tab_data/:tab_id" => "users#ajax_show_tab_data", :as => :ajax_user_show_tab_data
-  
-  #match ":id/ajax_tab_data/:tab_id/before/:before" => "users#ajax_show_tab_data_before"
-  #match ":id/ajax_tab_data/:tab_id/after/:after" => "users#ajax_show_tab_data_after"
-  #match ":id/ajax_tab_data/:tab_id/after/:after/count/:count" => "users#ajax_show_tab_data_after_count"
-
-#  match ":id/ajax_tab1(/:last_post_id)" => "users#ajax_show_tab1", :as => :ajax_user_show_tab1
-#  match ":id/ajax_tab2(/:last_post_id)" => "users#ajax_show_tab2", :as => :ajax_user_show_tab2
-#  match ":id/ajax_tab3(/:last_post_id)" => "users#ajax_show_tab3", :as => :ajax_user_show_tab3
-  
-  #match ":id/ajax_relation" => "users#ajax_show_relation", :as => :ajax_user_show_relation
-  #match ":id/set_host/:val" => "users#set_host", :as => :user_set_host
-
-
   resources :pages, :path => "a/pages"
   resources :xlinks, :path => "a/xlinks"
   resources :hostnesses, :path => "a/hostnesses", :except => :show
@@ -119,7 +92,6 @@ Ex1::Application.routes.draw do
   
   get "a" => "admin#index"
   get "a/emails" => "admin#emails"
-  get "a/do_emails" => "admin#do_emails"
   get "a/numbers" => "admin#numbers"
 
   # The priority is based upon order of creation:

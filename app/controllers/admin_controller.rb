@@ -12,10 +12,6 @@ class AdminController < ApplicationController
     @emails_count = c.length
   end
 
-  def do_emails
-    render :text => DelayedMailFollowed.send_them
-  end
-
   def numbers
   end
 
