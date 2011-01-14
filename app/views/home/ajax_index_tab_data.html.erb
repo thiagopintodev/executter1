@@ -11,7 +11,7 @@
     <li class="execute">
       <%= link_to user.username, profile_path(user.username) %>
 	    <%= content_tag :span, user.full_name, :class=>:full_name %>
-	    <%= content_tag :span, "#{t 'model.subject.model_name'}: #{post.subject.name}", :class=>:subject if post.subject %>
+	    <%#= content_tag :span, "#{t 'model.subject.model_name'}: #{post.subject.name}", :class=>:subject if post.subject %>
       <p><%= my_post_links h(post.body) %></p>
     </li>
       

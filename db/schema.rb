@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113204817) do
+ActiveRecord::Schema.define(:version => 20110114072156) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -113,64 +113,52 @@ ActiveRecord::Schema.define(:version => 20110113204817) do
   end
 
   create_table "users", :force => true do |t|
-    t.string    "email",                                        :default => "",           :null => false
-    t.string    "encrypted_password",            :limit => 128, :default => "",           :null => false
-    t.string    "password_salt",                                :default => "",           :null => false
-    t.string    "reset_password_token"
-    t.string    "remember_token"
-    t.timestamp "remember_created_at"
-    t.integer   "sign_in_count",                                :default => 0
-    t.timestamp "current_sign_in_at"
-    t.timestamp "last_sign_in_at"
-    t.string    "current_sign_in_ip"
-    t.string    "last_sign_in_ip"
-    t.string    "confirmation_token"
-    t.timestamp "confirmed_at"
-    t.timestamp "confirmation_sent_at"
-    t.integer   "failed_attempts",                              :default => 0
-    t.string    "unlock_token"
-    t.timestamp "locked_at"
-    t.string    "authentication_token"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "admin",                                        :default => false
-    t.string    "username"
-    t.string    "full_name"
-    t.integer   "gender",                                       :default => 0
-    t.integer   "gender_policy",                                :default => 0
-    t.date      "birth",                                        :default => '2010-10-30'
-    t.integer   "birth_policy",                                 :default => 0
-    t.string    "local",                                        :default => ""
-    t.string    "locale",                                       :default => "pt-BR"
-    t.string    "time_zone",                                    :default => "Brasilia"
-    t.string    "website"
-    t.text      "description"
-    t.integer   "photo_id"
-    t.string    "flavour",                                      :default => "orange"
-    t.integer   "background_repeat_policy",                     :default => 0
-    t.integer   "background_attachment_policy",                 :default => 0
-    t.string    "background_color"
-    t.string    "background_position"
-    t.integer   "count_of_followings",                          :default => 0
-    t.integer   "count_of_followers",                           :default => 0
-    t.integer   "count_of_friends",                             :default => 0
-    t.integer   "count_of_blockings",                           :default => 0
-    t.integer   "count_of_blockers",                            :default => 0
-    t.string    "background_image_file_name"
-    t.string    "background_image_content_type"
-    t.integer   "background_image_file_size"
-    t.timestamp "background_image_updated_at"
-    t.integer   "posts_count",                                  :default => 0
-    t.integer   "subjects_count",                               :default => 0
-    t.string    "temp"
-    t.integer   "posts_file_count",                             :default => 0
-    t.integer   "posts_image_count",                            :default => 0
-    t.boolean   "is_host"
-    t.string    "first_ip"
-    t.string    "first_geo_city"
-    t.string    "first_geo_state"
-    t.string    "first_geo_country"
-    t.integer   "post_id"
+    t.string   "email",                                        :default => "",           :null => false
+    t.string   "encrypted_password",            :limit => 128, :default => "",           :null => false
+    t.string   "password_salt",                                :default => "",           :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                                :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.integer  "failed_attempts",                              :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "authentication_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "admin",                                        :default => false
+    t.string   "username"
+    t.string   "full_name"
+    t.integer  "gender",                                       :default => 0
+    t.integer  "gender_policy",                                :default => 0
+    t.date     "birth",                                        :default => '2010-10-30'
+    t.integer  "birth_policy",                                 :default => 0
+    t.string   "local",                                        :default => ""
+    t.string   "locale",                                       :default => "pt-BR"
+    t.string   "time_zone",                                    :default => "Brasilia"
+    t.string   "website"
+    t.text     "description"
+    t.integer  "photo_id"
+    t.string   "flavour",                                      :default => "orange"
+    t.integer  "background_repeat_policy",                     :default => 0
+    t.integer  "background_attachment_policy",                 :default => 0
+    t.string   "background_color"
+    t.string   "background_position"
+    t.string   "background_image_file_name"
+    t.string   "background_image_content_type"
+    t.integer  "background_image_file_size"
+    t.datetime "background_image_updated_at"
+    t.integer  "posts_count",                                  :default => 0
+    t.boolean  "is_host"
+    t.integer  "post_id"
+    t.string   "relations_hash_count"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

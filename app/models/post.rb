@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
 
   belongs_to :user, :counter_cache=>true
-  belongs_to :subject, :counter_cache=>true
+  #belongs_to :subject, :counter_cache=>true
   
   attr_accessible :type, :user_id, :subject_id, :body, :ip_address, :is_public, :is_deleted
   

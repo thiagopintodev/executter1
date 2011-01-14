@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable  #, :lockable
-  #serialize :temp
+  serialize :relations_hash_count
   
   class << self
     #DEVISE
@@ -56,12 +56,29 @@ class User < ActiveRecord::Base
     "@#{username}"
   end
   def update_relationship_counters
-    self.count_of_blockers = self.blockers.count
-    self.count_of_blockings = self.blockings.count
-    self.count_of_followers = self.followers.count
-    self.count_of_followings = self.followings.count
-    self.count_of_friends = self.friends.count
-    self.save(:validate => false)
+    self.relations_hash_count = {
+      :followers => followers.count,
+      :followings => followings.count,
+      :blockers => blockers.count,
+      :blockings => blockings.count,
+      :friends => friends.count
+    }
+    self.save#(:validate => false)
+  end
+  def count_of_followings
+    relations_hash_count[:followings] rescue 0
+  end
+  def count_of_followers
+    relations_hash_count[:followers] rescue 0
+  end
+  def count_of_friends
+    relations_hash_count[:friends] rescue 0
+  end
+  def count_of_blockings
+    relations_hash_count[:blockings] rescue 0
+  end
+  def count_of_blockers
+    relations_hash_count[:blockers] rescue 0
   end
 
   #ATTRIBUTES
@@ -74,8 +91,8 @@ class User < ActiveRecord::Base
     :background_repeat_policy, :background_attachment_policy,
     :flavour, :description,
     :website, :locale, :local,
-    :count_of_blockers, :count_of_blockings, :count_of_friends, :count_of_followers, :count_of_followings,
-    :subjects_attributes, :posts_count, :subjects_count,
+    #:count_of_blockers, :count_of_blockings, :count_of_friends, :count_of_followers, :count_of_followings,
+    :posts_count, #:subjects_attributes, :subjects_count,
     :post_id, :is_host
   
 
@@ -91,7 +108,7 @@ class User < ActiveRecord::Base
   belongs_to :post
   has_many :photos, :dependent => :destroy
   has_many :posts, :dependent => :destroy
-  has_many :subjects, :dependent => :destroy
+  #has_many :subjects, :dependent => :destroy
   #not used
   has_many :relationships, :class_name => "Relationship", :foreign_key => :user1_id, :dependent => :destroy
   
@@ -117,7 +134,7 @@ class User < ActiveRecord::Base
 
   #RULES
   
-  accepts_nested_attributes_for :subjects, :allow_destroy => true, :reject_if => :all_blank
+  #accepts_nested_attributes_for :subjects, :allow_destroy => true, :reject_if => :all_blank
   
   has_attached_file :background_image, MyConfig.paperclip_options
 	validates_attachment_content_type :background_image, :content_type => ['image/jpeg', 'image/gif', 'image/png'] unless :background

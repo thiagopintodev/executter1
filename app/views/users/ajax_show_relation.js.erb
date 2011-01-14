@@ -84,7 +84,9 @@
       <%= t "profile.button_block1", :username=> @user.username %>
     </a></li>
   <% end %>
-  <% if @r.is_follower %>
+  
+  <% if false %>
+  <%# if @r.is_follower %>
   
     <% @user.subjects.each do |subject| %>
       <% if @r.ignoring? subject.id %>
