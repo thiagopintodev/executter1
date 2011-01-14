@@ -53,7 +53,7 @@ class Post < ActiveRecord::Base
   #SEARCH METHODS
   def self.from_home(user, source, options={})
     user = User.find(user) unless user.is_a? User
-    posts = Post.limit(post_size_limit).order("id DESC").after(options[:after]).before(options[:before])
+    posts = Post.limit(post_size_limit).order("posts.id DESC").after(options[:after]).before(options[:before])
     
     source = user.followings  if source == :followings
     source = user.friends     if source == :friends
@@ -73,7 +73,7 @@ class Post < ActiveRecord::Base
 
   def self.from_user(user, options={})
     user = User.find(user) unless user.is_a? User
-    posts = user.posts.limit(post_size_limit).order("id DESC").after(options[:after]).before(options[:before])
+    posts = user.posts.limit(post_size_limit).order("posts.id DESC").after(options[:after]).before(options[:before])
     
     posts = posts.with_image if options[:with_image]
     posts = posts.with_any if options[:with_any]
@@ -85,14 +85,14 @@ class Post < ActiveRecord::Base
     text = text.downcase
     
     #basics
-    posts = Post.limit(post_size_limit).order("id DESC").after(options[:after]).before(options[:before])
+    posts = Post.limit(post_size_limit).order("posts.id DESC").after(options[:after]).before(options[:before])
     
     #checking mentioned
     #if options[:mentioned] || User.is_username?(text)
     return hash = {:posts => posts.mentioned(text)} if User.is_username?(text)
     #if not a mention search
-    user_ids = User.where("lower(username)=:text OR lower(full_name) LIKE :text", :text=>"%#{text}%").select(:id).collect(&:id)
-    posts = posts.where('lower(body) LIKE :text OR lower(links) LIKE :text OR user_id IN (:user_ids)', :text=>"%#{text}%", :user_ids => user_ids)
+    user_ids = User.where("lower(users.username)=:text OR lower(users.full_name) LIKE :text", :text=>"%#{text}%").select(:id).collect(&:id)
+    posts = posts.where('lower(posts.body) LIKE :text OR lower(posts.links) LIKE :text OR posts.user_id IN (:user_ids)', :text=>"%#{text}%", :user_ids => user_ids)
     hash = {:posts => posts}
   end
   
