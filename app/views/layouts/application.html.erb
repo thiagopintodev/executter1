@@ -30,6 +30,10 @@
       }
   </style>
   <% end %>
+  <script>
+  function bitly() { $('.bitly').remove();$("body").append("<img class='bitly' src='http://bit.ly/executter' style='display:none'/>"); }
+  $(function() { bitly(); });
+  </script>
 </head>
 <body <%= body_class %>>
 	<div id="all">

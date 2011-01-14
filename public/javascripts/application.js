@@ -16,10 +16,9 @@ $main_data = {}
 
 $my_flagged_tabs = [];
 
-function bitly() { $('.bitly').remove();$("body").append("<img class='bitly' src='http://bit.ly/executter' style='display:none'/>"); }
+function bitly() {  }//must-keep
 
 $(function() {
-  bitly();
   $title1 = $("head title").html();
   $title2 = $title1;
   $title_at1 = true;
