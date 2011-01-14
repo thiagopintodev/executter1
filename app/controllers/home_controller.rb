@@ -15,7 +15,7 @@ class HomeController < ApplicationController
     if params[:file]
       x = Xlink.create(:file=>params[:file], :user_id=>current_user.id)
       post.links = [ {:url=>x.to_url, :name => x.file_file_name} ]
-      post.file_types = [ MyF.file_type(x.file_file_name) ] if x.file?
+      post.file_types = [ MyF.file_type(x.file_file_name) ]
     end
     
     User.update(current_user.id, :post_id => post.id) if post.save
@@ -45,31 +45,33 @@ class HomeController < ApplicationController
   
   def ajax_index_tab_data
     options = {}
-    options[:limit] = params[:limit]
+    #options[:limit] = params[:limit]
     options[:after] = params[:after]
     options[:before] = params[:before]
     #options[:includes] = !params[:count]
-    
+
     if params[:tab_id] == '1'
-      @hash = current_user.my_followings_posts(options)
+      hash = Post.from_home(current_user, :followings, options)
     elsif params[:tab_id] == '2'
-      @hash = current_user.my_friends_posts(options)
+      hash = Post.from_home(current_user, :friends, options)
+      #@hash = current_user.my_friends_posts(options)
     elsif params[:tab_id] == '3'
-      options[:mentioned] = true
-      @hash = current_user.my_followings_posts(options)
+      #options[:mentioned] = true
+      #@hash = current_user.my_followings_posts(options)
+      hash = Post.new_search("@#{current_user.username}", options)
     end
-    @posts = @hash[:posts]
-    if params[:count]
-      render :text=>@posts.count
-    else
-      #@posts = posts.includes([{:user => :photo}]) if options[:includes]
-      users = User.select(:id, :username, :full_name, :photo_id)
-        .where("id IN (?)", @hash[:users_id])
-        .includes(:photo)
-      @users_hash = {}
-      users.each { |u| @users_hash[u.id] = u }
-      render :layout=> false
-    end
+    @posts = hash[:posts]
+
+    return render :text=>@posts.count if params[:count]
+
+    users_id = hash[:users_id] || @posts.collect(&:user_id)
+    
+    users = User.select(:id, :username, :full_name, :photo_id)
+      .where("id IN (?)", users_id.uniq)
+      .includes(:photo)
+    @users_hash = {}
+    users.each { |u| @users_hash[u.id] = u }
+    render :layout=> false
   end
 
   def settings_remove_bg

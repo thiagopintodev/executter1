@@ -18,11 +18,12 @@ class SiteController < ApplicationController
 
   def ajax_search_data
     options = {}
-    options[:after] = params[:after]
+    #options[:after] = params[:after]
     options[:before] = params[:before]
     #options[:includes] = !params[:count]
-    
-    @posts = Post.search(params[:text], options)
+    hash = Post.new_search(params[:text], options)
+    @posts = hash[:posts]
+    @posts = @posts.includes(:user)
   end
   
   

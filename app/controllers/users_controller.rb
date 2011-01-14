@@ -92,17 +92,6 @@ class UsersController < ApplicationController
 
     @main_button = @r.is_followed ? button_friends : button_follow unless @r.is_follower || @r.is_blocked
 
-=begin
-    unless @r.is_blocked
-      
-      @main_button = unless @r.is_follower
-        @r.is_followed ? button_friends : button_follow
-      else
-        button_unfollow
-      end
-      
-    end
-=end
   end
   
   def ajax_show_tab
@@ -135,10 +124,10 @@ class UsersController < ApplicationController
 
   def fill_tab_data
     options = {}
-    options[:limit] = params[:limit]
+    #options[:limit] = params[:limit]
     options[:after] = params[:after]
     options[:before] = params[:before]
-    options[:includes] = !params[:count]
+    #options[:includes] = !params[:count]
 
     if params[:tab_id] == '2'
       options[:with_image] = true
@@ -147,8 +136,9 @@ class UsersController < ApplicationController
     end
     
     fill_user
-    @hash = @user.my_posts(options)
-    @posts = @hash[:posts]
+    #@hash = @user.my_posts(options)
+    hash = Post.from_user(@user, options)
+    @posts = hash[:posts]
   end
   
   def fill_user

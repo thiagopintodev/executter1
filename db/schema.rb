@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111205250) do
+ActiveRecord::Schema.define(:version => 20110113204817) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(:version => 20110111205250) do
   end
 
   create_table "delayed_mail_followeds", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "follower_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.integer   "follower_user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "hostnesses", :force => true do |t|
@@ -70,14 +70,15 @@ ActiveRecord::Schema.define(:version => 20110111205250) do
   end
 
   create_table "posts", :force => true do |t|
-    t.integer   "user_id"
-    t.integer   "subject_id"
-    t.string    "body"
-    t.string    "remote_ip"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.text      "links"
-    t.string    "file_types"
+    t.integer  "user_id"
+    t.integer  "subject_id"
+    t.string   "body"
+    t.string   "remote_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "links"
+    t.string   "file_types"
+    t.string   "usernames"
   end
 
   create_table "relationships", :force => true do |t|

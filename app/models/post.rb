@@ -10,7 +10,19 @@ class Post < ActiveRecord::Base
   #scope :with_audio, where(:has_audio => true)
   #scope :with_office, where(:has_office => true)
   #scope :with_other, where(:has_other => true)
-
+  
+  #SCOPE METHODS
+  def self.mentioned(username)
+    #where("usernames LIKE ?", "%@#{username.downcase}%")
+    where("usernames LIKE ?", "% #{username.downcase} %")
+  end
+  def self.after(id)
+    id ? where("id > ?", id) : scoped
+  end
+  def self.before(id)
+    id ? where("id < ?", id) : scoped
+  end
+  
   serialize :links
   serialize :file_types
 
@@ -20,6 +32,18 @@ class Post < ActiveRecord::Base
   def self.post_size_limit
     MyConfig.production? ? 10 : 3
   end
+
+  #EVENT METHODS
+  before_save :my_before_save
+  def my_before_save
+    #self.sea = "#{body.downcase} #{links.first.values.join(' ').downcase if links}"
+    a = User.usernames_in_text(self.body)
+    u = a.join(' ').downcase if a.size > 0
+    self.usernames = " #{u} " if a.size > 0
+    self.file_types = [ MyF.file_type(self.links.first[:name]) ] if self.links and self.links.first#this line should be deleted, only added to fix all posts in a migration
+  end
+
+
 
   def self.count_latest_by_user(user_id, time)
     where(:user_id=>user_id).where("created_at > ?", Time.now - time).count
@@ -56,12 +80,14 @@ class Post < ActiveRecord::Base
     #posts = posts.with_audio if options[:with_audio]
     #posts = posts.with_office if options[:with_office]
     #posts = posts.with_other if options[:with_other]
-    posts = posts.where("lower(body) LIKE ?", "%@#{user.username.downcase}%") if options[:mentioned]
+    posts = posts.mentioned(user.username) if options[:mentioned]
     #
-    unless source#5 queries
+    if !source#5 queries
       posts = posts.where(:user_id=>user.id)
-      hash[:users_id] = user.id
-    else#7 queries
+      hash[:users_id] = users_id
+    elsif options[:mentioned]
+      hash[:users_id] = posts.collect(&:user_id)
+    else #7 queries
       ignored_subjects_ids, users_id = [], [user.id]
       source.each do |relation|
         #ignored_subjects_ids |= relation.ignored_subjects
@@ -76,27 +102,51 @@ class Post < ActiveRecord::Base
   end
 
 
-=begin
-  def self.my_log_follow(u1, u2, options={})
-    r = Relationship.my_find(u1, u2)
-    r1 = r[:r1]
-    a = r1.user1.username
-    b = r1.user2.username
+
+
+  def self.from_home(user, source, options={})
+    user = User.find(user) unless user.is_a? User
+    posts = user.posts.limit(post_size_limit).order("id DESC").after(options[:after]).before(options[:before])
+
+    source = user.followings  if source == :followings
+    source = user.friends     if source == :friends
     
-    p = r1.user1.posts.build
-    p.remote_ip = options[:remote_ip]
-    p.body = r1.is_follow ? "@#{a} is now following @#{b}" : "@#{a} is not following @#{b} anymore"
-    p.body += ", now they're friends" if r1.is_friend
-    logger.info " -------> "+ p.body
-    p.save unless options[:no_log]
+    #ignored_subjects_ids, users_id = [], [user.id]
+    users_id = [user.id]
+    source.each do |relation|
+      #ignored_subjects_ids |= relation.ignored_subjects
+      users_id << relation.user2_id
+    end
+    hash = {}
+    hash[:users_id] = users_id
+    posts = posts.where("user_id IN (?)", users_id)
     
-    p = r1.user2.posts.build
-    p.body = r1.is_follow ? "@#{b} is now following me (@#{a})" : "@#{b} is not following me (@#{a}) anymore"
-    p.body += ", now they're friends" if r1.is_friend
-    #logger.info " -------> "+  p.body
-    p.save unless options[:no_log]
-    true
+    hash = {:posts => posts}
   end
-=end
+
+  def self.from_user(user, options={})
+    user = User.find(user) unless user.is_a? User
+    posts = user.posts.limit(post_size_limit).order("id DESC").after(options[:after]).before(options[:before])
+    
+    posts = posts.with_image if options[:with_image]
+    posts = posts.with_any if options[:with_any]
+    hash = {:posts => posts}
+  end
+  
+  def self.new_search(text, options={})
+    return nil unless text && text.length > 2
+    text = text.downcase
+    
+    #basics
+    posts = Post.limit(post_size_limit).order("id DESC").after(options[:after]).before(options[:before])
+    
+    #checking mentioned
+    #if options[:mentioned] || User.is_username?(text)
+    return hash = {:posts => posts.mentioned(text)} if User.is_username?(text)
+    #if not a mention search
+    user_ids = User.where("lower(username)=:text OR lower(full_name) LIKE :text", :text=>"%#{text}%").select(:id).collect(&:id)
+    posts = posts.where('lower(body) LIKE :text OR lower(links) LIKE :text OR user_id IN (:user_ids)', :text=>"%#{text}%", :user_ids => user_ids)
+    hash = {:posts => posts}
+  end
   
 end

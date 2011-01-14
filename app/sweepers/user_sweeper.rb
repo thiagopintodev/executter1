@@ -1,5 +1,5 @@
 class UserSweeper < ActionController::Caching::Sweeper
-  observe User
+#  observe User
   
 =begin
   # If our sweeper detects that a User was created call this

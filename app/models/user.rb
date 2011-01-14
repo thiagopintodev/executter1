@@ -33,6 +33,17 @@ class User < ActiveRecord::Base
       is_allowed = regex_result && (is_equal_mine || !exists?(:username=>usernamedown))#validation
       {:regular=>regex_result, :allowed=>is_allowed}
     end
+    
+    #extracted from posts_helper
+    def usernames_in_text(text)
+      at = "@"
+      r = []
+      text.gsub("\r"," ").split(" ").each { |w| r << "@#{w.gsub(USERNAME_REGEX_NOT,'')}" if w[0,1]==at }
+      r.uniq
+    end
+    def is_username?(text)
+      text[1..-1] == text[USERNAME_REGEX]
+    end
   end
   
   def read_photo
