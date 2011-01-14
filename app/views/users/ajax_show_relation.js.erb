@@ -14,33 +14,33 @@
     <% if @r.is_blocker %>
       <li class="topico">
         <img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" />
-        <%= t 'view.user.relationship.blocking', :username=>@user.username %>
-        <a href="#" class="clickable" data-url="<%= relation_user_path({:p1=>'block', :p2=>0}) %>">(<%= t 'view.user.relationship.blocking_stop'%>)</a>
+        <%= t 'view.user.show.relationship.blocking', :username=>@user.username %>
+        <a href="#" class="clickable" data-url="<%= relation_user_path({:p1=>'block', :p2=>0}) %>">(<%= t 'view.user.show.relationship.blocking_stop'%>)</a>
       </li>
     <% end %>
     <% if @r.is_blocked %>
       <li class="topico">
         <img src="/images/layout/remov_tag1.gif" width="17" height="15" alt="Block" />
-          <%= t 'view.user.relationship.blocked', :username=>@user.username %>
+          <%= t 'view.user.show.relationship.blocked', :username=>@user.username %>
        </li>
     <% else %>
     
       <% if @r.is_follower %>
         <li class="topico">
           <img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" />
-          <%= t 'view.user.relationship.following' %>
+          <%= t 'view.user.show.relationship.following' %>
         </li>
       <% end %>
       
       <% if @r.is_friend %>
         <li class="topico">
           <img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" />
-          <%= t 'view.user.relationship.friend' %>
+          <%= t 'view.user.show.relationship.friend' %>
         </li>
       <% elsif @r.is_followed %>
         <li class="topico">
           <img src="/images/layout/ok.jpg" width="17" height="15" alt="ok" />
-          <%= t 'view.user.relationship.followed' %>
+          <%= t 'view.user.show.relationship.followed' %>
         </li>
       <% end %>
       

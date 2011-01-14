@@ -45,7 +45,7 @@ pt-BR:
           2: 'Arquivos'
         relationship:
           following: "Seguindo"
-          followed: "Seguido"
+          followed: "Segue-me"
           friend: "Amigo"
           blocked: "Bloqueado por @%{username}"
           blocking: "Bloqueando @%{username}"
