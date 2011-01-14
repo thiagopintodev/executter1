@@ -38,9 +38,7 @@ class Post < ActiveRecord::Base
   def my_before_save
     #self.sea = "#{body.downcase} #{links.first.values.join(' ').downcase if links}"
     a = User.usernames_in_text(self.body)
-    u = a.join(' ').downcase if a.size > 0
-    self.usernames = " #{u} " if a.size > 0
-    self.file_types = [ MyF.file_type(self.links.first[:name]) ] if self.links and self.links.first#this line should be deleted, only added to fix all posts in a migration
+    self.usernames = " #{a.join(' ').downcase} " if a.size > 0
   end
 
 

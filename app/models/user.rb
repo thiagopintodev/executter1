@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
       :blockings => blockings.count,
       :friends => friends.count
     }
-    self.save#(:validate => false)
+    self.save(:validate => false)
   end
   def count_of_followings
     relations_hash_count[:followings] rescue 0
