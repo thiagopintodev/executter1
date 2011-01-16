@@ -8,7 +8,7 @@
 
 
 
-<% @user.website = h("http://#{@user.website}") if  !@user.website.blank? && @user.website[0..4]!='http' %>
+<% @user.website = h("http://#{@user.website}") if !@user.website.blank? && @user.website[0..3]!='http' %>
 
 <div id="sidebar">
 
