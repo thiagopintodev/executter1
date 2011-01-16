@@ -42,7 +42,10 @@ en:
         tabs:
           0: 'All'
           1: 'Pictures'
-          2: 'Files'
+          2: 'MP3'
+          3: 'PDF'
+          4: 'ZIP'
+          5: 'File'
         relationship:
           following: "Following"
           followed: "Followed"

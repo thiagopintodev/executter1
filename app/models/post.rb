@@ -5,8 +5,13 @@ class Post < ActiveRecord::Base
   
   attr_accessible :type, :user_id, :subject_id, :body, :ip_address, :is_public, :is_deleted
   
-  scope :with_image, where("file_types LIKE ?", "%#{:jpg}%")
+  scope :with_image, where("file_types LIKE ?", "%jpg%")
+  scope :with_mp3, where("file_types LIKE ?", "%mp3%")
+  scope :with_pdf, where("file_types LIKE ?", "%pdf%")
+  scope :with_zip, where("file_types LIKE ?", "%zip%")
   scope :with_any, where("file_types IS NOT NULL")
+  scope :with_other_but_image, with_any.where("file_types NOT LIKE ?", "%#{:jpg}%")
+  #scope :with_unkown, where("file_types IS NOT LIKE ?", "%#{:jpg}%")
   #scope :with_audio, where(:has_audio => true)
   #scope :with_office, where(:has_office => true)
   #scope :with_other, where(:has_other => true)
@@ -71,12 +76,15 @@ class Post < ActiveRecord::Base
     hash = {:posts => posts}
   end
 
-  def self.from_user(user, options={})
+  def self.from_profile(user, options={})
     user = User.find(user) unless user.is_a? User
     posts = user.posts.limit(post_size_limit).order("posts.id DESC").after(options[:after]).before(options[:before])
     
     posts = posts.with_image if options[:with_image]
-    posts = posts.with_any if options[:with_any]
+    posts = posts.with_mp3 if options[:with_mp3]
+    posts = posts.with_pdf if options[:with_pdf]
+    posts = posts.with_zip if options[:with_zip]
+    posts = posts.with_other_but_image if options[:with_other_but_image]
     hash = {:posts => posts}
   end
   

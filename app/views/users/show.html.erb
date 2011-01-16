@@ -90,21 +90,13 @@
 
 
 <div id="viewstack" data-selected="#view1">
-  <div id="view1" class="view"
-    data-url="<%= ajax_tab_user_path @user.id, 1 %>"
-    data-url2="<%= ajax_tab_data_user_path @user.id, 1 %>"
+  <% (1..6).each do |i| %>
+  <div id="view<%=i%>" class="view"
+    data-url="<%= ajax_tab_user_path @user.id, i %>"
+    data-url2="<%= ajax_tab_data_user_path @user.id, i %>"
     >
   </div>
-  <div id="view2" class="view"
-    data-url="<%= ajax_tab_user_path @user.id, 2 %>"
-    data-url2="<%= ajax_tab_data_user_path @user.id, 2 %>"
-    >
-  </div>
-  <div id="view3" class="view"
-    data-url="<%= ajax_tab_user_path @user.id, 3 %>"
-    data-url2="<%= ajax_tab_data_user_path @user.id, 3 %>"
-    >
-  </div>
+  <% end %>
 </div>
 
     

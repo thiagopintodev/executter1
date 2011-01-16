@@ -129,15 +129,14 @@ class UsersController < ApplicationController
     options[:before] = params[:before]
     #options[:includes] = !params[:count]
 
-    if params[:tab_id] == '2'
-      options[:with_image] = true
-    elsif params[:tab_id] == '3'
-      options[:with_any] = true
-    end
+    options[:with_image]  = params[:tab_id] == '2'
+    options[:with_mp3]    = params[:tab_id] == '3'
+    options[:with_pdf]    = params[:tab_id] == '4'
+    options[:with_zip]    = params[:tab_id] == '5'
+    options[:with_other_but_image] = params[:tab_id] == '6'
     
     fill_user
-    #@hash = @user.my_posts(options)
-    hash = Post.from_user(@user, options)
+    hash = Post.from_profile(@user, options)
     @posts = hash[:posts]
   end
   

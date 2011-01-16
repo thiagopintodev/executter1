@@ -42,7 +42,10 @@ pt-BR:
         tabs:
           0: 'Tudo'
           1: 'Fotos'
-          2: 'Arquivos'
+          2: 'MP3'
+          3: 'PDF'
+          4: 'ZIP'
+          5: 'Arquivos'
         relationship:
           following: "Seguindo"
           followed: "Segue-me"
