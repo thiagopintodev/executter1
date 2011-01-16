@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110114072156) do
+ActiveRecord::Schema.define(:version => 20110116213351) do
 
   create_table "banners", :force => true do |t|
     t.string    "name"
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(:version => 20110114072156) do
     t.boolean  "is_host"
     t.integer  "post_id"
     t.string   "relations_hash_count"
+    t.integer  "inviter_user_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
