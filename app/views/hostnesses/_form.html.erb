@@ -13,18 +13,22 @@
   <table width="100%">
     <tr>
       <th>Anfitrião</th>
+      <% if false %>
       <th>Cidade</th>
       <th>Estado</th>
       <th>Pais</th>
+      <% end %>
       <th>Tipo</th>
       <th>Ativo?</th>
       <th></th>
     </tr>
     <tr>
       <td><%= collection_select(:hostness, :user_id, @user_hosts, :id, :username) %></td>
+      <% if false %>
       <td><%= collection_select(:hostness, :city, @user_cities, :first_geo_city, :first_geo_city) %></td>
       <td><%= collection_select(:hostness, :state, @user_states, :first_geo_state, :first_geo_state) %></td>
       <td><%= collection_select(:hostness, :country, @user_countries, :first_geo_country, :first_geo_country) %></td>
+      <% end %>
       <td><%= collection_select(:hostness, :hostness_type, Hostness::TYPES, :to_s, :to_s) %></td>
       <td><%= f.check_box :is_active %></td>
       <td><%= f.submit %></td>
