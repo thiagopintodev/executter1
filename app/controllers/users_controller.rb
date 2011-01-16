@@ -138,6 +138,7 @@ class UsersController < ApplicationController
     fill_user
     hash = Post.from_profile(@user, options)
     @posts = hash[:posts]
+    @posts = @posts.includes(:user =>:photo)
   end
   
   def fill_user
