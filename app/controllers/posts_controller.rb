@@ -6,12 +6,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    begin
-      @post = Post.find(params[:id]) unless @post
-    rescue
-      redirect_to root_path
-      return false
-    end
+    @post = Post.find params[:id] unless @post rescue return redirect_to :root
     @user = @post.user #so it customizes background ;)
     respond_to do |format|
       format.html { render :show }
