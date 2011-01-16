@@ -5,9 +5,9 @@ class HostnessesController < ApplicationController
 
   def form_vars
     @user_hosts = User.where(:is_host=>true)
-    @user_cities = User.select("DISTINCT(first_geo_city)")
-    @user_states = User.select("DISTINCT(first_geo_state)")
-    @user_countries = User.select("DISTINCT(first_geo_country)")
+    #@user_cities = User.select("DISTINCT(first_geo_city)")
+    #@user_states = User.select("DISTINCT(first_geo_state)")
+    #@user_countries = User.select("DISTINCT(first_geo_country)")
   end
   
   # GET /hostnesses

@@ -5,9 +5,14 @@
 <table cellpadding="10" width="100%">
   <tr>
     <th>User</th>
+    <% if false %>
     <th>Country</th>
     <th>State</th>
     <th>City</th>
+    <td><%= hostness.country %></td>
+    <td><%= hostness.state %></td>
+    <td><%= hostness.city %></td>
+    <% end %>
     <th>Type</th>
     <th>Is Active</th>
     <th></th>
@@ -16,9 +21,6 @@
 <% @hostnesses.each do |hostness| %>
   <tr>
     <td>@<%= hostness.user.username %></td>
-    <td><%= hostness.country %></td>
-    <td><%= hostness.state %></td>
-    <td><%= hostness.city %></td>
     <td><%= hostness.hostness_type %></td>
     <td><%= hostness.is_active ? 'ATIVO' : '' %></td>
     <td><%= link_to 'Edit', edit_hostness_path(hostness) %></td>
