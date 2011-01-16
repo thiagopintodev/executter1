@@ -199,7 +199,7 @@ class User < ActiveRecord::Base
   #GENDER_POLICIES = {} #using checkbox
   BACKGROUND_REPEAT_POLICIES = {0=>'no-repeat',1=>'repeat'}#repeat-X, repeat-Y
 
-  GENDERS = {'-'=>'0','model.user.gender.female'=>'1','model.user.gender.male'=>'2'}
+  GENDERS = {'-'=>'0','model.user.gender_options.female'=>'1','model.user.gender_options.male'=>'2'}
   BIRTH_POLICIES = {'model.user.birth_policy.dm'=>0,'model.user.birth_policy.dmy'=>1,'model.user.birth_policy.nothing'=>2}
   LOCALES = {'languages.en' => "en",'languages.pt-BR' => "pt-BR"}
 

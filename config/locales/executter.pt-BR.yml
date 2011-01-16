@@ -113,7 +113,13 @@ pt-BR:
     subject:
       model_name: "Assunto"
     user:
-      gender:
+      model_name: "Usuário"
+      birthday: "Nascimento"
+      gender: "Gênero"
+      full_name: "Nome Completo"
+      name: "Nome"
+      location: "Local"
+      gender_options:
         male: "Masculino"
         female: "Feminino"
       gender_policy:
