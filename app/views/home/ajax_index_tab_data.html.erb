@@ -1,7 +1,7 @@
 <% if @posts.length > 0 %>
 <div class="pack show-more-button" style="display:none">
 <% @posts.each do |post| %>
-  <% user = @users_hash[post.user_id] %>
+  <% post.user = user = @users_hash[post.user_id] %>
   <ul class="lista-execute post" data-id="<%= post.id %>" <%= "style='border-top:1px solid #E2E2E2'" if @posts.first==post%>>
 	  <li class="havatar">
 	    <a href="/<%= user.username %>">
