@@ -22,10 +22,10 @@ class Post < ActiveRecord::Base
     where("usernames LIKE ?", "% #{username.downcase} %")
   end
   def self.after(id)
-    id ? where("id > ?", id) : scoped
+    id ? where("posts.id > ?", id) : scoped
   end
   def self.before(id)
-    id ? where("id < ?", id) : scoped
+    id ? where("posts.id < ?", id) : scoped
   end
   
   serialize :links
