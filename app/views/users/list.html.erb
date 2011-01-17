@@ -1,4 +1,4 @@
-<% my_title @user.username %>
+<% my_title "#{@user.full_name} #{params[:list]}" %>
 <% my_css_files "profile" %>
 
 <div id="sidebar">
