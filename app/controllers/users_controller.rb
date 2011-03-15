@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
   #caches_action :show, :layout=>false, :expires_in => 1.minutes
   caches_action :ajax_show_tab, :expires_in => 5.minutes
-  caches_action :list, :expires_in => 5.minutes
+  caches_action :list, :expires_in => 30.minutes
   
   caches_action :ajax_followings_thumbs, :expires_in => 5.minutes
   #caches_action :ajax_show_tab_data, :expires_in => 1.minutes

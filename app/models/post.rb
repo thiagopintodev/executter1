@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
 
   MY_LIMIT = 10
   def self.post_size_limit
-    MyF.production? ? 10 : 30
+    MyF.production? ? 28 : 30
   end
 
   #EVENT METHODS

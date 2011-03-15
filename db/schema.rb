@@ -13,60 +13,60 @@
 ActiveRecord::Schema.define(:version => 20110116213351) do
 
   create_table "banners", :force => true do |t|
-    t.string    "name"
-    t.string    "link"
-    t.boolean   "displaying",       :default => true
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "img_file_name"
-    t.string    "img_content_type"
-    t.integer   "img_file_size"
-    t.timestamp "img_updated_at"
+    t.string   "name"
+    t.string   "link"
+    t.boolean  "displaying",       :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
   end
 
   create_table "delayed_mail_followeds", :force => true do |t|
-    t.integer   "user_id"
-    t.integer   "follower_user_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "user_id"
+    t.integer  "follower_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "hostnesses", :force => true do |t|
-    t.integer   "user_id"
-    t.string    "country"
-    t.string    "state"
-    t.string    "city"
-    t.string    "hostness_type", :default => "normal"
-    t.boolean   "is_active",     :default => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "user_id"
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
+    t.string   "hostness_type", :default => "normal"
+    t.boolean  "is_active",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "page_translations", :force => true do |t|
-    t.integer   "page_id"
-    t.string    "locale"
-    t.text      "body"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "page_id"
+    t.string   "locale"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
-    t.string    "key"
-    t.text      "body"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "key"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photos", :force => true do |t|
-    t.integer   "user_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "img_file_name"
-    t.string    "img_content_type"
-    t.integer   "img_file_size"
-    t.timestamp "img_updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
   end
 
   create_table "posts", :force => true do |t|
@@ -82,34 +82,34 @@ ActiveRecord::Schema.define(:version => 20110116213351) do
   end
 
   create_table "relationships", :force => true do |t|
-    t.integer   "user1_id"
-    t.integer   "user2_id"
-    t.boolean   "is_followed",      :default => false
-    t.boolean   "is_follower",      :default => false
-    t.boolean   "is_friend",        :default => false
-    t.boolean   "is_blocked",       :default => false
-    t.boolean   "is_blocker",       :default => false
-    t.string    "ignored_subjects",                    :null => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "user1_id"
+    t.integer  "user2_id"
+    t.boolean  "is_followed",      :default => false
+    t.boolean  "is_follower",      :default => false
+    t.boolean  "is_friend",        :default => false
+    t.boolean  "is_blocked",       :default => false
+    t.boolean  "is_blocker",       :default => false
+    t.string   "ignored_subjects",                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sessions", :force => true do |t|
-    t.string    "session_id", :null => false
-    t.text      "data"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "subjects", :force => true do |t|
-    t.integer   "user_id"
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "posts_count", :default => 0
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "posts_count", :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(:version => 20110116213351) do
     t.string   "full_name"
     t.integer  "gender",                                       :default => 0
     t.integer  "gender_policy",                                :default => 0
-    t.date     "birth",                                        :default => '2010-10-30'
+    t.date     "birth",                                        :default => '2011-03-15'
     t.integer  "birth_policy",                                 :default => 0
     t.string   "local",                                        :default => ""
     t.string   "locale",                                       :default => "pt-BR"
@@ -169,17 +169,17 @@ ActiveRecord::Schema.define(:version => 20110116213351) do
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "xlinks", :force => true do |t|
-    t.integer   "user_id"
-    t.string    "micro"
-    t.integer   "file_width"
-    t.integer   "file_height"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "file_file_name"
-    t.string    "file_content_type"
-    t.integer   "file_file_size"
-    t.timestamp "file_updated_at"
-    t.integer   "requests_count",    :default => 0
+    t.integer  "user_id"
+    t.string   "micro"
+    t.integer  "file_width"
+    t.integer  "file_height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "requests_count",    :default => 0
   end
 
 end

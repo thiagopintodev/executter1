@@ -76,6 +76,10 @@
     <% end %>
   <% end %>
 
+
+  <%= content_tag :li,
+    link_to(raw("<img src='/images/layout/0_Unfollow.gif' /> Mention"), mention_path(@user.username)) %>
+
   <% if @r.is_follower %>
   
   <%= content_tag :li,
