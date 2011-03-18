@@ -9,6 +9,7 @@
     <%= submit_tag t('application.words.latest_x_results', :x=>10) %>
   <% end %>
 
+<% if @posts %>
 <% @posts.each do |post| %>
 
   <ul class="lista-execute post" data-id="<%= post.id %>" <%= "style='border-top:1px solid #E2E2E2'" if @posts.first==post%>>
@@ -66,6 +67,7 @@
     <%#= hidden_field_tag :flags, params[:flags] %>
     <%= submit_tag t('application.words.older_results') %>
   <% end %>
+<% end %>
 <% end %>
   
 </div>
