@@ -59,6 +59,8 @@ class HomeController < ApplicationController
       #options[:mentioned] = true
       #@hash = current_user.my_followings_posts(options)
       hash = Post.new_search("@#{current_user.username}", options)
+    elsif params[:tab_id] == '4'
+      hash = Post.from_home(current_user, :followers, options)
     end
     @posts = hash[:posts]
 

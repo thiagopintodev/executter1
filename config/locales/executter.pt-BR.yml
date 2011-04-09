@@ -37,6 +37,7 @@ pt-BR:
           0: 'Home'
           1: 'Amigos'
           2: '@Menção'
+          3: 'Meus Seguidores'
     user:
       show:
         tabs:

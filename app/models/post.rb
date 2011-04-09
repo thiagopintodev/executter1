@@ -60,6 +60,7 @@ class Post < ActiveRecord::Base
     user = User.find(user) unless user.is_a? User
     posts = Post.limit(post_size_limit).order("posts.id DESC").after(options[:after]).before(options[:before])
     
+    source = user.followers  if source == :followers
     source = user.followings  if source == :followings
     source = user.friends     if source == :friends
     

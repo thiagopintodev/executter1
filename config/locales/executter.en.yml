@@ -1,4 +1,3 @@
-# %{username}
 en:
   '-': '-'
   languages:
@@ -37,6 +36,7 @@ en:
           0: 'Home'
           1: 'Friends'
           2: '@Mention'
+          3: 'My Followers'
     user:
       show:
         tabs:
