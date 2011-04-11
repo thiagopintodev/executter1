@@ -482,7 +482,7 @@ ajax_content = view.contents().find(".pack").fadeIn('fast');
     tabs : {
       load_tab: function(tab, force_posts, fn_callback) {
         //
-        $("#viewstack .view").hide();
+        $("#viewstack .view").html('').hide();
         tab_url = $(selected_tab).show().attr("data-url");
 
         //if (force_posts)
