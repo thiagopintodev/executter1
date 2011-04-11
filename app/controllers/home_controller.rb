@@ -53,7 +53,9 @@ class HomeController < ApplicationController
     if params[:tab_id] == '1'
       hash = Post.from_home(current_user, :followings, options)
     elsif params[:tab_id] == '2'
-      hash = Post.from_home(current_user, :friends, options)
+      #hash = Post.from_home(current_user, :friends, options)
+      options[:with_image] = true
+      hash = Post.from_home(current_user, :followings, options)
       #@hash = current_user.my_friends_posts(options)
     elsif params[:tab_id] == '3'
       #options[:mentioned] = true

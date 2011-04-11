@@ -5,9 +5,7 @@
 <% if params[:tab_id]== '1' %>
   <% sub_header = tabs_titles[0] %>
   <li class="atual"><%= tabs_titles[0] %></li>
-      <% if false %>
   <li><a href="#" class="tab-switcher" data-tab="#view2"><%= tabs_titles[1] %></a></li>
-      <% end %>
   <li><a href="#" class="tab-switcher" data-tab="#view3"><%= tabs_titles[2] %></a></li>
   <li><a href="#" class="tab-switcher" data-tab="#view4"><%= tabs_titles[3] %></a></li>
 
@@ -26,9 +24,7 @@
 <% elsif params[:tab_id]== '3' %>
   <% sub_header = tabs_titles[2] %>
   <li><a href="#" class="tab-switcher" data-tab="#view1"><%= tabs_titles[0] %></a></li>
-      <% if false %>
   <li><a href="#" class="tab-switcher" data-tab="#view2"><%= tabs_titles[1] %></a></li>
-      <% end %>
   <li class="atual"><%= tabs_titles[2] %></li>
   <li><a href="#" class="tab-switcher" data-tab="#view4"><%= tabs_titles[3] %></a></li>
 
@@ -37,9 +33,7 @@
 <% elsif params[:tab_id]== '4' %>
   <% sub_header = tabs_titles[3] %>
   <li><a href="#" class="tab-switcher" data-tab="#view1"><%= tabs_titles[0] %></a></li>
-      <% if false %>
   <li><a href="#" class="tab-switcher" data-tab="#view2"><%= tabs_titles[1] %></a></li>
-      <% end %>
   <li><a href="#" class="tab-switcher" data-tab="#view3"><%= tabs_titles[2] %></a></li>
   <li class="atual"><%= tabs_titles[3] %></li>
 <% end %>

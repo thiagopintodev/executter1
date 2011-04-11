@@ -73,6 +73,7 @@ class Post < ActiveRecord::Base
     hash = {}
     hash[:users_id] = users_id
     posts = posts.where("user_id IN (?)", users_id)
+    posts = posts.with_image if options[:with_image]
     
     hash = {:posts => posts}
   end
