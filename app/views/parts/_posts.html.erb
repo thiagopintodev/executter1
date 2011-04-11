@@ -33,7 +33,7 @@
       <% if filetype == :jpg %>
 
 <li class="foto">
-  <%= link_to image_tag(x[:url], :width=>200), post %>
+  <%= link_to image_tag(x[:url], :width=>200), x[:url], :rel=>'thumbnail' %>
   <%if false%>
   <%= link_to image_tag(x[:url], :style=>"width:200px"), x[:name], :target=>"_blank" %>
   <span><%= link_to "Baixar arquivo original #{x[:name]}", x[:url], :target=>"_blank" %></span><br/>

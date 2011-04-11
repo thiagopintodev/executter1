@@ -1,4 +1,5 @@
 <% if @posts.length > 0 %>
+<script type="text/javascript">make_colorbox();</script>
 <div class="pack show-more-button" style="display:none">
 <% @posts.each do |post| %>
   <% post.user = user = @users_hash[post.user_id] %>
@@ -22,7 +23,7 @@
     <% filetype = MyF.file_type(x[:url]) %>
       <% if filetype == :jpg %>
 <li class="foto">
-  <%= link_to image_tag(x[:url], :width=>200), post %>
+  <%= link_to image_tag(x[:url], :width=>200), x[:url], :rel=>'thumbnail' %>
   <%if false%>
   <%= link_to image_tag(x[:url], :style=>"width:200px"), x[:name], :target=>"_blank" %>
   <span><%= link_to "Baixar arquivo original #{x[:name]}", x[:url], :target=>"_blank" %></span><br/>

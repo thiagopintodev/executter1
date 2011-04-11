@@ -3,6 +3,9 @@ String.prototype.endsWith = function(pattern) {
     return d >= 0 && this.lastIndexOf(pattern) === d;
 };
 
+function make_colorbox() {
+  $("a[rel='thumbnail']").colorbox({transition:"elastic", speed: 500});
+}
 
 
 ROUTE_USERNAME_AVAILABLE = "/s/ajax_username_available/:u"
