@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(:version => 20110411210539) do
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["id", "username", "full_name", "photo_id"], :name => "index_users_on_id_and_username_and_full_name_and_photo_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
