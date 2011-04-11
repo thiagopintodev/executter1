@@ -35,80 +35,81 @@ class Relationship < ActiveRecord::Base
   end
 
   protected
-  
-  def self.change_block(u1, u2, value, options={})
-    rr = Relationship.my_find_both(u1, u2)
-    r1, r2 = rr[:r1], rr[:r2]
-    #return if r1.is_blocked
-    #transaction-begin
-    r1.is_blocker = r2.is_blocked = value
-    r1.is_friend = r2.is_friend = false
-    r1.is_follower = r2.is_follower = false
-    r1.is_followed = r2.is_followed = false
-    r1 if r1.save && r2.save
-    #transaction-end
-  end
-  
-  def self.change_follow(u1, u2, value, options={})
-    rr = Relationship.my_find_both(u1, u2)
-    r1, r2 = rr[:r1], rr[:r2]
-    return if r1.is_blocked
-    didnt_follow = !r1.is_follower
-    #transaction-begin
-    r1.is_follower = r2.is_followed = value
-    r1.is_friend = r2.is_friend = false
-    r1.is_friend = r2.is_friend = true  if r1.is_follower && r1.is_followed
-    return false unless r1.save && r2.save
-    #transaction-end
-    now_follows = r1.is_follower
-    DelayedMailFollowed.create(:user_id=>r1.user2_id, :follower_user_id=>r1.user1_id) if (didnt_follow and now_follows)
-      #m = EventMailer.followed r1
-      #m.deliver
-    #end
-    r1
-  end
-  
-  def self.change_subject(u1, u2, value, options={})
-    r1 = Relationship.my_find(u1, u2)
-    return if r1.is_blocked || !r1.is_follower
-    #transaction-begin
-    if r1.ignoring? value
-      r1.ignored_subjects.delete value
-    else
-      r1.ignored_subjects << value
-    end
-    r1 if r1.save
-    #transaction-end
-  end
 
-  #deprecated
-  def self.update_user_counters(*user_ids)
-    #I'm perfectly aware of how counter cache columns work in rails :)
-    #are integers
-    #users = User.find(user_ids)
-    user_ids.each do |user_id|
-      a = {} #:validate => false
-      a[:count_of_blockers]   = where(:user1_id=>user_id, :is_blocked=>true).size
-      a[:count_of_blockings]  = where(:user1_id=>user_id, :is_blocker=>true).size
-      a[:count_of_followers]  = where(:user1_id=>user_id, :is_followed=>true).size
-      a[:count_of_followings] = where(:user1_id=>user_id, :is_follower=>true).size
-      a[:count_of_friends]    = where(:user1_id=>user_id, :is_friend=>true).size
-      User.update(user_id, a)
+  class << self
+    def change_block(u1, u2, value, options={})
+      rr = my_find_both(u1, u2)
+      r1, r2 = rr[:r1], rr[:r2]
+      #return if r1.is_blocked
+      #transaction-begin
+      r1.is_blocker = r2.is_blocked = value
+      r1.is_friend = r2.is_friend = false
+      r1.is_follower = r2.is_follower = false
+      r1.is_followed = r2.is_followed = false
+      r1 if r1.save && r2.save
+      #transaction-end
     end
-  end
-  
-  
-  def self.my_find_both(u1, u2)
-    #gotta check witch line below is faster
-    #ar = where("(user1_id=:user1 AND user2_id=:user2) OR (user1_id=:user2 AND user2_id=:user1)", :user1=>user1_id, :user2=>user2_id)
-    ar = where("user1_id IN (:a) AND user2_id IN (:a)", :a=>[u1, u2]).limit(2)
     
-    r = {}
-    ar.each { |a| r[ (a.user1_id == u1) ? :r1 : :r2 ] = a }
-    r[:r1] = Relationship.new(:user1_id=>u1, :user2_id=>u2) unless r[:r1]
-    r[:r2] = Relationship.new(:user1_id=>u2, :user2_id=>u1) unless r[:r2]
-    r
-    #returns objects not saved to the database if the relationship does not exist
-  end
+    def change_follow(u1, u2, value, options={})
+      rr = my_find_both(u1, u2)
+      r1, r2 = rr[:r1], rr[:r2]
+      return if r1.is_blocked
+      didnt_follow = !r1.is_follower
+      #transaction-begin
+      r1.is_follower = r2.is_followed = value
+      r1.is_friend = r2.is_friend = false
+      r1.is_friend = r2.is_friend = true  if r1.is_follower && r1.is_followed
+      return false unless r1.save && r2.save
+      #transaction-end
+      now_follows = r1.is_follower
+      DelayedMailFollowed.create(:user_id=>r1.user2_id, :follower_user_id=>r1.user1_id) if (didnt_follow and now_follows)
+        #m = EventMailer.followed r1
+        #m.deliver
+      #end
+      r1
+    end
+    
+    def change_subject(u1, u2, value, options={})
+      r1 = my_find(u1, u2)
+      return if r1.is_blocked || !r1.is_follower
+      #transaction-begin
+      if r1.ignoring? value
+        r1.ignored_subjects.delete value
+      else
+        r1.ignored_subjects << value
+      end
+      r1 if r1.save
+      #transaction-end
+    end
 
+    #deprecated
+    def update_user_counters(*user_ids)
+      #I'm perfectly aware of how counter cache columns work in rails :)
+      #are integers
+      #users = User.find(user_ids)
+      user_ids.each do |user_id|
+        a = {} #:validate => false
+        a[:count_of_blockers]   = where(:user1_id=>user_id, :is_blocked=>true).size
+        a[:count_of_blockings]  = where(:user1_id=>user_id, :is_blocker=>true).size
+        a[:count_of_followers]  = where(:user1_id=>user_id, :is_followed=>true).size
+        a[:count_of_followings] = where(:user1_id=>user_id, :is_follower=>true).size
+        a[:count_of_friends]    = where(:user1_id=>user_id, :is_friend=>true).size
+        User.update(user_id, a)
+      end
+    end
+    
+    
+    def my_find_both(u1, u2)
+      #gotta check witch line below is faster
+      #ar = where("(user1_id=:user1 AND user2_id=:user2) OR (user1_id=:user2 AND user2_id=:user1)", :user1=>user1_id, :user2=>user2_id)
+      ar = where("user1_id IN (:a) AND user2_id IN (:a)", :a=>[u1, u2]).limit(2)
+      
+      r = {}
+      ar.each { |a| r[ (a.user1_id == u1) ? :r1 : :r2 ] = a }
+      r[:r1] = Relationship.new(:user1_id=>u1, :user2_id=>u2) unless r[:r1]
+      r[:r2] = Relationship.new(:user1_id=>u2, :user2_id=>u1) unless r[:r2]
+      r
+      #returns objects not saved to the database if the relationship does not exist
+    end
+  end
 end
