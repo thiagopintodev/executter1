@@ -1,6 +1,13 @@
 class Photo < ActiveRecord::Base
   belongs_to :user
 
+  def url
+    img.url
+  end
+  def user_username
+    user.username
+  end
+
   has_attached_file :img,
     MyConfig.paperclip_options({
       mi: ["25x25#", :jpg],

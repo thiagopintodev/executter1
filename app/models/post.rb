@@ -1,5 +1,12 @@
 class Post < ActiveRecord::Base
 
+  serialize :links
+  serialize :file_types
+  def user_username
+    user.username
+  end
+
+
   belongs_to :user, :counter_cache=>true
   #belongs_to :subject, :counter_cache=>true
   
@@ -28,8 +35,6 @@ class Post < ActiveRecord::Base
     id ? where("posts.id < ?", id) : scoped
   end
   
-  serialize :links
-  serialize :file_types
 
   validates :body, :presence => true, :length => { :within => 1..200 }
 

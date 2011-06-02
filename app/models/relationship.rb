@@ -1,4 +1,13 @@
 class Relationship < ActiveRecord::Base
+
+  def user1_username
+    user1.username
+  end
+  
+  def user2_username
+    user2.username
+  end
+
   belongs_to :user1, :class_name => "User", :foreign_key => "user1_id"
   belongs_to :user2, :class_name => "User", :foreign_key => "user2_id"
   validates :user1_id, :presence => true

@@ -1,6 +1,12 @@
 Ex1::Application.routes.draw do
   
 
+  get "pure/users"
+  get "pure/photos"
+  get "pure/posts"
+  get "pure/relationships"
+  
+
   constraints :subdomain => /box/ do
     match ":micro(.:format)" => "xlinks#display", :as => :micro
   end
