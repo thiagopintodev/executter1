@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
     @url ||= begin
       u = links.first[:url]
       x = Xlink.find_by_micro(u.split('/').last.split('.').first)
-      x.file.url
+      x.file.url.split('?').first
     rescue
       nil
     end
