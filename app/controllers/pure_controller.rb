@@ -26,7 +26,7 @@ class PureController < ApplicationController
 
   def posts
     except = [:updated_at, :subject_id, :usernames, :file_types]
-    @posts = Post.limit(1000).offset(params[:skip]).order("id").includes(:user)
+    @posts = Post.limit(1000).after(params[:last_post_id]).order("id").includes(:user)
     render :json => @posts.to_json(:methods => [:user_username], :except=>except)
   end
 
