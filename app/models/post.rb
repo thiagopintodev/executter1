@@ -5,6 +5,18 @@ class Post < ActiveRecord::Base
   def user_username
     user.username
   end
+  def url
+    @url ||= begin
+      u = links.first[:url]
+      x = Xlink.find_by_micro(u.split('/').last.split('.').first)
+      x.file.url
+    rescue
+      nil
+    end
+  end
+  def filename
+    links.first[:name] rescue nil
+  end
 
 
   belongs_to :user, :counter_cache=>true
