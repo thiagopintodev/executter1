@@ -17,7 +17,11 @@ class PureController < ApplicationController
 
   def photos
     @photos = Photo.limit(1000).offset(params[:skip]).order("id").includes(:user)
-    render :json => @photos.to_json(:only=>:created_at, :methods=>[:url, :filename, :user_username])
+    photos2 = []
+    @photos.each do |p|
+      photos2 << p if p.img?
+    end
+    render :json => photos2.to_json(:only=>:created_at, :methods=>[:url, :filename, :user_username])
   end
 
   def posts
