@@ -4,6 +4,9 @@ class Photo < ActiveRecord::Base
   def url
     img.url
   end
+  def filename
+    img.original_filename
+  end
   def user_username
     user.username
   end
