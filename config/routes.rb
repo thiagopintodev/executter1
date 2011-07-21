@@ -1,5 +1,9 @@
 Ex1::Application.routes.draw do
   
+  root :to => "site#index"
+  get "/u/out" => "site#index"
+  get "/u/new" => "site#index"
+  get "/u/in"  => "site#index"
 
   get "pure/users"
   get "pure/photos"
@@ -82,7 +86,6 @@ Ex1::Application.routes.draw do
   
   get "site/index"
   #post "/", :controller => :home, :action => :create_post, :as => :my_create_post
-  root :to => "home#index"
 
   match "p" => "users#redirect", :as => "my_profile"
   match ":username" => "users#show", :as => "profile", :constraints => { :username => User::USERNAME_REGEX }
