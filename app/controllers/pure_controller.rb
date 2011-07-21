@@ -25,10 +25,10 @@ class PureController < ApplicationController
   end
 
   def posts
-    except = [:updated_at, :subject_id, :usernames, :file_types, :links]
+    except = [:updated_at, :subject_id, :usernames, :file_types, :links, :filename, :url]
     @posts = Post.limit(1000).after(params[:last_post_id]).order("id").includes(:user)
     render :json => @posts.to_json(:methods => [:user_username], :except=>except)
-    #, :filename, :url
+    #
   end
 
   def relationships
