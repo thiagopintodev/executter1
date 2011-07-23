@@ -1,10 +1,4 @@
 Ex1::Application.routes.draw do
-  
-  root :to => "site#index"
-  get "/u/out" => "site#index"
-  get "/u/new" => "site#index"
-  get "/u/in"  => "site#index"
-
   get "pure/users"
   get "pure/photos"
   get "pure/posts"
