@@ -2,8 +2,7 @@ class HomeController < ApplicationController
   before_filter :my_must_be_logged
 
   def index
-    #@user = current_user#this makes user background show ;)
-    render '/site/ex2', :layout => false
+    @user = current_user#this makes user background show ;)
   end
 
   def new_post
