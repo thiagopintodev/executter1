@@ -4,7 +4,6 @@ Ex1::Application.routes.draw do
   get "pure/posts"
   get "pure/relationships"
   
-
   constraints :subdomain => /box/ do
     match ":micro(.:format)" => "xlinks#display", :as => :micro
   end
@@ -17,6 +16,8 @@ Ex1::Application.routes.draw do
   
   #resources :user_profiles
   #resources :posts
+  
+  root :to => "home#index"
   
   devise_for :users #,  :path_names => { :sign_up => "/new", :sign_in => "/in", :sign_out => "/out" }
 
